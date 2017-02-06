@@ -1,0 +1,64 @@
+\documentclass
+[
+a4paper,
+english,
+oneside,
+openright,                    % Kap.beginn immer rechts! (fkt. nur bei report, nicht bei article)
+11pt,                         % ersatzweise 12pt, wenn mehr Seiten entstehen sollen
+table
+]
+{report}
+
+\input{settings/_einstellungen.tex}
+
+\begin{document}
+\def\cpp{C{}\texttt{++}} % \cpp is shortcut now for: print C++ nicely
+
+\pagestyle{empty}
+\include{sections/000_titelblatt}
+\newpage
+\include{sections/001_danksagung}
+\newpage
+\include{sections/001_eigenstaendigkeitserklaerung}
+\newpage
+
+
+\pagestyle{plain}
+\pagenumbering{roman}
+\setcounter{page}{3}
+
+\tableofcontents
+\cleardoublepage
+
+\listoffigures
+\protect \addcontentsline{toc}{chapter}{List of Figures}
+\mtcaddchapter
+\cleardoublepage
+
+\listoftables
+\protect \addcontentsline{toc}{chapter}{List of Tables}
+\mtcaddchapter
+\cleardoublepage
+
+\lstlistoflistings
+\protect \addcontentsline{toc}{chapter}{Quellcodeverzeichnis}
+\mtcaddchapter
+\cleardoublepage
+
+\lohead[\putchapterthumb]{\putchapterthumb}
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\include{sections/002_introduction}
+\include{sections/003_related_work}
+\include{sections/004_requirements_analysis}
+\include{sections/005_design}
+\include{sections/006_implementation}
+\include{sections/007_evaluation}
+\include{sections/008_summary}
+
+
+\include{sections/009_bibliography}
+\mtcaddchapter
+
+\end{document}

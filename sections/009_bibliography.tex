@@ -1,0 +1,25 @@
+\pagenumbering{Roman}
+\setcounter{page}{1}
+
+\cleardoublepage
+\renewcommand*{\chapterthumbformat}{Acronyms}
+\input{sections/xx3_acronyms}
+
+\cleardoublepage
+\renewcommand*{\chapterthumbformat}{Glossary}
+\input{sections/xx1_glossary}
+
+\nocite{*} % auch die nicht verwendeten bibtex-Einträge einblenden
+\cleardoublepage
+\renewcommand*{\chapterthumbformat}{Bibliography}
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliography{bib/bibliography}
+\interlinepenalty=100
+
+%% Schmutzblatt (leere Seite am Ende)
+\newpage
+\pagestyle{empty}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{resources/images/leer.jpg}
+\end{figure}
