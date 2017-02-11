@@ -151,6 +151,7 @@
 \definecolor{fgctitle}{rgb}{0.95, 0.95, 0.95}
 \definecolor{lightgreen}{RGB}{219, 249, 189}
 \definecolor{lightred}{RGB}{255, 204, 203}
+\definecolor{fullred}{RGB}{255, 0, 0}
 
 %\definecolor{lightgray}{rgb}{.9,.9,.9}
 %\definecolor{darkgray}{rgb}{.4,.4,.4}
@@ -168,6 +169,8 @@
 \newcommand{\sectionname}{Sec.}
 \newcommand{\equationname}{Eq.}
 \renewcommand{\lstlistlistingname}{List of Listings}
+
+\newcommand{\todo}[1]{{{\color{fullred}#1}}}
 
 \lstdefinelanguage{JavaScript}{
   keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},

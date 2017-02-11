@@ -12,20 +12,25 @@ table
 \input{settings/_einstellungen.tex}
 
 \begin{document}
-\def\cpp{C{}\texttt{++}} % \cpp is shortcut now for: print C++ nicely
 
 \pagestyle{empty}
-\include{sections/000_titelblatt}
+\pagenumbering{alph}
+\include{sections/000_cover}
 \newpage
-\include{sections/001_danksagung}
+\cleardoublepage
+
+\include{sections/001_acknowledgments}
 \newpage
-\include{sections/001_eigenstaendigkeitserklaerung}
+\cleardoublepage
+
+\include{sections/001_deposition}
 \newpage
+\cleardoublepage
 
 
 \pagestyle{plain}
 \pagenumbering{roman}
-\setcounter{page}{3}
+\setcounter{page}{1}
 
 \tableofcontents
 \cleardoublepage
