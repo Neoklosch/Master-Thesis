@@ -31,7 +31,6 @@ Just as the omnipresent information processing in everyday life, also known as "
 
 
 \subsection{Industry 4.0 and Smart Factories}
-
 The industry as an changing environment is currently in the state of the so called "fourth industrial revolution".
 The first industrial revolution was driven by steam powered machines.
 Mass production and division of labor was the primary improvement of the second industrial revolution, whereas the third revolution was characterized by using electronics and the integration of \ac{IT} into manufacturing processes.\cite[cf.][p. 1]{Lom2016}
@@ -106,7 +105,6 @@ On the right side there is an exemplary industry value chain which starts with t
 
 
 \subsection{Cyber Physical Systems}
-
 As we already now, in smart factories every physical device is connected to each other.
 Everything can be captured and monitored in each step of a production process.
 With \acp{CPS} every physical entity has a digital representation in the virtual system.\cite[cf.][p. 1363]{Poovendran:2010}
@@ -130,11 +128,10 @@ Thereby the system can handle lossy signals and short range radio technologies, 
 According to the \ac{NIST} the definition of virtualization is: "Virtualization is the simulation of the software and/or hardware upon which other software runs. This
 simulated environment is called a virtual machine (VM)."\cite{Sca2011}.
 This means a \ac{VM}, also referred as guest system, can be executed in a real system, which is referred as host system.
+A \ac{VM} has its own \ac{OS} which is completely isolated from the other \acp{VM} and the host system.\cite[cf.][p. 2]{Celesti:2016}
 Basically there are two types of virtualization: Process virtualization where the virtualizing software also known as \ac{VMM} is executed by the host \ac{OS} and only an application will be executed inside the guest \ac{OS} and on the other side there is the the system virtualization where the whole \ac{OS} as well as the application are running inside the virtualizing software.
-Figure \ref{fig:vertical_horizontal_integration} illustrate both concepts.
-\todo{right figure}
-Examples for process virtualization could be the Java Virtual Machine, the .Net framework or Docker, where VMWare, Oracle Virtual Box, XEN or Microsoft Hyper-V are only some examples for system virtualization.
-\todo{footnotes or bibs?}
+Figure \ref{fig:vms_vs_docker} illustrate both concepts.
+Examples for process virtualization could be the \ac{JVM}\footnote{\url{https://www.java.com}}, the .Net framework\footnote{\url{https://www.microsoft.com/net}} or Docker\footnote{\url{https://www.docker.com}}, where VMWare\footnote{\url{http://www.vmware.com}}, Oracle Virtual Box\footnote{\url{https://www.virtualbox.org}}, XEN\footnote{\url{https://www.xenproject.org}} or Microsoft Hyper-V\footnote{\url{https://www.microsoft.com/de-de/cloud-platform/server-virtualization}} are only some examples for system virtualization.
 The benefits of all virtualization techniques are the rapid provisioning of resources which could be \ac{RAM}, disk storage, computation power or network bandwidth.
 Beside that, no human interaction is necessary during the provisioning process.
 Elasticity which scales a system in a cost-efficient manner in both directions, up and down.
@@ -145,44 +142,54 @@ A challenge despite all the mentioned benefits is the performance.
 Running \acp{VM} increases the overhead and reduces the overall performance of a system.
 Therefore the specific use case have to consider these behavior.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{resources/images/vm_vs_container.png}
+    \caption[Structure traditional VMs vs. Container Virtualization]{Structure traditional VMs vs. Docker. Adapted from: \cite[p. 2]{Gal2015}}
+    \label{fig:vms_vs_docker}
+\end{figure}
+
 
 \subsection{Virtual Machines}
 \acp{VM} are the core virtualization mechanism in cloud computing.
 There are also two different designs for hardware virtualization.
 The first and more popular type for cloud computing is the \textit{bare-metal virtualization}.
 It needs only a basic OS to schedule \acp{VM}.
-The hypervisor runs directly on the hardware of the machine.
+The hypervisor runs directly on the hardware of the machine without any host \ac{OS} in between.
 This is more efficient, but requires special device drivers to be executed.
 The other type is the \textit{hosted virtualization}.
 Unlike the first type the \ac{VMM} run as a host \ac{OS} process and the \acp{VM} as a process supported by the \ac{VMM}.
 No special drivers are needed for these type of virtualization, but by comparison the overhead is much bigger.
 For both types, the performance limitation remains.
-Each \ac{VM} need a full guest \ac{OS} image in addition to binaries and libraries which are necessary for the application to be executed.\cite[cf.][p. 381]{Pahl2015}
+Each \ac{VM} need a full guest \ac{OS} image in addition to binaries and libraries which are necessary for the application to be executed.\cite[cf.][p. 381]{Pahl:2015}
 If only a single application should be executed which only need some binaries and libraries, these virtualization method is too bloated.
 
 
 \subsection{Container Virtualization}
-Container virtualization which is also known as System-level virtualization, is the second virtualization machanism.
+Container virtualization which is also known as Operating System-level virtualization, is the second virtualization machanism.
 It based on fast and lightwight process virtualization to encapsulate an entire application with its dependencies into a ready-to-deploy virtual container.\cite[cf.][p. 72]{Tosatto:2015}
-
-a.\cite{Celesti:2016}
-b.\cite{Anderson:2016}
+Such a container can be executed on the host \ac{OS} which allows an application to run as a sandboxed user-space instance.\cite[cf.][p. 1]{Anderson:2016}
+All containers share a single \ac{OS} kernel, so the isolation supposed to be weaker compared to hypervisor based virtualization.\cite[cf.][p. 2]{Celesti:2016}
+In addition to that the number of containers on the same physical host can be much higher than the number of \acp{VM}.\cite[cf.][p. 2]{Celesti:2016}
 
 
 \subsubsection{Linux Containers}
-a.\cite{Soltesz:2007}
+When we talk about container virtualization nowadays, Docker have to become one of the most famous tools out there.
+It based on \ac{LXC}\footnote{\url{https://linuxcontainers.org/}} a technology which uses kernel machanisms like \textit{namespaces} or \textit{cgroups} to isolate processes on a shared \ac{OS}.\cite[cf.][p. 381]{Pahl:2015}
+Namespaces for example are used to isolate groups of processes whereas cgroups are used to manage and limit resouces acces just like restricting the memory, disc space or \ac{CPU} usage.\cite[cf.][p. 381]{Pahl:2015}
+"The goal of \ac{LXC} is to create an environment as close as possible to a standard Linux installation but without the need for a separate kernel."\cite[p. 72]{Tosatto:2015}
+There are several other container virtualization tools out there like OpenVZ\footnote{\url{https://openvz.org/Main_Page}} or Linux-VServer\footnote{\url{http://www.linux-vserver.org}}.
+In contrast to them, an advantage of \ac{LXC} is that it runs on an unmodified Linux kernel.
+
 
 \subsubsection{Docker}
+\todo{1) Since applications in containers run on the host OS without hardware indirection, they can run more efficiently than their VM-based counterparts [4] and allow higher application density on a host [5].
+2) Docker’s novel packaging can remove some of the variability in hosting requirements that a VNF may express. Projects like the Open Container Initiative 2 aim to standardize container formats and make them even more platform agnostic.
+3) Containers do not require packaging the operating system in their image, and as such generally consume much less disk space than comparable VMs, decreasing time to deploy and migrate. Live migration of stateful containers has been explored [6] and implemented in real world systems like Flocker\cite{Anderson:2016}}
 
 \todo{"First, we must know what exactly Docker is and does. Docker is a container management system that helps easily manage Linux Container (LXC) in an easier and universal fashion. This lets you create images in virtual environment ons your laptop and run commands or operations against them. The actions you do to the containers that you run in these environments locally on your own machine will be the same commands or operations you run against them when they are running in your production environment. This helps in not having to do things differently when you go from a development environment like that on your local machine to  a production environment like that on your local machine to a production environment on your server. Now, let's take a look at the differences between Docker containers and the typical virtual machine environments.
 
 In the following illustration, we can see the typical Docker setup on the right-hand side versus the typical VM setup on the left-hand side:}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.6\textwidth]{resources/images/docker_vs_vm.png}
-    \caption[Structure traditional VMs vs. Docker]{Structure traditional VMs vs. Docker. Adapted from: \cite[p. 2]{Gal2015}}
-    \label{fig:vms_vs_docker}
-\end{figure}
 
 \todo{"This illustration gives us a lot of insight into the biggest key benefit of Docker, that is, there is no need for a complete operating system every time we need to bring up a new container, which cuts down on the overall size of containers. Docker relies on using the host OS's Linux kernel (since almost all the versions of Linux use the standard kernel models) for he OS it was build upon, such as Red Hat, CentOS, Ubuntu, and so on. For this reason, you can have almost any Linux OS as your host operating system (Ubuntu in the previous illustration) and be able to layer other OSes on top of the host. For example, in the earlier illustration, we could have Red Hat running for one app (the one on the left) and Debian running for the other app (the one on the right), but there would never be need to actually install Red Hat or Debian on the host. Thus, another benefit of Docker is the size of an images when they are born. They are not build with the largest piece: the kernel or the operating system. This makes them incredibly small, compact, and easy to ship."\cite{Gal2015}}
 
