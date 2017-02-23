@@ -13,19 +13,24 @@ table
 
 \begin{document}
 
-\pagestyle{empty}
-\pagenumbering{alph}
-\include{sections/000_cover}
-\newpage
-\cleardoublepage
+\pagenumbering{gobble}
+\clearpage
+\thispagestyle{empty}
 
-\include{sections/001_acknowledgments}
+\include{sections/000_cover}
 \newpage
 \cleardoublepage
 
 \include{sections/001_deposition}
 \newpage
 \cleardoublepage
+
+\pagenumbering{roman}
+
+\include{sections/001_acknowledgments}
+\newpage
+\cleardoublepage
+
 
 \include{sections/001_abstract}
 \newpage
@@ -37,8 +42,6 @@ table
 
 
 \pagestyle{plain}
-\pagenumbering{roman}
-\setcounter{page}{1}
 
 \tableofcontents
 \cleardoublepage
