@@ -166,8 +166,8 @@ If only a single application, which only needs a few binaries and libraries, is 
 
 
 \subsection{Container Virtualization}
-Container virtualization which is also known as Operating System-level virtualization, is the second virtualization machanism.
-It based on fast and lightwight process virtualization to encapsulate an entire application with its dependencies into a ready-to-deploy virtual container.\cite[cf.][p. 72]{Tosatto:2015}
+Container virtualization which is also known as Operating System-level virtualization, is the second virtualization mechanism.
+It based on fast and lightweight process virtualization to encapsulate an entire application with its dependencies into a ready-to-deploy virtual container.\cite[cf.][p. 72]{Tosatto:2015}
 Such a container can be executed on the host \ac{OS} which allows an application to run as a sandboxed user-space instance.\cite[cf.][p. 1]{Anderson:2016}
 All containers share a single \ac{OS} kernel, so the isolation supposed to be weaker compared to hypervisor based virtualization.\cite[cf.][p. 2]{Celesti:2016}
 Compared to \acp{VM}, the number of containers on the same physical host can be much higher, because the overhead of a full \ac{OS} virtualization is eliminated.\cite[cf.][p. 2]{Celesti:2016}
@@ -175,8 +175,8 @@ Compared to \acp{VM}, the number of containers on the same physical host can be 
 
 \subsubsection{Linux Containers}
 When we talk about container virtualization nowadays, Docker have to become one of the most famous tools out there.
-It based on \ac{LXC}\footnote{\url{https://linuxcontainers.org/}} a technology which uses kernel machanisms like \textit{namespaces} or \textit{cgroups} to isolate processes on a shared \ac{OS}.\cite[cf.][p. 381]{Pahl:2015}
-Namespaces for example are used to isolate groups of processes whereas cgroups are used to manage and limit resouces acces just like restricting the memory, disc space or \ac{CPU} usage.\cite[cf.][p. 381]{Pahl:2015}
+It based on \ac{LXC}\footnote{\url{https://linuxcontainers.org/}} a technology which uses kernel mechanisms like \textit{namespaces} or \textit{cgroups} to isolate processes on a shared \ac{OS}.\cite[cf.][p. 381]{Pahl:2015}
+Namespaces for example are used to isolate groups of processes whereas cgroups are used to manage and limit resources access just like restricting the memory, disc space or \ac{CPU} usage.\cite[cf.][p. 381]{Pahl:2015}
 "The goal of \ac{LXC} is to create an environment as close as possible to a standard Linux installation but without the need for a separate kernel."\cite[p. 72]{Tosatto:2015}
 There are several other container virtualization tools out there like OpenVZ\footnote{\url{https://openvz.org/Main_Page}} or Linux-VServer\footnote{\url{http://www.linux-vserver.org}}.
 In contrast to them, an advantage of \ac{LXC} is that it runs on an unmodified Linux kernel.
@@ -211,7 +211,7 @@ The client is a \ac{CLI}, which interact via a \ac{REST} \ac{API} with the daemo
 % Docker Registries
 Another component, the Docker Registry, is basically a library of Docker images.
 They can be public or private available, as well as on the same machine like the Docker daemon or an external server.\cite[cf.]{dockerEngine}
-The most popular one it the officle Docker Hub\footnote{https://hub.docker.com}.
+The most popular one it the official Docker Hub\footnote{https://hub.docker.com}.
 There is also an Docker Store\footnote{https://store.docker.com}, where customers can buy and sell trusted and enterprise ready containers and plugins.
 With the Docker client it is pretty easy to \textit{search} for new containers and to \textit{pull} containers from or \textit{push} containers to a specific repository.
 
