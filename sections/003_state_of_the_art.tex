@@ -228,16 +228,41 @@ There is no need to do things differently when switching from a development envi
 
 
 \subsection{Container Orchestration}
+Containers by itself helps to develop and deploy applications, but containers release their full potential only when they are used together with an orchestration engine.
+Before orchestration engines, the deployment of an application or service was realized via \ac{CI} and deployment tools like Vagrant or Ansible.
+Deployment scripts or plans was created and be executed every time an application changed or should be scaled up on a new machine.
+This was less flexible and error-prone.
+Orchestration engines cover these needs by automatically choosing new machines, deploying containers, handle the lifecycle of them and monitor the system.
+These flexibility enables a new level of abstraction and automatization of deployment.
+There are a bunch of orchestration engines out there.
+For Docker Kubernetes and Docker Swarm are the most popular once at the moment.
+% https://de.slideshare.net/KarlIsenberg/container-orchestration-wars
 
 \subsubsection{Kubernetes}
+Kubernetes is an open source container cluster manager which was released 2014 by Google.
+It is "a platform for automating deployment, scaling, and operations"\cite[p. 1]{Grant:2015} of containers.
+Therefore a cluster of containers can be created and managed.
+The system can for example schedule on which node a container should be executed, handle node failures, can scale the cluster by adding or removing nodes or enable rolling updates.\cite[p. 5 f.]{Grant:2015}
+
+% PODs
+% Labels
+% Replication Controller
+% Services
+% Rolling Updates
 
 \subsubsection{Docker Swarm}
 % - docker swarm: multiple node cluster of containers
 % - has labels -> nodes can be executed on label node capabilities
 % - constraint flag to execute it
 
+% https://thenewstack.io/containers-container-orchestration/
+
 
 \subsection{Network Function Virtualization}
+\ac{NFV} is an architectural framework to provide \acp{NF} through software virtualization techniques to a single piece of hardware instead of multiple different devices for each function, e.g. router, firewall, storage, switch, etc.\cite[cf.][p. 8]{ETSI:NFV:2013}
+"These \acp{NF} are referred as \acp{VNF}."\cite[p. 8]{ETSI:NFV:2013}
+
+% https://www.youtube.com/watch?v=xsd5nhG0RBs
 
 
 \section{Conclusion}
