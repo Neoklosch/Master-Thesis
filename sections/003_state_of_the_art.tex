@@ -1,3 +1,11 @@
+% Gute Quelle:
+% http://winfwiki.wi-fom.de/index.php/Wertsch%C3%B6pfungsnetzwerke_und_Industrie_4.0
+
+% Masterarbeit Alex
+% https://www.yumpu.com/de/document/view/21142108/schriftliche-ausarbeitung-alexander-willner-masterarbeit/5
+
+% https://de.slideshare.net/KarlIsenberg/container-orchestration-wars
+
 \chapter{State of the art}\label{chapter:state-of-the-art}
 This chapter will give an overview into the background and concepts of this thesis.
 In the first section the Internet of Things an related subtopics like Smart Factories and Smart Cities are considered.
@@ -98,12 +106,6 @@ The underlying system has to be modular and move away from a monolithic centrali
 The communication path between them have to grow shorter.
 The machines have to be self organized and should communicate between each other even if the core system is not reachable because of lossy signals or other connection issues.
 If this can be achieved there will be an highly flexible, individualized and resource friendly mass production, which can be cheaper, faster and can have a much higher fault tolerance.
-
-% Gute Quelle:
-% http://winfwiki.wi-fom.de/index.php/Wertsch%C3%B6pfungsnetzwerke_und_Industrie_4.0
-
-% Masterarbeit Alex
-% https://www.yumpu.com/de/document/view/21142108/schriftliche-ausarbeitung-alexander-willner-masterarbeit/5
 
 
 \subsection{Cyber Physical Systems}
@@ -238,15 +240,14 @@ This was less flexible and error-prone.
 Orchestration engines cover these needs by automatically choosing new machines, deploying containers, handle the lifecycle of them and monitor the system.
 These flexibility enables a new level of abstraction and automatization of deployment.
 There are a bunch of orchestration engines out there.
-For Docker Kubernetes and Docker Swarm are the most popular once at the moment.
-% https://de.slideshare.net/KarlIsenberg/container-orchestration-wars
+For Docker, Kubernetes and Docker Swarm are the most popular at the moment.
+
 
 \subsubsection{Kubernetes}
 Kubernetes is an open source container cluster manager which was released 2014 by Google.
 It is "a platform for automating deployment, scaling, and operations"\cite[p. 1]{Grant:2015} of containers.
 Therefore a cluster of containers can be created and managed.
 The system can for example schedule on which node a container should be executed, handle node failures, can scale the cluster by adding or removing nodes or enable rolling updates.\cite[p. 5 f.]{Grant:2015}
-
 
 \begin{figure}[H]
     \centering
@@ -256,7 +257,7 @@ The system can for example schedule on which node a container should be executed
 \end{figure}
 
 Figure \ref{fig:kubernetes_architecture} illustrates the basic architecture of Kubernetes.
-The user can interact with the Kubernetes system via a \ac{CLI}, an \ac{UI} or a third party application, over a \ac{REST} \ac{API} to the Kubernetes Master or more specifically the API Server in the master.
+The user can interact with the Kubernetes system via a \ac{CLI}, an \ac{UI} or a third party application, over a \ac{REST} \ac{API} to the Kubernetes Master or more specifically the \ac{API} Server in the master.
 The master himself controls the one or multiple nodes, monitor the system, schedule resources or pull new images from the repository, to name only a few tasks.
 Each node has a two way communication with the master via a kubelet.
 In addition each node has the services necessary to run container applications like Docker.
@@ -277,7 +278,7 @@ The kube-proxy is a network proxy and load balancer which is accessible from the
 "Each node and can do simple TCP,UDP stream forwarding or round robin TCP,UDP forwarding across a set of backends."\cite{Kubernetes:kube-proxy:2016}
 The Replication Controller is one of the mayor controllers in a Kubernetes System.
 It ensures that a specified number of pod replicas are running and available at any time.\cite[cf.]{Kubernetes:replication-controller:2016}
-If for example one node disappear because of connection issues, the Repliation Controller will start a new one.
+If for example one node disappear because of connection issues, the Replication Controller will start a new one.
 If the disappeared node is available back again it will kill a node.
 These functionality increases the stability, the availability and the scalability of the system in an autonomous manner.
 The last important component in Kubernetes are rolling updates.
@@ -286,14 +287,36 @@ This also increases the stability and availability of the system and eases the m
 
 
 \subsection{Network Function Virtualization}
-\ac{NFV} is an architectural framework to provide \acp{NF} through software virtualization techniques to a single piece of hardware instead of multiple different devices for each function, e.g. router, firewall, storage, switch, etc.\cite[cf.][p. 8]{ETSI:NFV:2013}
+\ac{NFV} is an architectural framework to provide a methodology for the design, implementation, and deployment of \acp{NF} through software virtualization.\cite[cf.][p. 8]{ETSI:NFV:2013}\cite[cf.]{Rivenes:2014}
 "These \acp{NF} are referred as \acp{VNF}."\cite[p. 8]{ETSI:NFV:2013}
-\todo{write more ---------------}
+It takes into consideration \ac{SDN} and preparing for the use of non-proprietary software to hardware integrations instead of multiple vendor specific devices for each function, e.g. routers, firewalls, storages, switches, etc.\cite[cf.]{Rivenes:2014}
+% PC-based network devices have been available since decades, but generally owned by small companies or networking enthusiasts who can not afford commercial devices .\cite[cf.]{Noble:2015}
+% In the last years these devices became popular again.
+Now high-performance firewalls and load balancing software for example can run on commodity PC hardware and traffic can be off-loaded onto inexpensive programmable switches.\cite[cf.]{Noble:2015}
 
+
+\todo{Some of the values to the NFV concept are speed, agility, and cost reduction. By centralizing designs around commodity server hardware, network operators can:
+Do a single PoP/Site design based on commodity compute hardware;
+Avoiding designs involving one-off installs of appliances that have different power, cooling and space needs simplifies planning.
+Utilize resources more effectively;
+Virtualization allows providers to allocate only the necessary resources needed by each feature/function.
+Deploy network functions without having to send engineers to each site;
+“Truck Rolls” are costly both from a time and money standpoint.
+Achieve Reductions in OpEX and CapEX; and,
+Achieve Reduction of system complexity.}\cite[cf.]{Noble:2015}
+
+
+% MANO: https://osm.etsi.org/
+
+% OpenFlow
 % TOSCA
 % MANO
 
 % https://www.youtube.com/watch?v=xsd5nhG0RBs
+
+\todo{write more ---------------}
+
+\subsection{Open Baton}
 
 
 \section{Conclusion}
