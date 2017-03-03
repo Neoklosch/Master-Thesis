@@ -44,23 +44,24 @@ Autonomous production and logistics processes creating a real-time lean manufact
 "This will facilitate smart value-creation chains that include all of the life-cycle phases of the product from the initial product idea, development, production, use, and maintenance to recycling."\cite{Lyd2016}
 At the end, the system can use customer wishes in every step in the process to be flexible and responsive.\cite[cf.]{Lyd2016}
 
+\taburulecolor{ob_dark_gray}
 \begin{table}[htpb]
   \centering
-  \begin{tabular}{| r | c c c c |}
-  	\rowcolor{dunkelgrau}
-  	\hline
-  	                      & Cyber-Physical & Internet  & Internet    & Smart Factory \\
-    \rowcolor{dunkelgrau}
-                          & Systems        & of Things & of Services &  \\
-  	\hline
-  	Interoperability      & X        & X        & X          & X    \\
-  	Virtualization        & X        & -        & -          & X    \\
-    Decentralization      & X        & -        & -          & X    \\
-    Real-Time Capability  & -        & -        & -          & X    \\
-    Service Orientation   & -        & -        & X          & -    \\
-    Modularity            & -        & -        & X          & -    \\
-  	\hline
-  \end{tabular}
+    \begin{tabular}{| r | c c c c |}
+      \rowcolor{ob_orange}
+      \hline
+                            & Cyber-Physical & Internet  & Internet    & Smart Factory \\
+      \rowcolor{ob_orange}
+                            & Systems        & of Things & of Services &  \\
+      \hline
+      Interoperability      & X        & X        & X          & X    \\
+      Virtualization        & X        & -        & -          & X    \\
+      Decentralization      & X        & -        & -          & X    \\
+      Real-Time Capability  & -        & -        & -          & X    \\
+      Service Orientation   & -        & -        & X          & -    \\
+      Modularity            & -        & -        & X          & -    \\
+      \hline
+    \end{tabular}
   \caption[Design principles of each Industry 4.0 component]{Design principles of each Industry 4.0 component.\cite[cf.][p. 11]{Her2015}}
   \label{tab:industryComponents}
 \end{table}
@@ -82,7 +83,7 @@ Starting with the vertical integration, which contains the connection and commun
 The horizontal integration, as the second aspect, enables technical processes to be integrated in cross-company business processes and to be synchronized in real time through multiple participants to optimize value chain outputs.\cite[cf.][p. 7 ff.]{Vbw2014}
 Finally end-to-end engineering, planning, and process control for each step in the production process.\cite[cf.]{Lyd2016}
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{resources/images/vertical_horizontal_integration.png}
     \caption[Horizontal vs. Vertical Integration]{Horizontal vs. Vertical Integration. Adapted from: \cite{Jur2013}}
@@ -92,10 +93,11 @@ Finally end-to-end engineering, planning, and process control for each step in t
 Figure \ref{fig:vertical_horizontal_integration} illustrates this concept.
 The left side shows the whole production process over company boundaries on the horizontal scale, as well as the industry value chain on the vertical scale which is specific for each company.
 On the right side there is an exemplary industry value chain which starts with the raw materials and ends with the sale of the product to illustrates an more specific example of the vertical integration.
-
-\todo{guter abschluss -> moving production steps to each machine -> modular, without core system, locally in the modules -> communication path growth shorter -> self organisation -> decentralized}
-
-\todo{as well as highly flexible, individualized and resource friendly mass production}
+From a technical site this means each machine in a factory has exactly to know what they have to do.
+The underlying system has to be modular and move away from a monolithic centralized system, to a decentralized system which is located locally near the machines himself.
+The communication path between them have to grow shorter.
+The machines have to be self organized and should communicate between each other even if the core system is not reachable because of lossy signals or other connection issues.
+If this can be achieved there will be an highly flexible, individualized and resource friendly mass production, which can be cheaper, faster and can have a much higher fault tolerance.
 
 % Gute Quelle:
 % http://winfwiki.wi-fom.de/index.php/Wertsch%C3%B6pfungsnetzwerke_und_Industrie_4.0
@@ -117,6 +119,7 @@ Thereby the system can handle lossy signals and short range radio technologies, 
 
 
 \subsection{Fog Computing}
+\todo{write more ---------------}
 % definition
 % probleme taxonomy
 % unterschiede
@@ -142,7 +145,7 @@ A challenge despite all the mentioned benefits is the performance.
 Running \acp{VM} increases the overhead and reduces the overall performance of a system.
 Therefore the specific use case have to consider these behavior.
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{resources/images/vm_vs_container.png}
     \caption[Structure bare-metal virtualization vs. container virtualization]{Structure bare-metal virtualization vs. container virtualization. Adapted from: \cite[p. 2]{Gallagher:2015}}
@@ -196,7 +199,7 @@ File system operations such as creating new files, modifying or deleting existin
 The other images don\'t get involved.
 These chaining mechanism of images allows Docker to ease the use of dependencies and administrative overhead.
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth]{resources/images/docker_container_structure.png}
     \caption[Docker container structure]{Docker container structure.}
@@ -243,6 +246,14 @@ Kubernetes is an open source container cluster manager which was released 2014 b
 It is "a platform for automating deployment, scaling, and operations"\cite[p. 1]{Grant:2015} of containers.
 Therefore a cluster of containers can be created and managed.
 The system can for example schedule on which node a container should be executed, handle node failures, can scale the cluster by adding or removing nodes or enable rolling updates.\cite[p. 5 f.]{Grant:2015}
+\todo{write more ---------------}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{resources/images/kubernetes_architecture.png}
+    \caption[Kubernetes architecture]{Kubernetes architecture. Adapted from: \cite{MSV:2016}}
+    \label{fig:kubernetes_architecture}
+\end{figure}
 
 % PODs
 % Labels
@@ -250,19 +261,16 @@ The system can for example schedule on which node a container should be executed
 % Services
 % Rolling Updates
 
-\subsubsection{Docker Swarm}
-% - docker swarm: multiple node cluster of containers
-% - has labels -> nodes can be executed on label node capabilities
-% - constraint flag to execute it
-
-% https://thenewstack.io/containers-container-orchestration/
-
-
 \subsection{Network Function Virtualization}
 \ac{NFV} is an architectural framework to provide \acp{NF} through software virtualization techniques to a single piece of hardware instead of multiple different devices for each function, e.g. router, firewall, storage, switch, etc.\cite[cf.][p. 8]{ETSI:NFV:2013}
 "These \acp{NF} are referred as \acp{VNF}."\cite[p. 8]{ETSI:NFV:2013}
+\todo{write more ---------------}
+
+% TOSCA
+% MANO
 
 % https://www.youtube.com/watch?v=xsd5nhG0RBs
 
 
 \section{Conclusion}
+\todo{write more ---------------}
