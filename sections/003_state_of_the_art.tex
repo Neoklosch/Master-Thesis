@@ -246,7 +246,7 @@ Kubernetes is an open source container cluster manager which was released 2014 b
 It is "a platform for automating deployment, scaling, and operations"\cite[p. 1]{Grant:2015} of containers.
 Therefore a cluster of containers can be created and managed.
 The system can for example schedule on which node a container should be executed, handle node failures, can scale the cluster by adding or removing nodes or enable rolling updates.\cite[p. 5 f.]{Grant:2015}
-\todo{write more ---------------}
+
 
 \begin{figure}[H]
     \centering
@@ -255,11 +255,35 @@ The system can for example schedule on which node a container should be executed
     \label{fig:kubernetes_architecture}
 \end{figure}
 
-% PODs
-% Labels
-% Replication Controller
-% Services
-% Rolling Updates
+Figure \ref{fig:kubernetes_architecture} illustrates the basic architecture of Kubernetes.
+The user can interact with the Kubernetes system via a \ac{CLI}, an \ac{UI} or a third party application, over a \ac{REST} \ac{API} to the Kubernetes Master or more specifically the API Server in the master.
+The master himself controls the one or multiple nodes, monitor the system, schedule resources or pull new images from the repository, to name only a few tasks.
+Each node has a two way communication with the master via a kubelet.
+In addition each node has the services necessary to run container applications like Docker.
+Furthermore Kubernetes can combine one or multiple containers into one so called Pod.\cite[cf.][p. 7]{Mulyana:2016}
+"Pods are always co-located and co-scheduled, and run in a shared context."\cite{Kubernetes:pods:2016}
+One node again can execute multiple Pods.
+Pods are only temporary grouped containers with a non-stable IP address.
+After a Pod is destroyed it can never be resurrected.
+Pods can also share functionality to other Pods inside a Kubernetes cluster.
+A logical set of Pods and the access policy of them is called a Kubernetes service.
+Such a service can abstract multiple Pod replicas and manage them.
+A frontend which have access to the service do not care about changes in the service.
+Any change, be it a down scale or an up scale of the system, remains unseen for the frontend.
+They are exposed through internal or external endpoints to the users or the cluster.\cite[cf.][p. 11]{MSV:2016}
+Labels can be used to organize and to select subsets of Kubernetes Objects, such as Pods or Services.\cite[cf.]{Kubernetes:labels:2016}
+They are simply key/value pairs which and should be meaningful and relevant to users, but do not imply semantics to the core system.\cite[cf.]{Kubernetes:labels:2016}
+The kube-proxy is a network proxy and load balancer which is accessible from the outside of the system via a Kubernetes service.\cite[cf.][p. 7]{Mulyana:2016}
+"Each node and can do simple TCP,UDP stream forwarding or round robin TCP,UDP forwarding across a set of backends."\cite{Kubernetes:kube-proxy:2016}
+The Replication Controller is one of the mayor controllers in a Kubernetes System.
+It ensures that a specified number of pod replicas are running and available at any time.\cite[cf.]{Kubernetes:replication-controller:2016}
+If for example one node disappear because of connection issues, the Repliation Controller will start a new one.
+If the disappeared node is available back again it will kill a node.
+These functionality increases the stability, the availability and the scalability of the system in an autonomous manner.
+The last important component in Kubernetes are rolling updates.
+With rolling updates the system can update one pod at a time, rather than taking down the entire service and update the whole system.\ref[cf.]{Kubernetes:rolling-updates:2016}
+This also increases the stability and availability of the system and eases the managing of container clusters.
+
 
 \subsection{Network Function Virtualization}
 \ac{NFV} is an architectural framework to provide \acp{NF} through software virtualization techniques to a single piece of hardware instead of multiple different devices for each function, e.g. router, firewall, storage, switch, etc.\cite[cf.][p. 8]{ETSI:NFV:2013}
