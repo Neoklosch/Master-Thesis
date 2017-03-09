@@ -198,7 +198,7 @@ This allows the Docker Engine to build, deploy and run containers in an easy and
 Similar to \acp{VM}, containers are executed from images.
 A mayor benefit of Docker is the fact, that Docker images can be combined like build blocks.
 Each image can build on top of another.
-Figure \ref{fig:docker_container_structure} illustrates the concept for the image of the pretty famous Django\footnote{https://www.djangoproject.com/} web framework.
+Figure \ref{fig:docker_container_structure} illustrates the concept for the image of the pretty famous Django\footnote{\url{https://www.djangoproject.com/}} web framework.
 In that case, the Django image, which is the resulting image, based on the Python 3.4 image which again based on the Debian Jessy image.
 All of them are read-only, but Docker adds a writeable layer, also known as \textit{container layer}, on top of the images as soon as the container will be created.
 File system operations such as creating new files, modifying or deleting existing files are written directly to these layer.\cite[cf.]{dockerImages}
@@ -220,16 +220,16 @@ The client is a \ac{CLI}, which interact via a \ac{REST} \ac{API} with the daemo
 % Docker Registries
 Another component, the Docker Registry, is basically a library of Docker images.
 They can be public or private available, as well as on the same machine like the Docker daemon or an external server.\cite[cf.]{dockerEngine}
-The most popular one it the official Docker Hub\footnote{https://hub.docker.com}.
-There is also an Docker Store\footnote{https://store.docker.com}, where customers can buy and sell trusted and enterprise ready containers and plugins.
+The most popular one it the official Docker Hub\footnote{\url{https://hub.docker.com}}.
+There is also an Docker Store\footnote{\url{https://store.docker.com}}, where customers can buy and sell trusted and enterprise ready containers and plugins.
 With the Docker client it is pretty easy to \textit{search} for new containers and to \textit{pull} containers from or \textit{push} containers to a specific repository.
 
 % Docker Compose
 With Docker Compose multiple Docker Containers can be executed as a single application.
 Therefore YAML compose file will be used to configure and combine the services.
-For example the already mentioned Django image can be executed and linked together with a MongoDB\footnote{https://www.mongodb.com} images.
+For example the already mentioned Django image can be executed and linked together with a MongoDB\footnote{\url{https://www.mongodb.com}} images.
 The main benefit is the ease of configure dependencies between several containers and configuration steps.
-These concept is similar to deployment tools like Vagrant\footnote{https://www.vagrantup.com}, Ansible\footnote{https://www.ansible.com} or Puppet\footnote{https://puppet.com}.
+These concept is similar to deployment tools like Vagrant\footnote{\url{https://www.vagrantup.com}}, Ansible\footnote{\url{https://www.ansible.com}} or Puppet\footnote{\url{https://puppet.com}}.
 
 % Benefits
 A major benefit of Docker is that the execution environment of an application is completely the same on a local machine as on the production environment.\cite[cf.][p. 2]{Gallagher:2015}
@@ -298,19 +298,8 @@ Now high-performance firewalls and load balancing software for example can run o
 Some benefits are speed, agility and cost reduction in deployment as well as executional manner.\cite[cf.]{Noble:2015}
 Using homogeneous hardware simplifies the process of planning and reduces power, cooling and space needs.\cite[cf.]{Noble:2015}
 Through virtualization providers can utilize resources more effectively, by allocating only the necessary resources for a specific functionality.\cite[cf.]{Noble:2015}
-Overall \ac{NFV} can reduce \ac{OpEx} as well as \ac{CapEx}.\cite[cf.]{Noble:2015}
-
-
-% MANO: https://osm.etsi.org/
-
-% OpenFlow
-% TOSCA
-% MANO
-
-% https://www.youtube.com/watch?v=xsd5nhG0RBs
-
-\subsection{Open Baton}
-
+Overall \ac{NFV} can reduce \ac{OpEx} as well as \ac{CapEx} and can decreasing the time necessary to deploy new services to the network.\cite[cf.]{Noble:2015}
+To achieve \ac{NFV} the \ac{ETSI} has defined a framework for \ac{MANO}\footnote{\url{http://www.etsi.org/deliver/etsi_gs/NFV-MAN/001_099/001/01.01.01_60/gs_NFV-MAN001v010101p.pdf}} of \acp{VNF}.
 
 \section{Conclusion}
 \todo{write more ---------------}
