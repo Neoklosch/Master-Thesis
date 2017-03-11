@@ -192,6 +192,30 @@ In contrast to them, an advantage of \ac{LXC} is that it runs on an unmodified L
 This means that LXC can be executed in most of the popular Linux distributions these days.
 
 
+\subsection{Container Orchestration}
+Containers by itself helps to develop and deploy applications, but containers release their full potential only when they are used together with an orchestration engine.
+Before orchestration engines, the deployment of an application or service was realized via \ac{CI} and deployment tools like Vagrant or Ansible.
+Deployment scripts or plans was created and be executed every time an application changed or should be scaled up on a new machine.
+This was less flexible and error-prone.
+Orchestration engines cover these needs by automatically choosing new machines, deploying containers, handle the lifecycle of them and monitor the system.
+These flexibility enables a new level of abstraction and automatization of deployment.
+There are a bunch of orchestration engines out there.
+For Docker, Kubernetes and Docker Swarm are the most popular at the moment.
+
+
+\subsection{Network Function Virtualization}
+\ac{NFV} is an architectural framework to provide a methodology for the design, implementation, and deployment of \acp{NF} through software virtualization.\cite[cf.][p. 8]{ETSI:NFV:2013}\cite[cf.]{Rivenes:2014}
+"These \acp{NF} are referred as \acp{VNF}."\cite[p. 8]{ETSI:NFV:2013}
+It takes into consideration \ac{SDN} and preparing for the use of non-proprietary software to hardware integrations instead of multiple vendor specific devices for each function, e.g. routers, firewalls, storages, switches, etc.\cite[cf.]{Rivenes:2014}
+Now high-performance firewalls and load balancing software for example can run on commodity PC hardware and traffic can be off-loaded onto inexpensive programmable switches.\cite[cf.]{Noble:2015}
+Some benefits are speed, agility and cost reduction in deployment as well as executional manner.\cite[cf.]{Noble:2015}
+Using homogeneous hardware simplifies the process of planning and reduces power, cooling and space needs.\cite[cf.]{Noble:2015}
+Through virtualization providers can utilize resources more effectively, by allocating only the necessary resources for a specific functionality.\cite[cf.]{Noble:2015}
+Overall \ac{NFV} can reduce \ac{OpEx} as well as \ac{CapEx} and can decreasing the time necessary to deploy new services to the network.\cite[cf.]{Noble:2015}
+To achieve \ac{NFV} the \ac{ETSI} has defined a framework for \ac{MANO}\footnote{\url{http://www.etsi.org/deliver/etsi_gs/NFV-MAN/001_099/001/01.01.01_60/gs_NFV-MAN001v010101p.pdf}} of \acp{VNF}.
+
+\section{Evaluation of existing frameworks}
+
 \subsubsection{Docker}
 As mentioned before, Docker based on \ac{LXC}.
 This allows the Docker Engine to build, deploy and run containers in an easy and customizable way.
@@ -235,17 +259,8 @@ These concept is similar to deployment tools like Vagrant\footnote{\url{https://
 A major benefit of Docker is that the execution environment of an application is completely the same on a local machine as on the production environment.\cite[cf.][p. 2]{Gallagher:2015}
 There is no need to do things differently when switching from a development environment like a local machine, to a production environment like a server.\cite[cf.][p. 2]{Gallagher:2015}
 
-
-\subsection{Container Orchestration}
-Containers by itself helps to develop and deploy applications, but containers release their full potential only when they are used together with an orchestration engine.
-Before orchestration engines, the deployment of an application or service was realized via \ac{CI} and deployment tools like Vagrant or Ansible.
-Deployment scripts or plans was created and be executed every time an application changed or should be scaled up on a new machine.
-This was less flexible and error-prone.
-Orchestration engines cover these needs by automatically choosing new machines, deploying containers, handle the lifecycle of them and monitor the system.
-These flexibility enables a new level of abstraction and automatization of deployment.
-There are a bunch of orchestration engines out there.
-For Docker, Kubernetes and Docker Swarm are the most popular at the moment.
-
+\subsection{Docker Swarm}
+\doit
 
 \subsubsection{Kubernetes}
 Kubernetes is an open source container cluster manager which was released 2014 by Google.
@@ -289,17 +304,17 @@ The last important component in Kubernetes are rolling updates.
 With rolling updates the system can update one pod at a time, rather than taking down the entire service and update the whole system.\cite[cf.]{Kubernetes:rolling-updates:2016}
 This also increases the stability and availability of the system and eases the managing of container clusters.
 
+\subsection{Open Baton}
+\doit
 
-\subsection{Network Function Virtualization}
-\ac{NFV} is an architectural framework to provide a methodology for the design, implementation, and deployment of \acp{NF} through software virtualization.\cite[cf.][p. 8]{ETSI:NFV:2013}\cite[cf.]{Rivenes:2014}
-"These \acp{NF} are referred as \acp{VNF}."\cite[p. 8]{ETSI:NFV:2013}
-It takes into consideration \ac{SDN} and preparing for the use of non-proprietary software to hardware integrations instead of multiple vendor specific devices for each function, e.g. routers, firewalls, storages, switches, etc.\cite[cf.]{Rivenes:2014}
-Now high-performance firewalls and load balancing software for example can run on commodity PC hardware and traffic can be off-loaded onto inexpensive programmable switches.\cite[cf.]{Noble:2015}
-Some benefits are speed, agility and cost reduction in deployment as well as executional manner.\cite[cf.]{Noble:2015}
-Using homogeneous hardware simplifies the process of planning and reduces power, cooling and space needs.\cite[cf.]{Noble:2015}
-Through virtualization providers can utilize resources more effectively, by allocating only the necessary resources for a specific functionality.\cite[cf.]{Noble:2015}
-Overall \ac{NFV} can reduce \ac{OpEx} as well as \ac{CapEx} and can decreasing the time necessary to deploy new services to the network.\cite[cf.]{Noble:2015}
-To achieve \ac{NFV} the \ac{ETSI} has defined a framework for \ac{MANO}\footnote{\url{http://www.etsi.org/deliver/etsi_gs/NFV-MAN/001_099/001/01.01.01_60/gs_NFV-MAN001v010101p.pdf}} of \acp{VNF}.
+\subsection{OpenStack}
+\doit
+
+\subsection{TOSCA}
+\doit
+
+\subsection{OpenFlow}
+\doit
 
 \section{Conclusion}
-\todo{write more ---------------}
+\doit
