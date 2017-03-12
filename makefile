@@ -14,4 +14,17 @@ movethesis:
 clean:
 	rm -f texput.log $(FILENAME).out $(FILENAME).toc $(FILENAME).ind $(FILENAME).ilg $(FILENAME).idx $(FILENAME).aux $(FILENAME).log $(FILENAME).bbl $(FILENAME).blg $(FILENAME).synctex.gz $(FILENAME).lof $(FILENAME).lol $(FILENAME).lot $(FILENAME).thm sections/*.aux thesis.pdf *.mtc* *.maf
 
+spellcheck:
+	aspell -c -t sections/001_abstract.tex -d en
+	aspell -c -t sections/001_acknowledgments.tex -d en
+	aspell -c -t sections/001_deposition.tex -d en
+	aspell -c -t sections/001_zusammenfassung.tex -d de
+	aspell -c -t sections/002_introduction.tex -d en
+	aspell -c -t sections/003_state_of_the_art.tex -d en
+	aspell -c -t sections/004_requirements_analysis.tex -d en
+	aspell -c -t sections/005_design.tex -d en
+	aspell -c -t sections/006_implementation.tex -d en
+	aspell -c -t sections/007_evaluation.tex -d en
+	aspell -c -t sections/008_summary.tex -d en
+
 rebuild: clean all

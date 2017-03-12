@@ -121,10 +121,10 @@ In summary \acp{CPS} can help to enable the vision of Smart Factories in both th
 
 
 \subsection{Fog Computing}
-In the beginning of Cloud Computing most of the systems based on a monolithical architecture.
+In the beginning of Cloud Computing most of the systems based on a monolithic architecture.
 Over time the system was broken down to a more distributes multicloud architecture, similar to microservices.
 With the appearance of Fog Computing the Cloud also moves from centralized data centers to the edge of the underlying network.
-Main goal is to improve the efficiency, reduce the traffic and the amount of data which is transfered to the cloud and also process, analyse and store data locally, as well as keeping sensitive data inside the network for security reasons.\cite[cf.][p. 236]{Brito2016}\cite[cf.][p. 325]{Yannuzzi2014}\cite[cf.][p. 4]{Lom:2016}
+Main goal is to improve the efficiency, reduce the traffic and the amount of data which is transferred to the cloud and also process, analyze and store data locally, as well as keeping sensitive data inside the network for security reasons.\cite[cf.][p. 236]{Brito2016}\cite[cf.][p. 325]{Yannuzzi2014}\cite[cf.][p. 4]{Lom:2016}
 In contrast to the goals the definition and understanding of Fog Computing differs.
 One perspective is to that the processing of the data take place on smart devices, e.g. sensors, embedded systems, etc., at the end of the network or in smart router or other gateway devices.\cite[cf.][p. 4]{Lom:2016}
 Another interpretation is that fog computing appears as an intermediate layer between smart devices and the cloud.\cite[cf.][p. 236]{Brito2016}
@@ -177,7 +177,7 @@ If only a single application, which only needs a few binaries and libraries, is 
 \subsection{Container Virtualization}
 Container virtualization which is also known as Operating System-level virtualization, is the second virtualization mechanism.
 It based on fast and lightweight process virtualization to encapsulate an entire application with its dependencies into a ready-to-deploy virtual container.\cite[cf.][p. 72]{Tosatto:2015}
-Such a container can be executed on the host \ac{OS} which allows an application to run as a sandboxed user-space instance.\cite[cf.][p. 1]{Anderson:2016}
+Such a container can be executed on the host \ac{OS} which allows an application to run as a sand-boxed user-space instance.\cite[cf.][p. 1]{Anderson:2016}
 All containers share a single \ac{OS} kernel, so the isolation supposed to be weaker compared to hypervisor based virtualization.\cite[cf.][p. 2]{Celesti:2016}
 Compared to \acp{VM}, the number of containers on the same physical host can be much higher, because the overhead of a full \ac{OS} virtualization is eliminated.\cite[cf.][p. 2]{Celesti:2016}
 
@@ -189,7 +189,7 @@ Namespaces for example are used to isolate groups of processes whereas cgroups a
 "The goal of \ac{LXC} is to create an environment as close as possible to a standard Linux installation but without the need for a separate kernel."\cite[p. 72]{Tosatto:2015}
 There are several other container virtualization tools out there like OpenVZ\footnote{\url{https://openvz.org/Main_Page}} or Linux-VServer\footnote{\url{http://www.linux-vserver.org}}.
 In contrast to them, an advantage of \ac{LXC} is that it runs on an unmodified Linux kernel.
-This means that LXC can be executed in most of the popular Linux distributions these days.
+This means that \ac{LXC} can be executed in most of the popular Linux distributions these days.
 
 
 \subsection{Container Orchestration}
@@ -206,15 +206,15 @@ For Docker, Kubernetes and Docker Swarm are the most popular at the moment.
 \subsection{Network Function Virtualization}
 \ac{NFV} is an architectural framework to provide a methodology for the design, implementation, and deployment of \acp{NF} through software virtualization.\cite[cf.][p. 8]{ETSI:NFV:2013}\cite[cf.]{Rivenes:2014}
 "These \acp{NF} are referred as \acp{VNF}."\cite[p. 8]{ETSI:NFV:2013}
-It takes into consideration \ac{SDN} and preparing for the use of non-proprietary software to hardware integrations instead of multiple vendor specific devices for each function, e.g. routers, firewalls, storages, switches, etc.\cite[cf.]{Rivenes:2014}
+It takes into consideration \ac{SDN} and preparing for the use of non-proprietary software to hardware integration instead of multiple vendor specific devices for each function, e.g. routers, firewalls, storages, switches, etc.\cite[cf.]{Rivenes:2014}
 Now high-performance firewalls and load balancing software for example can run on commodity PC hardware and traffic can be off-loaded onto inexpensive programmable switches.\cite[cf.]{Noble:2015}
-Some benefits are speed, agility and cost reduction in deployment as well as executional manner.\cite[cf.]{Noble:2015}
+Some benefits are speed, agility and cost reduction in deployment as well as execution manner.\cite[cf.]{Noble:2015}
 Using homogeneous hardware simplifies the process of planning and reduces power, cooling and space needs.\cite[cf.]{Noble:2015}
 Through virtualization providers can utilize resources more effectively, by allocating only the necessary resources for a specific functionality.\cite[cf.]{Noble:2015}
 Overall \ac{NFV} can reduce \ac{OpEx} as well as \ac{CapEx} and can decreasing the time necessary to deploy new services to the network.\cite[cf.]{Noble:2015}
 To achieve \ac{NFV} the \ac{ETSI} has defined a framework for \ac{MANO}\footnote{\url{http://www.etsi.org/deliver/etsi_gs/NFV-MAN/001_099/001/01.01.01_60/gs_NFV-MAN001v010101p.pdf}} of \acp{VNF}.
 
-\section{Evaluation of existing frameworks}
+\section{Existing frameworks}
 
 \subsubsection{Docker}
 As mentioned before, Docker based on \ac{LXC}.
@@ -224,7 +224,7 @@ A mayor benefit of Docker is the fact, that Docker images can be combined like b
 Each image can build on top of another.
 Figure \ref{fig:docker_container_structure} illustrates the concept for the image of the pretty famous Django\footnote{\url{https://www.djangoproject.com/}} web framework.
 In that case, the Django image, which is the resulting image, based on the Python 3.4 image which again based on the Debian Jessy image.
-All of them are read-only, but Docker adds a writeable layer, also known as \textit{container layer}, on top of the images as soon as the container will be created.
+All of them are read-only, but Docker adds a writable layer, also known as \textit{container layer}, on top of the images as soon as the container will be created.
 File system operations such as creating new files, modifying or deleting existing files are written directly to these layer.\cite[cf.]{dockerImages}
 The other images don\'t get involved.
 These chaining mechanism of images allows Docker to ease the use of dependencies and administrative overhead.
@@ -236,7 +236,7 @@ These chaining mechanism of images allows Docker to ease the use of dependencies
     \label{fig:docker_container_structure}
 \end{figure}
 
-Beside that, Docker is splitted up in several components, such as the Docker Engine, the Docker Registries and Docker Compose to mention only a few.
+Beside that, Docker is split up in several components, such as the Docker Engine, the Docker Registries and Docker Compose to mention only a few.
 The Docker Engine is a client-server application which can be distinguished by the Docker client, a \ac{REST} \ac{API} and the Docker server.
 Latter is a daemon process which "creates and manages Docker objects, such as images, containers, networks, and data volumes"\cite{dockerEngine}.
 The client is a \ac{CLI}, which interact via a \ac{REST} \ac{API} with the daemon.\cite[cf.]{dockerEngine}
@@ -283,7 +283,7 @@ In addition each node has the services necessary to run container applications l
 Furthermore Kubernetes can combine one or multiple containers into one so called Pod.\cite[cf.][p. 7]{Mulyana:2016}
 "Pods are always co-located and co-scheduled, and run in a shared context."\cite{Kubernetes:pods:2016}
 One node again can execute multiple Pods.
-Pods are only temporary grouped containers with a non-stable IP address.
+Pods are only temporary grouped containers with a non-stable \ac{IP} address.
 After a Pod is destroyed it can never be resurrected.
 Pods can also share functionality to other Pods inside a Kubernetes cluster.
 A logical set of Pods and the access policy of them is called a Kubernetes service.
