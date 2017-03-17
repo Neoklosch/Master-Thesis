@@ -1,3 +1,5 @@
+\acresetall
+
 \chapter{Introduction}
 
 \section{Motivation}
@@ -48,13 +50,6 @@ This thesis shows the capabilities of container orchestration for the \ac{IoT} a
 Therefor a plugin will be created which can orchestrate containers based on functional and non-functional constraints to fog nodes.
 
 \section{Objective}
-This thesis describes an approach to design and implement a fog service orchestration engine for smart factories.
-The aim of this work is to create a plugin for Open Baton, an \ac{ETSI} \ac{NFV} compliant \ac{MANO} framework, which can deploy Docker container to network nodes, typically lower power devices at the edge of a network, especially for the area of Industry 4.0 and smart factories.
-Furthermore the plugin should consider specific functional and non-functional constraints while deploying the \acp{NF}.
-A condition can be a hardware requirement, a required software or a dependencies to another node.
-The technical prerequisite and detailed requirements for the plugin as well as the usability of Open Baton as the tool of choice have to be worked out.
-The cooperation with the Fraunhofer FOKUS plays a prominent role for this thesis, because they have a lot of knowledge and experience especially in this area.
-
 % What kind of problem do you adress? Which issues do you try to solve? What solution
 % do you propose? What is your goal? ’This thesis describes an approach to combining X
 % and Y... The aim of this work is to...’
@@ -66,6 +61,13 @@ The cooperation with the Fraunhofer FOKUS plays a prominent role for this thesis
 % -- detect constraints
 
 % write about the synopsis (Zusammenfassung) of the issues
+This thesis describes an approach to design and implement a fog service orchestration engine for smart factories.
+The aim of this work is to create a plugin for Open Baton, an \ac{ETSI} \ac{NFV} compliant \ac{MANO} framework, which can deploy containers to network nodes, which are typically lower power devices at the edge of a network, especially for the area of Industry 4.0 and smart factories.
+Furthermore the plugin should consider specific functional and non-functional constraints while deploying the \acp{NF}.
+A condition can be a hardware requirement, a required software or a dependencies to another node.
+The technical prerequisite and detailed requirements for the plugin as well as the usability of Open Baton as the tool of choice have to be worked out.
+The cooperation with the Fraunhofer FOKUS plays a prominent role for this thesis, because they have a lot of knowledge and experience especially in this area.
+
 
 \section{Scope}
 % Here you should describe what you will do and also what you will not do. Explain a
@@ -81,6 +83,12 @@ The cooperation with the Fraunhofer FOKUS plays a prominent role for this thesis
 
 % write about the research scope (Forschungsbereich) — Figures 1.1, 1.2 and 1.4
 % -- was ist drin, was nicht
+As mentioned before, the prototype will be an plugin for Open Baton, which means that the creation of an \ac{MANO} engine is out of scope for this thesis.
+Open Baton has a modular architecture so that the proof-of-concept implementation should be possible without modifying the framework himself.
+The container virtualization will be realized with Docker\footnote{\url{https://www.docker.com}}, an open source container platform.
+Docker has on \ac{API} where third party apps can communicate with and can control the engine himself.
+The functional and non-functional constraints have to be implemented in the \ac{NFVO} and could base on the \ac{YAML} schemas which are part of the \ac{TOSCA} standard.
+These schemas should be extendable and should fit the needs of the constraint functionality.
 
 \begin{figure}[H]
     \centering
@@ -89,7 +97,9 @@ The cooperation with the Fraunhofer FOKUS plays a prominent role for this thesis
     \label{fig:conceptual_architecture}
 \end{figure}
 
-\doit
+Figure \ref{fig:conceptual_architecture} shows an abstract architecture concept where Docker is part of the \ac{VIM} and the constraints are part of the \ac{NFVO}.
+Furthermore the engine will be tested on a raspberry pi\footnote{\url{https://www.raspberrypi.org}} cluster.
+It is out of scope to create a system which guaranteed to be executed on arbitrary devices, but theoretically this could be achieved with a system like Open Baton and Docker.
 
 
 \section{Outline}
@@ -100,9 +110,7 @@ Based on that, the architecture of the system is illustrated in chapter \ref{cha
 The proof-of-concept implementation will be worked out in chapter \ref{chapter:implementation} and the functionality of the plugin will be demonstrated.
 Chapter \ref{chapter:evaluation} summarizes the results of the work and evaluates the viability in terms of software quality, usability and feature-completeness.
 Finally the gained learnings as well as an outlook for further improvements of the plugin will be argued in chapter \ref{chapter:conclusion}.
-
 % TODO: can be more detailed
-
 
 % The ’structure’ or ’outline’ section gives a brief introduction into the main chapters of
 % your work. Write 2-5 lines about each chapter. Usually diploma thesis are separated
