@@ -17,41 +17,44 @@ All of them are well connected, for example a Smart Factory, which is a part of 
 Such information networks are one of the main goals of \ac{IoT}.
 % Research Area - Forschungsgebiet
 % -- Smart Factories
-In the Industry 4.0 for example multiple Smart Factories should be interconnect into a distributed and autonomous value chain.
+In the Industry 4.0 for example multiple smart factories should be interconnect into a distributed and autonomous value chain.
 Also the automation in a single factory will be increased which helps to have a more flexible and efficient production process.
 Currently a factory has a high degree of automation, but due to a lack of intelligence and communication between the machines and the underlying system, they can not react to changing requirements or unexpected situations.
 % Application Area - Anwendungsbereich
 % -- CS & CPS
 One solution to achieve that are \acp{CPS}.
-These are virtual systems which are connected with embedded systems to monitor and control physical processes.\cite{Lee:2008}
-A normal \acp{CS} is passive, means it could not interact with the physical world, with the appearance of \acp{CPS} things can communicate so the system has significantly more intelligence in sensors and actuators.\cite{Poovendran:2010}
-
+These are virtual systems which are connected with embedded systems to monitor and control physical processes.\cite[cf.][p. 363]{Lee:2008}
+A normal \acp{CS} is passive, means it could not interact with the physical world, with the appearance of \acp{CPS} things can communicate so the system has significantly more intelligence in sensors and actuators.\cite[cf.][p. 1363 f.]{Poovendran:2010}
 % Research Focus - Forschungsschwerpunkt aka Praxisproblem
 % -- Virtualization, Orchestration, Deployment of functions
-\todo{Cloud Computing was one of the prime topic in the recent years.
-It changed from a monolithic to more distributed multicloud architecture.
-With the appearance of the Internet of Things (IoT) and related architectures like Fog Computing the cloud moves away from centralized data centers to the edge of the underlying network [1].
+
+Another solution is to change the fundamental architecture of such a system from a monolithic to more distributed multicloud architecture.
+With Fog Computing the cloud moves away from centralized data centers to the edge of the underlying network.\cite[cf.][p. 380]{Pahl:2015}
 Such a network can have thousands of nodes with multiple sensors, machines or smart components connected to them.
-An ”intermediate layer be- tween the IoT environment and the Cloud” [2] enables a lot of new possibilities like pre-computation and storage of gathered data, which reduces traffic and resource overhead in the cloud, it keeps sensitive data on-premise [2] and enables real-time applications to take decisions based on analytics running near the device and a lower latency [3].
+An "intermediate layer between the IoT environment and the Cloud"\cite[p.236]{Brito:2016} enables a lot of new possibilities like pre-computation and storage of gathered data, which reduces traffic and resource overhead in the cloud, it keeps sensitive data on-premise\cite[cf.][p.236]{Brito:2016} and enables real-time applications to take decisions based on analytics running near the device and a lower latency.
 On the other hand there are also a lot of challenges in these highly heterogeneous and hybrid environment.
-As an example in some scenarios multiple low power devices have to interact with each other, lossy signals and short range radio technologies are widely used and nodes can appear and disappear frequently [3].
+As an example in some scenarios multiple low power devices have to interact with each other, lossy signals and short range radio technologies are widely used and nodes can appear and disappear frequently.\cite[cf.][p. 325]{Yannuzzi:2014}
 Especially the last case is elaborated because the underlying system has to handle that.
-Furthermore the required applica- tions running on these nodes can be change commonly and have to be deployed and removed in a dynamical way.
-Virtualization with Virtual Machines (VMs) is a common approach in Cloud systems to provide elasticity of large-scale shared resources[4].
-A more lightweight, less resource and time con- suming solution is container virtualization.
-”Furthermore, they are flexible tools for packaging, delivering and orchestration software infrastructure services as well as application”[4].
-Orchestration tools like Kubernetes[5], Docker Swarm[6] or CoreOS[7] which deploy, scale and manage containers to clusters of hosts have become established in the last years.
-Moving this technology over to the IoT area many challenges can be solved.
+Furthermore the required applications running on these nodes can be change commonly and have to be deployed and removed in a dynamical way.
+Virtualization with \acp{VM} is a common approach in Cloud systems to provide elasticity of large-scale shared resources.\cite[cf.][p. 117]{Pahl:2016}
+A more lightweight, less resource and time consuming solution is container virtualization.
+"Furthermore, they are flexible tools for packaging, delivering and orchestration software infrastructure services as well as application"\cite[p. 117]{Pahl:2016}.
+Orchestration tools like Kubernetes\footnote{\url{https://kubernetes.io}} and Docker Swarm\footnote{\url{https://docs.docker.com/engine/swarm}} which deploy, scale and manage containers to clusters of hosts have become established in the last years.
+Moving this technology over to the \ac{IoT} area many challenges can be solved.
 Dynamically deployed applications at the edge of a network can store and preprocesses gather data even if a node have no connection to the cloud because of lossy signals.
 Traffic can be reduced by only transmitting aggregated data back to the cloud.
-More often small low-power devices with limited computational power are be used as IoT nodes which also profit rather from lightweight container solutions than from resource consuming VMs.
-This paper shows the capabilities of container orchestration for the IoT and Smart Factories using the Open Baton frame- work.
-Therefor a plugin will be created which can orchestrate Docker containers based on functional and non-functional constraints to fog nodes.}
-
-
-% Taxonomy - Taxonomie
+More often small low-power devices with limited computational power are be used as \ac{IoT} nodes which also profit rather from lightweight container solutions than from resource consuming \acp{VM}.
+This thesis shows the capabilities of container orchestration for the \ac{IoT} and smart factories using the Open Baton framework.
+Therefor a plugin will be created which can orchestrate containers based on functional and non-functional constraints to fog nodes.
 
 \section{Objective}
+This thesis describes an approach to design and implement a fog service orchestration engine for smart factories.
+The aim of this work is to create a plugin for Open Baton, an \ac{ETSI} \ac{NFV} compliant \ac{MANO} framework, which can deploy Docker container to network nodes, typically lower power devices at the edge of a network, especially for the area of Industry 4.0 and smart factories.
+Furthermore the plugin should consider specific functional and non-functional constraints while deploying the \acp{NF}.
+A condition can be a hardware requirement, a required software or a dependencies to another node.
+The technical prerequisite and detailed requirements for the plugin as well as the usability of Open Baton as the tool of choice have to be worked out.
+The cooperation with the Fraunhofer FOKUS plays a prominent role for this thesis, because they have a lot of knowledge and experience especially in this area.
+
 % What kind of problem do you adress? Which issues do you try to solve? What solution
 % do you propose? What is your goal? ’This thesis describes an approach to combining X
 % and Y... The aim of this work is to...’
@@ -63,7 +66,6 @@ Therefor a plugin will be created which can orchestrate Docker containers based 
 % -- detect constraints
 
 % write about the synopsis (Zusammenfassung) of the issues
-\doit
 
 \section{Scope}
 % Here you should describe what you will do and also what you will not do. Explain a
@@ -91,8 +93,17 @@ Therefor a plugin will be created which can orchestrate Docker containers based 
 
 
 \section{Outline}
-At first there will be an introduction in relevant topics like the \ac{IoT} with the Industry 4.0, \acp{CPS} and Fog Computing as subtopics, virtualization especially container virtualization and orchestration and \ac{NFV}.
+In chapter \ref{chapter:state-of-the-art} an introduction in relevant topics like the \ac{IoT} with the Industry 4.0, \acp{CPS} and Fog Computing as subtopics, virtualization especially container virtualization and orchestration and \ac{NFV} is given.
 Followed by a comparison of several established tools available on the market.
+The definition of the requirements as well as features and capabilities of the prototype will be shown in chapter \ref{chapter:requirements-analysis}.
+Based on that, the architecture of the system is illustrated in chapter \ref{chapter:concept}.
+The proof-of-concept implementation will be worked out in chapter \ref{chapter:implementation} and the functionality of the plugin will be demonstrated.
+Chapter \ref{chapter:evaluation} summarizes the results of the work and evaluates the viability in terms of software quality, usability and feature-completeness.
+Finally the gained learnings as well as an outlook for further improvements of the plugin will be argued in chapter \ref{chapter:conclusion}.
+
+% TODO: can be more detailed
+
+
 % The ’structure’ or ’outline’ section gives a brief introduction into the main chapters of
 % your work. Write 2-5 lines about each chapter. Usually diploma thesis are separated
 % into 6-8 main chapters.
@@ -117,4 +128,3 @@ Followed by a comparison of several established tools available on the market.
 % outlook about future work. Should have about 4-6 pages.
 
 % write about the research outline and Figure 1.6. Summarize Chapters 1 to 8
-\doit

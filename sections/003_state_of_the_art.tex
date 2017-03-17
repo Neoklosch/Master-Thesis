@@ -8,8 +8,8 @@
 
 \chapter{State of the art}\label{chapter:state-of-the-art}
 This chapter will give an overview into the background and concepts of this thesis.
-In the first section the Internet of Things an related subtopics like Smart Factories and Smart Cities are considered.
-Cyber Physical Systems, which are important for the development of Smart Factories are also covered in this section.
+In the first section the Internet of Things an related subtopics like smart factories and Smart Cities are considered.
+Cyber Physical Systems, which are important for the development of smart factories are also covered in this section.
 Virtualization in general is the main topic of the second section.
 First we dive into the area of Virtual Machines, followed by Container Virtualization.
 Both are related to each other and sharing some basic ideas.
@@ -19,38 +19,38 @@ The last subsection Network Function Virtualization concludes with an introducti
 
 \section{Internet of Things}
 The \ac{IoT} has been a subject of great media- and economically growth in the recent years.
-In the year 2008 the number of devices which are connected to the Internet was higher than the human population.\cite[cf.]{Eva11}
-Cisco Internet Business Solutions Group predicted that the number will grow up to 50 billion in 2020, this equates to around 6 devices per person.\cite[cf.]{Eva11}
+In the year 2008 the number of devices which are connected to the Internet was higher than the human population.\cite[cf.][p. 3]{Eva:2011}
+Cisco Internet Business Solutions Group predicted that the number will grow up to 50 billion in 2020, this equates to around 6 devices per person.\cite[cf.][p. 4]{Eva:2011}
 Most of today\'s interactions are \ac{H2H} or \ac{H2M} communication.
 The \ac{IoT} on the other hand aim for the \ac{M2M} communication.
 This allows every physical devices to be interconnected and to communicate with each other.
 These devices are also called "Smart Devices".
-Creating a network where all physical objects and people are connected via software is one primary goal of the \ac{IoT}.\cite[cf.]{Rui2015}\cite[cf.]{Kra13}
+Creating a network where all physical objects and people are connected via software is one primary goal of the \ac{IoT}.\cite[cf.][p.206]{Rui:2015}\cite[cf.][p.2]{Kra:2013}
 When objects are able to capture and monitor their environment, a network can perceive external stimuli and respond to them.\cite[cf.][p. 40]{Itu11}
 Therefore a new dimension of information and communication technology will be created, where users have access to everything at any time, everywhere.
 In addition to smart devices, subcategories are also emerging from the \ac{IoT} which, in addition to the physical devices, also describe technologies such as protocols and infrastructures.
-The "`Smart Home"' has been a prominent topic in media and business for many years.
+The "Smart Home" has been a prominent topic in media and business for many years.
 Smart City or Industrie 4.0 are also becoming established and are increasingly popular.
-But the Internet started with the appearance of bar codes and \ac{RFID} chips.\cite[cf.]{Kra13}
-The second step, which is more or less the current situation, sensors, physical devices, technical devices, data and software are connected to each other.\cite[cf.]{Kra13}
-This was achieved, in particular, by cloud computing, which provides the highly efficient memory and computing power that is indispensable for such networks.\cite[cf.]{Rui2015}
-The next step could be a "`Cognitive Internet of Things"', which enables easier object and data reuse across application areas, for example through interoperable solutions, high-speed Internet connections and a semantic information distribution.\cite[cf.]{Kra13}
-Just as the omnipresent information processing in everyday life, also known as "`Ubiquitous Computing"', which was first mentioned in the "`The Computer for the 21st Century"'\cite[cf.]{Wei91} by Marks Weiser, it will take some time until it is ubiquitous.
+But the Internet started with the appearance of bar codes and \ac{RFID} chips.\cite[cf.][p. 13]{Kra:2013}
+The second step, which is more or less the current situation, sensors, physical devices, technical devices, data and software are connected to each other.\cite[cf.][p. 13]{Kra:2013}
+This was achieved, in particular, by cloud computing, which provides the highly efficient memory and computing power that is indispensable for such networks.\cite[cf.][p. 206]{Rui:2015}
+The next step could be a "Cognitive Internet of Things", which enables easier object and data reuse across application areas, for example through interoperable solutions, high-speed Internet connections and a semantic information distribution.\cite[cf.][p. V]{Kra:2013}
+Just as the omnipresent information processing in everyday life, also known as "Ubiquitous Computing", which was first mentioned in the "The Computer for the 21st Century"\cite{Wei:1991} by Marks Weiser, it will take some time until it is ubiquitous.
 
 
-\subsection{Industry 4.0 and Smart Factories}
+\subsection{Industry 4.0 and smart factories}
 The industry as an changing environment is currently in the state of the so called "fourth industrial revolution".
 The first industrial revolution was driven by steam powered machines.
 Mass production and division of labor was the primary improvement of the second industrial revolution, whereas the third revolution was characterized by using electronics and the integration of \ac{IT} into manufacturing processes.\cite[cf.][p. 1]{Lom:2016}
 In the recent years the size, cost and power consumption of chipsets are reduced which made it possible to embed sensors into devices and machines much easier and cheaper.\cite[cf.][p. 1]{Brito2016}
 The Industry 4.0 is the fourth step in this evolution and was first mentioned with the German term "Industrie 4.0" at the Hannover Fair in 2011.\cite[cf.][p. 1]{Lom:2016}
-"Industrie 4.0 is a collective term for technologies and concepts of value chain organization."\cite[cf.][p. 11]{Her2015}
+"Industrie 4.0 is a collective term for technologies and concepts of value chain organization."\cite[cf.][p. 11]{Her:2015}
 
-Significantly higher productivity, efficiency, and self-managing production processes where everything from machines up to goods can communicate and cooperate with each other directly are the visions of the Industry 4.0.\cite[cf.]{Lyd2016}
+Significantly higher productivity, efficiency, and self-managing production processes where everything from machines up to goods can communicate and cooperate with each other directly are the visions of the Industry 4.0.\cite[cf.]{Lyd:2016}
 It also aims for an intelligent connection between different companies and units.
-Autonomous production and logistics processes creating a real-time lean manufacturing ecosystem that is more efficient and flexible.\cite[cf.]{Lyd2016}
-"This will facilitate smart value-creation chains that include all of the life-cycle phases of the product from the initial product idea, development, production, use, and maintenance to recycling."\cite{Lyd2016}
-At the end, the system can use customer wishes in every step in the process to be flexible and responsive.\cite[cf.]{Lyd2016}
+Autonomous production and logistics processes creating a real-time lean manufacturing ecosystem that is more efficient and flexible.\cite[cf.]{Lyd:2016}
+"This will facilitate smart value-creation chains that include all of the life-cycle phases of the product from the initial product idea, development, production, use, and maintenance to recycling."\cite{Lyd:2016}
+At the end, the system can use customer wishes in every step in the process to be flexible and responsive.\cite[cf.]{Lyd:2016}
 
 \taburulecolor{ob_dark_gray}
 \begin{table}[htpb]
@@ -70,31 +70,31 @@ At the end, the system can use customer wishes in every step in the process to b
       Modularity            & -        & -        & X          & -    \\
       \hline
     \end{tabular}
-  \caption[Design principles of each Industry 4.0 component]{Design principles of each Industry 4.0 component.\cite[cf.][p. 11]{Her2015}}
+  \caption[Design principles of each Industry 4.0 component]{Design principles of each Industry 4.0 component.\cite[cf.][p. 11]{Her:2015}}
   \label{tab:industryComponents}
 \end{table}
 
 Table \ref{tab:industryComponents} shows the six design principles which can be from the Industrie 4.0 components.
-They can help companies to identify and implement Industry 4.0 scenarios.\cite[cf.][p. 11]{Her2015}
+They can help companies to identify and implement Industry 4.0 scenarios.\cite[cf.][p. 11]{Her:2015}
 
 \begin{enumerate}
-  \item \textit{Interoperability} \ac{CPS} of various manufacturers are connected with each other. Standards will be the key success factor in this area.\cite[cf.][p. 11]{Her2015}
-  \item \textit{Virtualization} \ac{CPS} are able to monitor physical processes via sensors. The resulting data is linked to virtual plant and simulation models. These models are virtual copies of physical world entities.\cite[cf.][p. 11]{Her2015}
-  \item \textit{Decentralization} \ac{CPS} are able to make decisions on their own, for example when \ac{RFID} chips send the necessary working steps to the machine. Only in cases of failure the systems delegate task to a higher level.\cite[cf.][p. 11]{Her2015}
-  \item \textit{Real-Time Capability} Data has to be collected and analyzed in real time and the status of the plant is permanently tracked and analyzed. This enables the \ac{CPS} to react to a failure of a machine and can reroute the products to another machine.\cite[cf.][p. 11]{Her2015}
-  \item \textit{Service Orientation} \ac{CPS} are available over the \ac{IoS} and can be offered both internally and across company borders to different participants. The manufacturing process can be composed based on specific customer requirements.\cite[cf.][p. 11]{Her2015}
-  \item \textit{Modularity} The system is able to be adjusted in case of seasonal fluctuations or changed product characteristics, by replacing or expanding individual modules.\cite[cf.][p. 11]{Her2015}
+  \item \textit{Interoperability} \ac{CPS} of various manufacturers are connected with each other. Standards will be the key success factor in this area.\cite[cf.][p. 11]{Her:2015}
+  \item \textit{Virtualization} \ac{CPS} are able to monitor physical processes via sensors. The resulting data is linked to virtual plant and simulation models. These models are virtual copies of physical world entities.\cite[cf.][p. 11]{Her:2015}
+  \item \textit{Decentralization} \ac{CPS} are able to make decisions on their own, for example when \ac{RFID} chips send the necessary working steps to the machine. Only in cases of failure the systems delegate task to a higher level.\cite[cf.][p. 11]{Her:2015}
+  \item \textit{Real-Time Capability} Data has to be collected and analyzed in real time and the status of the plant is permanently tracked and analyzed. This enables the \ac{CPS} to react to a failure of a machine and can reroute the products to another machine.\cite[cf.][p. 11]{Her:2015}
+  \item \textit{Service Orientation} \ac{CPS} are available over the \ac{IoS} and can be offered both internally and across company borders to different participants. The manufacturing process can be composed based on specific customer requirements.\cite[cf.][p. 11]{Her:2015}
+  \item \textit{Modularity} The system is able to be adjusted in case of seasonal fluctuations or changed product characteristics, by replacing or expanding individual modules.\cite[cf.][p. 11]{Her:2015}
 \end{enumerate}
 
 Another important aspect of Industry 4.0 is the implementation of process automation with the focused on three distinct aspects.
-Starting with the vertical integration, which contains the connection and communication of subsystems within the factory enables flexible and adaptable manufacturing systems.\cite[cf.][p. 7 ff.]{Vbw2014}
-The horizontal integration, as the second aspect, enables technical processes to be integrated in cross-company business processes and to be synchronized in real time through multiple participants to optimize value chain outputs.\cite[cf.][p. 7 ff.]{Vbw2014}
-Finally end-to-end engineering, planning, and process control for each step in the production process.\cite[cf.]{Lyd2016}
+Starting with the vertical integration, which contains the connection and communication of subsystems within the factory enables flexible and adaptable manufacturing systems.\cite[cf.][p. 7 ff.]{Vbw:2014}
+The horizontal integration, as the second aspect, enables technical processes to be integrated in cross-company business processes and to be synchronized in real time through multiple participants to optimize value chain outputs.\cite[cf.][p. 7 ff.]{Vbw:2014}
+Finally end-to-end engineering, planning, and process control for each step in the production process.\cite[cf.]{Lyd:2016}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{resources/images/vertical_horizontal_integration.png}
-    \caption[Horizontal vs. Vertical Integration]{Horizontal vs. Vertical Integration. Adapted from: \cite{Jur2013}}
+    \caption[Horizontal vs. Vertical Integration]{Horizontal vs. Vertical Integration. Adapted from: \cite{Jur:2013}}
     \label{fig:vertical_horizontal_integration}
 \end{figure}
 
@@ -116,26 +116,25 @@ Before a \ac{CS} was passive, which means there was no communication between the
 While new technologies in the physical world, like new materials, hardware and energy, are developed, the technologies in the virtual worlds are also being improved, for example through the use of new protocols, networking, storage and computing technologies.\cite[cf.][p. 1364]{Poovendran:2010}
 This adds more intelligence in such systems, as well as a much more flexible and modular structure.
 A \ac{CPS} can organize production automatically and autonomously, which eliminate the need of having a central process control.\cite[cf.]{Lom:2016}
-Thereby the system can handle lossy signals and short range radio technologies, which are widely used in such a context.\cite[cf.]{Yannuzzi2014}
-In summary \acp{CPS} can help to enable the vision of Smart Factories in both the horizontal as well as the vertical integration.
+Thereby the system can handle lossy signals and short range radio technologies, which are widely used in such a context.\cite[cf.]{Yannuzzi:2014}
+In summary \acp{CPS} can help to enable the vision of smart factories in both the horizontal as well as the vertical integration.
 
 
 \subsection{Fog Computing}
 In the beginning of Cloud Computing most of the systems based on a monolithic architecture.
 Over time the system was broken down to a more distributes multicloud architecture, similar to microservices.
 With the appearance of Fog Computing the Cloud also moves from centralized data centers to the edge of the underlying network.
-Main goal is to improve the efficiency, reduce the traffic and the amount of data which is transferred to the cloud and also process, analyze and store data locally, as well as keeping sensitive data inside the network for security reasons.\cite[cf.][p. 236]{Brito2016}\cite[cf.][p. 325]{Yannuzzi2014}\cite[cf.][p. 4]{Lom:2016}
+Main goal is to improve the efficiency, reduce the traffic and the amount of data which is transferred to the cloud and also process, analyze and store data locally, as well as keeping sensitive data inside the network for security reasons.\cite[cf.][p. 236]{Brito2016}\cite[cf.][p. 325]{Yannuzzi:2014}\cite[cf.][p. 4]{Lom:2016}
 In contrast to the goals the definition and understanding of Fog Computing differs.
 One perspective is to that the processing of the data take place on smart devices, e.g. sensors, embedded systems, etc., at the end of the network or in smart router or other gateway devices.\cite[cf.][p. 4]{Lom:2016}
 Another interpretation is that fog computing appears as an intermediate layer between smart devices and the cloud.\cite[cf.][p. 236]{Brito2016}
 Processing the data near devices enables lower latency and real-time applications can take decisions based on analytics running there.
 That is important because a continuous connection to the cloud can not always be ensured.
-However fog computing should not be seen as a competitor of cloud computing, it is a perfect ally for use cases where cloud computing alone is not feasible.\cite[cf.][p. 325]{Yannuzzi2014}
+However fog computing should not be seen as a competitor of cloud computing, it is a perfect ally for use cases where cloud computing alone is not feasible.\cite[cf.][p. 325]{Yannuzzi:2014}
 
 
 \section{Virtualization}
-According to the \ac{NIST} the definition of virtualization is: "Virtualization is the simulation of the software and/or hardware upon which other software runs. This
-simulated environment is called a virtual machine (VM)."\cite{Sca2011}.
+According to the \ac{NIST} the definition of virtualization is: "Virtualization is the simulation of the software and/or hardware upon which other software runs. This simulated environment is called a virtual machine (VM)."\cite[p. ES-1]{Sca:2011}.
 This means a \ac{VM}, also referred as guest system, can be executed in a real system, which is referred as host system.
 A \ac{VM} has its own \ac{OS} which is completely isolated from the other \acp{VM} and the host system.\cite[cf.][p. 2]{Celesti:2016}
 Basically there are two types of virtualization: Process virtualization where the virtualizing software also known as \ac{VMM} is executed by the host \ac{OS} and only an application will be executed inside the guest \ac{OS} and on the other side there is the the system virtualization where the whole \ac{OS} as well as the application are running inside the virtualizing software.
@@ -216,7 +215,7 @@ To achieve \ac{NFV} the \ac{ETSI} has defined a framework for \ac{MANO}\footnote
 
 \section{Existing frameworks}
 
-\subsubsection{Docker}
+\subsection{Docker}
 As mentioned before, Docker based on \ac{LXC}.
 This allows the Docker Engine to build, deploy and run containers in an easy and customizable way.
 Similar to \acp{VM}, containers are executed from images.
@@ -262,7 +261,7 @@ There is no need to do things differently when switching from a development envi
 \subsection{Docker Swarm}
 \doit
 
-\subsubsection{Kubernetes}
+\subsection{Kubernetes}
 Kubernetes is an open source container cluster manager which was released 2014 by Google.
 It is "a platform for automating deployment, scaling, and operations"\cite[p. 1]{Grant:2015} of containers.
 Therefore a cluster of containers can be created and managed.
@@ -271,7 +270,7 @@ The system can for example schedule on which node a container should be executed
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth]{resources/images/kubernetes_architecture.png}
-    \caption[Kubernetes architecture]{Kubernetes architecture. Adapted from: \cite{MSV:2016}}
+    \caption[Kubernetes architecture]{Kubernetes architecture. Adapted from: \cite[p. 4]{MSV:2016}}
     \label{fig:kubernetes_architecture}
 \end{figure}
 
@@ -305,15 +304,10 @@ With rolling updates the system can update one pod at a time, rather than taking
 This also increases the stability and availability of the system and eases the managing of container clusters.
 
 \subsection{Open Baton}
-\doit
-
-\subsection{OpenStack}
+% you should mention OpenStack in here
 \doit
 
 \subsection{TOSCA}
-\doit
-
-\subsection{OpenFlow}
 \doit
 
 \section{Conclusion}
