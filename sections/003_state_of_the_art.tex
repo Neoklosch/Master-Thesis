@@ -199,11 +199,23 @@ For Docker, Kubernetes and Docker Swarm are the most popular at the moment.
 "These \acp{NF} are referred as \acp{VNF}."\cite[p. 8]{ETSI:NFV:2013}
 It takes into consideration \ac{SDN} and preparing for the use of non-proprietary software to hardware integration instead of multiple vendor specific devices for each function, e.g. routers, firewalls, storages, switches, etc.\cite[cf.]{Rivenes:2014}
 Now high-performance firewalls and load balancing software for example can run on commodity PC hardware and traffic can be off-loaded onto inexpensive programmable switches.\cite[cf.]{Noble:2015}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{resources/images/nfv_architecture.png}
+    \caption[NFV architecture]{NFV architecture. Adapted from: \cite{NFV:Architecture}}
+    \label{fig:nfv_architecture}
+\end{figure}
+
 Some benefits are speed, agility and cost reduction in deployment as well as execution manner.\cite[cf.]{Noble:2015}
 Using homogeneous hardware simplifies the process of planning and reduces power, cooling and space needs.\cite[cf.]{Noble:2015}
 Through virtualization providers can utilize resources more effectively, by allocating only the necessary resources for a specific functionality.\cite[cf.]{Noble:2015}
 Overall \ac{NFV} can reduce \ac{OpEx} as well as \ac{CapEx} and can decreasing the time necessary to deploy new services to the network.\cite[cf.]{Noble:2015}
 To achieve \ac{NFV} the \ac{ETSI} has defined a framework for \ac{MANO}\footnote{\url{http://www.etsi.org/deliver/etsi_gs/NFV-MAN/001_099/001/01.01.01_60/gs_NFV-MAN001v010101p.pdf}} of \acp{VNF} and the \ac{OASIS} created \ac{TOSCA} a \ac{NFV} specific data model and templates to coordinate and orchestrate the \ac{NF} into the cloud.
+
+\todo{describe image}
+\doit
+
 
 \section{Existing tools and frameworks}
 
@@ -245,19 +257,19 @@ The most popular one it the official Docker Hub\footnote{\url{https://hub.docker
 There is also an Docker Store\footnote{\url{https://store.docker.com}}, where customers can buy and sell trusted and enterprise ready containers and plugins.
 With the Docker client it is pretty easy to \textit{search} for new containers and to \textit{pull} containers from or \textit{push} containers to a specific repository.
 
-% Docker Compose
-With Docker Compose multiple Docker Containers can be executed as a single application.
-Therefore YAML compose file will be used to configure and combine the services.
-For example the already mentioned Django image can be executed and linked together with a MongoDB\footnote{\url{https://www.mongodb.com}} images.
-The main benefit is the ease of configure dependencies between several containers and configuration steps.
-These concept is similar to deployment tools like Vagrant\footnote{\url{https://www.vagrantup.com}}, Ansible\footnote{\url{https://www.ansible.com}} or Puppet\footnote{\url{https://puppet.com}}.
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth]{resources/images/docker_container_structure.png}
     \caption[Docker container structure]{Docker container structure.}
     \label{fig:docker_container_structure}
 \end{figure}
+
+% Docker Compose
+With Docker Compose multiple Docker Containers can be executed as a single application.
+Therefore YAML compose file will be used to configure and combine the services.
+For example the already mentioned Django image can be executed and linked together with a MongoDB\footnote{\url{https://www.mongodb.com}} images.
+The main benefit is the ease of configure dependencies between several containers and configuration steps.
+These concept is similar to deployment tools like Vagrant\footnote{\url{https://www.vagrantup.com}}, Ansible\footnote{\url{https://www.ansible.com}} or Puppet\footnote{\url{https://puppet.com}}.
 
 % Benefits
 A major benefit of Docker is that the execution environment of an application is completely the same on a local machine as on the production environment.\cite[cf.][p. 2]{Gallagher:2015}
@@ -272,6 +284,13 @@ The system can for example schedule on which node a container should be executed
 Figure \ref{fig:kubernetes_architecture} illustrates the basic architecture of Kubernetes.
 The user can interact with the Kubernetes system via a \ac{CLI}, an \ac{UI} or a third party application, over a \ac{REST} \ac{API} to the Kubernetes Master or more specifically the \ac{API} Server in the master.
 The master himself controls the one or multiple nodes, monitor the system, schedule resources or pull new images from the repository, to name only a few tasks.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{resources/images/kubernetes_architecture.png}
+    \caption[Kubernetes architecture]{Kubernetes architecture. Adapted from: \cite[p. 4]{MSV:2016}}
+    \label{fig:kubernetes_architecture}
+\end{figure}
 
 Each node has a two way communication with the master via a kubelet.
 In addition each node has the services necessary to run container applications like Docker.
@@ -288,13 +307,6 @@ Any change, be it a down scale or an up scale of the system, remains unseen for 
 They are exposed through internal or external endpoints to the users or the cluster.\cite[cf.][p. 11]{MSV:2016}
 Labels can be used to organize and to select subsets of Kubernetes Objects, such as Pods or Services.\cite[cf.]{Kubernetes:labels:2016}
 They are simply key/value pairs which and should be meaningful and relevant to users, but do not imply semantics to the core system.\cite[cf.]{Kubernetes:labels:2016}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.75\textwidth]{resources/images/kubernetes_architecture.png}
-    \caption[Kubernetes architecture]{Kubernetes architecture. Adapted from: \cite[p. 4]{MSV:2016}}
-    \label{fig:kubernetes_architecture}
-\end{figure}
 
 The kube-proxy is a network proxy and load balancer which is accessible from the outside of the system via a Kubernetes service.\cite[cf.][p. 7]{Mulyana:2016}
 "Each node and can do simple TCP,UDP stream forwarding or round robin TCP,UDP forwarding across a set of backends."\cite{Kubernetes:kube-proxy:2016}
@@ -318,7 +330,10 @@ Compared to Kubernetes Docker Swarm is more lightweight, but misses some feature
 But as mentioned before, both tools are pretty similar and aim for the same goal.
 
 \subsection{TOSCA}
-\doit
+\todo{TOSCA can deliver a declarative description of the application topology for a network or cloud environment that includes all its components, which may include the need for load balancing, networking, computing resources, and other software. It can also be used to define the workflows that need to be automated in a virtualized environment. TOSCA enthusiasts believe this can simplify the configuration of networking elements and end-to-end lifecycle service orchestration (LSO) of NFV and other cloud services.
+The TOSCA modeling language includes concepts such as nodes and relationships, whereby a node is an infrastructure such as a network, subnet, or a server software component. TOSCA can help define how these nodes and services work together. TOSCA uses templates to automate the configuration of these relationships.
+In a TOSCA NFV environment, TOSCA works together with the NFV MANO components to orchestrate and automate cloud infrastructure and resources. MANO definitions include the VIM (Virtual Infrastructure Manager), which controls the interaction of the VNF with the compute, networking and storage resources of the chosen NFVI (i.e. cloud or virtualization layer); the VNFM (Virtual Network Function Manager), which responsible for the VNF lifecycle management, and the NFV orchestrator, which coordinates and manages the software and infrastructure resources of the VIM, and realizing the NFV infrastructures (NFVI’s) network services.\cite[cf.]{Tosca:NFV}}
+\ac{TOSCA} is often used with \ac{NFV} \ac{MANO} frameworks like Cloudify or Open Baton.\cite[cf.]{Tosca:NFV}
 
 \subsection{Open Baton}
 % you should mention OpenStack in here
