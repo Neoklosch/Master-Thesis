@@ -211,10 +211,25 @@ Some benefits are speed, agility and cost reduction in deployment as well as exe
 Using homogeneous hardware simplifies the process of planning and reduces power, cooling and space needs.\cite[cf.]{Noble:2015}
 Through virtualization providers can utilize resources more effectively, by allocating only the necessary resources for a specific functionality.\cite[cf.]{Noble:2015}
 Overall \ac{NFV} can reduce \ac{OpEx} as well as \ac{CapEx} and can decreasing the time necessary to deploy new services to the network.\cite[cf.]{Noble:2015}
-To achieve \ac{NFV} the \ac{ETSI} has defined a framework for \ac{MANO}\footnote{\url{http://www.etsi.org/deliver/etsi_gs/NFV-MAN/001_099/001/01.01.01_60/gs_NFV-MAN001v010101p.pdf}} of \acp{VNF} and the \ac{OASIS} created \ac{TOSCA} a \ac{NFV} specific data model and templates to coordinate and orchestrate the \ac{NF} into the cloud.
+To achieve \ac{NFV} the \ac{ETSI} has defined a framework the \ac{NFV} \ac{MANO}\footnote{\url{http://www.etsi.org/deliver/etsi_gs/NFV-MAN/001_099/001/01.01.01_60/gs_NFV-MAN001v010101p.pdf}} and the \ac{OASIS} created \ac{TOSCA} a \ac{NFV} specific data model and templates to coordinate and orchestrate the \ac{NF} into the cloud.
+
+\textbf{\ac{OSS} /\ \ac{BSS}}
+
+\textbf{\acp{VNF}}
+
+\textbf{\acp{NFVI}}
+
+\textbf{\ac{NFV} \ac{MANO}} \todo{definitions include the VIM (Virtual Infrastructure Manager), which controls the interaction of the VNF with the compute, networking and storage resources of the chosen NFVI (i.e. cloud or virtualization layer); the VNFM (Virtual Network Function Manager), which responsible for the VNF lifecycle management, and the NFV orchestrator, which coordinates and manages the software and infrastructure resources of the VIM, and realizing the NFV infrastructures (NFVI’s) network services.\cite[cf.]{Tosca:NFV}}
+\ac{TOSCA} is often used with \ac{NFV} \ac{MANO} frameworks like Cloudify or Open Baton.\cite[cf.]{Tosca:NFV}
 
 \todo{describe image}
-\doit
+
+\textbf{\ac{TOSCA}} is developed by the \ac{OASIS} to deliver a declarative description of a \ac{NFV} application topology for network or cloud environments.\cite[cf.]{Tosca:NFV}
+In figure \ref{fig:nfv_architecture} it is represented by the "Service, VNF and Infrastructure Description" block.
+Beside that, it can also be used to define workflows which should be automated in a virtualized environment.\cite[cf.]{Tosca:NFV}
+The \ac{TOSCA} modeling language can specify ndoes, whereby a node can be a network, a subnet or only a server software component, and it also handles relationships between the nodes and also services.\cite[cf.]{Tosca:NFV}
+To define schemas, relationships and the configuration of such an infrastructure, it uses \ac{YAML} files for ease the usage.\cite[cf.]{Tosca:NFV}
+\ac{TOSCA} works pretty well with \ac{NFV} \ac{MANO} components to automate the deployment and management of \acp{NF} and services.
 
 
 \section{Existing tools and frameworks}
@@ -329,11 +344,6 @@ Furthermore Docker Swarm has a build in proxy and load balancer, which can redir
 Compared to Kubernetes Docker Swarm is more lightweight, but misses some features like the label functionality or the schema definition of a pod.
 But as mentioned before, both tools are pretty similar and aim for the same goal.
 
-\subsection{TOSCA}
-\todo{TOSCA can deliver a declarative description of the application topology for a network or cloud environment that includes all its components, which may include the need for load balancing, networking, computing resources, and other software. It can also be used to define the workflows that need to be automated in a virtualized environment. TOSCA enthusiasts believe this can simplify the configuration of networking elements and end-to-end lifecycle service orchestration (LSO) of NFV and other cloud services.
-The TOSCA modeling language includes concepts such as nodes and relationships, whereby a node is an infrastructure such as a network, subnet, or a server software component. TOSCA can help define how these nodes and services work together. TOSCA uses templates to automate the configuration of these relationships.
-In a TOSCA NFV environment, TOSCA works together with the NFV MANO components to orchestrate and automate cloud infrastructure and resources. MANO definitions include the VIM (Virtual Infrastructure Manager), which controls the interaction of the VNF with the compute, networking and storage resources of the chosen NFVI (i.e. cloud or virtualization layer); the VNFM (Virtual Network Function Manager), which responsible for the VNF lifecycle management, and the NFV orchestrator, which coordinates and manages the software and infrastructure resources of the VIM, and realizing the NFV infrastructures (NFVI’s) network services.\cite[cf.]{Tosca:NFV}}
-\ac{TOSCA} is often used with \ac{NFV} \ac{MANO} frameworks like Cloudify or Open Baton.\cite[cf.]{Tosca:NFV}
 
 \subsection{Open Baton}
 % you should mention OpenStack in here
