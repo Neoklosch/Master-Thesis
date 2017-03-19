@@ -203,7 +203,7 @@ Some benefits are speed, agility and cost reduction in deployment as well as exe
 Using homogeneous hardware simplifies the process of planning and reduces power, cooling and space needs.\cite[cf.]{Noble:2015}
 Through virtualization providers can utilize resources more effectively, by allocating only the necessary resources for a specific functionality.\cite[cf.]{Noble:2015}
 Overall \ac{NFV} can reduce \ac{OpEx} as well as \ac{CapEx} and can decreasing the time necessary to deploy new services to the network.\cite[cf.]{Noble:2015}
-To achieve \ac{NFV} the \ac{ETSI} has defined a framework for \ac{MANO}\footnote{\url{http://www.etsi.org/deliver/etsi_gs/NFV-MAN/001_099/001/01.01.01_60/gs_NFV-MAN001v010101p.pdf}} of \acp{VNF}.
+To achieve \ac{NFV} the \ac{ETSI} has defined a framework for \ac{MANO}\footnote{\url{http://www.etsi.org/deliver/etsi_gs/NFV-MAN/001_099/001/01.01.01_60/gs_NFV-MAN001v010101p.pdf}} of \acp{VNF} and the \ac{OASIS} created \ac{TOSCA} a \ac{NFV} specific data model and templates to coordinate and orchestrate the \ac{NF} into the cloud.
 
 \section{Existing tools and frameworks}
 
@@ -317,6 +317,9 @@ Furthermore Docker Swarm has a build in proxy and load balancer, which can redir
 Compared to Kubernetes Docker Swarm is more lightweight, but misses some features like the label functionality or the schema definition of a pod.
 But as mentioned before, both tools are pretty similar and aim for the same goal.
 
+\subsection{TOSCA}
+\doit
+
 \subsection{Open Baton}
 % you should mention OpenStack in here
 % architecture of open baton (with image)
@@ -327,10 +330,6 @@ But as mentioned before, both tools are pretty similar and aim for the same goal
     \caption[Open Baton architecture]{Open Baton architecture. Adapted from: \cite{openBatonDoc}}
     \label{fig:open_baton_architecture}
 \end{figure}
-
-
-\subsection{TOSCA}
-\doit
 
 \section{Conclusion}
 \doit
