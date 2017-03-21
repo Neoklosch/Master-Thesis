@@ -365,25 +365,73 @@ But as mentioned before, both tools are pretty similar and aim for the same goal
 
 \subsection{Open Baton}
 Open Baton is an open source \ac{ETSI} \ac{NFV} compliant \ac{MANO} Framework\cite[cf.]{openBatonDoc}.
-"It enables virtual Network Services deployments on top of heterogeneous NFV Infrastructures."\cite{openBatonDoc}
+"It enables virtual Network Services deployments on top of heterogeneous \ac{NFV} Infrastructures."\cite{openBatonDoc}
 It works together with OpenStack and provides a plugin mechanism which allows to add additional \acp{VIM}.\cite[cf.]{openBatonDoc}
 "OpenStack is a cloud operating system that controls large pools of compute, storage, and networking resources throughout a datacenter"\cite{OpenStackDoc}
 In Open Baton it is implemented as the \ac{VIM} as first point of presence.\cite{openBatonDoc}
-% you should mention OpenStack in here
+All the resources in the \ac{NFVI} are controlled by the \ac{VIM}, in this case OpenStack.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{resources/images/open_baton_simple_architecture.png}
+    \caption[Open Baton abstract architecture]{Open Baton abstract architecture. Adapted from: \cite{openBatonDoc}}
+    \label{fig:open_baton_abstract_architecture}
+\end{figure}
+
+\todo{it provides a Generic VNFM for easily integrating existing network frameworks, you can also use your own VNFM via Rest API or AMQP message queue}
+
 \todo{It supports Network Service management either using a generic VNFM or interoperating with VNF-specific VNFM. It uses different mechanisms (REST or PUB/SUB) for interoperating with the VNFMs. It integrates with additional components for the runtime management of a Network Service. For instance, it provides autoscaling and fault management based on monitoring information coming from the the monitoring system available at the NFVI level.\cite{openBatonDoc}}
+
+Figure \ref{fig:open_baton_abstract_architecture} illustrates the abstract architecture of Open Baten together with OpenStack and a generic \ac{VNFM}.
+
+\todo{Open Baton supports several VNFM solutions. It provides a generic Virtual Network Function Manager (combined with its own specific Element Management System) which can be used for managing VNF Packages. Furthermore, it supports additional mechanisms for integrating external VNFMs: either over a message bus using the pub\/sub mechanism or using a RESTFul API. For both scenarios a SDK is provided for easily building new VNFMs.\cite{openBatonDoc}}
+
+\todo{Open Baton fully integrates with OpenStack as first Point of Presence. The VIM Driver mechanism allow to integrate external heterogeneous PoPs without modification to the orchestration logic. The provided OpenStack driver uses the OpenStack APIs for requesting virtual compute and networking resources. Following the ETSI NFV specification the OpenStack API is just one of the VIM interfaces implementation.\cite{openBatonDoc}}
+
+\todo{Zombie ipsum reversus ab viral inferno nam rick grimes malum cerebro.
+De carne lumbering animata corpora quaeritis.
+Summus brains sit morbo vel maleficia?
+De apocalypsi gorger omero undead survivor dictum mauris.
+Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium.
+Qui animated corpse, cricket bat max brucks terribilem incessu zomby.
+The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus.
+Zonbi tattered for solum oculi eorum defunctis go lum cerebro.
+Nescio brains an Undead zombies.
+Sicut malus putrid voodoo horror.
+Nigh tofth eliv ingdead.}
 
 % architecture of open baton (with image)
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{resources/images/open_baton_architecture.png}
-    \caption[Open Baton architecture]{Open Baton architecture. Adapted from: \cite{openBatonDoc}}
-    \label{fig:open_baton_architecture}
+    \caption[Open Baton detailed architecture]{Open Baton detailed architecture. Adapted from: \cite{openBatonDoc}}
+    \label{fig:open_baton_detailed_architecture}
 \end{figure}
 
-\todo{Open Baton supports several VNFM solutions. It provides a generic Virtual Network Function Manager (combined with its own specific Element Management System) which can be used for managing VNF Packages. Furthermore, it supports additional mechanisms for integrating external VNFMs: either over a message bus using the pub\/sub mechanism or using a RESTFul API. For both scenarios a SDK is provided for easily building new VNFMs.\cite{openBatonDoc}}
-
-\todo{Open Baton fully integrates with OpenStack as first Point of Presence. The VIM Driver mechanism allow to integrate external heterogeneous PoPs without modification to the orchestration logic. The provided OpenStack driver uses the OpenStack APIs for requesting virtual compute and networking resources. Following the ETSI NFV specification the OpenStack API is just one of the VIM interfaces implementation.\cite{openBatonDoc}}
+\todo{Basic function:
+Dashboard -> user input (instanciate network service) -> submited to NFVO -> NFVO request instanciation of NS at VIM (OpenStack) -> VIM starts virtual machines for the VNFs -> after booting, EMS is installed -> EMS (by OpenBaton) communicate with VNFM -> Open Baton sends lifecylce events to all VNFMs responsible of the VNFs part of the NS -> VNFM processes the VNFs via the EMS on to the given resources of the VNFI on the Datacenter -> Services started}
 
 \section{Conclusion}
-\doit
+\todo{Zombie ipsum reversus ab viral inferno nam rick grimes malum cerebro.
+De carne lumbering animata corpora quaeritis.
+Summus brains sit morbo vel maleficia?
+De apocalypsi gorger omero undead survivor dictum mauris.
+Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium.
+Qui animated corpse, cricket bat max brucks terribilem incessu zomby.
+The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus.
+Zonbi tattered for solum oculi eorum defunctis go lum cerebro.
+Nescio brains an Undead zombies.
+Sicut malus putrid voodoo horror.
+Nigh tofth eliv ingdead.
+Zombie ipsum reversus ab viral inferno nam rick grimes malum cerebro.
+De carne lumbering animata corpora quaeritis.
+Summus brains sit morbo vel maleficia?
+De apocalypsi gorger omero undead survivor dictum mauris.
+Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium.
+Qui animated corpse, cricket bat max brucks terribilem incessu zomby.
+The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus.
+Zonbi tattered for solum oculi eorum defunctis go lum cerebro.
+Nescio brains an Undead zombies.
+Sicut malus putrid voodoo horror.
+Nigh tofth eliv ingdead.}
