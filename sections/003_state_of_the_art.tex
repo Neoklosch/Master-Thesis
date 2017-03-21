@@ -368,7 +368,7 @@ Open Baton is an open source \ac{ETSI} \ac{NFV} compliant \ac{MANO} Framework\ci
 "It enables virtual Network Services deployments on top of heterogeneous \ac{NFV} Infrastructures."\cite{openBatonDoc}
 It works together with OpenStack and provides a plugin mechanism which allows to add additional \acp{VIM}.\cite[cf.]{openBatonDoc}
 "OpenStack is a cloud operating system that controls large pools of compute, storage, and networking resources throughout a datacenter"\cite{OpenStackDoc}
-In Open Baton it is implemented as the \ac{VIM} as first point of presence.\cite{openBatonDoc}
+In Open Baton it is implemented as the \ac{VIM} as first \ac{PoP}.\cite{openBatonDoc}
 All the resources in the \ac{NFVI} are controlled by the \ac{VIM}, in this case OpenStack.
 
 \begin{figure}[H]
@@ -378,15 +378,13 @@ All the resources in the \ac{NFVI} are controlled by the \ac{VIM}, in this case 
     \label{fig:open_baton_abstract_architecture}
 \end{figure}
 
-\todo{it provides a Generic VNFM for easily integrating existing network frameworks, you can also use your own VNFM via Rest API or AMQP message queue}
-
-\todo{It supports Network Service management either using a generic VNFM or interoperating with VNF-specific VNFM. It uses different mechanisms (REST or PUB/SUB) for interoperating with the VNFMs. It integrates with additional components for the runtime management of a Network Service. For instance, it provides autoscaling and fault management based on monitoring information coming from the the monitoring system available at the NFVI level.\cite{openBatonDoc}}
-
+In the basic configuration Open Baton provides a generic \ac{VNFM}, but it can also be replaced with a custom \ac{VNFM}.
+The manager can use a \ac{REST} \ac{API} or an \ac{AMQP} message queue to communicate with the system.
+Additional components, such as autoscaling and fault management, are provided to manage to the runtime of a network service.\cite{openBatonDoc}
+The necessary informations are deliverd from the monitoring system available at the \ac{NFVI} level, which can also be extended or replaced by a custom monitoring system.\cite{openBatonDoc}
 Figure \ref{fig:open_baton_abstract_architecture} illustrates the abstract architecture of Open Baten together with OpenStack and a generic \ac{VNFM}.
 
-\todo{Open Baton supports several VNFM solutions. It provides a generic Virtual Network Function Manager (combined with its own specific Element Management System) which can be used for managing VNF Packages. Furthermore, it supports additional mechanisms for integrating external VNFMs: either over a message bus using the pub\/sub mechanism or using a RESTFul API. For both scenarios a SDK is provided for easily building new VNFMs.\cite{openBatonDoc}}
-
-\todo{Open Baton fully integrates with OpenStack as first Point of Presence. The VIM Driver mechanism allow to integrate external heterogeneous PoPs without modification to the orchestration logic. The provided OpenStack driver uses the OpenStack APIs for requesting virtual compute and networking resources. Following the ETSI NFV specification the OpenStack API is just one of the VIM interfaces implementation.\cite{openBatonDoc}}
+\todo{The VIM Driver mechanism allow to integrate external heterogeneous PoPs without modification to the orchestration logic. The provided OpenStack driver uses the OpenStack APIs for requesting virtual compute and networking resources. Following the ETSI NFV specification the OpenStack API is just one of the VIM interfaces implementation.\cite{openBatonDoc}}
 
 \todo{Zombie ipsum reversus ab viral inferno nam rick grimes malum cerebro.
 De carne lumbering animata corpora quaeritis.
