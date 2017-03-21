@@ -364,7 +364,14 @@ But as mentioned before, both tools are pretty similar and aim for the same goal
 
 
 \subsection{Open Baton}
+Open Baton is an open source \ac{ETSI} \ac{NFV} compliant \ac{MANO} Framework\cite[cf.]{openBatonDoc}.
+"It enables virtual Network Services deployments on top of heterogeneous NFV Infrastructures."\cite{openBatonDoc}
+It works together with OpenStack and provides a plugin mechanism which allows to add additional \acp{VIM}.\cite[cf.]{openBatonDoc}
+"OpenStack is a cloud operating system that controls large pools of compute, storage, and networking resources throughout a datacenter"\cite{OpenStackDoc}
+In Open Baton it is implemented as the \ac{VIM} as first point of presence.\cite{openBatonDoc}
 % you should mention OpenStack in here
+\todo{It supports Network Service management either using a generic VNFM or interoperating with VNF-specific VNFM. It uses different mechanisms (REST or PUB/SUB) for interoperating with the VNFMs. It integrates with additional components for the runtime management of a Network Service. For instance, it provides autoscaling and fault management based on monitoring information coming from the the monitoring system available at the NFVI level.\cite{openBatonDoc}}
+
 % architecture of open baton (with image)
 
 \begin{figure}[H]
@@ -373,6 +380,10 @@ But as mentioned before, both tools are pretty similar and aim for the same goal
     \caption[Open Baton architecture]{Open Baton architecture. Adapted from: \cite{openBatonDoc}}
     \label{fig:open_baton_architecture}
 \end{figure}
+
+\todo{Open Baton supports several VNFM solutions. It provides a generic Virtual Network Function Manager (combined with its own specific Element Management System) which can be used for managing VNF Packages. Furthermore, it supports additional mechanisms for integrating external VNFMs: either over a message bus using the pub\/sub mechanism or using a RESTFul API. For both scenarios a SDK is provided for easily building new VNFMs.\cite{openBatonDoc}}
+
+\todo{Open Baton fully integrates with OpenStack as first Point of Presence. The VIM Driver mechanism allow to integrate external heterogeneous PoPs without modification to the orchestration logic. The provided OpenStack driver uses the OpenStack APIs for requesting virtual compute and networking resources. Following the ETSI NFV specification the OpenStack API is just one of the VIM interfaces implementation.\cite{openBatonDoc}}
 
 \section{Conclusion}
 \doit
