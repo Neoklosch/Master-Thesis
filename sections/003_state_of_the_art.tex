@@ -240,7 +240,7 @@ In contrast to the \ac{EMS}, the \ac{VNFM} handles the virtual part of the \ac{V
 The orchestrator as the third component in the \ac{NFV-MANO} block manage network services of \acp{VNF}.
 It is responsible for the global resources management, such as computing and networking resources among multiple \acp{VIM}.\cite[cf.]{Kahn:2015}
 The orchestrator interacts with the \ac{VNFM} to perform actions, but not with the \acp{VNF} directly.\cite[cf.]{Kahn:2015}
-\ac{TOSCA} is often used with \ac{NFV-MANO} frameworks like Cloudify or Open Baton.\cite[cf.]{Tosca:NFV}
+\ac{TOSCA} is often used with \ac{NFV-MANO} frameworks like Cloudify\footnote{\url{http://getcloudify.org}} or Open Baton.\cite[cf.]{Tosca:NFV}
 
 \textbf{\ac{TOSCA}} is developed by the \ac{OASIS} to deliver a declarative description of a \ac{NFV} application topology for network or cloud environments.\cite[cf.]{Tosca:NFV}
 In figure \ref{fig:nfv_architecture} it is represented by the \textit{Service, VNF and Infrastructure Description} block.
@@ -359,7 +359,7 @@ No additional software is necessary to have a bunch of machines work together as
 Similar to Kubernetes, Docker Swarm needs a master node called manager and several worker nodes.
 The manager for example keep track of the nodes and their lifecycle and it can start new instances of an image if one or multiple nodes disappear.
 Furthermore Docker Swarm has a build in proxy and load balancer, which can redirect requests to the node with the necessary container running on it or redirect requests based on the workload of the machines.
-Compared to Kubernetes Docker Swarm is more lightweight, but misses some features like the label functionality or the schema definition of a pod.
+Compared to Kubernetes, Docker Swarm is more lightweight, but misses some features like the label functionality or the schema definition of a pod.
 But as mentioned before, both tools are pretty similar and aim for the same goal.
 
 
