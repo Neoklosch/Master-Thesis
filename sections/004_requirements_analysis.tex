@@ -18,18 +18,51 @@ Thereby aspects that will be relevant for the specific implementation will be co
 % X
 \doit
 
+% Based on Open Baton
+% Docker Plugin as Vim Driver
+% should replace OpenStack, etc
+% Should deploy container on the NVFs
+% images should be found by the registry
+
+% constraints noch unklar
+% based on schema on clients/NVFs/Server? -> have to be installed before everything else?
+% based on realtime detection on nodes?
+% should only the server have these information or should the node himself have the infromations/schema and can provide it?
+
 \section{Technical requirements}
 % The following subsection outlines the technical requirements to Component X.
+\doit
+
+% Open Baton has to be configured
+% the plugins have to be installed (VIM Driver, VNFM(?))
+% Docker has to be installed
+% node must be able to execute docker and open baton client software
+
+\section{Functional requirements}
 \doit
 
 \section{Technologies}
 \doit
 
+% Java as language because Open Baton is writen in it
+% go and python not completely implemented yet
+% management should be included in the existing dashboard
+% GUI based on ?
+% Docker as container virtualization tool
+% yaml for schema
+
 \section{Use-Case-Analysis}
 \doit
+% Deploy VNFs in factory (e.g. mass production, tracking of stuff)
+% ad hoc deployment if truck arives at factory
+% detect the right nodes, e.g. software needs specific sensor or latency
 
 \section{Delineation from existing solutions}
 \doit
+
+% Kubernetes and Docker Swarm
+% Cloudify (what else?)
+% Open Baton with OpenStack
 
 \section{Conclusion}
 \doit
