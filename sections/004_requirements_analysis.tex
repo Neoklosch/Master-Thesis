@@ -42,10 +42,19 @@ Thereby aspects that will be relevant for the specific implementation will be co
 \doit
 
 \section{Technologies}
-\doit
+After the general conditions for the plugin have been defined, the technological requirements will also be addressed.
+When selecting the programming environment particular attention is paid to the compatibility of the Open Baton framework.
+This is particularly important as the effort to develop a prototype should be a s small as possible and the plugin should be immediately applicable.
+Open Baton has an build in plugin mechanism, which allows to replace for example the \ac{VIM} driver or the \ac{VNFM}.
+Because Open Baton is open source, it would be also feasible to extend the system if necessary, but with the addition, that the system still is following the \ac{ETSI} \ac{MANO} conventions as a secondary goal.
 
-% Java as language because Open Baton is writen in it
-% go and python not completely implemented yet
+Open Baton also provides a \ac{GUI} as well as a command line tool to control the system.
+Even the plugin and all the related functionalities should be controlled and monitored via the given tools.
+This shortening the learning curve and reducing training demands for the enduser.
+
+\todo{more}
+
+
 % management should be included in the existing dashboard
 % GUI based on ?
 % Docker as container virtualization tool
