@@ -17,13 +17,24 @@ Thereby aspects that will be relevant for the specific implementation will be co
 % X
 
 \section{Functional requirements}
-As the fundamental condition, the prototype to be developed has to be based on the Open Baton Framework.
+As the fundamental requirement, the prototype to be developed has to be based on the Open Baton Framework.
 Open Baton inherently supports OpenStack as the \ac{ETSI} \ac{MANO} \ac{VIM} layer.
 By default OpenStack useses virtual machines to enable facilitate the virtualization of the \acp{NF}.
 This is a rock solid solution for a cloud environment.
 Unfortunately a bare-metal virtualization is most of the times not feasible on small power devices like they are used in the \ac{IoT} area.
 Therefore OpenStack should be replaced by a more efficient and lightweight solution like container virtualization.
-% why?
+The desired \acp{NF} can be bundeled in a container and can be executed afterwards on the expected \ac{IoT} nodes.
+The implementation of a container virtualization \ac{VIM} layer should be possible by the Open Baton build in plugin system.
+It allows to add new functionalities to the system by extending a component, in this case the \ac{VIM} driver and the \ac{VNFM}.
+
+The second functional requirement is the implementation of a constraint logic which will be used to filter relevant nodes during the \ac{NF} orchestration.
+A constraint can be a functional and non-functional constraint.
+For example a specific hardware component, like a sensor or a ZigBee dongle, which is necessary to execute the \ac{NF} or a hardware requirement, like \ac{CPU} power, \ac{RAM} or disk space.
+It could also be a non-functional constraint, for example a specific software which has to be installed or a protocal which can be used.
+Open Baton as the central management system should manage these constraints for all conected nodes and should consider them while choosing suitable nodes for the desired \ac{NF}.
+The whole functionality should work similar to the labels in Docker Swarm.
+There a Docker Swarm node can be have multiple labels, which can be considered when deploying an image.
+This behavior should be achieved. 
 
 % images should be found by the registry?
 % constraints noch unklar
