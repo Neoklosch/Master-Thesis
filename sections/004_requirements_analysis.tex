@@ -16,7 +16,8 @@ Thereby aspects that will be relevant for the specific implementation will be co
 % In his paper about Z, Mister X outlines the following requirements for a Component
 % X
 
-\section{Functional requirements}
+\section{Technical requirements}
+% virtualization
 As the fundamental requirement, the prototype to be developed has to be based on the Open Baton Framework.
 Open Baton inherently supports OpenStack as the \ac{ETSI} \ac{MANO} \ac{VIM} layer.
 By default OpenStack useses virtual machines to enable facilitate the virtualization of the \acp{NF}.
@@ -27,6 +28,7 @@ The desired \acp{NF} can be bundeled in a container and can be executed afterwar
 The implementation of a container virtualization \ac{VIM} layer should be possible by the Open Baton build in plugin system.
 It allows to add new functionalities to the system by extending a component, in this case the \ac{VIM} driver and the \ac{VNFM}.
 
+% constraints
 The second functional requirement is the implementation of a constraint logic which will be used to filter relevant nodes during the \ac{NF} orchestration.
 A constraint can be a functional and non-functional constraint.
 For example a specific hardware component, like a sensor or a ZigBee dongle, which is necessary to execute the \ac{NF} or a hardware requirement, like \ac{CPU} power, \ac{RAM} or disk space.
@@ -34,33 +36,24 @@ It could also be a non-functional constraint, for example a specific software wh
 Open Baton as the central management system should manage these constraints for all conected nodes and should consider them while choosing suitable nodes for the desired \ac{NF}.
 The whole functionality should work similar to the labels in Docker Swarm.
 There a Docker Swarm node can be have multiple labels, which can be considered when deploying an image.
-This behavior should be achieved. 
-
+This behavior should be achieved by the plugin.
 % images should be found by the registry?
-% constraints noch unklar
-% based on schema on clients/NVFs/Server? -> have to be installed before everything else?
-% based on realtime detection on nodes?
 % should only the server have these information or should the node himself have the infromations/schema and can provide it?
 
-\section{Technical requirements}
-After the general conditions for the plugin has been defined, the technological requirements will also be addressed.
+
+\section{Functional requirements}
+% Plugin behavior
+After the general conditions for the plugin has been defined, the functional requirements will also be addressed.
 When selecting the programming environment special attention is paid to the compatibility of the Open Baton framework.
 This is particularly important as the effort to develop a prototype should be a s small as possible and the plugin should be immediately applicable.
 Open Baton has an build in plugin mechanism, which allows to replace for example the \ac{VIM} driver or the \ac{VNFM}.
 Because Open Baton is open source, it would be also feasible to extend the system if necessary, but with the addition, that the system still follows the \ac{ETSI} \ac{MANO} conventions as a secondary goal.
 
+% GUI beahvior
 Open Baton also provides a \ac{GUI} as well as a command line tool to control the system.
 Even the plugin and all the related functionalities should be controlled and monitored via the given tools.
 This shortening the learning curve and reducing training demands for the enduser.
 The system can be used in the same way as the user is used to.
-
-% Open Baton has to be configured
-% the plugins have to be installed (VIM Driver, VNFM(?))
-% Docker has to be installed
-% node must be able to execute docker and open baton client software
-
-% virtualization
-% constraint
 
 \section{Use-Case-Analysis}
 \doit
@@ -71,9 +64,24 @@ The system can be used in the same way as the user is used to.
 \section{Delineation from existing solutions}
 \doit
 
-% Kubernetes and Docker Swarm
+% Kubernetes
+% not MANO compliant
+% made for cloud
+% limited support for constraints -> only labels
+
+% Docker Swarm
+% not MANO compliant
+% no gui
+% limited support for constraints -> only labels
+
 % Cloudify (what else?)
-% Open Baton with OpenStack
+% not MANO compliant
+% no constraints
+
+% OpenStack
+% VMs only -> my system much more lightweight -> optimal for IoT area
+% complicated -> huge setup effort -> several tools have to be configured
+% is suitable for cloud not for IoT
 
 \section{Conclusion}
 \doit
