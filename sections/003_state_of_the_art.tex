@@ -309,6 +309,7 @@ A major benefit of Docker is that the execution environment of an application is
 There is no need to do things differently when switching from a development environment like a local machine, to a production environment like a server.\cite[cf.][p. 2]{Gallagher:2015}
 
 \subsection{Kubernetes}
+\label{subsection:state-of-the-art:kubernetes}
 Kubernetes is an open source container cluster manager which was released 2014 by Google.
 It is "a platform for automating deployment, scaling, and operations"\cite[p. 1]{Grant:2015} of containers.
 Therefore a cluster of containers can be created and managed.
@@ -339,7 +340,7 @@ A frontend which have access to the service do not care about changes in the ser
 Any change, be it a down scale or an up scale of the system, remains unseen for the frontend.
 They are exposed through internal or external endpoints to the users or the cluster.\cite[cf.][p. 11]{MSV:2016}
 Labels can be used to organize and to select subsets of Kubernetes Objects, such as Pods or Services.\cite[cf.]{Kubernetes:labels:2016}
-They are simply key/value pairs which and should be meaningful and relevant to users, but do not imply semantics to the core system.\cite[cf.]{Kubernetes:labels:2016}
+They are simply key-value pairs which and should be meaningful and relevant to users, but do not imply semantics to the core system.\cite[cf.]{Kubernetes:labels:2016}
 
 The kube-proxy is a network proxy and load balancer which is accessible from the outside of the system via a Kubernetes service.\cite[cf.][p. 7]{Mulyana:2016}
 "Each node and can do simple TCP,UDP stream forwarding or round robin TCP,UDP forwarding across a set of backends."\cite{Kubernetes:kube-proxy:2016}

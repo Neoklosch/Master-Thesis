@@ -62,14 +62,25 @@ The system can be used in the same way as the user is used to.
 % detect the right nodes, e.g. software needs specific sensor or latency
 
 \section{Delineation from existing solutions}
-\doit
+This section is intended to show the features of existing systems and the main differences will be highlighted.
+As mentioned before, the plugin to be developed should orchestrate virtualized containers to nodes based on functional and non-functional constraints.
+Therefore the focus of this consideration is the orchestration as well as the constraints.
 
-% Kubernetes
-% not MANO compliant
-% made for cloud
-% limited support for constraints -> only labels
+\textbf{Kubernetes} is especially made for Docker and can orchestrate, scale and manage containers.
+It is open source, made by Google and one of the most popular orchestration tools out there.
+It has on huge and pretty active community and is used by several well known companies\cite{Kubernetes:Case-Studies} like ebay\footnote{\url{http://www.ebay.com}} and Wikimedia\footnote{\url{https://www.wikimedia.org}}.
+Due to the fact, that is exclusivly made for Docker, it means that the system is not made to easily switch the underlying container engine if needed.
 
-% Docker Swarm
+As mentioned in section \ref{subsection:state-of-the-art:kubernetes} Kubernetes supports labels.
+These are simple key-value pairs which can be added by the system administrator to a Kubernetes Object like a pod or a service.
+The labels are stored on the Kubernetes Master and can be used to filter specific pods or services during the deployment phase.
+This behavior is pretty close to the one which should be achieved.
+
+Kubernetes is made for the cloud, which means it is not inteded to be used on low power devices.
+There are some trials to do so, but until know it is not used in a productive \ac{IoT} environment.
+Forthermore Kuberenetes is not \ac{ETSI} \ac{MANO} compliant.
+
+\textbf{Docker Swarm}
 % not MANO compliant
 % no gui
 % limited support for constraints -> only labels
