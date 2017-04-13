@@ -364,16 +364,33 @@ Compared to Kubernetes, Docker Swarm is more lightweight, but misses some featur
 But as mentioned before, both tools are pretty similar and aim for the same goal.
 
 
-\subsection{Cloudify}
-
+\subsection{OpenStack}
 \doit
+% "OpenStack is a cloud operating system that controls large pools of compute, storage, and networking resources throughout a datacenter"\cite{OpenStackDoc}
+
+
+\subsection{Cloudify}
+Cloudify\footnote{\url{http://getcloudify.org}} is another open source orchestration tools created an israeli software company called GigaSpaces\footnote{\url{https://www.gigaspaces.com}} and was made primarily for the cloud.
+With Cloudify the creation of cloud services can be automated, starting by the deployment on pulic clouds like Amazon AWS or Microsoft Azure, over monitoring, failure detection and handling and ends in maintance of such a services.\cite[cf.]{Cloudify:Documentation}
+It also have a plugin mechanism which for example allows to use OpenStack, Puppet or Docker for the orchestration out of the box.
+Furthermore custom plugins can be created and integrated into the system.
+Cloudify can be completely controlled via a command line client or a webfronted.
+The latter provides a \ac{GUI} to design and model application blueprint and is called Cloudify Composer.
+A blueprint describes an application in Cloudfiy, it is based on the \ac{TOSCA} standard and is written in \ac{YAML}.\cite[cf.]{Cloudify:Documentation}
+Basically a blueprint describes the single components like a webserver and a database of a system, how they relate to each other, how they should be installed and configured and finally how they should be monitored and maintained.\cite[cf.]{Cloudify:Documentation}
+Such a blueprint can be executed after they is created and will start the underlaying orchestration engine.
+Previously mentioned functionalities like auto-scaling, fault management and deployment over a huge cluster of nodes is also implemented.
+Since version 3 of Cloudify it also supports \ac{NFV} and delivers a couple of predefined blueprints\footnote{\url{http://getcloudify.org/examples/home.html}} for a seamless integration.
+Beyond that it is also be used to deploy \ac{IoT} functions for example for an \ac{IIoT} environment\footnote{\url{http://www.livedatautilities.com/cloud-iiot-for-legacy-grids}}.
+Finally a couple of well known organizations are using Cloudify or Aria, an open source fork of Cloudify for network providers that wants to build their own \ac{VNFM} and \ac{NFVO} tools, for example AT\&T, VMware or Deutsche Telekom.\cite[vgl.]{Hardesty:2016}
+
+% http://getcloudify.org/brochures/Heavy%20Reading%20NFV%20MANO%20Cloudify%20Snapshot.pdf
 
 
 \subsection{Open Baton}
-Open Baton is an open source \ac{ETSI} \ac{NFV} compliant \ac{MANO} Framework\cite[cf.]{openBatonDoc}.
+Open Baton\footnote{\url{https://openbaton.github.io}} is an open source \ac{ETSI} \ac{NFV} compliant \ac{MANO} Framework\cite[cf.]{openBatonDoc}.
 "It enables virtual Network Services deployments on top of heterogeneous \ac{NFV} Infrastructures."\cite{openBatonDoc}
 It works together with OpenStack and provides a plugin mechanism which allows to add additional \acp{VIM}.\cite[cf.]{openBatonDoc}
-"OpenStack is a cloud operating system that controls large pools of compute, storage, and networking resources throughout a datacenter"\cite{OpenStackDoc}
 In Open Baton it is implemented as the \ac{VIM} as first \ac{PoP} and uses the OpenStack \acp{API}.\cite{openBatonDoc}
 All the resources in the \ac{NFVI} are controlled by the \ac{VIM}, in this case OpenStack.
 
