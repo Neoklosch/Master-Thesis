@@ -375,16 +375,14 @@ With Cloudify the creation of cloud services can be automated, starting by the d
 It also have a plugin mechanism which for example allows to use OpenStack, Puppet or Docker for the orchestration out of the box.
 Furthermore custom plugins can be created and integrated into the system.
 Cloudify can be completely controlled via a command line client or a webfronted.
-The latter provides a \ac{GUI} to design and model application blueprint and is called Cloudify Composer.
+The latter provides a drag and drop \ac{GUI} to design and model application blueprint and is called Cloudify Composer.
 A blueprint describes an application in Cloudfiy, it is based on the \ac{TOSCA} standard and is written in \ac{YAML}.\cite[cf.]{Cloudify:Documentation}
 Basically a blueprint describes the single components like a webserver and a database of a system, how they relate to each other, how they should be installed and configured and finally how they should be monitored and maintained.\cite[cf.]{Cloudify:Documentation}
 Such a blueprint can be executed after they is created and will start the underlaying orchestration engine.
 Previously mentioned functionalities like auto-scaling, fault management and deployment over a huge cluster of nodes is also implemented.
-Since version 3 of Cloudify it also supports \ac{NFV} and delivers a couple of predefined blueprints\footnote{\url{http://getcloudify.org/examples/home.html}} for a seamless integration.
-Beyond that it is also be used to deploy \ac{IoT} functions for example for an \ac{IIoT} environment\footnote{\url{http://www.livedatautilities.com/cloud-iiot-for-legacy-grids}}.
-Finally a couple of well known organizations are using Cloudify or Aria, an open source fork of Cloudify for network providers that wants to build their own \ac{VNFM} and \ac{NFVO} tools, for example AT\&T, VMware or Deutsche Telekom.\cite[vgl.]{Hardesty:2016}
-
-% http://getcloudify.org/brochures/Heavy%20Reading%20NFV%20MANO%20Cloudify%20Snapshot.pdf
+Since version 3.0 of Cloudify it also supports \ac{NFV} and delivers a couple of predefined blueprints\footnote{\url{http://getcloudify.org/examples/home.html}} for a seamless integration.
+Beyond that it is also used to deploy \ac{IoT} functions for example for an \ac{IIoT} environment\footnote{\url{http://www.livedatautilities.com/cloud-iiot-for-legacy-grids}}.
+Finally a couple of well known organizations are using Cloudify or Aria\footnote{\url{http://ariatosca.org}}, an open source fork of Cloudify for network providers that wants to build their own \ac{VNFM} and \ac{NFVO} tools, for example AT\&T, VMware or Deutsche Telekom.\cite[vgl.]{Hardesty:2016}
 
 
 \subsection{Open Baton}
@@ -431,27 +429,3 @@ The services are started and the system is up and running.
     \caption[Open Baton detailed architecture]{Open Baton detailed architecture. Adapted from: \cite{openBatonDoc}}
     \label{fig:open_baton_detailed_architecture}
 \end{figure}
-
-% \section{Conclusion}
-% \todo{Zombie ipsum reversus ab viral inferno nam rick grimes malum cerebro.
-% De carne lumbering animata corpora quaeritis.
-% Summus brains sit morbo vel maleficia?
-% De apocalypsi gorger omero undead survivor dictum mauris.
-% Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium.
-% Qui animated corpse, cricket bat max brucks terribilem incessu zomby.
-% The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus.
-% Zonbi tattered for solum oculi eorum defunctis go lum cerebro.
-% Nescio brains an Undead zombies.
-% Sicut malus putrid voodoo horror.
-% Nigh tofth eliv ingdead.
-% Zombie ipsum reversus ab viral inferno nam rick grimes malum cerebro.
-% De carne lumbering animata corpora quaeritis.
-% Summus brains sit morbo vel maleficia?
-% De apocalypsi gorger omero undead survivor dictum mauris.
-% Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium.
-% Qui animated corpse, cricket bat max brucks terribilem incessu zomby.
-% The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus.
-% Zonbi tattered for solum oculi eorum defunctis go lum cerebro.
-% Nescio brains an Undead zombies.
-% Sicut malus putrid voodoo horror.
-% Nigh tofth eliv ingdead.}

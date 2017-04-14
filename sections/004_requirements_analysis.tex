@@ -93,22 +93,28 @@ They are also key-value pairs or alternatively keys only.
 By default labels can not be predefined in a \ac{JSON} file and applied to the node afterwards.
 The placement have to be done by hand via the Docker client or the \ac{REST} \ac{API}.
 
-Just as Kubernetes, Docker Swarm is not \ac{ETSI} \ac{MANO} compliant and provides no build in \ac{GUI}, but there are several third party tools out in the market.
+Just as Kubernetes, Docker Swarm is not \ac{ETSI} \ac{MANO} compliant and provides no build-in \ac{GUI}, but there are several third party tools out in the market.
 Due to the fact that it is a build-in function of Docker, the setup is quite easy and much more lightweight than Kubernetes.
 This means it will also work on \ac{IoT} devices by default.
-
-\textbf{Cloudify}
-
-% Cloudify (what else?)
-% not MANO compliant
-% no constraints
-% What is with IoT?
-% https://www.sdxcentral.com/products/gigaspace-cloudify/
 
 \textbf{OpenStack}
 % VMs only -> my system much more lightweight -> optimal for IoT area
 % complicated -> huge setup effort -> several tools have to be configured
-% is suitable for cloud not for IoT
+% is suitable for NFVs not for IoT
+
+\textbf{Cloudify} is completely compatible to the \ac{ETSI} \ac{MANO} standard and can be used as the \ac{NFVO}, as well as the generic \ac{VNFM} of this architecture.\cite[cf.]{Cloudify:MANO}
+It is also able to interact with multiple \acp{VIM}, containers, infrastructures and devices and due to the fact that it can be extended with plugins, it is can be used together with several well known tools like OpenStack, Docker or even Kubernetes.\cite[cf.]{Cloudify:MANO}
+Through these flexibility Cloudify can also be used in an \ac{IoT} envoironment if an appropriate \acp{VIM} plugin is used.
+Downside is that Cloudify himself is very limited without a powerfull underlaying orchestration tool.
+
+By default it is also not possible to orchestrate functionalities based on constraints.
+To enable this behavior the used plugin has to support such a functionality like Docker Swarm or Kubernetes.
+Cloudify provides an easy to use \ac{GUI} where the user can use the whole system, as well as a clean commandline tool.
+By using \ac{YAML} files to build blueprints based on the \ac{TOSCA} standard, the creation of such a blueprint is similar to well known workflows like the creation of a Ansible or Vagrant deployment schema.
+With the help of the Cloudify Composer the creation of a blueprint is getting much easier and also usable for users without any coding experience.
+
+% https://www.sdxcentral.com/products/gigaspace-cloudify/
+
 
 \section{Conclusion}
 \doit
