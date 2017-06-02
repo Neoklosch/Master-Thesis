@@ -37,7 +37,7 @@ But the Internet started with the appearance of bar codes and \ac{RFID} chips.\c
 The second step, which is more or less the current situation, sensors, physical devices, technical devices, data and software are connected to each other.\cite[cf.][p. 13]{Kra:2013}
 This was achieved, in particular, by cloud computing, which provides the highly efficient memory and computing power that is indispensable for such networks.\cite[cf.][p. 206]{Rui:2015}
 The next step could be a "Cognitive Internet of Things", which enables easier object and data reuse across application areas, for example through interoperable solutions, high-speed Internet connections and a semantic information distribution.\cite[cf.][p. V]{Kra:2013}
-Just as the omnipresent information processing in everyday life, also known as "Ubiquitous Computing", which was first mentioned in the "The Computer for the 21st Century"\cite{Wei:1991} by Marks Weiser, it will take some time until it is ubiquitous.
+Just as the omnipresent information processing in everyday life, also known as "Ubiquitous Computing", which was first mentioned in the "The Computer for the 21st Century"\autocite{Wei:1991} by Marks Weiser, it will take some time until it is ubiquitous.
 
 
 \subsection{Industry 4.0 and smart factories}
@@ -51,7 +51,7 @@ The Industry 4.0 is the fourth step in this evolution and was first mentioned wi
 Significantly higher productivity, efficiency, and self-managing production processes where everything from machines up to goods can communicate and cooperate with each other directly are the visions of the Industry 4.0.\cite[cf.]{Lyd:2016}
 It also aims for an intelligent connection between different companies and units.
 Autonomous production and logistics processes creating a real-time lean manufacturing ecosystem that is more efficient and flexible.\cite[cf.]{Lyd:2016}
-"This will facilitate smart value-creation chains that include all of the life-cycle phases of the product from the initial product idea, development, production, use, and maintenance to recycling."\cite{Lyd:2016}
+"This will facilitate smart value-creation chains that include all of the life-cycle phases of the product from the initial product idea, development, production, use, and maintenance to recycling."\autocite{Lyd:2016}
 At the end, the system can use customer wishes in every step in the process to be flexible and responsive.\cite[cf.]{Lyd:2016}
 
 \taburulecolor{ob_dark_gray}
@@ -96,7 +96,7 @@ Finally end-to-end engineering, planning, and process control for each step in t
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{resources/images/vertical_horizontal_integration.png}
-    \caption[Horizontal vs. Vertical Integration]{Horizontal vs. Vertical Integration. Adapted from: \cite{Jur:2013}}
+    \caption[Horizontal vs. Vertical Integration]{Horizontal vs. Vertical Integration. Adapted from: \autocite{Jur:2013}}
     \label{fig:vertical_horizontal_integration}
 \end{figure}
 
@@ -203,7 +203,7 @@ Now high-performance firewalls and load balancing software for example can run o
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth]{resources/images/nfv_architecture.png}
-    \caption[NFV architecture]{NFV architecture. Adapted from: \cite{NFV:Architecture}}
+    \caption[NFV architecture]{NFV architecture. Adapted from: \autocite{NFV:Architecture}}
     \label{fig:nfv_architecture}
 \end{figure}
 
@@ -233,7 +233,7 @@ These physical resources can be abstracted into virtual resources through the vi
 If the virtualization part is missing, the software runs natively on the hardware and the entity is no longer a \ac{VNF} it is then a \ac{PNF}.\cite[cf.]{Kahn:2015}
 
 \textbf{\ac{NFV-MANO}} consists of three main parts.
-The \ac{VIM} is "responsible for controlling and managing the NFVI compute, network and storage resources within one operator’s infrastructure domain"\cite{Kahn:2015}.
+The \ac{VIM} is "responsible for controlling and managing the NFVI compute, network and storage resources within one operator’s infrastructure domain"\autocite{Kahn:2015}.
 The \ac{VNFM} manages one or multiple \acp{VNF}.
 This includes the life cycle management of the \ac{VNF} instances, such as instantiate, edit or shut down an \ac{VNF} instance.\cite[cf.]{Tosca:NFV}
 In contrast to the \ac{EMS}, the \ac{VNFM} handles the virtual part of the \ac{VNF}, for example instantiate an instance, while the \ac{EMS} handles the functional part of an \ac{VNF}, such as issue handling for a \ac{VNF}.
@@ -250,7 +250,7 @@ To define schemas, relationships and the configuration of such an infrastructure
 \ac{TOSCA} works pretty well with \ac{NFV-MANO} components to automate the deployment and management of \acp{NF} and services.
 
 
-\section{Existing tools and frameworks}
+\section{Existing tools}
 
 There are several advantages of using frameworks and sophisticated tools, for example they reduces the time and energy in developing any software, they are more secure, well tested and they provides a standardized system through which users can develop applications.
 They also allow to create a prototype of an application in a short amount of time.
@@ -280,7 +280,7 @@ These chaining mechanism of images allows Docker to ease the use of dependencies
 
 Beside that, Docker is split up in several components, such as the Docker Engine, the Docker Registries and Docker Compose to mention only a few.
 The Docker Engine is a client-server application which can be distinguished by the Docker client, a \ac{REST} \ac{API} and the Docker server.
-Latter is a daemon process which "creates and manages Docker objects, such as images, containers, networks, and data volumes"\cite{dockerEngine}.
+Latter is a daemon process which "creates and manages Docker objects, such as images, containers, networks, and data volumes"\autocite{dockerEngine}.
 The client is a \ac{CLI}, which interact via a \ac{REST} \ac{API} with the daemon.\cite[cf.]{dockerEngine}
 
 % Docker Registries
@@ -329,7 +329,7 @@ The master himself controls the one or multiple nodes, monitor the system, sched
 Each node has a two way communication with the master via a kubelet.
 In addition each node has the services necessary to run container applications like Docker.
 Furthermore Kubernetes can combine one or multiple containers into one so called Pod.\cite[cf.][p. 7]{Mulyana:2016}
-"Pods are always co-located and co-scheduled, and run in a shared context."\cite{Kubernetes:pods:2016}
+"Pods are always co-located and co-scheduled, and run in a shared context."\autocite{Kubernetes:pods:2016}
 One node again can execute multiple Pods.
 Pods are only temporary grouped containers with a non-stable \ac{IP} address.
 After a Pod is destroyed it can never be resurrected.
@@ -343,7 +343,7 @@ Labels can be used to organize and to select subsets of Kubernetes Objects, such
 They are simply key-value pairs which and should be meaningful and relevant to users, but do not imply semantics to the core system.\cite[cf.]{Kubernetes:labels:2016}
 
 The kube-proxy is a network proxy and load balancer which is accessible from the outside of the system via a Kubernetes service.\cite[cf.][p. 7]{Mulyana:2016}
-"Each node and can do simple TCP,UDP stream forwarding or round robin TCP,UDP forwarding across a set of backends."\cite{Kubernetes:kube-proxy:2016}
+"Each node and can do simple TCP,UDP stream forwarding or round robin TCP,UDP forwarding across a set of backends."\autocite{Kubernetes:kube-proxy:2016}
 The Replication Controller is one of the mayor controllers in a Kubernetes System.
 It ensures that a specified number of pod replicas are running and available at any time.\cite[cf.]{Kubernetes:replication-controller:2016}
 If for example one node disappear because of connection issues, the Replication Controller will start a new one.
@@ -364,52 +364,52 @@ Compared to Kubernetes, Docker Swarm is more lightweight, but misses some featur
 But as mentioned before, both tools are pretty similar and aim for the same goal.
 
 
-\subsection{OpenStack}
-\doit
-% "OpenStack is a cloud operating system that controls large pools of compute, storage, and networking resources throughout a datacenter"\cite{OpenStackDoc}
+% \subsection{OpenStack}
+% \doit
+% "OpenStack is a cloud operating system that controls large pools of compute, storage, and networking resources throughout a datacenter"\autocite{OpenStackDoc}
 
 
-\subsection{Cloudify}
-Cloudify\footnote{\url{http://getcloudify.org}} is another open source orchestration tools created an israeli software company called GigaSpaces\footnote{\url{https://www.gigaspaces.com}} and was made primarily for the cloud.
-With Cloudify the creation of cloud services can be automated, starting by the deployment on pulic clouds like Amazon AWS or Microsoft Azure, over monitoring, failure detection and handling and ends in maintance of such a services.\cite[cf.]{Cloudify:Documentation}
-It also have a plugin mechanism which for example allows to use OpenStack, Puppet or Docker for the orchestration out of the box.
-Furthermore custom plugins can be created and integrated into the system.
-Cloudify can be completely controlled via a command line client or a webfronted.
-The latter provides a drag and drop \ac{GUI} to design and model application blueprint and is called Cloudify Composer.
-A blueprint describes an application in Cloudfiy, it is based on the \ac{TOSCA} standard and is written in \ac{YAML}.\cite[cf.]{Cloudify:Documentation}
-Basically a blueprint describes the single components like a webserver and a database of a system, how they relate to each other, how they should be installed and configured and finally how they should be monitored and maintained.\cite[cf.]{Cloudify:Documentation}
-Such a blueprint can be executed after they is created and will start the underlaying orchestration engine.
-Previously mentioned functionalities like auto-scaling, fault management and deployment over a huge cluster of nodes is also implemented.
-Since version 3.0 of Cloudify it also supports \ac{NFV} and delivers a couple of predefined blueprints\footnote{\url{http://getcloudify.org/examples/home.html}} for a seamless integration.
-Beyond that it is also used to deploy \ac{IoT} functions for example for an \ac{IIoT} environment\footnote{\url{http://www.livedatautilities.com/cloud-iiot-for-legacy-grids}}.
-Finally a couple of well known organizations are using Cloudify or Aria\footnote{\url{http://ariatosca.org}}, an open source fork of Cloudify for network providers that wants to build their own \ac{VNFM} and \ac{NFVO} tools, for example AT\&T, VMware or Deutsche Telekom.\cite[vgl.]{Hardesty:2016}
+% \subsection{Cloudify}
+% Cloudify\footnote{\url{http://getcloudify.org}} is another open source orchestration tools created an israeli software company called GigaSpaces\footnote{\url{https://www.gigaspaces.com}} and was made primarily for the cloud.
+% With Cloudify the creation of cloud services can be automated, starting by the deployment on pulic clouds like Amazon AWS or Microsoft Azure, over monitoring, failure detection and handling and ends in maintance of such a services.\cite[cf.]{Cloudify:Documentation}
+% It also have a plugin mechanism which for example allows to use OpenStack, Puppet or Docker for the orchestration out of the box.
+% Furthermore custom plugins can be created and integrated into the system.
+% Cloudify can be completely controlled via a command line client or a webfronted.
+% The latter provides a drag and drop \ac{GUI} to design and model application blueprint and is called Cloudify Composer.
+% A blueprint describes an application in Cloudfiy, it is based on the \ac{TOSCA} standard and is written in \ac{YAML}.\cite[cf.]{Cloudify:Documentation}
+% Basically a blueprint describes the single components like a webserver and a database of a system, how they relate to each other, how they should be installed and configured and finally how they should be monitored and maintained.\cite[cf.]{Cloudify:Documentation}
+% Such a blueprint can be executed after they is created and will start the underlaying orchestration engine.
+% Previously mentioned functionalities like auto-scaling, fault management and deployment over a huge cluster of nodes is also implemented.
+% Since version 3.0 of Cloudify it also supports \ac{NFV} and delivers a couple of predefined blueprints\footnote{\url{http://getcloudify.org/examples/home.html}} for a seamless integration.
+% Beyond that it is also used to deploy \ac{IoT} functions for example for an \ac{IIoT} environment\footnote{\url{http://www.livedatautilities.com/cloud-iiot-for-legacy-grids}}.
+% Finally a couple of well known organizations are using Cloudify or Aria\footnote{\url{http://ariatosca.org}}, an open source fork of Cloudify for network providers that wants to build their own \ac{VNFM} and \ac{NFVO} tools, for example AT\&T, VMware or Deutsche Telekom.\cite[vgl.]{Hardesty:2016}
 
 
 \subsection{Open Baton}
 Open Baton\footnote{\url{https://openbaton.github.io}} is an open source \ac{ETSI} \ac{NFV} compliant \ac{MANO} Framework\cite[cf.]{openBatonDoc}.
-"It enables virtual Network Services deployments on top of heterogeneous \ac{NFV} Infrastructures."\cite{openBatonDoc}
+"It enables virtual Network Services deployments on top of heterogeneous \ac{NFV} Infrastructures."\autocite{openBatonDoc}
 It works together with OpenStack and provides a plugin mechanism which allows to add additional \acp{VIM}.\cite[cf.]{openBatonDoc}
-In Open Baton it is implemented as the \ac{VIM} as first \ac{PoP} and uses the OpenStack \acp{API}.\cite{openBatonDoc}
+In Open Baton it is implemented as the \ac{VIM} as first \ac{PoP} and uses the OpenStack \acp{API}.\autocite{openBatonDoc}
 All the resources in the \ac{NFVI} are controlled by the \ac{VIM}, in this case OpenStack.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth]{resources/images/open_baton_simple_architecture.png}
-    \caption[Open Baton abstract architecture]{Open Baton abstract architecture. Adapted from: \cite{openBatonDoc}}
+    \caption[Open Baton abstract architecture]{Open Baton abstract architecture. Adapted from: \autocite{openBatonDoc}}
     \label{fig:open_baton_abstract_architecture}
 \end{figure}
 
 In the basic configuration Open Baton provides a generic \ac{VNFM} with generic \ac{EMS} related to the \acp{VNF}, but it can also be replaced with custom components.
 The \ac{VNFM} can use a \ac{REST} \ac{API} or an \ac{AMQP} message queue to communicate with the system.
 Figure \ref{fig:open_baton_abstract_architecture} illustrates the abstract architecture of Open Baton together with OpenStack and a generic \ac{VNFM}.
-The \ac{NFVO} is completely designed and implemented as described in the \ac{ETSI} \ac{MANO} standard.\cite{openBatonDoc}
+The \ac{NFVO} is completely designed and implemented as described in the \ac{ETSI} \ac{MANO} standard.\autocite{openBatonDoc}
 It communicates with the \ac{VIM} to orchestrate resources and services and it is implemented as a separate module, so it can be replaced with a custom one if necessary.
 
 A more detailed view of the Open Baton architecture is shown in figure \ref{fig:open_baton_detailed_architecture}.
 As mentioned before each component communicate over the message queue and can be extended or replaced if necessary.
-Additional components, such as the \ac{AE} or the \ac{FM} system, are provided to manage a network service at runtime.\cite{openBatonDoc}
-The necessary informations are delivered from the monitoring system available at the \ac{NFVI} level, which can also be extended or replaced with any monitoring system by implementing a custom monitoring driver.\cite{openBatonDoc}
-The \ac{VIM} Driver mechanism allows to replace OpenStack with external heterogeneous \acp{PoP}, but without the need of modifying the orchestration logic.\cite{openBatonDoc}
+Additional components, such as the \ac{AE} or the \ac{FM} system, are provided to manage a network service at runtime.\autocite{openBatonDoc}
+The necessary informations are delivered from the monitoring system available at the \ac{NFVI} level, which can also be extended or replaced with any monitoring system by implementing a custom monitoring driver.\autocite{openBatonDoc}
+The \ac{VIM} Driver mechanism allows to replace OpenStack with external heterogeneous \acp{PoP}, but without the need of modifying the orchestration logic.\autocite{openBatonDoc}
 Beside the generic \ac{VNFM}, also the Juju\footnote{https://www.ubuntu.com/cloud/juju} \ac{VNFM} can be used to deploy Juju Charms or Open Baton \ac{VNF} packages.
 Open Baton also provides a marktplace\footnote{http://marketplace.openbaton.org} for free and open source \acp{VNF}, which can directly be loaded into the system.
 
@@ -426,6 +426,15 @@ The services are started and the system is up and running.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{resources/images/open_baton_architecture.png}
-    \caption[Open Baton detailed architecture]{Open Baton detailed architecture. Adapted from: \cite{openBatonDoc}}
+    \caption[Open Baton detailed architecture]{Open Baton detailed architecture. Adapted from: \autocite{openBatonDoc}}
     \label{fig:open_baton_detailed_architecture}
 \end{figure}
+
+\section{Messaging}
+
+\subsection{MQTT}
+The \ac{MQTT} protocol is a lightweight communication protocol developed by Andy Stanford-Clard (IBM) and Arlen Nipper (Eurotech).\autocite{Edler:2014:MQTT}
+It has a publish/subscribe architecture, which makes it easy to implement and allows thousands of remote clients to be connected to a single server at the same time.\autocite{lampkin:2012:mqtt}
+
+\subsection{ZeroMQ}
+\doit
