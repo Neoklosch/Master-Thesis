@@ -410,8 +410,8 @@ As mentioned before each component communicate over the message queue and can be
 Additional components, such as the \ac{AE} or the \ac{FM} system, are provided to manage a network service at runtime.\autocite{openBatonDoc}
 The necessary informations are delivered from the monitoring system available at the \ac{NFVI} level, which can also be extended or replaced with any monitoring system by implementing a custom monitoring driver.\autocite{openBatonDoc}
 The \ac{VIM} Driver mechanism allows to replace OpenStack with external heterogeneous \acp{PoP}, but without the need of modifying the orchestration logic.\autocite{openBatonDoc}
-Beside the generic \ac{VNFM}, also the Juju\footnote{https://www.ubuntu.com/cloud/juju} \ac{VNFM} can be used to deploy Juju Charms or Open Baton \ac{VNF} packages.
-Open Baton also provides a marktplace\footnote{http://marketplace.openbaton.org} for free and open source \acp{VNF}, which can directly be loaded into the system.
+Beside the generic \ac{VNFM}, also the Juju\footnote{\url{https://www.ubuntu.com/cloud/juju}} \ac{VNFM} can be used to deploy Juju Charms or Open Baton \ac{VNF} packages.
+Open Baton also provides a marktplace\footnote{\url{http://marketplace.openbaton.org}} for free and open source \acp{VNF}, which can directly be loaded into the system.
 
 Furthermore Open Baton comes with a modern and easy to use \ac{GUI} and user management.
 The typical workflow of running a \ac{NFVI} is by starting them through the dashboard.
@@ -433,8 +433,28 @@ The services are started and the system is up and running.
 \section{Messaging}
 
 \subsection{MQTT}
-The \ac{MQTT} protocol is a lightweight communication protocol developed by Andy Stanford-Clard (IBM) and Arlen Nipper (Eurotech).\autocite{Edler:2014:MQTT}
-It has a publish/subscribe architecture, which makes it easy to implement and allows thousands of remote clients to be connected to a single server at the same time.\autocite{lampkin:2012:mqtt}
+The \ac{MQTT} protocol formerly known as MQTT-S or MQTT-SN is a lightweight communication protocol developed by Andy Stanford-Clard and Arlen Nipper.\autocite[cf.]{MQTT:FAQ}
+Meanwhile \ac{MQTT} is an \ac{OASIS} standard\footnote{\url{https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=mqtt}}, which is often used in a \ac{IoT} and \ac{M2M} context.\autocite[cf.][p. 5]{lampkin:2012:mqtt}
+It has a publish/subscribe architecture, which makes it easy to implement and allows thousands of remote clients to be connected to a single server at the same time.\autocite[cf.][p. 5]{lampkin:2012:mqtt}
+The recipient which is called consumer in the \ac{MQTT} context is completely decoupled form the sender, called producer, via a broker.
+This means a consumer subscribe to a specific topic at the broker and the producer can send messages with a specific topic to the broker.
+The producer does not know if there is any consumer subscribed to the topic of a message, but he also does not care.
+The broker is resonsible for delivering messages to consumers, by receiving them from the producer and send out copies to the consumers.
+Figure \ref{fig:mqtt_architecture} illustrates this concept.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{resources/images/mqtt_architecture.png}
+    \caption[MQTT publish/subscribe architecture]{MQTT publish/subscribe architecture. Adapted from: \autocite{Bayer:MQTT}}
+    \label{fig:mqtt_architecture}
+\end{figure}
+
+
+
+% Basic idea of mqtt
+% Quality of service
+% https://www.predic8.de/mqtt.htm
+% https://blogs.vmware.com/vfabric/2013/02/choosing-your-messaging-protocol-amqp-mqtt-or-stomp.html
 
 \subsection{ZeroMQ}
 \doit
