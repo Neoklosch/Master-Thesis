@@ -432,15 +432,18 @@ The services are started and the system is up and running.
 
 \section{Messaging}
 
-\subsection{MQTT}
+\subsection{Message Queue Telemetry Transport}
 The \ac{MQTT} protocol formerly known as MQTT-S or MQTT-SN is a lightweight communication protocol developed by Andy Stanford-Clard and Arlen Nipper.\autocite[cf.]{MQTT:FAQ}
-Meanwhile \ac{MQTT} is an \ac{OASIS} standard\footnote{\url{https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=mqtt}}, which is often used in a \ac{IoT} and \ac{M2M} context.\autocite[cf.][p. 5]{lampkin:2012:mqtt}
+Meanwhile \ac{MQTT} is an \ac{OASIS} standard\footnote{\url{https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=mqtt}}, which is often used in an \ac{IoT} and \ac{M2M} context.\autocite[cf.][p. 5]{lampkin:2012:mqtt}
 It has a publish/subscribe architecture, which makes it easy to implement and allows thousands of remote clients to be connected to a single server at the same time.\autocite[cf.][p. 5]{lampkin:2012:mqtt}
-The recipient which is called consumer in the \ac{MQTT} context is completely decoupled form the sender, called producer, via a broker.
-This means a consumer subscribe to a specific topic at the broker and the producer can send messages with a specific topic to the broker.
-The producer does not know if there is any consumer subscribed to the topic of a message, but he also does not care.
+The recipient of a message which is called consumer in the \ac{MQTT} context is completely decoupled from the sender, mostly called producer, via a broker.
+In general the workflow is that a consumer subscribe to a specific topic at the broker and the producer can send messages with a specific topic to the broker.
+The producer does not know if there is any consumer subscribed to the topic of a message.
 The broker is resonsible for delivering messages to consumers, by receiving them from the producer and send out copies to the consumers.
 Figure \ref{fig:mqtt_architecture} illustrates this concept.
+
+In contrast to Client/Server protocols such as the \acs{HTTP}, \ac{MQTT} is eventoriented, which means that the client does not have to constantly ask the server if there is new data, the broker informs the consumer when there is new data on a topic.\autocite[cf.]{Bayer:MQTT}
+In direct comparison, this concept decrease the traffic, the amount of connections at the server and the delay of the message to be send to the clients.
 
 \begin{figure}[H]
     \centering
@@ -449,10 +452,38 @@ Figure \ref{fig:mqtt_architecture} illustrates this concept.
     \label{fig:mqtt_architecture}
 \end{figure}
 
+Beside the publish/subscribe architecture and the lightweight protocol, \ac{MQTT} has only few but usful features.
+\textbf{\ac{QoS}} define the level of reliability with which messages are delivered.\autocite[cf.]{Bayer:MQTT}
+There are three different levels, where each level differs in reliability and resources usage.\autocite[cf.]{Bayer:MQTT}
+In an \ac{IoT} context, for instance gathering temperature sensor data from a low power device, most of the time keeping the resources usage low is more important than the reliability of getting every single message.\newline
+At \textit{\ac{QoS} level 0 - at most once}, it is garantied that a message can only arrieves once, but they can also be lost during transfer.
+A single message will be send once and the publisher does not check the success of receiving them.
+This pattern is also called \textit{Fire and Forget}, it is fast and resources friendly.\autocite[cf.]{Bayer:MQTT}\newline
+At \textit{\ac{QoS} level 1 - at lest once}, it is grantied that a message will be received at the consumer.
+After the publisher send the message with a specific packet identifier, the consumer will confirm the receipt of the message with a so called pubback packat.
+The pubback packet also have the same packet identifier included, so that the publisher will know that the message was successfully delivered.
+If a message get lost during transmission, they will be resend.
+It is also possible, that the same message appears multiple times at the consumer, depending on the delay in the network.\newline
+The most secure but also most resources consuming level is At \textit{\ac{QoS} level 2 - exactly once}.
+At this level it is garantied, that a message is exactly received once.
+It is not possible that a message appears multiple times or never.
+This level has a two-level confirmation process, where at first the consumer confirms the receive of the message and afterwards the producers confirms the receive of the confirmation.
+Therefor both sides can be sure to not send or receive duplicates and it is garantied that a message will be received.
 
+Forthermore the broker has two features to handle connection loses: the \textit{last will testament} and the \textit{message persistence}.
+The former feature will send a last message from the broker to a consumer if the connection to the publisher will get lost.
+This could be for instances the information that the connection get lost or something similar.
+The message persistance will be used if one consumer lose the connection to the broker.
+In this case the message will be stored and delivered as soon as the consumer reconnects.
+With the \textit{retrained messages} feature, a consumer which is connected for the first time to the broker will get the last message send for a specific topic. This can be useful if the temperature from a sensor should be displayed, but the value will only be fetched every 30 seconds. This would lead to the behaviour that the initial value on consumer side will in worst case be unknown for 30 seconds.
+\textit{Persistent sessions} allows a connection be established even if the consumer disappers. In this case all the messages incurred will be stored and delivered if the consumer resume the session. The session can be identified with a unique client identifier.\autocite[cf.]{Bayer:MQTT}
 
-% Basic idea of mqtt
-% Quality of service
+Due to the fact that \ac{MQTT} is a simple protocol with a small footprint and the \ac{QoS} handshake enables the protocol to be independent from \acs{TCP} so that it can be used even on devices without a TCP/IP stack like embedded devices such as an Arduino.\autocite[cf.]{Bayer:MQTT}
+There the protocol can be used via a bus or a serial port.\autocite[cf.]{Bayer:MQTT}
+\ac{MQTT} himself support the protection of the messages via username nad password and the communication can be encrypted with \acs{SSL} or \acs{TLS} on the transport layer.\autocite[cf.]{Bayer:MQTT}
+The broker can additionally use client certificates to authenticate them or restrict the access via access conrol lists such as \acs{IP} filtering.\autocite[cf.]{Bayer:MQTT}
+\ac{MQTT} is available for most of the common programming languages and platforms.
+
 % https://www.predic8.de/mqtt.htm
 % https://blogs.vmware.com/vfabric/2013/02/choosing-your-messaging-protocol-amqp-mqtt-or-stomp.html
 
