@@ -2,6 +2,9 @@ FILENAME = thesis
 
 all: createpdf movethesis clean
 
+fast:
+	pdflatex -file-line-error -synctex=1 -interaction=nonstopmode -shell-escape $(FILENAME).tex
+
 createpdf:
 	pdflatex -file-line-error -synctex=1 -interaction=nonstopmode -shell-escape $(FILENAME).tex
 	biber $(FILENAME)

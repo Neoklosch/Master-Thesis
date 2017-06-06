@@ -488,4 +488,86 @@ The broker can additionally use client certificates to authenticate them or rest
 % https://blogs.vmware.com/vfabric/2013/02/choosing-your-messaging-protocol-amqp-mqtt-or-stomp.html
 
 \subsection{ZeroMQ}
-\doit
+ZeroMQ is an messaging and communication framework to send atomic messages between applications and processec across various transports like \ac{TCP}, in-process, inter-process or multicast.\autocite[cf.]{ZeroMQ:Guide}
+Every message will be send over sockets via several patterns like publish-subscribe, fan-out or a simple request-reply.\autocite[cf.]{ZeroMQ:Guide}
+ZeroMQ has an asynchronous I/O model which allows to create high-performance and scalable multicore applications.\autocite[cf.]{ZeroMQ:Guide}
+To distinguish it from messaging frameworks like \ac{AMQP}\footnote{\url{https://www.amqp.org}} ZeroMQ has no dedicated broker inbetween.
+The benefit is that there is no single point of failure, not bottleneck and no need to maintain another component, but ZeroMQ still has the advantages of such a messaging system.
+
+ZeroMQ supports five different transport types.\newline
+\textbf{In-Process} is used for local (in-process or inter-thread) communication transport.
+This transport passes the messages directly via memory between threads.\autocite[cf.]{ZeroMQ:inproc}
+These transport type is optimal for creating multithreaded applications without providing access to the outside.
+This is the fastes tranport type available in ZeroMQ.\newline
+\textbf{\ac{IPC}} provides also a local communication transport, but passes messages via the \ac{OS} dependend \ac{IPC} machanism, for example UNIX domain sockets.
+An application can provide a local \ac{API} for another local appliction via \ac{IPC}.
+Also \ac{IPC} is much faster than the \ac{TCP} communication.\newline
+\textbf{\ac{TCP}} is an ubiquitous, reliable, unicast transport to provide an \ac{API} over a network.\autocite[cf.]{ZeroMQ:tcp}\newline
+\textbf{\ac{PGM}} is a multicast communication transport using the \ac{PGM} standard protocol\footnote{\url{https://tools.ietf.org/html/rfc3208}} and the datagrams are layered directly on top of IP datagrams.\autocite[cf.]{ZeroMQ:pgm}
+It is helpful to send a squence of packets to multiple consumers at the same time.
+Therefore \ac{PGM} and also \acs{EPGM} can only be used with the publish/subscribe pattern.\newline
+\textbf{\ac{EPGM}} is similar to \ac{PGM} but with the difference that the PGM datagrams are encapsulated inside UDP datagrams.\autocite[cf.]{ZeroMQ:pgm}
+
+ZeroMQ has serveral basic patterns and most of them are combinable.
+To describe them all in detail would exceed the scope of this work, so only the most relevant ones are considered.\newline
+\textbf{Request-Reply} is comparable with a \ac{HTTP} request-response.
+The client send a message to the server, which does some work and send back a message afterwards.
+It is represented by the REQ-REP socket pairs in ZeroMQ.
+Figure \ref{fig:zeromq_req_rep} illustrates the pattern.\newline
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.25\textwidth]{resources/images/zeromq-req-rep.png}
+    \caption[ZeroMQ Request-Reply architecture]{ZeroMQ Request-Reply architecture. Adapted from: \autocite{ZeroMQ:Guide}}
+    \label{fig:zeromq_req_rep}
+\end{figure}
+The \textbf{Publish-Subscribe} pattern in ZeroMQ is basically comparable with the MQTT publish-susbcribe pattern, but without the broker inbetween.
+This ends up in the fact that every consumer has to now the publisher and has to connect to them.
+A direct connection between them will established.
+Similar to MQTT, the publisher will send out the message to every subscribed consumer.
+It is also possible to subscribe to more than one topic.
+In ZeroMQ this pattern is represented by PUB-SUB socket pairs.
+Figure \ref{fig:zeromq_pub_sub} shows this pattern.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{resources/images/zeromq-pub-sub.png}
+    \caption[ZeroMQ Publish-Subscribe architecture]{ZeroMQ Publish-Subscribe architecture. Adapted from: \autocite{ZeroMQ:Guide}}
+    \label{fig:zeromq_pub_sub}
+\end{figure}
+The \textbf{Pipeline} pattern is also known as the \textit{Divide and Conquer} pattern.
+There we have Ventilator which produces multiple tasks that can be done in parallel, a set of worker that can process these tasks and a sink that collects the results from the workers.\autocite{ZeroMQ:Guide}
+Benefit of this pattern is, that the workers devide the tasks, this means it will increase the calculation time based on the connected workers.
+FUrthermore the works can pull a new task if they are done.
+This means a worker has a minimal idle time.
+Queuing is provided by ZeroMQ.
+It is also possible to add and remove workers dynamically.
+This makes an application much more scalable.
+Finally the sink pull the data from the worker in a so called \textit{fair-queuing}.
+This means the sink will pull one package from each worker one after another, then he starts from the beginning and will pull again only one package, even if one or multiple worker should have multiple packages retrievable.
+The whole pattern is shown in figure \ref{fig:zeromq_pipeline}\newline
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{resources/images/zeromq-vernitlator.png}
+    \caption[ZeroMQ Pipeline architecture]{ZeroMQ Pipeline architecture. Adapted from: \autocite{ZeroMQ:Guide}}
+    \label{fig:zeromq_pipeline}
+\end{figure}
+\textbf{Exclusive pair} connects tow sockets exclusively, for example two threads in a process.\autocite{ZeroMQ:Guide}
+\newline
+\textbf{Combinations of them} at least these some of the patterns in ZeroMQ.
+All of these patterns can be combined to create much more advanced combinations.
+Figure \ref{fig:zeromq_comination} illustrates such a combination.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{resources/images/zeromq-complex.png}
+    \caption[ZeroMQ combination of patterns]{ZeroMQ combination of patterns. Adapted from: \autocite{ZeroMQ:Guide}}
+    \label{fig:zeromq_comination}
+\end{figure}
+There is a combination between two publish-subscribe patterns and a proxy in between.
+This could be helpful to create a nested topology, for instances for a controller in a smart home environment.
+Multiple controllers can be subscribed to a server and multiple nodes can be subscribed to one controller.
+As mentioned before, there are much more combinations possible.
+A good overview of many of them can be found in the official guide\footnote{\url{http://zguide.zeromq.org/page:all}} of ZeroMQ.
+
+By default ZeroMQ has no encryption or authentication machanismn build in.
+There is a dedicated project called CurveZMQ\footnote{\url{http://curvezmq.org}} which enables these functionallities and it is also created by the ZeroMQ maintainers.
+Since ZeroMQ version 4.x CurveZMQ comes built-in.
+Finally ZeroMQ has libraries for most of the common programming languages.
