@@ -62,11 +62,11 @@ Therefor a plugin will be created which can orchestrate containers based on func
 
 % write about the synopsis (Zusammenfassung) of the issues
 This thesis describes an approach to design and implement a fog service orchestration engine for smart factories.
-The aim of this work is to create a plugin for Open Baton, an \ac{ETSI} \ac{NFV} compliant \ac{MANO} framework, which can deploy containers to network nodes, which are typically low power devices at the edge of a network, especially for the area of Industry 4.0 and smart factories.
-Furthermore the plugin should consider specific functional and non-functional constraints while deploying the \acp{NF}.
+The aim of this work is to create a prototype for a fog node, which can deploy containers on the same node or on other network nodes, which are typically low power devices at the edge of a network, especially for the area of Industry 4.0 and smart factories.
+Furthermore the prototype should consider specific functional and non-functional constraints while deploying the containers.
 A condition can be a hardware requirement, a required software or a dependencies to another node.
-The technical prerequisite and detailed requirements for the plugin as well as the usability of Open Baton as the tool of choice have to be worked out.
-The cooperation with the Fraunhofer FOKUS plays a prominent role for this thesis, because they have a lot of knowledge and experience especially in this area.
+The technical prerequisite and detailed requirements for the prototype as well as the usability of a \ac{GUI}, which could be for example Open Baton, an \ac{ETSI} \ac{NFV} compliant \ac{MANO} framework, have to be worked out.
+The cooperation with the Fraunhofer FOKUS plays a prominent role for this thesis, because they have a lot of knowledge and experience especially in this area of \ac{IoT} and \ac{NFV}.
 
 
 \section{Scope}
@@ -83,6 +83,7 @@ The cooperation with the Fraunhofer FOKUS plays a prominent role for this thesis
 
 % write about the research scope (Forschungsbereich) — Figures 1.1, 1.2 and 1.4
 % -- was ist drin, was nicht
+\todo{Rework that section}
 As mentioned before, the prototype will be an plugin for Open Baton, which means that the creation of an \ac{MANO} engine is out of scope for this thesis.
 Open Baton has a modular architecture so that the proof-of-concept implementation should be possible without modifying the framework himself.
 The container virtualization will be realized with Docker\footnote{\url{https://www.docker.com}}, an open source container platform.
@@ -103,6 +104,7 @@ It is out of scope to create a system which guaranteed to be executed on arbitra
 
 
 \section{Outline}
+\todo{Rework that section}
 In chapter \ref{chapter:state-of-the-art} an introduction in relevant topics like the \ac{IoT} with the Industry 4.0, \acp{CPS} and Fog Computing as subtopics, virtualization especially container virtualization and orchestration and \ac{NFV} is given.
 Followed by a comparison of several established tools available on the market.
 The definition of the requirements as well as features and capabilities of the prototype will be shown in chapter \ref{chapter:requirements-analysis}.
