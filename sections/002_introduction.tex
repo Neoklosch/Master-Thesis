@@ -46,8 +46,9 @@ Moving this technology over to the \ac{IoT} area many challenges can be solved.
 Dynamically deployed applications at the edge of a network can store and preprocesses gather data even if a node have no connection to the cloud because of lossy signals.
 Traffic can be reduced by only transmitting aggregated data back to the cloud.
 More often small low power devices with limited computational power are be used as \ac{IoT} nodes which also profit rather from lightweight container solutions than from resource consuming \acp{VM}.
-This thesis shows the capabilities of container orchestration for the \ac{IoT} and smart factories using the Open Baton framework.
-Therefor a plugin will be created which can orchestrate containers based on functional and non-functional constraints to fog nodes.
+This thesis shows the capabilities of container orchestration for the \ac{IoT} and smart factories by creating a prototype which can be executed on fog nodes.
+Therefor an engine will be created which can orchestrate containers based on functional and non-functional constraints on a single fog node or between a cluster of fog nodes.
+
 
 \section{Objective}
 % What kind of problem do you adress? Which issues do you try to solve? What solution
@@ -62,7 +63,8 @@ Therefor a plugin will be created which can orchestrate containers based on func
 
 % write about the synopsis (Zusammenfassung) of the issues
 This thesis describes an approach to design and implement a fog service orchestration engine for smart factories.
-The aim of this work is to create a prototype for a fog node, which can deploy containers on the same node or on other network nodes, which are typically low power devices at the edge of a network, especially for the area of Industry 4.0 and smart factories.
+The aim of this work is to create a prototype for a fog node, which can deploy containers on the same node or on other network nodes.
+A for Node is typically a low power device at the edge of a network, especially in the area of Industry 4.0 and smart factories.
 Furthermore the prototype should consider specific functional and non-functional constraints while deploying the containers.
 A condition can be a hardware requirement, a required software or a dependencies to another node.
 The technical prerequisite and detailed requirements for the prototype as well as the usability of a \ac{GUI}, which could be for example Open Baton, an \ac{ETSI} \ac{NFV} compliant \ac{MANO} framework, have to be worked out.
@@ -83,30 +85,37 @@ The cooperation with the Fraunhofer FOKUS plays a prominent role for this thesis
 
 % write about the research scope (Forschungsbereich) — Figures 1.1, 1.2 and 1.4
 % -- was ist drin, was nicht
-\todo{Rework that section}
-As mentioned before, the prototype will be an plugin for Open Baton, which means that the creation of an \ac{MANO} engine is out of scope for this thesis.
-Open Baton has a modular architecture so that the proof-of-concept implementation should be possible without modifying the framework himself.
+As mentioned before, the prototype will be an prototype for a fog node, this means the creation of a \ac{MANO} engine on the server side is out of scope for this thesis.
+Open Baton serves as the template for that project and especially the modular architecture and the resulting extensibility will be targeted.
+Beside that, the whole prototype will be created completely from scretch.
 The container virtualization will be realized with Docker\footnote{\url{https://www.docker.com}}, an open source container platform.
 Docker has on \ac{API} where third party apps can communicate with and can control the engine himself.
-The functional and non-functional constraints have to be implemented in the \ac{NFVO} and could base on the \ac{YAML} schemas which are part of the \ac{TOSCA} standard.
+The functional and non-functional constraints could base on \ac{YAML} schemas which are part of the \ac{TOSCA} standard for example.
 These schemas should be extendable and should fit the needs of the constraint functionality.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\textwidth]{resources/images/architecture.png}
+    \includegraphics[width=0.85\textwidth]{resources/images/conceptual_architecture.png}
     \caption[Conceptual architecture]{Conceptual architecture.}
     \label{fig:conceptual_architecture}
 \end{figure}
 
-Figure \ref{fig:conceptual_architecture} shows an abstract architecture concept where Docker is part of the \ac{VIM} and the constraints are part of the \ac{NFVO}.
-Furthermore the engine will be tested on a raspberry pi\footnote{\url{https://www.raspberrypi.org}} cluster.
+Figure \ref{fig:conceptual_architecture} shows a conceptual architecture design.
+On the right side is the abstract cloud infrastructure.
+The \ac{NFVI} on the left side includes the Fog Node
+These could be for example Open Baton or any other \ac{MANO} compliant Framework.
+A single fog node should have the fog node engine, which is the prototype to be developed, as well as a docker engine up and running.
+The constraint handling is part of the fog node engine and the concrete implementation has to be worked out.
+The fog node engine can orchestrate the local Docker containers, or if it necessary, it can orchestrate containers to one or multiple other fog nodes.
+This allows the system to be more flexible and it can achieve an autonomous orchestration level.
+The autonomous orchestration of containers between fog nodes without an existing connection to the cloud server is desirable, but not part of this thesis.
+Due to the fact that the prototype will be used in an \ac{IoT} context, the system will be tested on low power devices, for example on a raspberry pi\footnote{\url{https://www.raspberrypi.org}} cluster.
 It is out of scope to create a system which guaranteed to be executed on arbitrary devices, but theoretically this could be achieved with a system like Open Baton and Docker.
 
 
 \section{Outline}
-\todo{Rework that section}
 In chapter \ref{chapter:state-of-the-art} an introduction in relevant topics like the \ac{IoT} with the Industry 4.0, \acp{CPS} and Fog Computing as subtopics, virtualization especially container virtualization and orchestration and \ac{NFV} is given.
-Followed by a comparison of several established tools available on the market.
+Followed by a comparison of several established tools available on the market and finally some messaging concepts like \ac{MQTT} and ZeroMQ.
 The definition of the requirements as well as features and capabilities of the prototype will be shown in chapter \ref{chapter:requirements-analysis}.
 Based on that, the architecture of the system is illustrated in chapter \ref{chapter:concept}.
 The proof-of-concept implementation will be worked out in chapter \ref{chapter:implementation} and the functionality of the plugin will be demonstrated.
