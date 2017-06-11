@@ -1,6 +1,7 @@
 \acresetall
 
-\chapter{Requirements Analysis}\label{chapter:requirements-analysis}
+\chapter{Requirements Analysis}
+\label{chapter:requirements-analysis}
 % This section determines the requirements necessary for X. This includes the functional
 % aspects, namely Y and Z, and the non functional aspects such as A and B.
 Based on the fundamentals the requirements for the plugin to be developed will be formulated in this chapter.
@@ -17,6 +18,7 @@ Thereby aspects that will be relevant for the specific implementation will be co
 % X
 
 \section{Technical requirements}
+\label{section:technical-requirements}
 % virtualization
 As the fundamental requirement, the prototype to be developed has to create, manage and maintain virtualized containers on a fog node.
 Tools like Open Baton inherently supports OpenStack as the \ac{ETSI} \ac{MANO} \ac{VIM} layer.
@@ -49,6 +51,7 @@ Finally the whole system should be well tested and documented.
 
 
 \section{Functional requirements}
+\label{section:functional-requirements}
 % prototype behavior
 After the general conditions for the prototype has been defined, the functional requirements will also be addressed.
 When selecting the programming environment special attention is paid to the compatibility of the Open Baton framework. % TODO: was noch?
@@ -65,12 +68,15 @@ A command line tool to control the system would be useful as well and eases the 
 % TODO: probably more?
 
 \section{Use-Case-Analysis}
+\label{section:use-case-analysis}
 \doit
 % Deploy VNFs in factory (e.g. mass production, tracking of stuff)
 % ad hoc deployment if truck arives at factory
 % detect the right nodes, e.g. software needs specific sensor or latency
+% Sequenzdiagramm für Ablauf vom Deployment bis zum container: IMG_20170526_201659.jpg
 
 \section{Delineation from existing solutions}
+\label{section:delineation-from-existing-solutions}
 \todo{Rework that section}
 This section is intended to show the features of existing systems and the main differences will be highlighted.
 As mentioned before, the prototype to be developed should orchestrate virtualized containers on nodes based on functional and non-functional constraints.
@@ -127,4 +133,5 @@ With the help of the Cloudify Composer the creation of a blueprint is getting mu
 
 
 \section{Conclusion}
+\label{section:requirements-conclusion}
 \doit

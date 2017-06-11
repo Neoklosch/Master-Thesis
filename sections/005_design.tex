@@ -21,46 +21,70 @@ Based on that the different layer of the system will be elaborated.
 % Docker Plugin as Vim Driver
 
 \section{Development environment}
+The choice of the development environment is crucial for the creation of a prototype.
+It should be easy to used and fast to implement, but
+The environemnt is important for both the implementation of the prototype, as well as the choice of possible plugins and libraries.
+Futhermore the prefered environment from the \ac{FOKUS} has to be considered.
+Thus, Open Baton is written in Java and is also partly ported to python and go.
+Python in general is used for several projects at the \ac{FOKUS}.
+Taking also the criterias from section \ref{section:technical-requirements} into account the following programming environments are applicable.
 \doit
 
-Open Baton is written in Java and is also partly ported to python and go.
+\textbf{Java:}
 
 \textbf{Python:}
-
-\textbf{C/C++:}
 
 \textbf{Node.js:}
 
 \textbf{Go:}
 
-\textbf{Java:}
-
-Beside the fact that there is no complete implementation in the latter, the plugin will be written in Java.
+Due to the fact that python is used for several projects at the \ac{FOKUS} and... % TODO: finish that
 
 The \ac{GUI} is a fundamental web client, which uses Angular.js as its main framework and some smaller tools like jQuery or the pretty famous bootstrap framework.
-
-% Docker as container virtualization tool -> important: analysis for performance Docker vs. Hypervisor Virt.
-% yaml for schema
-
-% Open Baton has to be configured
-% the plugins have to be installed (VIM Driver, VNFM(?))
-% Docker has to be installed
-% node must be able to execute docker and open baton client software
 
 \section{Architecture of the system}
 \doit
 
+The overall architecture of the system can be seperated into two levels.
+Figure \ref{fig:abstract_architecture_design} will point up the architecture.
+The first level is the \textit{centralized fog level}.
+This could be for example a cloud server or management node in a fog cluster.
+Ideally this level should be implemented with an \ac{MANO} compliant framework.
+Hereinafter Open Baton will referred as the tool of choice for that level.
+Main function will be the creation of the \ac{NFVI} as well as the deployment of deployment plans for the \acp{NF}.
+Open Baton will also have an overview of all existing nodes and can manage and maintain them.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{resources/images/initial_structure.png}
-    \caption[Initial architecture design]{Initial architecture design}
-    \label{fig:initial_architecture_design}
+    \caption[Abstract architecture design]{Abstract architecture design}
+    \label{fig:abstract_architecture_design}
 \end{figure}
+% TODO: check if applicaton manager is necessary
 
-% webserver, mqttserver, ZeroMQ endpoints und main logic aka core
-% DI, RxPy,
-% MVC ohne View -> keine spezielle architektur -> decoupled as much as possible -> DI hilft
-% Sequenzdiagramm für Ablauf vom Deployment bis zum container: IMG_20170526_201659.jpg
+The second level is the \textit{autonomous fog level}.
+The prototype to be developed will be located in this level.
+It includes all existing fog nodes, as well as the prototype referenced as the \textit{OpenIoTFog Agent} in figure \ref{fig:abstract_architecture_design}.
+Each node must have a running instance of the OpenIoTFog Agent to be part of the system.
+Beside the prototype a node can have several hardware devices, sensors and actuators connected to them.
+A virtualization infrastructure such as Docker or XEN, must be installed to be used by the prototype.
+These infrastructure can create the containers and \acp{VNF}.
+Further it is also possible to have additional third party tools installed which can interact with the them as well.
+
+The OpenIoTFog Agent has several external connection points.
+It has a \ac{REST} \ac{API} implemented to get some informations about the status of the fog node, as well as endpoints to receive the deployment plans from centralized fog level.
+A \ac{MQTT} connection to a broker, which can be running in the centralized fog level as well as on any other fog node, is used for node discovery.
+Finally there are some ZeroMQ endpoints for capability discovery, image deployment and node-to-node communication.
+A detailed description will be shown in the following sections.
+% -> implemented via webserver, mqttserver, ZeroMQ endpoints
+% orchestration for deployment of containers and communication with other nodes
+% Monitoring Agent for logging all the stuff
+% VAL for abstracting possible virtualization tools like docker, xen, etc.
+% hardware event handler should interact to with hardware level, e.g. now device connected, etc.
+% MVC ohne View
+% -> keine spezielle architektur
+% -> jedoch decoupled as much as possible
+% ---> DI, RxPy
 
 
 \subsection{Data layer}
@@ -74,6 +98,7 @@ The \ac{GUI} is a fundamental web client, which uses Angular.js as its main fram
 % ist primär für das Blueprint handling zuständig
 % -> bekommt daten via api und parst diese
 % -> guckt ob lokal deployed werden kann oder externe Node benötigt wird
+% -> yaml als blueprint format
 % sowie für die node-to-node Kommunikation
 % -> Nodes registrieren sich beim starten der Engine
 % -> können capabilities erfragen
@@ -106,6 +131,11 @@ The \ac{GUI} is a fundamental web client, which uses Angular.js as its main fram
 \doit
 
 \subsection{User interface}
+\doit
+
+\subsection{Security}
+% Access control
+% Encryption of the communcation channels aka REST, ZeroMQ, MQTT
 \doit
 
 \section{Conclusion}
