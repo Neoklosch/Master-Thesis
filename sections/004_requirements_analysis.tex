@@ -49,20 +49,20 @@ Finally the whole system should be well tested and documented.
 
 
 \section{Functional requirements}
-\todo{Rework that section}
-% Plugin behavior
-After the general conditions for the plugin has been defined, the functional requirements will also be addressed.
-When selecting the programming environment special attention is paid to the compatibility of the Open Baton framework.
-This is particularly important as the effort to develop a prototype should be a s small as possible and the plugin should be immediately applicable.
-Open Baton has an build in plugin mechanism, which allows to replace for example the \ac{VIM} driver or the \ac{VNFM}.
-Because Open Baton is open source, it would be also feasible to extend the system if necessary, but with the addition, that the system still follows the \ac{ETSI} \ac{MANO} conventions as a secondary goal.
+% prototype behavior
+After the general conditions for the prototype has been defined, the functional requirements will also be addressed.
+When selecting the programming environment special attention is paid to the compatibility of the Open Baton framework. % TODO: was noch?
+This is particularly important as the effort to develop a prototype should be a s small as possible and the prototype should be natively applicable on the fog nodes.
+Open Baton has an build in plugin mechanism, which allows to replace for example the \ac{VIM} driver or the \ac{VNFM} so that any third party tool can be accessed via an \ac{API}.
+Because Open Baton and the whole environment around them is open source, it would be also feasible to extend the system if necessary, but with the addition, that the system still follows the \ac{ETSI} \ac{MANO} conventions.
+Beside that the prototype should be flexible enough to also fit in any other system by providing an \ac{API} to control the system.
 
 % GUI beahvior
-Open Baton also provides a \ac{GUI} as well as a command line tool to control the system.
-Even the plugin and all the related functionalities should be controlled and monitored via the given tools.
-This shortening the learning curve and reducing training demands for the enduser.
-The system can be used in the same way as the user is used to.
-\todo{Probably more?}
+Additional it would be useful to create a \ac{GUI} for interacting with the prototype and show the functionallity of the system.
+This should only be a simple \ac{GUI} for testing and demonstration purposes and should not be necessary for executing the final prototype.
+Later on the prototype should be controlled via the \ac{API} from any other existing orchestration tool.
+A command line tool to control the system would be useful as well and eases the handling of the prototype.
+% TODO: probably more?
 
 \section{Use-Case-Analysis}
 \doit
