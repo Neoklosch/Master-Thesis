@@ -71,8 +71,9 @@ A command line tool to control the system would be useful as well and eases the 
 % detect the right nodes, e.g. software needs specific sensor or latency
 
 \section{Delineation from existing solutions}
+\todo{Rework that section}
 This section is intended to show the features of existing systems and the main differences will be highlighted.
-As mentioned before, the plugin to be developed should orchestrate virtualized containers to nodes based on functional and non-functional constraints.
+As mentioned before, the prototype to be developed should orchestrate virtualized containers on nodes based on functional and non-functional constraints.
 Therefore the focus of this consideration is the orchestration as well as the constraints.
 
 \textbf{Kubernetes} is especially made for Docker and can orchestrate, scale and manage containers.
@@ -109,6 +110,7 @@ This means it will also work on \ac{IoT} devices by default.
 % VMs only -> my system much more lightweight -> optimal for IoT area
 % complicated -> huge setup effort -> several tools have to be configured
 % is suitable for NFVs not for IoT
+\doit
 
 \textbf{Cloudify} is completely compatible to the \ac{ETSI} \ac{MANO} standard and can be used as the \ac{NFVO}, as well as the generic \ac{VNFM} of this architecture.\cite[cf.]{Cloudify:MANO}
 It is also able to interact with multiple \acp{VIM}, containers, infrastructures and devices and due to the fact that it can be extended with plugins, it is can be used together with several well known tools like OpenStack, Docker or even Kubernetes.\cite[cf.]{Cloudify:MANO}

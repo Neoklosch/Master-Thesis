@@ -27,6 +27,10 @@ Open Baton is written in Java and is also partly ported to python and go.
 
 \textbf{Python:}
 
+\textbf{C/C++:}
+
+\textbf{Node.js:}
+
 \textbf{Go:}
 
 \textbf{Java:}
@@ -53,13 +57,52 @@ The \ac{GUI} is a fundamental web client, which uses Angular.js as its main fram
     \label{fig:initial_architecture_design}
 \end{figure}
 
-% http://getcloudify.org/brochures/Heavy%20Reading%20NFV%20MANO%20Cloudify%20Snapshot.pdf
+% webserver, mqttserver, ZeroMQ endpoints und main logic aka core
+% DI, RxPy,
+% MVC ohne View -> keine spezielle architektur -> decoupled as much as possible -> DI hilft
+% Sequenzdiagramm für Ablauf vom Deployment bis zum container: IMG_20170526_201659.jpg
 
 
-\subsection{Orchestration layer}
+\subsection{Data layer}
+% daten lesen und schreiben
+% tiny db -> easy to use, works well together with json in python
+% sollte abstrahiert sein, damit es gut austauschbar ist -> Repository
+% config.ini
 \doit
 
-\subsection{Constraint layer}
+\subsection{Orchestration layer}
+% ist primär für das Blueprint handling zuständig
+% -> bekommt daten via api und parst diese
+% -> guckt ob lokal deployed werden kann oder externe Node benötigt wird
+% sowie für die node-to-node Kommunikation
+% -> Nodes registrieren sich beim starten der Engine
+% -> können capabilities erfragen
+% -> können container starten
+% -> Sequenzdiagramme für die unterschiedlichen fälle erstellen
+\doit
+
+\subsection{Virtualization layer}
+% val manager
+% -> laden der plugins
+% -> abstraction of plugin methods
+% plugins
+% -> abstract to to act as a interface
+% -> concrete implementation of vals to implements specific virtualization tool
+% -> yapsy as plugin tool
+\doit
+
+\subsection{Communication layer}
+% API für externe tools
+% MQTT für node discovery
+% ZeroMQ für interne und externe Kommunikation mit einzelnen Komponenten und Tools
+% -> beispiel labeling engine und node-to-node Kommunikation
+\doit
+
+\subsection{Capability Management}
+% labeling engie für hardware events und andere third party apps
+% plugins als capability
+% werden in db gespeichert
+% eine node kann andere nach capabilities fragen -> via ZeroMQ
 \doit
 
 \subsection{User interface}
@@ -67,3 +110,8 @@ The \ac{GUI} is a fundamental web client, which uses Angular.js as its main fram
 
 \section{Conclusion}
 \doit
+
+
+
+
+% http://getcloudify.org/brochures/Heavy%20Reading%20NFV%20MANO%20Cloudify%20Snapshot.pdf
