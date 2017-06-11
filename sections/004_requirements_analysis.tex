@@ -17,29 +17,35 @@ Thereby aspects that will be relevant for the specific implementation will be co
 % X
 
 \section{Technical requirements}
-\todo{Rework that section}
 % virtualization
-As the fundamental requirement, the prototype to be developed has to be based on the Open Baton Framework.
-Open Baton inherently supports OpenStack as the \ac{ETSI} \ac{MANO} \ac{VIM} layer.
-By default OpenStack useses virtual machines to enable facilitate the virtualization of the \acp{NF}.
+As the fundamental requirement, the prototype to be developed has to create, manage and maintain virtualized containers on a fog node.
+Tools like Open Baton inherently supports OpenStack as the \ac{ETSI} \ac{MANO} \ac{VIM} layer.
+Most \ac{MANO} tools like Open Baton uses OpenStack which deploys virtual machines to virtualize the \acp{NF}.
 This is a rock solid solution for a cloud environment.
 Unfortunately a bare-metal virtualization is most of the times not feasible on small power devices like they are used in the \ac{IoT} area.
 Therefore OpenStack should be replaced by a more efficient and lightweight solution like container virtualization.
-The desired \acp{NF} can be bundeled in a container and can be executed afterwards on the expected \ac{IoT} nodes.
-The implementation of a container virtualization \ac{VIM} layer should be possible by the Open Baton build in plugin system.
-It allows to add new functionalities to the system by extending a component, in this case the \ac{VIM} driver and the \ac{VNFM}.
+The desired \acp{NF} can be bundeled in one or multiple containers and executed afterwards on the expected \ac{IoT} nodes.
+Such a bundle of containers should be passed to the node as a build plan or a blueprint of the service.
+The fog node engine should accept the blueprint and deploy the containers to the desired virtualization layer.
+Afterwards the lifecylce of the services should be monitored.
 
 % constraints
 The second functional requirement is the implementation of a constraint logic which will be used to filter relevant nodes during the \ac{NF} orchestration.
 A constraint can be a functional and non-functional constraint.
 For example a specific hardware component, like a sensor or a ZigBee dongle, which is necessary to execute the \ac{NF} or a hardware requirement, like \ac{CPU} power, \ac{RAM} or disk space.
 It could also be a non-functional constraint, for example a specific software which has to be installed or a protocal which can be used.
-Open Baton as the central management system should manage these constraints for all conected nodes and should consider them while choosing suitable nodes for the desired \ac{NF}.
+The local orchestrator should manage these constraints for itself and if necessary for all adjacent nodes and should consider them while choosing a suitable nodes for the desired \ac{NF}.
 The whole functionality should work similar to the labels in Docker Swarm.
 There a Docker Swarm node can be have multiple labels, which can be considered when deploying an image.
-This behavior should be achieved by the plugin.
+This behavior should be achieved by the fog node engine.
 % images should be found by the registry?
 % should only the server have these information or should the node himself have the infromations/schema and can provide it?
+
+Some side conditions should also be fulfilled.
+The whole system should be modular and easy to extend.
+Modules should be as decoupled as possible and the whole system should be controled via an \ac{API}.
+The centralized cloud environment should be easiely replacable and should not be exclusively bound to Open Baton.
+Finally the whole system should be well tested and documented.
 
 
 \section{Functional requirements}
