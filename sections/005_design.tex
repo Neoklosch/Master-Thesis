@@ -76,11 +76,22 @@ It has a \ac{REST} \ac{API} implemented to get some informations about the statu
 A \ac{MQTT} connection to a broker, which can be running in the centralized fog level as well as on any other fog node, is used for node discovery.
 Finally there are some ZeroMQ endpoints for capability discovery, image deployment and node-to-node communication.
 A detailed description will be shown in the following sections.
-% -> implemented via webserver, mqttserver, ZeroMQ endpoints
-% orchestration for deployment of containers and communication with other nodes
-% Monitoring Agent for logging all the stuff
-% VAL for abstracting possible virtualization tools like docker, xen, etc.
-% hardware event handler should interact to with hardware level, e.g. now device connected, etc.
+
+One of the most important components is the \textit{Local Orchestrator}.
+It is responsoible for the deployment of the containers as well as the inter-node communication.
+The latter is necessary to let the nodes act in an autonomously was, so that they can react to changing requirements, even when the centralized fog level disappears.
+Therefore each node must have knowledge and should be able to interact with each other.
+Beside that the local orchestrator is tightly coupled to the \textit{\ac{VAL} Manager}.
+This is an abstraction layer for each virtualization component in the system, for example Docker or a bare-metal virtualization like XEN.
+These components should be implemented as plugins, so that it is easy to add or remove virtualization components.
+Therefore Yapsy\footnote{\url{http://yapsy.sourceforge.net/}} is used as the plugin system of choice.
+
+The \textit{Hardware Event Handler} is a communication endpoint for other third party components.
+For example an external hardware listener could send a message to the event handler to register a new connected device like a Zigbee dongle or a bluetooth stick.
+This component should allow multiple third party components to send events to them.
+Therefore it will be implemented with the publish/subscribe pattern.
+Finally the \textit{Monitoring Agent} is used to log all ongoing events and gives the maintainer of the system an overview of the system processes.
+
 % MVC ohne View
 % -> keine spezielle architektur
 % -> jedoch decoupled as much as possible
