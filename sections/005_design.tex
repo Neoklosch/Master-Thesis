@@ -87,7 +87,6 @@ Therefore Yapsy\footnote{\url{http://yapsy.sourceforge.net/}} is used as the plu
 The \textit{Hardware Event Handler} is a communication endpoint for other third party components.
 For example an external hardware listener could send a message to the event handler to register a new connected device like a Zigbee dongle or a bluetooth stick.
 This component should allow multiple third party components to send events to them.
-Therefore it will be implemented with the publish/subscribe pattern.
 Finally the \textit{Monitoring Agenct} is used to log all ongoing events and gives the maintainer of the system an overview of the system processes.
 \todo{write more - probabyl about architecture MVC}
 % MVC ohne View
@@ -105,6 +104,7 @@ Each supported virtualization engine needs his own concrete plugin implementatio
 The supported default engine is Docker, but could be extended in a future version of the prototype.
 
 \subsection{Communication layer}
+\label{subsection:CommunicationLayer}
 The communication layer is a pretty important componant in the prototype.
 Here three different communication points are necessary to provide the basic functionalities which are needed for the fog node agent.
 
@@ -147,13 +147,6 @@ All the mentioned subcomponents should be controlled by a so called \textit{comm
 That decouples the communiction layer from the other components, the whole system can be maintained much easier and each subcomponent can be easy replaced by any other technology if necessary.
 This also makes the code more readable and leads up to a cleaner code strucutre.
 
-\subsection{Capability Management}
-% labeling engie für hardware events und andere third party apps
-% plugins als capability
-% werden in db gespeichert
-% eine node kann andere nach capabilities fragen -> via ZeroMQ
-\doit
-
 \subsection{Data layer}
 As mostly the data layer is used to persist necessary data.
 This includes the deployed services, adjacent nodes and the capabilities of the node.
@@ -165,6 +158,14 @@ The whole data layer should be as abstracted as all the other components before.
 Therefore repositories for each content type will facade the tinydb methods and allows the underlaying library, in this case TinyDB, to be replaced easily and
 without modifing several classes.
 The configuration of the databases should be stored in the global config file as well.
+
+\subsection{Capability Management}
+The \textit{Capability Management} is used to create, persist, modify and remove the capabilities of the current node.
+As mentioned before all the capabilities will be stored in the data layer via TinyDB.
+Furthermore the \textit{Hardware Event Handler} is part of this layer.
+It enables the system to get new capabilites from third party apps via a ZeroMQ endpoint.
+As mentioned in the \ref{subsection:CommunicationLayer} the endpoint will be implemented as a form of the publish/subscribe pattern and should allow one or multiple publishers to push messages to the handler.
+Also internal components like the \ac{VAL} plugins can add new capabilities to the system.
 
 \subsection{Orchestration layer}
 % ist primär für das Blueprint handling zuständig
