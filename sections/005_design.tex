@@ -95,26 +95,6 @@ Finally the \textit{Monitoring Agenct} is used to log all ongoing events and giv
 % -> jedoch decoupled as much as possible
 % ---> DI, RxPy
 
-
-\subsection{Data layer}
-% daten lesen und schreiben
-% tiny db -> easy to use, works well together with json in python
-% sollte abstrahiert sein, damit es gut austauschbar ist -> Repository
-% config.ini
-\doit
-
-\subsection{Orchestration layer}
-% ist primär für das Blueprint handling zuständig
-% -> bekommt daten via api und parst diese
-% -> guckt ob lokal deployed werden kann oder externe Node benötigt wird
-% -> yaml als blueprint format
-% sowie für die node-to-node Kommunikation
-% -> Nodes registrieren sich beim starten der Engine
-% -> können capabilities erfragen
-% -> können container starten
-% -> Sequenzdiagramme für die unterschiedlichen fälle erstellen
-\doit
-
 \subsection{Virtualization layer}
 The virtualization layer is basically an abstraction layer to generalize the different virtualization engines.
 Therefore a so called \ac{VAL} manager which will be implemented with the facade design pattern is used to load the plugins and abstract the methods of the plugins.
@@ -172,6 +152,30 @@ This also makes the code more readable and leads up to a cleaner code strucutre.
 % plugins als capability
 % werden in db gespeichert
 % eine node kann andere nach capabilities fragen -> via ZeroMQ
+\doit
+
+\subsection{Data layer}
+As mostly the data layer is used to persist necessary data.
+This includes the deployed services, adjacent nodes and the capabilities of the node.
+As database engine the lightweight document oriented database TinyDB\footnote{\url{http://tinydb.readthedocs.io}} will be used.
+It stores the data into a single \ac{JSON} file, which means it has only very basic functionalities.
+For example it does not support indexes or relationships and it is not optimised concerning performance.
+But for it is easy to use, has no execution overhead and is good to use for small datasets.
+The whole data layer should be as abstracted as all the other components before.
+Therefore repositories for each content type will facade the tinydb methods and allows the underlaying library, in this case TinyDB, to be replaced easily and
+without modifing several classes.
+The configuration of the databases should be stored in the global config file as well.
+
+\subsection{Orchestration layer}
+% ist primär für das Blueprint handling zuständig
+% -> bekommt daten via api und parst diese
+% -> guckt ob lokal deployed werden kann oder externe Node benötigt wird
+% -> yaml als blueprint format
+% sowie für die node-to-node Kommunikation
+% -> Nodes registrieren sich beim starten der Engine
+% -> können capabilities erfragen
+% -> können container starten
+% -> Sequenzdiagramme für die unterschiedlichen fälle erstellen
 \doit
 
 \subsection{User interface}
