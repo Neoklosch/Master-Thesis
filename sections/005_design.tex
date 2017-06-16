@@ -21,26 +21,39 @@ Based on that the different layer of the system will be elaborated.
 % Docker Plugin as Vim Driver
 
 \section{Development environment}
-The choice of the development environment is crucial for the creation of a prototype.
-It should be easy to used and fast to implement, but
-The environemnt is important for both the implementation of the prototype, as well as the choice of possible plugins and libraries.
-Futhermore the prefered environment from the \ac{FOKUS} has to be considered.
-Thus, Open Baton is written in Java and is also partly ported to python and go.
+The development environment is crucial for both the implementation of the prototype, as well as the choice of possible plugins and libraries.
+It should be easy to used and fast to implement, but it should also consider the knowledge of the \ac{FOKUS} as well as the developer.
+
+\textbf{Java } is still one of the most important programming languages out there.\autocite[cf.]{ProgramminLanguage:2017}
+Java is platform indipendent, because Java will not be executed directly in the \ac{OS}, instead it will be executed in the \ac{JVM}.
+The downside is, that especially because of the \ac{JVM}, Java programms are much more inefficient regarding \ac{RAM} and \ac{CPU} usage.
+Java is object oriented, which makes it easy to extend.
+There are a lot of well designed and developed establised libraries and tools out there, which makes it easy to create rapid prototypes.
+
+\textbf{Python:} is one of the most used programming languages with a huge and active community.\autocite[cf.]{ProgramminLanguage:2017}
+\todo{write something}
+
+
+\textbf{Node.js:} is a relativly young programming environment, which was created 2009 by Ryan Dahl and based on the Google JavaScript engine V8.
+The V8 engine is written in C++, which makes the language less resources consuming then for example Java.
+A programm will be written in JavaScript, but it is also possible to load C or C++ extension.
+Node.js is also available for all common \acp{OS}.
+Due to the fact that Node.js has a build-in webserver componant, it is easy to create web applications.
+Libraries can be added via the package manager called npm.
+JavaScript and also Node.js have a pretty active community, which tends to be as messy as they is increasing.
+There is enormous amount of libraries and tools out there, where each library has its reason to exist, but it is also a vast of pretty similar designs and use-cases.
+
+\textbf{Go:} is the new emerging language created by Google and was announced end of 2009.
+It follows the traditions of C, but also takes added concepts to create a more modern programming language.
+According to their own statements go is expressive, concise, clean, and efficient.\autocite[cf.]{Go:Documentation}
+Furthermore it has a garbage collection and run-time reflection, it is fast, statically typed and a compiled language.\autocite[cf.]{Go:Documentation}
+Go is used in production by several tools like Docker, Kubernetes and OpenShift.
+Downside is that there are not so much libraries out right now and there are no long time experience in the critical mass.
+
+Open Baton, as one of the actively maintained project at the \ac{FOKUS}, is written in Java and is also has ports to python and go.
 Python in general is used for several projects at the \ac{FOKUS}.
-Taking also the criterias from section \ref{section:technical-requirements} into account the following programming environments are applicable.
-\doit
-
-\textbf{Java:}
-
-\textbf{Python:}
-
-\textbf{Node.js:}
-
-\textbf{Go:}
-
-Due to the fact that python is used for several projects at the \ac{FOKUS} and... % TODO: finish that
-
-The \ac{GUI} is a fundamental web client, which uses Angular.js as its main framework and some smaller tools like jQuery or the pretty famous bootstrap framework.
+Taking also the criterias from section \ref{section:technical-requirements} into account python will be used as the  programming environments of choice.
+The \ac{GUI} will only be a very basic web client, which uses Vue.js\footnote{\url{https://vuejs.org}} as its main framework and some smaller tools like the pretty famous bootstrap framework.
 
 \section{Architecture of the system}
 The overall architecture of the system can be seperated into two levels.
@@ -188,11 +201,21 @@ Also internal components like the \ac{VAL} plugins can add new capabilities to t
 \doit
 
 \subsection{Continuous Integration}
-\doit
+Continuous integration is nowadays a frequently used technique to automate repeating deployment steps into a self executing pipeline.
+It starts by running unit tests, code style checks and ends up with deploying the compiled programm to a server or a marktplace.
+Due to the fact that Github\footnote{\url{https://github.com}} will be used to host and maintain the git repository for the prototype, the pretty famous and semless integrated Travis CI\footnote{\url{https://travis-ci.org}} will be used to implement the continuous integration pipeline.
+To start with Travis CI only the Github account has to be synced with the platform and a \ac{YAML} configuration file has to be placed in the root folder of the git repository.
+Travis CI supports several programming languages and also various third party services, like Docker Hub or Amazon AWS.
+Everytime a new commit will be pushed to the git remote repository, a new build will be started at Travis CI.
+At first a virtual machine will be started by Travis CI.
+Afterwards all necessary components like libraries and tools will be installed in the virtual machine.
+Finally all predefined tasks from the \ac{YAML} file will be executed.
+In terms of the prototype, unit tests will be executed, as well as code style checks and if a version from the master branch will be build, a Docker container will be created and pushed to the related Docker Hub repository.
+This pipeline guarantees that the project is tested and a coding standard is enforced.
+Further the manual build of the Docker container including the upload to the Docker Hub will be obsolete.
 
 \section{Conclusion}
 \doit
-
 
 
 
