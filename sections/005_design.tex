@@ -18,8 +18,6 @@ Based on that the different layer of the system will be elaborated.
 % www.websequencediagrams.com)
 \doit
 
-% Docker Plugin as Vim Driver
-
 \section{Development environment}
 The development environment is crucial for both the implementation of the prototype, as well as the choice of possible plugins and libraries.
 It should be easy to used and fast to implement, but it should also consider the knowledge of the \ac{FOKUS} as well as the developer.
@@ -30,10 +28,6 @@ The downside is, that especially because of the \ac{JVM}, Java programms are muc
 Java is object oriented, which makes it easy to extend.
 There are a lot of well designed and developed establised libraries and tools out there, which makes it easy to create rapid prototypes.
 
-\textbf{Python:} is one of the most used programming languages with a huge and active community.\autocite[cf.]{ProgramminLanguage:2017}
-\todo{write something}
-
-
 \textbf{Node.js:} is a relativly young programming environment, which was created 2009 by Ryan Dahl and based on the Google JavaScript engine V8.
 The V8 engine is written in C++, which makes the language less resources consuming then for example Java.
 A programm will be written in JavaScript, but it is also possible to load C or C++ extension.
@@ -43,6 +37,16 @@ Libraries can be added via the package manager called npm.
 JavaScript and also Node.js have a pretty active community, which tends to be as messy as they is increasing.
 There is enormous amount of libraries and tools out there, where each library has its reason to exist, but it is also a vast of pretty similar designs and use-cases.
 
+\textbf{Python:} is one of the most used programming languages with a huge and active community.\autocite[cf.]{ProgramminLanguage:2017}
+It is a dynamic typed programming language with an automatic memory management which uses both, reference counting and garbage collection at the same time.\autocite[cf.]{Python:GarbageCollection}
+Python can use several programming paradigmns like the object oriented programming or functional programming.
+Core philosophy is make it simple, make it beautiful, make it explicit and make it readable.
+Currently two versions are maintained in parallel, 2.7 and the newer 3.6.
+Due to the fact that a huge codebase is still working with Python 2.x, this version is still under development.\autocite[cf.]{Peterson:PythonReleaseSchedule}
+Python has a tremendous amount of libraries which can be installed via the Python package manager called pip\footnote{\url{https://pypi.python.org/pypi/pip}}.
+Similar to Node.js Python allows to write C extension.
+Finally there are several Python compilers which compiles Python code to other high-level languages like Java, C or JavaScript.
+
 \textbf{Go:} is the new emerging language created by Google and was announced end of 2009.
 It follows the traditions of C, but also takes added concepts to create a more modern programming language.
 According to their own statements go is expressive, concise, clean, and efficient.\autocite[cf.]{Go:Documentation}
@@ -50,9 +54,9 @@ Furthermore it has a garbage collection and run-time reflection, it is fast, sta
 Go is used in production by several tools like Docker, Kubernetes and OpenShift.
 Downside is that there are not so much libraries out right now and there are no long time experience in the critical mass.
 
-Open Baton, as one of the actively maintained project at the \ac{FOKUS}, is written in Java and is also has ports to python and go.
+Open Baton, as one of the actively maintained project at the \ac{FOKUS}, is written in Java and is also has ports to Python and go.
 Python in general is used for several projects at the \ac{FOKUS}.
-Taking also the criterias from section \ref{section:technical-requirements} into account python will be used as the  programming environments of choice.
+Taking also the criterias from section \ref{section:technical-requirements} into account Python will be used as the  programming environments of choice.
 The \ac{GUI} will only be a very basic web client, which uses Vue.js\footnote{\url{https://vuejs.org}} as its main framework and some smaller tools like the pretty famous bootstrap framework.
 
 \section{Architecture of the system}
@@ -112,7 +116,7 @@ The virtualization layer is basically an abstraction layer to generalize the dif
 Therefore a so called \ac{VAL} manager which will be implemented with the facade design pattern is used to load the plugins and abstract the methods of the plugins.
 As mentioned before to realize the plugin functionality the Yapsy library will be used.
 The library offers a way to easily add new plugins to the system and is also designed to be easy to use.
-It only depends on python standard libraries and lightweight by design.
+It only depends on Python standard libraries and lightweight by design.
 Each supported virtualization engine needs his own concrete plugin implementation which should be use an interface to have a common ground.
 The supported default engine is Docker, but could be extended in a future version of the prototype.
 
@@ -153,7 +157,7 @@ The last subcomponent is the \textbf{\ac{REST} \ac{API}}.
 It will be mainly used for the communication with the centralized fog level, because most of the orchestration tools out there are using \ac{REST} for transfering data.
 In comparision to an implementation with ZeroMQ, this is much bigger overhead in terms of traffic and latency, but to have a better compatibility with other systems, this \ac{API} will be implemented.
 As the tool of choice Flask\footnote{\url{http://flask.pocoo.org}} will be used.
-It is a lightweight and robust python webserver, which is open source, well documented and under constant development.
+It is a lightweight and robust Python webserver, which is open source, well documented and under constant development.
 The \ac{REST} \ac{API} himself will follow the \ac{HATEOAS} constraint with the addition that each endpoint will have a version number in the \ac{URL} to ensure backwards compatability if something changes in the implementation.
 
 All the mentioned subcomponents should be controlled by a so called \textit{communication manager} which will be implemented with the facade design pattern.
@@ -181,23 +185,27 @@ As mentioned in the \ref{subsection:CommunicationLayer} the endpoint will be imp
 Also internal components like the \ac{VAL} plugins can add new capabilities to the system.
 
 \subsection{Orchestration layer}
-% ist primär für das Blueprint handling zuständig
-% -> bekommt daten via api und parst diese
-% -> guckt ob lokal deployed werden kann oder externe Node benötigt wird
-% -> yaml als blueprint format
-% sowie für die node-to-node Kommunikation
-% -> Nodes registrieren sich beim starten der Engine
-% -> können capabilities erfragen
-% -> können container starten
-% -> Sequenzdiagramme für die unterschiedlichen fälle erstellen
-\doit
+As one of the most important layers, the \textit{Orchestration Layer} will be a connector between all the nodes in a cluster and also between multiple components in the prototype himself.
+Primary it is used to handle the business logic of the deployment of new services.
+If a new service will be send to the communication layer it will be forwarded to the orchestration layer and will be parsed, validated and handled by them.
+This layer is also responsible for checking the necessary capabilities for each service component and will search for suitable nodes in the cluster if one or multiple capabilites are not fulfilled.
+Beside that, this component will also handle the lifecycle of a service during the deployment phase.
+\todo{more}
+
+% Sequenzdiagramm für LIFECYCLE of service
+% Sequenzdiagramm für deployment ablauf
 
 \subsection{User interface}
 \doit
 
 \subsection{Security}
+% https://www.golem.de/news/brickerbot-hacker-zerstoeren-das-internet-of-insecure-things-1704-127198.html
+% https://www.golem.de/specials/mirai/
+% https://www.corero.com/resources/ddos-attack-types/mirai-botnet-ddos-attack.html
+% https://www.owasp.org/index.php/OWASP_Internet_of_Things_Project#tab=IoT_Vulnerabilities
 % Access control
 % Encryption of the communcation channels aka REST, ZeroMQ, MQTT
+% Database encryption
 \doit
 
 \subsection{Continuous Integration}
