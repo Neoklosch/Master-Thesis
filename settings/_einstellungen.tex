@@ -173,13 +173,8 @@
 \definecolor{ob_light_gray}{HTML}{a5a5a6}
 \definecolor{ob_orange}{HTML}{ea9023}
 
-%\definecolor{lightgray}{rgb}{.9,.9,.9}
-%\definecolor{darkgray}{rgb}{.4,.4,.4}
-%\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
-%
-%\definecolor{js-keywords}{RGB}{243, 38, 77}
-%\definecolor{js-strings}{RGB}{211, 214, 95}
-%\definecolor{js-comments}{RGB}{117, 113, 94}
+\definecolor{python-keywords}{rgb}{0.65, 0.12, 0.82}
+\definecolor{python-comments}{RGB}{117, 113, 94}
 
 % \renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}
 % \renewcommand{\lstlistingname}{Quellcode}
@@ -192,23 +187,22 @@
 
 \newcommand{\todo}[1]{{{\color{fullred}#1}}}
 
-\lstdefinelanguage{JavaScript}{
-  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
-  %keywordstyle=\color{js-keywords}\bfseries,
-  ndkeywords={class, export, boolean, throw, implements, import, this},
-  %ndkeywordstyle=\color{darkgray}\bfseries,
-  %identifierstyle=\color{black},
+\lstdefinelanguage{Python}{
+  keywords={typeof, null, catch, switch, in, int, str, float, self},
+  keywordstyle=\color{python-keywords}\bfseries,
+  ndkeywords={boolean, throw, import},
+  ndkeywords={return, class, if ,elif, endif, while, do, else, True, False , catch, def},
+  ndkeywordstyle=\color{python-keywords}\bfseries,
+  identifierstyle=\color{black},
   sensitive=false,
-  comment=[l]{//},
+  comment=[l]{\#},
   morecomment=[s]{/*}{*/},
-  %commentstyle=\color{js-comments}\ttfamily,
-  %stringstyle=\color{js-strings}\ttfamily,
-  morestring=[b]',
-  morestring=[b]"
+  commentstyle=\color{python-comments}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
 }
 
 \lstset{
-    language=JavaScript,
+    language=Python,
     basicstyle=\small\sffamily,
     numbers=left,
     frame=single,

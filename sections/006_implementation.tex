@@ -33,7 +33,7 @@ Thereby challenges and problems during the development of the plugins will be sh
     \item{\textbf{File: CHANGELOG.rst}} this document records all notable changes to the motey engine.
     \item{\textbf{File: LICENSE}} the License of the project (Apache License Version 2.0).
     \item{\textbf{File: main.py}} can be used to start motey in debug mode.
-    \item{\textbf{File: MANIFEST.in}} contains meta information for the python setup procedure.
+    \item{\textbf{File: MANIFEST.in}} contains meta information for the Python setup procedure.
     \item{\textbf{File: README.rst}} file to show up a short documentation on github and will act as the starting point of the project.
     \item{\textbf{File: setup.py}} will be used to install motey on a local machine.
   \end{itemize}
@@ -42,12 +42,12 @@ Thereby challenges and problems during the development of the plugins will be sh
     \item{\textbf{Directory: source}} has all the files to autogenerate the documentation files from the source code.
     \item{\textbf{File: Makefile}} this file was created by the Sphinx documentation tool. By executing the \textit{Makefile} the related documentation files will be created, the current branch will be switched to \textit{gh-pages} which is be used to display the github page at \url{https://neoklosch.github.io/Motey/} and a new commit will be pushed. Finally the branch will be switched back again.
   \end{itemize}
-  \item{\textbf{motey:}} this folder contains the motey main engine. It is the main python project. The whole structure will be explained on the next pages in detail.
+  \item{\textbf{motey:}} this folder contains the motey main engine. It is the main Python project. The whole structure will be explained on the next pages in detail.
   \item{\textbf{motey-docker-image:}} has all the necessary files to create a Docker image.
   \begin{itemize}
     \item{\textbf{File: Dockerfile}} to build the Docker image. Is analogous to a Makefile but can only be used by the Docker engine.
     \item{\textbf{File: setup.sh}} will be executed during the build phase and will install necessary tools and can executed command line instructions.
-    \item{\textbf{File: requirements.txt}} a list with the python requirements which are necessary to run the motey engine and which should be installed during the build phase via pip.
+    \item{\textbf{File: requirements.txt}} a list with the Python requirements which are necessary to run the motey engine and which should be installed during the build phase via pip.
   \end{itemize}
   \item{\textbf{resources:}} is a resource folder for the github documentation. Will only be used by the \textit{README.rst} file in the root folder and the \textit{index.rst} file in the docs\/source folder.
   \item{\textbf{samples:}} contains some samples to test the functionality of the motey engine. Is primarily a playground to test new functions.
@@ -57,7 +57,7 @@ Thereby challenges and problems during the development of the plugins will be sh
     \item{\textbf{File: addcapability.py}} can be used to add new capability entries to a running motey instance.
     \item{\textbf{File: start\_test\_setup.sh}} can be used to start a new local Docker test cluster.
   \end{itemize}
-  \item{\textbf{tests:}} contains all the unit test which are executed by the continuous integration script and the python setup procedure.
+  \item{\textbf{tests:}} contains all the unit test which are executed by the continuous integration script and the Python setup procedure.
   \item{\textbf{webclient:}} this folder contains the \ac{GUI} for the motey engine. Will also be described on the next pages in detail.
 \end{itemize}
 
@@ -66,16 +66,61 @@ Thereby challenges and problems during the development of the plugins will be sh
 % einzelne Pakete erklären
 
 \section{Used external libraries}
-\paragraph{daemonize}
-\paragraph{dependency-injector}
-\paragraph{docker sdk}
-\paragraph{Flask}
-\paragraph{Logbook}
-\paragraph{paho-mqtt}
+This section will show up some of the most important libraries used in the motey engine.
+Each library will be introduced briefly and the reason for using it in the project will be shown.
+
+\paragraph{daemonize} allows to run a services as a daemon process.
+It is made exclusively for Unix-like systems.
+The library will create a pid file after starting the service.
+In the motey engine, the file path can be configured via a configuration file.
+
+\paragraph{dependency-injector} is a microframework for \acf{DI} in Python.
+The \ac{DI} pattern allows to move the responsibility for creating a dependency from the concrete objects to a factory or a framework which creates the dependency graph.
+This grants the single responsibility concept for classes and makes the whole code base much easier to unit test, because a dummy object can be passed to the constructor of the class.
+It is also possible to mocked the object with the help of a mocking library.
+To realize \ac{DI} in the prototype a so called \textit{app\_module.py} was created which uses the \textit{dependency-injector} framework to create the dependency graph.
+Several \ac{IoC} containers are created in that file and will be used by the framework to generate the glue code.
+Most of the injected components are instanciated as singleton objects to guarantee that there is only one active instance of that component at a time.
+The implementation of the singleton design pattern is also provided by the framework.
+
+\paragraph{Docker \ac{SDK}}
+\todo{Write it}
+
+\paragraph{Flask} is a framework to create web applications.
+Flask does not provide any templating or database engine, nor does it enforce a specific file structure.
+Instead it will support extensions to add functionalities like that so that the developer can choose the tools of choice.\autocite[cf.]{Flask:Documentation:Foreword}
+Nevertheless Flask is production ready and is used in several big projects like Pinterest\autocite{Quora:Pinterest:Flask} or Twilio\autocite{Twilio:Flask}.
+The simplest sample implementation of a web application with one \ac{URL} endpoint is shown in listing \ref{code:flask-sample}.
+\begin{lstlisting}[label=code:flask-sample,caption=Sample Flask web application]
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
+\end{lstlisting}
+
+\todo{write more about Flask}
+
+\paragraph{Logbook} is a small loging library that helps to standardize the output of log messages.
+It helps to address several output methods like the terminal, a file or even emails and linux desktop notifications.
+The style of the resulting message can be easily configured and it can be integrated into several other libraries.
+In addition to that, Logbook has a build-in support for messaging libraries like ZeroMQ, RabbitMQ or Redis.
+This allows to distribute log messages on heavily distributed systems like a huge node cluster.
+It was created by Armin Ronacher the creator of Flask and Sphinx, both are tools that are used in motey.
+Unfortunately there is no build-in support in Flask yet.
+
+\paragraph{paho-mqtt} is the python implementation of the Eclipse paho\footnote{\url{http://www.eclipse.org/paho}} project that is basically the implementation of the \ac{MQTT} messaging protocols.
+The libarary allows to connect to a \ac{MQTT} broker like the Mosquitto broker.
+It also comes with a variety of helper methods to eases the usage.
+
 \paragraph{pyzmq}
+
+\paragraph{Sphinx}
+
 \paragraph{tinydb}
+
 \paragraph{Yapsy}
-\doit
 
 \section{Important Implementation Aspects}
 % Do not explain every class in detail. Give a short introduction about the modules or
