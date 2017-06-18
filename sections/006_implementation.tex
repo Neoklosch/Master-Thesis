@@ -23,12 +23,60 @@ Thereby challenges and problems during the development of the plugins will be sh
 % The following listing briefly describes the single packages of both projects in alphabetical
 % order to give an overview of the implementation:
 
+% Verzeichnisse erklären
+\begin{itemize}
+  \item{\textbf{Directory: ./}} has all the necessary configuration files for the different services.
+  \begin{itemize}
+    \item{\textbf{File: .dockerignore}} is used during the build process of a Docker image. Excludes several folders during the build phase.
+    \item{\textbf{File: .editorconfig}} contains informations for \acp{IDE} and editors to guarantee a consistent coding style.
+    \item{\textbf{File: .gitignore}} excludes file to be tracked by the version control system git.
+    \item{\textbf{File: .travis.yml}} is used by the continuous integration tool Travis CI.
+    \item{\textbf{File: AUTHORS.rst}} a list of all contributors.
+    \item{\textbf{File: CHANGELOG.rst}} this document records all notable changes to the motey engine.
+    \item{\textbf{File: LICENSE}} the License of the project (Apache License Version 2.0).
+    \item{\textbf{File: main.py}} can be used to start motey in debug mode.
+    \item{\textbf{File: MANIFEST.in}} contains meta information for the python setup procedure.
+    \item{\textbf{File: README.rst}} file to show up a short documentation on github and will act as the starting point of the project.
+    \item{\textbf{File: setup.py}} will be used to install motey on a local machine.
+  \end{itemize}
+  \item{\textbf{docs:}} contains the files to create and display the documentation resources.
+  \begin{itemize}
+    \item{\textbf{Directory: source}} has all the files to autogenerate the documentation files from the source code.
+    \item{\textbf{File: Makefile}} this file was created by the Sphinx documentation tool. By executing the \textit{Makefile} the related documentation files will be created, the current branch will be switched to \textit{gh-pages} which is be used to display the github page at \url{https://neoklosch.github.io/Motey/} and a new commit will be pushed. Finally the branch will be switched back again.
+  \end{itemize}
+  \item{\textbf{motey:}} this folder contains the motey main engine. It is the main python project. The whole structure will be explained on the next pages in detail.
+  \item{\textbf{motey-docker-image:}} has all the necessary files to create a Docker image.
+  \begin{itemize}
+    \item{\textbf{File: Dockerfile}} to build the Docker image. Is analogous to a Makefile but can only be used by the Docker engine.
+    \item{\textbf{File: setup.sh}} will be executed during the build phase and will install necessary tools and can executed command line instructions.
+    \item{\textbf{File: requirements.txt}} a list with the python requirements which are necessary to run the motey engine and which should be installed during the build phase via pip.
+  \end{itemize}
+  \item{\textbf{resources:}} is a resource folder for the github documentation. Will only be used by the \textit{README.rst} file in the root folder and the \textit{index.rst} file in the docs\/source folder.
+  \item{\textbf{samples:}} contains some samples to test the functionality of the motey engine. Is primarily a playground to test new functions.
+  \item{\textbf{scripts:}} some scripts which will be executed frequently during the development phase.
+  \begin{itemize}
+    \item{\textbf{Folder: config}} configuration files which could be used for the mosquitto \ac{MQTT} broker Docker image.
+    \item{\textbf{File: addcapability.py}} can be used to add new capability entries to a running motey instance.
+    \item{\textbf{File: start\_test\_setup.sh}} can be used to start a new local Docker test cluster.
+  \end{itemize}
+  \item{\textbf{tests:}} contains all the unit test which are executed by the continuous integration script and the python setup procedure.
+  \item{\textbf{webclient:}} this folder contains the \ac{GUI} for the motey engine. Will also be described on the next pages in detail.
+\end{itemize}
+
+\subsection{motey engine}
 % klassendiagramm
 % einzelne Pakete erklären
-% Verzeichnisse erklären
-\doit
 
 \section{Used external libraries}
+\paragraph{daemonize}
+\paragraph{dependency-injector}
+\paragraph{docker sdk}
+\paragraph{Flask}
+\paragraph{Logbook}
+\paragraph{paho-mqtt}
+\paragraph{pyzmq}
+\paragraph{tinydb}
+\paragraph{Yapsy}
 \doit
 
 \section{Important Implementation Aspects}
@@ -68,6 +116,7 @@ Thereby challenges and problems during the development of the plugins will be sh
 % Travis.io
 % Docker Container + Docker Hub
 % setup.py
+% Sphinx
 \doit
 
 \section{Conclusion}

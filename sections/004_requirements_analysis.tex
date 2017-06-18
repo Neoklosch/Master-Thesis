@@ -82,7 +82,7 @@ This section is intended to show the features of existing systems and the main d
 As mentioned before, the prototype to be developed should orchestrate virtualized containers on nodes based on functional and non-functional constraints.
 Therefore the focus of this consideration is the orchestration as well as the constraints.
 
-\textbf{Kubernetes} is especially made for Docker and can orchestrate, scale and manage containers.
+\paragraph{Kubernetes} is especially made for Docker and can orchestrate, scale and manage containers.
 It is open source, made by Google and one of the most popular orchestration tools out there.
 It has on huge and pretty active community and is used by several well known companies\autocite{Kubernetes:Case-Studies} like ebay\footnote{\url{http://www.ebay.com}} and Wikimedia\footnote{\url{https://www.wikimedia.org}}.
 Due to the fact, that is exclusivly made for Docker, it means that the system is not made to easily switch the underlying container engine if needed.
@@ -96,7 +96,7 @@ Kubernetes is made for the cloud, which means it is not inteded to be used on lo
 There are some trials to do so, but until know it is not used in a productive \ac{IoT} environment.
 Forthermore Kuberenetes is not \ac{ETSI} \ac{MANO} compliant, but provides an easy to use web \ac{UI}.
 
-\textbf{Docker Swarm} is pretty similar to Kubernetes from a functional point of view, which means it has nearly the same pros and cons.
+\paragraph{Docker Swarm} is pretty similar to Kubernetes from a functional point of view, which means it has nearly the same pros and cons.
 It is open source as well, has a quite active community and it is also made exclusivly for Docker.
 Biggest benefit compared to Kubernetes is, that it is build the Docker Engine.
 No separate installation is necessary and it can be used out of the box.
@@ -112,13 +112,13 @@ Just as Kubernetes, Docker Swarm is not \ac{ETSI} \ac{MANO} compliant and provid
 Due to the fact that it is a build-in function of Docker, the setup is quite easy and much more lightweight than Kubernetes.
 This means it will also work on \ac{IoT} devices by default.
 
-\textbf{OpenStack}
+\paragraph{OpenStack}
 % VMs only -> my system much more lightweight -> optimal for IoT area
 % complicated -> huge setup effort -> several tools have to be configured
 % is suitable for NFVs not for IoT
 \doit
 
-\textbf{Cloudify} is completely compatible to the \ac{ETSI} \ac{MANO} standard and can be used as the \ac{NFVO}, as well as the generic \ac{VNFM} of this architecture.\cite[cf.]{Cloudify:MANO}
+\paragraph{Cloudify} is completely compatible to the \ac{ETSI} \ac{MANO} standard and can be used as the \ac{NFVO}, as well as the generic \ac{VNFM} of this architecture.\cite[cf.]{Cloudify:MANO}
 It is also able to interact with multiple \acp{VIM}, containers, infrastructures and devices and due to the fact that it can be extended with plugins, it is can be used together with several well known tools like OpenStack, Docker or even Kubernetes.\cite[cf.]{Cloudify:MANO}
 Through these flexibility Cloudify can also be used in an \ac{IoT} envoironment if an appropriate \acp{VIM} plugin is used.
 Downside is that Cloudify himself is very limited without a powerfull underlaying orchestration tool.

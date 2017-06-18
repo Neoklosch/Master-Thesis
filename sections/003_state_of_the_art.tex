@@ -214,26 +214,26 @@ Through virtualization providers can utilize resources more effectively, by allo
 Overall \ac{NFV} can reduce \ac{OpEx} as well as \ac{CapEx} and can decreasing the time necessary to deploy new services to the network.\cite[cf.]{Noble:2015}
 To achieve \ac{NFV} the \ac{ETSI} has defined a framework the \ac{NFV-MANO}\footnote{\url{http://www.etsi.org/deliver/etsi_gs/NFV-MAN/001_099/001/01.01.01_60/gs_NFV-MAN001v010101p.pdf}} and the \ac{OASIS} created \ac{TOSCA} a \ac{NFV} specific data model and templates to coordinate and orchestrate the \ac{NF} into the cloud.
 
-\textbf{\acs{OSS} /\ \acs{BSS}} refers to the \ac{OSS} and the \ac{BSS} of a telecommunication operator.\cite[cf.]{Kahn:2015}
+\paragraph{\acs{OSS} /\ \acs{BSS}} refers to the \ac{OSS} and the \ac{BSS} of a telecommunication operator.\cite[cf.]{Kahn:2015}
 The \ac{OSS} is responsible for the underlaying soft- and hardware system, for example for network and fault management.
 The \ac{BSS} on the other hand is responsible for the business handling, for example customer and product management.
 Both can be integrated with the \ac{NFV-MANO}.\cite[cf.]{Kahn:2015}
 
-\textbf{\acp{VNF}} are the virtualized network elements, for example a virtualized router or virtualized firewall.
+\paragraph{\acp{VNF}} are the virtualized network elements, for example a virtualized router or virtualized firewall.
 Even if only a sub-functions or a sub-components of a hardware element is virtualized, it is called \ac{VNF}.\cite[cf.]{Kahn:2015}
 Multiple sub-functions can act together as one \ac{VNF}.
 
-\textbf{\ac{EMS}} is responsible for the functional management of a single or multiple \acp{VNF}.\cite[cf.]{Kahn:2015}
+\paragraph{\ac{EMS}} is responsible for the functional management of a single or multiple \acp{VNF}.\cite[cf.]{Kahn:2015}
 This includes fault, configuration, accounting, perfomance and security management.\cite[cf.]{Kahn:2015}
 Furthermore the \ac{EMS} itself can be a \ac{VNF} or it can handle a \ac{VNF} through proprietary interfaces.\cite[cf.]{Kahn:2015}
 
-\textbf{\ac{NFVI}} is the environment where \acp{VNF} are executed.
+\paragraph{\ac{NFVI}} is the environment where \acp{VNF} are executed.
 This includes physical resources as well as virtual resources and the virtualization layer.
 The physical resources could be a commodity switch, a server or a storage device.
 These physical resources can be abstracted into virtual resources through the virtualization layer which is normally a hypervisor.
 If the virtualization part is missing, the software runs natively on the hardware and the entity is no longer a \ac{VNF} it is then a \ac{PNF}.\cite[cf.]{Kahn:2015}
 
-\textbf{\ac{NFV-MANO}} consists of three main parts.
+\paragraph{\ac{NFV-MANO}} consists of three main parts.
 The \ac{VIM} is "responsible for controlling and managing the NFVI compute, network and storage resources within one operator’s infrastructure domain"\autocite{Kahn:2015}.
 The \ac{VNFM} manages one or multiple \acp{VNF}.
 This includes the life cycle management of the \ac{VNF} instances, such as instantiate, edit or shut down an \ac{VNF} instance.\cite[cf.]{Tosca:NFV}
@@ -243,7 +243,7 @@ It is responsible for the global resources management, such as computing and net
 The orchestrator interacts with the \ac{VNFM} to perform actions, but not with the \acp{VNF} directly.\cite[cf.]{Kahn:2015}
 \ac{TOSCA} is often used with \ac{NFV-MANO} frameworks like Cloudify\footnote{\url{http://getcloudify.org}} or Open Baton.\cite[cf.]{Tosca:NFV}
 
-\textbf{\ac{TOSCA}} is developed by the \ac{OASIS} to deliver a declarative description of a \ac{NFV} application topology for network or cloud environments.\cite[cf.]{Tosca:NFV}
+\paragraph{\ac{TOSCA}} is developed by the \ac{OASIS} to deliver a declarative description of a \ac{NFV} application topology for network or cloud environments.\cite[cf.]{Tosca:NFV}
 In figure \ref{fig:nfv_architecture} it is represented by the \textit{Service, VNF and Infrastructure Description} block.
 Beside that, it can also be used to define workflows which should be automated in a virtualized environment.\cite[cf.]{Tosca:NFV}
 The \ac{TOSCA} modeling language can specify ndoes, whereby a node can be a network, a subnet or only a server software component, and it also handles relationships between the nodes and also services.\cite[cf.]{Tosca:NFV}
