@@ -166,9 +166,7 @@ This also makes the code more readable and leads up to a cleaner code strucutre.
 As mostly the data layer is used to persist necessary data.
 This includes the deployed services, adjacent nodes and the capabilities of the node.
 As database engine the lightweight document oriented database TinyDB\footnote{\url{http://tinydb.readthedocs.io}} will be used.
-It stores the data into a single \ac{JSON} file, which means it has only very basic functionalities.
-For example it does not support indexes or relationships and it is not optimised concerning performance.
-But for it is easy to use, has no execution overhead and is good to use for small datasets.
+It is easy to use and has no execution overhead and is also good to use for small datasets.
 The whole data layer should be as abstracted as all the other components before.
 Therefore repositories for each content type will facade the tinydb methods and allows the underlaying library, in this case TinyDB, to be replaced easily and
 without modifing several classes.

@@ -73,6 +73,22 @@ Each library will be introduced briefly and the reason for using it in the proje
 It is made exclusively for Unix-like systems.
 The library will create a pid file after starting the service.
 In the motey engine, the file path can be configured via a configuration file.
+The daemon process can be controlled via a command line interface.
+\begin{lstlisting}[label=code:cli-tool,caption=Command line interface documentation for the daemon process]
+Motey command line tool.
+
+Usage:
+  motey start
+  motey stop
+  motey restart
+  motey -h | --help
+  motey --version
+
+ Options:
+   -h, --help       Show this message.
+   --version        Print the version.
+\end{lstlisting}
+After the motey engine is installed via the setup script, this command line tool will be available in the terminal.
 
 \paragraph{dependency-injector} is a microframework for \acf{DI} in Python.
 The \ac{DI} pattern allows to move the responsibility for creating a dependency from the concrete objects to a factory or a framework which creates the dependency graph.
@@ -82,6 +98,13 @@ To realize \ac{DI} in the prototype a so called \textit{app\_module.py} was crea
 Several \ac{IoC} containers are created in that file and will be used by the framework to generate the glue code.
 Most of the injected components are instanciated as singleton objects to guarantee that there is only one active instance of that component at a time.
 The implementation of the singleton design pattern is also provided by the framework.
+Listing \ref{code:app-module} demonstrates the implementation of such an \ac{IoC} container.
+\begin{lstlisting}[label=code:app-module,caption=Extract of a sample \ac{IoC} container from the app\_module.py]
+class DIRepositories(containers.DeclarativeContainer):
+    capability_repository = providers.Singleton(CapabilityRepository)
+    nodes_repository = providers.Singleton(NodesRepository)
+    service_repository = providers.Singleton(ServiceRepository)
+\end{lstlisting}
 
 \paragraph{Docker \ac{SDK}}
 \todo{Write it}
@@ -101,6 +124,7 @@ def hello_world():
 \end{lstlisting}
 
 \todo{write more about Flask}
+\todo{description what i do in code with it}
 
 \paragraph{Logbook} is a small loging library that helps to standardize the output of log messages.
 It helps to address several output methods like the terminal, a file or even emails and linux desktop notifications.
@@ -109,16 +133,33 @@ In addition to that, Logbook has a build-in support for messaging libraries like
 This allows to distribute log messages on heavily distributed systems like a huge node cluster.
 It was created by Armin Ronacher the creator of Flask and Sphinx, both are tools that are used in motey.
 Unfortunately there is no build-in support in Flask yet.
+In the motey engine Logbook will be extended by a wrapper class to simplify the configuration of the tool.
+The output folder for the log messages can be configured via the global config file and will be loaded in the constructor of the wrapper class.
+If the folder path does not exist, it will be created.
 
 \paragraph{paho-mqtt} is the python implementation of the Eclipse paho\footnote{\url{http://www.eclipse.org/paho}} project that is basically the implementation of the \ac{MQTT} messaging protocols.
 The libarary allows to connect to a \ac{MQTT} broker like the Mosquitto broker.
 It also comes with a variety of helper methods to eases the usage.
+A wrapper class to centralize the usage of the library was created and the configuration as well as some smaller improvements was made in this wrapper class.
+The whole configuration of the client can be configures via the global config file again.
+Furthermore the routes are managed in the wrapper and a after connect handler was implemented.
+It will be used to perform actions after a successfully created connection to the broker was made and all subscriptions to topics are done.
+This helps to realize the node discovery mechanism described in section \ref{subsection:CommunicationLayer}.
 
 \paragraph{pyzmq}
 
 \paragraph{Sphinx}
 
-\paragraph{tinydb}
+\paragraph{TinyDB} is a wrapper to implement a lightweight document oriented database.
+It stores the data into single \ac{JSON} files.
+The location can be configured via the global config file.
+TinyDB only supports very basic functionalities.
+For example it does not support indexes or relationships and it is not optimised concerning performance.
+But it is easy to use, has no execution overhead and it performs very well on smaller datasets.
+The main purpose of the library is to be used for small apps where database server like MySQL\footnote{\url{https://www.mysql.com}} or MongoDB\footnote{\url{https://www.mongodb.com}} will be a huge overhead.
+Furthermore TinyDB has several extension to add more functionalities like indexing or caching.
+It also allows to easily extend the library with custom middlewares and extensions.
+\todo{description what i do in code with it}
 
 \paragraph{Yapsy}
 
