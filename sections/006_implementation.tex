@@ -178,8 +178,8 @@ It also allows to easily extend the library with custom middlewares and extensio
 Several plugin systems are too complicated for a basic usage or have a huge dependency overhead.
 Yapsy claims to be different, because it is written in pure Python and can be used with only a few lines of code.
 In the motey engine all \ac{VAL} plugins will be loaded via Yapsy.
-An extract of the ValManager with the method to register the plugins, is shown in listing \ref{code:yapsy-register-plugins}.
-\begin{lstlisting}[label=code:yapsy-register-plugins,caption=Extract of the ValManager with the method to register plugins]
+An extract of the VALManager with the method to register the plugins, is shown in listing \ref{code:yapsy-register-plugins}.
+\begin{lstlisting}[label=code:yapsy-register-plugins,caption=Extract of the VALManager with the method to register plugins]
 def register_plugins(self):
   self.plugin_manager.setPluginPlaces(directories_list=[absolute_file_path("motey/val/plugins")])
   self.plugin_manager.collectPlugins()
@@ -276,11 +276,21 @@ image_status_replier = 5093
 image_terminate_replier = 5094
 \end{lstlisting}
 
-Different sections can be seperated by squared brackets like \textit{[MQTT]}.
+Different sections can be seperated by squared brackets like \textit{[GENERAL]} like on line 1.
 The entries are simple key-value pairs.
 Line 3 for example set the path to the used pid file.
+The usage of the configreader is shown in listing \ref{code:configreader-example}.
+\begin{lstlisting}[label=code:configreader-example,caption=Example of the usage of the configreader]
+from motey.configuration.configreader import config
 
-\todo{code example how to use the config}
+daemon = Daemonize(
+    app=config['GENERAL']['app_name'],
+    pid=config['GENERAL']['pid'],
+    action=run_main_component
+)
+\end{lstlisting}
+The configuration object must be imported from the configreader module (see line 1) and can be used directly afterwards (line 4 and 5).
+Due to the implementation of the import logic in Python, the containing script will executed only once, regardless how many files imported that module.
 
 \subsection{Implementation of the orchestration layer}
 \doit
@@ -299,6 +309,7 @@ Line 3 for example set the path to the used pid file.
 \doit
 
 \subsection{Deployment and Continous Integration}
+
 % Travis.io
 % Docker Container + Docker Hub
 % setup.py
