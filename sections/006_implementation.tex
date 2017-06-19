@@ -161,7 +161,23 @@ Furthermore TinyDB has several extension to add more functionalities like indexi
 It also allows to easily extend the library with custom middlewares and extensions.
 \todo{description what i do in code with it}
 
-\paragraph{Yapsy}
+\paragraph{Yapsy} is a plugin system that was designed to make an application easily extensible and should also be easy to use.
+Several plugin systems are too complicated for a basic usage or have a huge dependency overhead.
+Yapsy claims to be different, because it is written in pure Python and can be used with only a few lines of code.
+In the motey engine all \ac{VAL} plugins will be loaded via Yapsy.
+An extract of the ValManager with the method to register the plugins, is shown in listing \ref{code:yapsy-register-plugins}.
+\begin{lstlisting}[label=code:yapsy-register-plugins,caption=Extract of the ValManager with the method to register plugins]
+def register_plugins(self):
+  self.plugin_manager.setPluginPlaces(directories_list=[absolute_file_path("motey/val/plugins")])
+  self.plugin_manager.collectPlugins()
+  for plugin in self.plugin_manager.getAllPlugins():
+      plugin.plugin_object.activate()
+\end{lstlisting}
+In motey there is a specific folder where all images has to be located (line 2).
+This could be extended in the future if necessary.
+Afterwards all the valid plugins will be loaded and activated (line 3).
+Finally for all activated plugins the \textit{activate} method will be executed, which is a custom implementation to call some functions after activating a plugin (line 4 and 5).
+All plugins can be used via the \textit{self.plugin\_manager}.
 
 \section{Important Implementation Aspects}
 % Do not explain every class in detail. Give a short introduction about the modules or
