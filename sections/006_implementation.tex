@@ -151,7 +151,7 @@ It is the official Python binding for ZeroMQ.
 A detailed description of ZeroMQ can be found in section \ref{section:ZeroMQ} and in the great ZeroMQ guide at \url{http://zguide.zeromq.org/page:all}.
 This library is also abstracted by wrapper class in motey.
 This helps to configure the ZeroMQ server and register all necessary nodes.
-A detailed explanition of the internals will be discussed in the following section \ref{section:implementation-communication-layer}.
+A detailed explanition of the internals will be discussed in the following section \ref{subsection:implementation-communication-layer}.
 
 \paragraph{Sphinx} is a tool to autogenerate a documentation out of the source code documentation.
 It supports several output formats like \ac{HTML}, \LaTeX\ or ePub and is the defacto standard in Python.
@@ -205,28 +205,100 @@ All plugins can be used via the \textit{self.plugin\_manager}.
 % Core samt daemon erklären
 \doit
 
-\section{Implementation of the data layer}
-% eine Database für labels, services und nodes
-% json models aufzeigen
+\subsection{Implementation of the data layer}
+As mentioned before TinyDB is used as the database engine of choice.
+To abstract TinyDB from the rest of the source code, the repository pattern will be used.
+Each content type has its own database and also a related repository.
+Every repository is inheriting from a \textit{base repository}.
+This repository is used to implement some default methods and will also create the database path in the constructor if it is necessary.
+The repositories are pretty similar implementation-wise.
+They only differ in using different models and have some specific methods to be executed.
+These models are used to represent the related \ac{JSON} objects.
+Therefore each model have a static transform method to convert \ac{JSON} objects to the related model.
+The models folder also contains a file called \textit{schemas.py}.
+This file contains the validation schemas for the different \ac{YAML} and \ac{JSON} objects that could be received by the nodes.
+A library called \textit{jsonschema} is used to validate the objects based on such a schema.
+An example for a schema is shown in listing \ref{code:capability-schema}.
+\begin{lstlisting}[label=code:capability-schema,caption=Capability JSON validation schema]
+capability_json_schema = {
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "capability": {
+                "type": "string"
+            },
+            "capability_type": {
+                "type": "string"
+            }
+        },
+        "required": ["capability", "capability_type"]
+    }
+}
+\end{lstlisting}
+The jsonschema library allows to validate the type of an entry (line 2, 7 and 10) and also if the fields are required or optional (line 13).
+This guarantees that only valid objects will be processed.
+
+Another data layer component is the configuration reader.
+This is implemented with the default Python \textit{configparser}.
+The parsed configuration is only keept in memory.
+The configuration file for the whole project is stored in the \textit{motey/configuration} folder and is called config.ini.
+Listing \ref{code:config-ini} show the sample content of that file.
+\begin{lstlisting}[label=code:config-ini,caption=Example of the config.ini file]
+[GENERAL]
+app_name = Motey
+pid = /var/run/motey.pid
+
+[LOGGER]
+name = Motey
+log_path = /var/log/motey/
+file_name = application.log
+
+[WEBSERVER]
+ip = 0.0.0.0
+port = 5023
+
+[MQTT]
+ip = 172.18.0.3
+port = 1883
+keepalive = 60
+username = neoklosch
+password = neoklosch
+
+[DATABASE]
+path = /opt/Motey/motey/databases
+
+[ZEROMQ]
+capability_engine = 5090
+capabilities_replier = 5091
+deploy_image_replier = 5092
+image_status_replier = 5093
+image_terminate_replier = 5094
+\end{lstlisting}
+
+Different sections can be seperated by squared brackets like \textit{[MQTT]}.
+The entries are simple key-value pairs.
+Line 3 for example set the path to the used pid file.
+
+\todo{code example how to use the config}
+
+\subsection{Implementation of the orchestration layer}
 \doit
 
-\section{Implementation of the orchestration layer}
+\subsection{Implementation of the virtualization layer}
 \doit
 
-\section{Implementation of the virtualization layer}
+\subsection{Implementation of the communication layer}
+\label{subsection:implementation-communication-layer}
 \doit
 
-\section{Implementation of the communication layer}
-\label{section:implementation-communication-layer}
+\subsection{Implementation of the capability management}
 \doit
 
-\section{Implementation of the capability management}
+\subsection{Implementation of the user interface}
 \doit
 
-\section{Implementation of the user interface}
-\doit
-
-\section{Deployment and Continous Integration}
+\subsection{Deployment and Continous Integration}
 % Travis.io
 % Docker Container + Docker Hub
 % setup.py
