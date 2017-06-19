@@ -127,6 +127,15 @@
 \usepackage{tikz}
 \usetikzlibrary{fit}
 
+\usepackage[chapter]{minted}
+\setminted{
+  frame=lines,
+  linenos,
+  python3=true,
+  style=manni,
+  xleftmargin=0.6cm
+}
+
 \usepackage{settings/chapterthumb}
 \usepackage{wrapfig}
 
@@ -173,12 +182,6 @@
 \definecolor{ob_light_gray}{HTML}{a5a5a6}
 \definecolor{ob_orange}{HTML}{ea9023}
 
-\definecolor{python-keywords}{rgb}{0.65, 0.12, 0.82}
-\definecolor{python-comments}{RGB}{117, 113, 94}
-
-% \renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}
-% \renewcommand{\lstlistingname}{Quellcode}
-
 \renewcommand{\figurename}{Fig.}
 \renewcommand{\tablename}{Tab.}
 \newcommand{\sectionname}{Sec.}
@@ -186,45 +189,6 @@
 \renewcommand{\lstlistlistingname}{List of Listings}
 
 \newcommand{\todo}[1]{{{\color{fullred}#1}}}
-
-\lstdefinelanguage{Python}{
-  keywords={typeof, null, catch, switch, in, int, str, float, self},
-  keywordstyle=\color{python-keywords}\bfseries,
-  ndkeywords={boolean, throw, import},
-  ndkeywords={return, class, if ,elif, endif, while, do, else, True, False , catch, def},
-  ndkeywordstyle=\color{python-keywords}\bfseries,
-  identifierstyle=\color{black},
-  sensitive=false,
-  comment=[l]{\#},
-  morecomment=[s]{/*}{*/},
-  commentstyle=\color{python-comments}\ttfamily,
-  stringstyle=\color{red}\ttfamily,
-}
-
-\lstset{
-    language=Python,
-    basicstyle=\small\sffamily,
-    numbers=left,
-    frame=single,
-    columns=fullflexible,
-    showstringspaces=false,
-    captionpos=b,
-    xleftmargin=2em,
-    framexleftmargin=2.0em,
-    numberbychapter=false
-}
-
-\lstset{literate=%
-{Ö}{{\"O}}1
-{Ä}{{\"A}}1
-{Ü}{{\"U}}1
-{ß}{{\ss}}2
-{ü}{{\"u}}1
-{ä}{{\"a}}1
-{ö}{{\"o}}1
-}
-
-
 
 \sloppy                       % großzügiger Zeilenumbruch
                               % -> keine rechts rausragenden Zeilen mehr

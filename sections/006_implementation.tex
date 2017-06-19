@@ -74,20 +74,24 @@ It is made exclusively for Unix-like systems.
 The library will create a pid file after starting the service.
 In the motey engine, the file path can be configured via a configuration file.
 The daemon process can be controlled via a command line interface.
-\begin{lstlisting}[label=code:cli-tool,caption=Command line interface documentation for the daemon process]
-Motey command line tool.
+\begin{listing}
+  \begin{minted}{shell}
+  Motey command line tool.
 
-Usage:
-  motey start
-  motey stop
-  motey restart
-  motey -h | --help
-  motey --version
+  Usage:
+    motey start
+    motey stop
+    motey restart
+    motey -h | --help
+    motey --version
 
- Options:
-   -h, --help       Show this message.
-   --version        Print the version.
-\end{lstlisting}
+   Options:
+     -h, --help       Show this message.
+     --version        Print the version.
+  \end{minted}
+  \caption{Command line interface documentation for the daemon process}
+  \label{code:cli-tool}
+\end{listing}
 After the motey engine is installed via the setup script, this command line tool will be available in the terminal.
 
 \paragraph{dependency-injector} is a microframework for \acf{DI} in Python.
@@ -99,12 +103,16 @@ Several \ac{IoC} containers are created in that file and will be used by the fra
 Most of the injected components are instanciated as singleton objects to guarantee that there is only one active instance of that component at a time.
 The implementation of the singleton design pattern is also provided by the framework.
 Listing \ref{code:app-module} demonstrates the implementation of such an \ac{IoC} container.
-\begin{lstlisting}[label=code:app-module,caption=Extract of a sample \ac{IoC} container from the app\_module.py]
-class DIRepositories(containers.DeclarativeContainer):
-    capability_repository = providers.Singleton(CapabilityRepository)
-    nodes_repository = providers.Singleton(NodesRepository)
-    service_repository = providers.Singleton(ServiceRepository)
-\end{lstlisting}
+\begin{listing}
+  \begin{minted}{python}
+  class DIRepositories(containers.DeclarativeContainer):
+      capability_repository = providers.Singleton(CapabilityRepository)
+      nodes_repository = providers.Singleton(NodesRepository)
+      service_repository = providers.Singleton(ServiceRepository)
+  \end{minted}
+  \caption{Extract of a sample \ac{IoC} container from the app\_module.py}
+  \label{code:app-module}
+\end{listing}
 
 \paragraph{Docker \ac{SDK}}
 \todo{Write it}
@@ -114,14 +122,18 @@ Flask does not provide any templating or database engine, nor does it enforce a 
 Instead it will support extensions to add functionalities like that so that the developer can choose the tools of choice.\autocite[cf.]{Flask:Documentation:Foreword}
 Nevertheless Flask is production ready and is used in several big projects like Pinterest\autocite{Quora:Pinterest:Flask} or Twilio\autocite{Twilio:Flask}.
 The simplest sample implementation of a web application with one \ac{URL} endpoint is shown in listing \ref{code:flask-sample}.
-\begin{lstlisting}[label=code:flask-sample,caption=Sample Flask web application]
-from flask import Flask
-app = Flask(__name__)
+\begin{listing}
+  \begin{minted}{python}
+  from flask import Flask
+  app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
-\end{lstlisting}
+  @app.route('/')
+  def first_route():
+      return 'My first webserver'
+  \end{minted}
+  \caption{Sample Flask web application}
+  \label{code:flask-sample}
+\end{listing}
 
 \todo{write more about Flask}
 \todo{description what i do in code with it}
@@ -179,13 +191,19 @@ Several plugin systems are too complicated for a basic usage or have a huge depe
 Yapsy claims to be different, because it is written in pure Python and can be used with only a few lines of code.
 In the motey engine all \ac{VAL} plugins will be loaded via Yapsy.
 An extract of the VALManager with the method to register the plugins, is shown in listing \ref{code:yapsy-register-plugins}.
-\begin{lstlisting}[label=code:yapsy-register-plugins,caption=Extract of the VALManager with the method to register plugins]
-def register_plugins(self):
-  self.plugin_manager.setPluginPlaces(directories_list=[absolute_file_path("motey/val/plugins")])
-  self.plugin_manager.collectPlugins()
-  for plugin in self.plugin_manager.getAllPlugins():
-      plugin.plugin_object.activate()
-\end{lstlisting}
+\begin{listing}
+  \begin{minted}{python}
+  def register_plugins(self):
+    self.plugin_manager.setPluginPlaces(
+      directories_list=[absolute_file_path("motey/val/plugins")]
+    )
+    self.plugin_manager.collectPlugins()
+    for plugin in self.plugin_manager.getAllPlugins():
+        plugin.plugin_object.activate()
+  \end{minted}
+  \caption{Extract of the VALManager with the method to register plugins}
+  \label{code:yapsy-register-plugins}
+\end{listing}
 In motey there is a specific folder where all images has to be located (line 2).
 This could be extended in the future if necessary.
 Afterwards all the valid plugins will be loaded and activated (line 3).
@@ -219,23 +237,27 @@ The models folder also contains a file called \textit{schemas.py}.
 This file contains the validation schemas for the different \ac{YAML} and \ac{JSON} objects that could be received by the nodes.
 A library called \textit{jsonschema} is used to validate the objects based on such a schema.
 An example for a schema is shown in listing \ref{code:capability-schema}.
-\begin{lstlisting}[label=code:capability-schema,caption=Capability JSON validation schema]
-capability_json_schema = {
-    "type": "array",
-    "items": {
-        "type": "object",
-        "properties": {
-            "capability": {
-                "type": "string"
-            },
-            "capability_type": {
-                "type": "string"
-            }
-        },
-        "required": ["capability", "capability_type"]
-    }
-}
-\end{lstlisting}
+\begin{listing}
+  \begin{minted}{python}
+  capability_json_schema = {
+      "type": "array",
+      "items": {
+          "type": "object",
+          "properties": {
+              "capability": {
+                  "type": "string"
+              },
+              "capability_type": {
+                  "type": "string"
+              }
+          },
+          "required": ["capability", "capability_type"]
+      }
+  }
+  \end{minted}
+  \caption{Capability JSON validation schema}
+  \label{code:capability-schema}
+\end{listing}
 The jsonschema library allows to validate the type of an entry (line 2, 7 and 10) and also if the fields are required or optional (line 13).
 This guarantees that only valid objects will be processed.
 
@@ -244,51 +266,60 @@ This is implemented with the default Python \textit{configparser}.
 The parsed configuration is only keept in memory.
 The configuration file for the whole project is stored in the \textit{motey/configuration} folder and is called config.ini.
 Listing \ref{code:config-ini} show the sample content of that file.
-\begin{lstlisting}[label=code:config-ini,caption=Example of the config.ini file]
-[GENERAL]
-app_name = Motey
-pid = /var/run/motey.pid
+\begin{listing}
+  \begin{minted}{python}
+  [GENERAL]
+  app_name = Motey
+  pid = /var/run/motey.pid
 
-[LOGGER]
-name = Motey
-log_path = /var/log/motey/
-file_name = application.log
+  [LOGGER]
+  name = Motey
+  log_path = /var/log/motey/
+  file_name = application.log
 
-[WEBSERVER]
-ip = 0.0.0.0
-port = 5023
+  [WEBSERVER]
+  ip = 0.0.0.0
+  port = 5023
 
-[MQTT]
-ip = 172.18.0.3
-port = 1883
-keepalive = 60
-username = neoklosch
-password = neoklosch
+  [MQTT]
+  ip = 172.18.0.3
+  port = 1883
+  keepalive = 60
+  username = neoklosch
+  password = neoklosch
 
-[DATABASE]
-path = /opt/Motey/motey/databases
+  [DATABASE]
+  path = /opt/Motey/motey/databases
 
-[ZEROMQ]
-capability_engine = 5090
-capabilities_replier = 5091
-deploy_image_replier = 5092
-image_status_replier = 5093
-image_terminate_replier = 5094
-\end{lstlisting}
+  [ZEROMQ]
+  capability_engine = 5090
+  capabilities_replier = 5091
+  deploy_image_replier = 5092
+  image_status_replier = 5093
+  image_terminate_replier = 5094
+  \end{minted}
+  \caption{Example of the config.ini file}
+  \label{code:config-ini}
+\end{listing}
 
 Different sections can be seperated by squared brackets like \textit{[GENERAL]} like on line 1.
 The entries are simple key-value pairs.
 Line 3 for example set the path to the used pid file.
 The usage of the configreader is shown in listing \ref{code:configreader-example}.
-\begin{lstlisting}[label=code:configreader-example,caption=Example of the usage of the configreader]
-from motey.configuration.configreader import config
 
-daemon = Daemonize(
-    app=config['GENERAL']['app_name'],
-    pid=config['GENERAL']['pid'],
-    action=run_main_component
-)
-\end{lstlisting}
+\begin{listing}
+  \begin{minted}{python}
+  from motey.configuration.configreader import config
+
+  daemon = Daemonize(
+      app=config['GENERAL']['app_name'],
+      pid=config['GENERAL']['pid'],
+      action=run_main_component
+  )
+  \end{minted}
+  \caption{Example of the usage of the configreader}
+  \label{code:configreader-example}
+\end{listing}
 The configuration object must be imported from the configreader module (see line 1) and can be used directly afterwards (line 4 and 5).
 Due to the implementation of the import logic in Python, the containing script will executed only once, regardless how many files imported that module.
 
