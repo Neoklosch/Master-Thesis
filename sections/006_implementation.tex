@@ -349,6 +349,73 @@ Due to the implementation of the import logic in Python, the containing script w
 
 \subsection{Implementation of the communication layer}
 \label{subsection:implementation-communication-layer}
+As mentioned in section \ref{subsection:CommunicationLayer} the communication layer is splitted up into three different components as is decorated by an extra layer called \textit{CommunicationManager}.
+The important implementation details of all of them will be described in this subsection.
+All the necessary communication components are located in the \textit{motey/communication} folder.
+
+\paragraph{APIServer} This server is responsible for the \ac{REST} \ac{API}.
+Therefore the Flask server will be instanciated and configured in the constructor of the wrapper class.
+The server will be executed in a separate thread due to the nature of a webserver to block the main thread because the it will run endless to receive all incoming requests.
+If it would not be implemented with a thread only the Flask server would be started and the following code would be blocked.
+Futhermore Flask has to be configured to accept cross-site requests, by disabeling the \textit{same origin policy} with a \textit{\ac{CORS}} library.
+This behavior is a prototype only feature and it is strictly recommend to deactivate it in production mode.
+By deactivating it the server is vulnerable for \ac{CSRF} and clickjacking attacks.
+In the prototype cross-site requests should be allowed to make it easier to communicate between a web client and the \ac{REST} \ac{API}.
+
+In addition all the configured \ac{API} will be initialized.
+As mentioned before these routes can be implemented as Flask Blueprints.
+All routes are located in the \textit{motey/communication/api\_routes} directory.
+
+There are four different routes:
+\begin{itemize}
+  \item The \textbf{Capabilities} Blueprint which is used to send the capabilities of the node, add new capabilities or to remove them.
+  The \ac{HTTP} verb \textit{GET} is used to deliver all exisiting capabilites.
+  If a request is received, the \textit{CapabilityRepository} will be used to fetch all capabilities and then they will be converted to a JSON string afterwards.
+  The \ac{HTTP} verb \textit{PUT} will add new entries to the repository.
+  After the \ac{JSON} request will be received, the content will be parsed and validated with the corresponding \ac{JSON} schema.
+  If it is not valid or the content type of the request is not \textit{application/json} a \ac{HTTP} status code 400 is returned.
+  Otherwise the capabilities will be added via the \textit{CapabilityRepository} to the database.
+  This will end up in the \ac{HTTP} status code 201.
+  The same logic will be used for the \textit{DELETE} request.
+  \item The second endpoint is implemented as the \textbf{Nodes} Blueprint.
+  The only functionallity is to respond with all stored nodes as \ac{JSON}.
+  This is used for testing purposes and could also be helpful for maintaining the cluster.
+  \item To get some information about the node health status the \textbf{NodeStatus} Blueprint was created.
+  It respond with some hardware informations like the current \ac{CPU} or memory usage.
+  This is also useful for maintaining the nodes.
+  \item The last Blueprint implementation is the \textbf{Service} endpoint.
+  It is used to get a \ac{JSON} list with all stored services via the \ac{HTTP} \textit{GET} verb and also to deploy and remove services.
+  Therefore the \textit{POST} or \textit{DELETE} verb is used.
+  Both implementations are pretty similar.
+  Also in this case the provided \ac{YAML} file will be validated.
+  If it is valid the parsed service will be handed over to the orchestration layer and a 201 will be returned to the client.
+  If something went wrong a 400 will be returend.
+\end{itemize}
+
+\paragraph{MQTTServer}
+% connect to broker with username and password
+% register routes
+% add callbacks
+% explain node discovery
+% -> after connect -> push node request
+% -> all nodes react and send ips back
+% -> all nodes try to store them
+% same on disconnect
+% also in thread
+
+\paragraph{ZeroMQServer}
+% multiple ports will be binded
+% one thread for each port
+% node capability request
+% deploy image
+% image status
+% terminate image
+
+\paragraph{CommunicationManager}
+% layer to decorate all the other components
+% easy to replace one component
+% Just covers the methods
+% Central place to start and stop the components
 \doit
 
 \subsection{Implementation of the capability management}
