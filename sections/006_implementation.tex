@@ -24,7 +24,9 @@ Depending on the amount and type of the executed Docker images, the hardware spe
 % figure 5.1.
 % The following listing briefly describes the single packages of both projects in alphabetical
 % order to give an overview of the implementation:
-\todo{bit of instruction}
+Beside the main folder with the motey engine, the project contains several directories with helpfull scripts and tools.
+A brief overview about the project structure will givin in this section.
+A detailed explanation of all files will be omitted, as this would exceed the scope of the thesis.
 
 \begin{itemize}
   \item{\textbf{Directory: ./}} has all the necessary configuration files for the different services.
@@ -115,28 +117,40 @@ Listing \ref{code:app-module} demonstrates the implementation of such an \ac{IoC
 \end{listing}
 
 \paragraph{Docker \ac{SDK}}
-\todo{Write it}
+The Docker Python library is a wrapper around the Docker command line tool.
+Every command that can be executed with this tool can also be executed from any python code.
+In the initializing phase the library will connect to the Docker Engine \ac{API} and will perform all the actions through them.
+This can be realized via an \ac{URL} to the \ac{REST} \ac{API} or via an unix system socket connection.
+In the motey engine the second method will be used, but can be replaced without any limitations.
+The library is used as a \ac{VAL} plugin and will be automatically loaded at runtime via the VALManager and the Yapsy plugin system.
 
 \paragraph{Flask} is a framework to create web applications.
 Flask does not provide any templating or database engine, nor does it enforce a specific file structure.
 Instead it will support extensions to add functionalities like that so that the developer can choose the tools of choice.\autocite[cf.]{Flask:Documentation:Foreword}
 Nevertheless Flask is production ready and is used in several big projects like Pinterest\autocite{Quora:Pinterest:Flask} or Twilio\autocite{Twilio:Flask}.
-The simplest sample implementation of a web application with one \ac{URL} endpoint is shown in listing \ref{code:flask-sample}.
+
+Flask can use so called \textit{Blueprint} to configure new routes in the webserver.
+A Blueprint is basically a Python class that can define methods like \textit{get} or \textit{post} to handle the specific \ac{HTTP} verbs.
+This is useful to create valid \ac{HATEOAS} \ac{REST} \acp{API}.
+Each Blueprint will be represented by an \ac{URL} endpoint.
+
+Listing \ref{code:flask-blueprint} illustrates the implementation of all \ac{API} endpoints in motey.
 \begin{listing}[H]
   \begin{minted}{python}
-  from flask import Flask
-  app = Flask(__name__)
-
-  @app.route('/')
-  def first_route():
-      return 'My first webserver'
+    def configure_url(self):
+      self.webserver.add_url_rule('/v1/capabilities', view_func=Capabilities.as_view('capabilities'))
+      self.webserver.add_url_rule('/v1/nodestatus', view_func=NodeStatus.as_view('nodestatus'))
+      self.webserver.add_url_rule('/v1/service', view_func=Service.as_view('service'))
+      self.webserver.add_url_rule('/v1/nodes', view_func=Nodes.as_view('nodes'))
   \end{minted}
-  \caption{Sample Flask web application}
-  \label{code:flask-sample}
+  \caption{Implementation of all Flask \ac{API} endpoints in motey}
+  \label{code:flask-blueprint}
 \end{listing}
 
-\todo{write more about Flask}
-\todo{description what i do in code with it}
+In line 2 a new endpoint will be add via the \textit{add\_url\_rule} to the Flask webserver.
+The first parameter indicates the endpoint \ac{URL} and the second parameter \textit{view\_func} represents the Blueprint class, in this case \textit{Capabilities}.
+To pass them over, the Blueprint has to be converted to a Flask view by using the \textit{as\_view} method.
+The other endpoints are implemented equivalent.
 
 \paragraph{Logbook} is a small loging library that helps to standardize the output of log messages.
 It helps to address several output methods like the terminal, a file or even emails and linux desktop notifications.
