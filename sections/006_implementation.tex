@@ -2,26 +2,30 @@
 % This chapter describes the implementation of component X. Three systems were chosen
 % as reference implementations: a desktop version for Windows and Linux PCs, a Windows
 % Mobile version for Pocket PCs and a mobile version based on Android.
-This chapter describes the implementation of docker plugin as well as the constraint logic.
+This chapter describes the implementation of the motey engine as well as the deployment and capability logic.
 Used technologies, libraries and tools, as well as custom components would be presented and the functionality will be demonstrated.
 Thereby challenges and problems during the development of the plugins will be shown and the solutions will be discussed.
 
 \section{Environment}
-% The following software, respectively operating systems, were used for the implementation:
-% • Ubuntu
-% • Python 3.5
-% • Docker
-% • XY Library
-% DI, RxPy,
-\doit
+To motey engine is designed to be exectued on low-power devices like a Raspberry Pi.
+The following software is required to execute the whole software stack.
+\begin{itemize}
+  \item Ubuntu version 14.10 or higher
+  \item Python 3.5 or newer
+  \item Docker 17.3 or higher
+\end{itemize}
+On hardware side motey will be tested on Raspberry Pis type 2 B or newer.
+Depending on the amount and type of the executed Docker images, the hardware specifications may can vary.
+% TODO: installation instructions?
 
 \section{Project structure}
+
 % The implementation is seperated into 2 distinguished eclipse projects as depicted in
 % figure 5.1.
 % The following listing briefly describes the single packages of both projects in alphabetical
 % order to give an overview of the implementation:
+\todo{bit of instruction}
 
-% Verzeichnisse erklären
 \begin{itemize}
   \item{\textbf{Directory: ./}} has all the necessary configuration files for the different services.
   \begin{itemize}
@@ -60,10 +64,6 @@ Thereby challenges and problems during the development of the plugins will be sh
   \item{\textbf{tests:}} contains all the unit test which are executed by the continuous integration script and the Python setup procedure.
   \item{\textbf{webclient:}} this folder contains the \ac{GUI} for the motey engine. Will also be described on the next pages in detail.
 \end{itemize}
-
-\subsection{motey engine}
-% klassendiagramm
-% einzelne Pakete erklären
 
 \section{Used external libraries}
 This section will show up some of the most important libraries used in the motey engine.
@@ -223,6 +223,10 @@ All plugins can be used via the \textit{self.plugin\_manager}.
 % Core samt daemon erklären
 \doit
 
+\subsection{motey engine}
+% klassendiagramm
+% einzelne Pakete erklären
+
 \subsection{Implementation of the data layer}
 As mentioned before TinyDB is used as the database engine of choice.
 To abstract TinyDB from the rest of the source code, the repository pattern will be used.
@@ -318,7 +322,7 @@ The usage of the configreader is shown in listing \ref{code:configreader-example
   \label{code:configreader-example}
 \end{listing}
 The configuration object must be imported from the configreader module (see line 1) and can be used directly afterwards (line 4 and 5).
-Due to the implementation of the import logic in Python, the containing script will executed only once, regardless how many files imported that module.
+Due to the implementation of the import logic in Python, the containing script will be executed only once, regardless how many files import that module.
 
 \subsection{Implementation of the orchestration layer}
 \doit
