@@ -198,7 +198,9 @@ But it is easy to use, has no execution overhead and it performs very well on sm
 The main purpose of the library is to be used for small apps where database server like MySQL\footnote{\url{https://www.mysql.com}} or MongoDB\footnote{\url{https://www.mongodb.com}} will be a huge overhead.
 Furthermore TinyDB has several extension to add more functionalities like indexing or caching.
 It also allows to easily extend the library with custom middlewares and extensions.
-\todo{description what i do in code with it}
+In the motey engine, TinyDB is used in every \textit{repository} to decorate the usage of the library.
+Thereby the used library can easily replaced by a different one, without refactoring several class in the project.
+A detailed discription of the implementation will be shown in \ref{subsection:impl-data-layer}.
 
 \paragraph{Yapsy} is a plugin system that was designed to make an application easily extensible and should also be easy to use.
 Several plugin systems are too complicated for a basic usage or have a huge dependency overhead.
@@ -242,6 +244,7 @@ All plugins can be used via the \textit{self.plugin\_manager}.
 % einzelne Pakete erklären
 
 \subsection{Implementation of the data layer}
+\label{subsection:impl-data-layer}
 As mentioned before TinyDB is used as the database engine of choice.
 To abstract TinyDB from the rest of the source code, the repository pattern will be used.
 Each content type has its own database and also a related repository.
