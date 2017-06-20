@@ -36,14 +36,16 @@ On the other hand there are also a lot of challenges in these highly heterogeneo
 As an example in some scenarios multiple low power devices have to interact with each other, lossy signals and short range radio technologies are widely used and nodes can appear and disappear frequently.\cite[cf.][p. 325]{Yannuzzi:2014}
 Especially the last case is elaborated because the underlying system has to handle that.
 Furthermore the required applications running on these nodes can be change commonly and have to be deployed and removed in a dynamical way.
+
 Virtualization with \acp{VM} is a common approach in Cloud systems to provide elasticity of large-scale shared resources.\cite[cf.][p. 117]{Pahl:2016}
 A more lightweight, less resource and time consuming solution is container virtualization.
 "Furthermore, they are flexible tools for packaging, delivering and orchestration software infrastructure services as well as application"\cite[p. 117]{Pahl:2016}.
-Orchestration tools like Kubernetes\footnote{\url{https://kubernetes.io}} and Docker Swarm\footnote{\url{https://docs.docker.com/engine/swarm}} which deploy, scale and manage containers to clusters of hosts have become established in the last years.
-Moving this technology over to the \ac{IoT} area many challenges can be solved.
-Dynamically deployed applications at the edge of a network can store and preprocesses gather data even if a node have no connection to the cloud because of lossy signals.
+Orchestration tools like Kubernetes\footnote{\url{https://kubernetes.io}} and Docker Swarm\footnote{\url{https://docs.docker.com/engine/swarm}} that can deploy, scale and manage containers to clusters of hosts have become established in the last years.
+If this technology can be moved over to the \ac{IoT} area, many challenges can be solved.
+Dynamically deployed applications at the edge of a network can store and preprocesses gather data even if a node have no connection to the cloud.
 Traffic can be reduced by only transmitting aggregated data back to the cloud.
-More often small low power devices with limited computational power are be used as \ac{IoT} nodes which also profit rather from lightweight container solutions than from resource consuming \acp{VM}.
+Lossy signals can be compensated due to an autonomous behavior of the different components.
+More often small low power devices with a limited computational power are used as \ac{IoT} nodes which also profit rather from lightweight container solutions than from resource consuming \acp{VM}.
 This thesis shows the capabilities of container orchestration for the \ac{IoT} and smart factories by creating a prototype which can be executed on fog nodes.
 Therefor an engine will be created which can orchestrate containers based on functional and non-functional constraints on a single fog node or between a cluster of fog nodes.
 
@@ -62,7 +64,7 @@ Therefor an engine will be created which can orchestrate containers based on fun
 % write about the synopsis (Zusammenfassung) of the issues
 This thesis describes an approach to design and implement a fog service orchestration engine for smart factories.
 The aim of this work is to create a prototype for a fog node, which can deploy containers on the same node or on other network nodes.
-A for Node is typically a low power device at the edge of a network, especially in the area of Industry 4.0 and smart factories.
+A fog Node is typically a low power device at the edge of a network, especially in the area of Industry 4.0 and smart factories.
 Furthermore the prototype should consider specific functional and non-functional constraints while deploying the containers.
 A condition can be a hardware requirement, a required software or a dependencies to another node.
 The technical prerequisite and detailed requirements for the prototype as well as the usability of a \ac{GUI}, which could be for example Open Baton, an \ac{ETSI} \ac{NFV} compliant \ac{MANO} framework, have to be worked out.
@@ -83,7 +85,7 @@ The cooperation with the \ac{FOKUS} plays a prominent role for this thesis, beca
 
 % write about the research scope (Forschungsbereich) — Figures 1.1, 1.2 and 1.4
 % -- was ist drin, was nicht
-As mentioned before, the prototype will be an prototype for a fog node, this means the creation of a \ac{MANO} engine on the server side is out of scope for this thesis.
+As mentioned before, the engine to be developed will be a prototype for a fog node, this means the creation of a \ac{MANO} engine on the server side is out of scope for this thesis.
 Open Baton serves as the template for that project and especially the modular architecture and the resulting extensibility will be targeted.
 Beside that, the whole prototype will be created completely from scretch.
 The container virtualization will be realized with Docker\footnote{\url{https://www.docker.com}}, an open source container platform.
