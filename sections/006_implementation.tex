@@ -401,30 +401,99 @@ As all the other classes, the \textit{MQTTServer} is a wrapper class for the Pyt
 In the constructor the routes will be defined as well as some callbacks and the client will be configured.
 The \textit{start} method connects the client to the broker and execute the request loop.
 That is pretty similar to the implementation of the \textit{APIServer}.
-Therefore also the \ac{MQTT} client has to be executed in a separate thread.
+Therefore the \ac{MQTT} client has to be executed in a separate thread too.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{resources/images/node_discovery.png}
+    \caption[Node discovery sequence diagram]{Node discovery sequence diagram}
+    \label{fig:node_discovery_squ_dia}
+\end{figure}
 
-% add callbacks
-% explain node discovery
-% -> after connect -> push node request
-% -> all nodes react and send ips back
-% -> all nodes try to store them
-% same on disconnect
+Figure \ref{fig:node_discovery_squ_dia} shows how the node discovery will be implemented.
+Important aspect is that the sender node is also part of the subscribed nodes.
+This means after the \textit{connection} to the broker is established and the client is subscribed to the topics, each \textit{Node Request} will also be received by the sender himself.
+Benefit out of it, is that beside the fact that a new registered node gets all meta informations from all other nodes, also these nodes get the meta information of the new node.
+In this way each node has knowledge of all the other nodes and can keep track of them.
+That is also the reason why the \textit{"Node Meta Data" from Node A} and \textit{"Node Meta Data" from Node X} are duplicated in figure \ref{fig:node_discovery_squ_dia}.
+Beside that the procedure is straight forward: At first one node send out a \textit{Node Request}.
+Each subscribed node will get it and send out a response with the \textit{Node Meta Data} to all the other nodes via the broker.
+The \textit{after\_connect} handler will be used to send out the \textit{Node Request} after a new nodes is sucessfully subscribed to the broker.
+Before a node disconnects, a \textit{Remove Node} request will be send out, that will inform each node that a specific node will be disappear.
+All the nodes react to this by removing the meta data about this node from the database.
 
 \paragraph{ZeroMQServer}
-% multiple ports will be binded
-% one thread for each port
-% node capability request
-% deploy image
-% image status
-% terminate image
+Section \ref{section:ZeroMQ} and \ref{subsection:CommunicationLayer} gave a detailed overview about ZeroMQ and how does it work.
+Now the concrete implementation will be discussed.
+The wrapper class \textit{ZeroMQServer} binds multiple sockets to the related ports.
+There are four sockets binded for the direct node-to-node communication via \ac{TCP} and one port to connect third party applications to the motey engine.
+The latter is used to add or remove capabilies on a node.
+ZeroMQ provides an \ac{IPC} protocol for such a use case.
+The ZeroMQServer will bind a socket with the Publish-Subscribe pattern that allows multiple publisher to connect to the endpoint.
+Two important aspects have to be considered by using the Publish-Subscribe pattern in ZeroMQ.
+As in \ac{MQTT} each subscription has to be done to a topic.
+Listing \ref{code:ZeroMQ-pub-sub} show the subscription for the \textit{capabilityevent} at line 3.
+This also means that it is possible to send multiple different events to a single socket endpoint.
+In motey this feature is not used yet, but nevertheless it is necessary to subscribe to a topic because of the implementation specification of ZeroMQ.
+Without that, the subscriber will receive nothing.
+
+\begin{listing}[H]
+  \begin{minted}{python}
+  def start(self):
+    self.capabilities_subscriber.bind('ipc://*:%s' % config['ZEROMQ']['capability_engine'])
+    self.capabilities_subscriber.setsockopt_string(zmq.SUBSCRIBE, 'capabilityevent')
+    # [...]
+
+  def __run_capabilities_subscriber_thread(self):
+    while not self.stopped:
+        result = self.capabilities_subscriber.recv_string()
+        topic, output = result.split('#', 1)
+        self.capability_event_stream.on_next(output)
+  \end{minted}
+  \caption{Example of the usage of the configreader}
+  \label{code:ZeroMQ-pub-sub}
+\end{listing}
+
+The second important aspect is at line 9.
+An incoming message has always been parsed for a delemiter.
+The reason for that is, that the topic, in this case \textit{capabilityevent} have to be prepend to the message followed by the delimter.
+Listing \ref{code:ZeroMQ-capability-event-msg} show such a message.
+\begin{listing}[H]
+  \begin{minted}{bash}
+  capabilityevent#{'capability': 'zigbee', 'capability_type': 'hardware'}
+  \end{minted}
+  \caption{Example ZeroMQ capability event message}
+  \label{code:ZeroMQ-capability-event-msg}
+\end{listing}
+Therefore the topics and the delimiter has to be removed before the message can be parsed.
+
+The other four sockets are implemented with the Request-Reply pattern and are used to:
+\begin{itemize}
+  \item reply to a capability request.
+  This is used by the \textit{inter\_node\_orchestrator} to get the capabilites of other nodes.
+  The result is send as a \ac{JSON} string.
+  If there are no capabilites an empty \ac{JSON} array will be send.
+  \item deploy images is also used by the \textit{inter\_node\_orchestrator} to deploy a single image to another node.
+  The image model will be transformed to a \ac{JSON} object and send over as a string and vice versa and passed over to the \textit{VALManager} if received.
+  \item return the status of an image. \todo{write after implemented}
+  \item termainate an existing image instance.
+  Only the image id has to be send to perform that action.
+  The \textit{VALManager} will handle the termination of the instance.
+\end{itemize}
+Important aspect while using the Request-Reply pattern, there can only be one connection established at the same time.
+In addition a reply must send by the consumer after a request was receive.
+As long as there was no message send back, the connection will be blocked and the consumer can not recevie any new messages.
+
+As discussed by the other servers, also this one have to be executed in threads.
+Difference here is that each socket has its own thread.
+This is necessary because each connection waits for a request and has its own request loop.
+Therefore each loop would block the main thread.
 
 \paragraph{CommunicationManager}
-% layer to decorate all the other components
-% easy to replace one component
-% Just covers the methods
-% Central place to start and stop the components
-\doit
+Finally the \textit{CommunicationManager} is used to decorate the servers from the rest of the source code.
+This is helpful for decoupeling the componants as well as replace or add a new communication component.
+Beside that the manager simply forward the methods to the specific server.
+It is also used as a central place to start and stop all servers.
 
 \subsection{Implementation of the capability management}
 \doit
