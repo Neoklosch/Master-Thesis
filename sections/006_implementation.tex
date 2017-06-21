@@ -243,7 +243,7 @@ All plugins can be used via the \textit{self.plugin\_manager}.
 % klassendiagramm
 % einzelne Pakete erklären
 
-\subsection{Implementation of the data layer}
+\subsection{Data layer}
 \label{subsection:impl-data-layer}
 As mentioned before TinyDB is used as the database engine of choice.
 To abstract TinyDB from the rest of the source code, the repository pattern will be used.
@@ -341,13 +341,13 @@ The usage of the configreader is shown in listing \ref{code:configreader-example
 The configuration object must be imported from the configreader module (see line 1) and can be used directly afterwards (line 4 and 5).
 Due to the implementation of the import logic in Python, the containing script will be executed only once, regardless how many files import that module.
 
-\subsection{Implementation of the orchestration layer}
+\subsection{Orchestration layer}
 \doit
 
-\subsection{Implementation of the virtualization layer}
+\subsection{Virtualization layer}
 \doit
 
-\subsection{Implementation of the communication layer}
+\subsection{Communication layer}
 \label{subsection:implementation-communication-layer}
 As mentioned in section \ref{subsection:CommunicationLayer} the communication layer is splitted up into three different components as is decorated by an extra layer called \textit{CommunicationManager}.
 The important implementation details of all of them will be described in this subsection.
@@ -495,19 +495,20 @@ This is helpful for decoupeling the componants as well as replace or add a new c
 Beside that the manager simply forward the methods to the specific server.
 It is also used as a central place to start and stop all servers.
 
-\subsection{Implementation of the capability management}
+\subsection{Capability management}
+The main components of the capability management are the \textit{CapabilityEngine} and the \textit{ZeroMQServer}.
+The latter was descibed in the previous section.
+
+
+\subsection{User interface}
 \doit
 
-\subsection{Implementation of the user interface}
-\doit
-
-\subsection{Deployment and Continous Integration}
-
+%\subsection{Deployment and Continous Integration}
 % Travis.io
 % Docker Container + Docker Hub
 % setup.py
 % Sphinx
-\doit
+%\doit
 
 \section{Conclusion}
 \doit
