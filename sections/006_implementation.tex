@@ -393,15 +393,23 @@ There are four different routes:
 \end{itemize}
 
 \paragraph{MQTTServer}
-% connect to broker with username and password
-% register routes
+The purpose of using \ac{MQTT} in the motey engine is the node discovery.
+Section \ref{subsection:CommunicationLayer} discribes the basic idea of it.
+To implement the logic the node must have knowledge about the \ac{IP} and port of the \ac{MQTT} broker as well as the authentication credentials if they are required.
+They can be configured via the gloabl configuration file.
+As all the other classes, the \textit{MQTTServer} is a wrapper class for the Python \ac{MQTT} libarary.
+In the constructor the routes will be defined as well as some callbacks and the client will be configured.
+The \textit{start} method connects the client to the broker and execute the request loop.
+That is pretty similar to the implementation of the \textit{APIServer}.
+Therefore also the \ac{MQTT} client has to be executed in a separate thread.
+
+
 % add callbacks
 % explain node discovery
 % -> after connect -> push node request
 % -> all nodes react and send ips back
 % -> all nodes try to store them
 % same on disconnect
-% also in thread
 
 \paragraph{ZeroMQServer}
 % multiple ports will be binded
