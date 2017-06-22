@@ -3,15 +3,11 @@ This chapter introduces the architectural design of prototype respect to the pre
 Therefore the used development environment will be analyzed.
 Followed by the definition of an abstra t architecture of the prototype to be developed.
 Based on that the different layer of the system will be elaborated as well as some security concerns and the continuous integration environment.
-\todo{more}
-% The concept chapter provides a high-level explanation of your solution. Try to explain
-% the overall structure with a picture. You can also use UML sequence diagrams for
-% explanation.
-% Figure 4.1 illustrates the situation between Alice and Bob. (sequence diagram from
-% www.websequencediagrams.com)
+The working title of the project will be \textbf{Motey}.
+In the following the prototype will also be referenced as Motey.
 
 \section{Development environment}
-The development environment is crucial for both the implementation of the prototype, as well as the choice of possible plugins and libraries.
+The development environment is crucial for both the implementation of the Motey engine, as well as the choice of possible plugins and libraries.
 It should be easy to used and fast to implement, but it should also consider the knowledge of the \ac{FOKUS} as well as the developer.
 
 \paragraph{Java} is still one of the most important programming languages out there.\autocite[cf.]{ProgramminLanguage:2017}
@@ -70,11 +66,11 @@ Open Baton will also have an overview of all existing nodes and can manage and m
 % TODO: check if applicaton manager is necessary
 
 The second level is the \textit{autonomous fog level}.
-The prototype to be developed will be located in this level.
-It includes all existing fog nodes, as well as the prototype referenced as the \textit{OpenIoTFog Agent} in figure \ref{fig:abstract_architecture_design}.
+The Motey engine will be located in this level.
+It includes all existing fog nodes, as well as the Motey engine that is referenced as the \textit{OpenIoTFog Agent} in figure \ref{fig:abstract_architecture_design}.
 Each node must have a running instance of the OpenIoTFog Agent to be part of the system.
-Beside the prototype a node can have several hardware devices, sensors and actuators connected to them.
-A virtualization infrastructure such as Docker or XEN, must be installed to be used by the prototype.
+Beside Motey a node can have several hardware devices, sensors and actuators connected to them.
+A virtualization infrastructure such as Docker or XEN, must be installed to be used by Motey.
 These infrastructure can create the containers and \acp{VNF}.
 Further it is also possible to have additional third party tools installed which can interact with the them as well.
 
@@ -102,9 +98,6 @@ Finally the \textit{Monitoring Agenct} is used to log all ongoing events and giv
 % -> keine spezielle architektur
 % -> jedoch decoupled as much as possible
 % ---> DI, RxPy
-
-The working title of the project will be \textbf{Motey}.
-In the following the prototype will also be referenced as Motey.
 
 \subsection{Virtualization layer}
 The virtualization layer is basically an abstraction layer to generalize the different virtualization engines.
