@@ -1,21 +1,14 @@
 \chapter{Concept}\label{chapter:concept}
-% This chapter introduces the architectural design of Component X. The component consists
-% of subcomponent A, B and C.
-% In the end of this chapter you should write a specification for your solution, including
-% interfaces, protocols and parameters.
-This chapter introduces the architectural design of plugin respect to the previously defined requirements.
+This chapter introduces the architectural design of prototype respect to the previously defined requirements.
 Therefore the used development environment will be analyzed.
-Followed by the initial architecture of the plugin to be developed.
-Based on that the different layer of the system will be elaborated.
-\todo{Rework that section}
-
-\section{Overview}
+Followed by the definition of an abstra t architecture of the prototype to be developed.
+Based on that the different layer of the system will be elaborated as well as some security concerns and the continuous integration environment.
+\todo{more}
 % The concept chapter provides a high-level explanation of your solution. Try to explain
 % the overall structure with a picture. You can also use UML sequence diagrams for
 % explanation.
 % Figure 4.1 illustrates the situation between Alice and Bob. (sequence diagram from
 % www.websequencediagrams.com)
-\doit
 
 \section{Development environment}
 The development environment is crucial for both the implementation of the prototype, as well as the choice of possible plugins and libraries.
@@ -198,7 +191,7 @@ Beside that, this component will also handle the lifecycle of a service during t
 \subsection{User interface}
 \doit
 
-\subsection{Security}
+\section{Security}
 % https://www.golem.de/news/brickerbot-hacker-zerstoeren-das-internet-of-insecure-things-1704-127198.html
 % https://www.golem.de/specials/mirai/
 % https://www.corero.com/resources/ddos-attack-types/mirai-botnet-ddos-attack.html
@@ -208,7 +201,7 @@ Beside that, this component will also handle the lifecycle of a service during t
 % Database encryption
 \doit
 
-\subsection{Continuous Integration}
+\section{Continuous Integration}
 Continuous integration is nowadays a frequently used technique to automate repeating deployment steps into a self executing pipeline.
 It starts by running unit tests, code style checks and ends up with deploying the compiled programm to a server or a marktplace.
 Due to the fact that Github\footnote{\url{https://github.com}} will be used to host and maintain the git repository for the Motey project, the pretty famous and semless integrated Travis CI\footnote{\url{https://travis-ci.org}} will be used to implement the continuous integration pipeline.
@@ -221,10 +214,3 @@ Finally all predefined tasks from the \ac{YAML} file will be executed.
 In terms of the Motey project, unit tests will be executed, as well as code style checks and if a version from the master branch will be build, a Docker container will be created and pushed to the related Docker Hub repository.
 This pipeline guarantees that the project is tested and a coding standard is enforced.
 Further the manual build of the Docker container including the upload to the Docker Hub will be obsolete.
-
-\section{Conclusion}
-\doit
-
-
-
-% http://getcloudify.org/brochures/Heavy%20Reading%20NFV%20MANO%20Cloudify%20Snapshot.pdf
