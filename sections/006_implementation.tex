@@ -100,7 +100,7 @@ After the motey engine is installed via the setup script, this command line tool
 The \ac{DI} pattern allows to move the responsibility for creating a dependency from the concrete objects to a factory or a framework which creates the dependency graph.
 This grants the single responsibility concept for classes and makes the whole code base much easier to unit test, because a dummy object can be passed to the constructor of the class.
 It is also possible to mocked the object with the help of a mocking library.
-To realize \ac{DI} in the prototype a so called \textit{app\_module.py} was created which uses the \textit{dependency-injector} framework to create the dependency graph.
+To realize \ac{DI} in the Motey a so called \textit{app\_module.py} was created which uses the \textit{dependency-injector} framework to create the dependency graph.
 Several \ac{IoC} containers are created in that file and will be used by the framework to generate the glue code.
 Most of the injected components are instanciated as singleton objects to guarantee that there is only one active instance of that component at a time.
 The implementation of the singleton design pattern is also provided by the framework.
@@ -358,9 +358,9 @@ Therefore the Flask server will be instanciated and configured in the constructo
 The server will be executed in a separate thread due to the nature of a webserver to block the main thread because the it will run endless to receive all incoming requests.
 If it would not be implemented with a thread only the Flask server would be started and the following code would be blocked.
 Futhermore Flask has to be configured to accept cross-site requests, by disabeling the \textit{same origin policy} with a \textit{\ac{CORS}} library.
-This behavior is a prototype only feature and it is strictly recommend to deactivate it in production mode.
+This behavior is a development only feature and it is strictly recommend to deactivate it in production mode.
 By deactivating it the server is vulnerable for \ac{CSRF} and clickjacking attacks.
-In the prototype cross-site requests should be allowed to make it easier to communicate between a web client and the \ac{REST} \ac{API}.
+In the development phase cross-site requests should be allowed to make it easier to communicate between a web client and the \ac{REST} \ac{API}.
 
 In addition all the configured \ac{API} will be initialized.
 As mentioned before these routes can be implemented as Flask Blueprints.

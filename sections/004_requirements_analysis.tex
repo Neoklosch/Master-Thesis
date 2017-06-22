@@ -1,19 +1,16 @@
 \chapter{Requirements Analysis}
 \label{chapter:requirements-analysis}
-% This section determines the requirements necessary for X. This includes the functional
-% aspects, namely Y and Z, and the non functional aspects such as A and B.
-Based on the fundamentals the requirements for the plugin to be developed will be formulated in this chapter.
-Thereby aspects that will be relevant for the specific implementation will be considered.
+Based on the fundamentals the requirements for the protoype to be developed will be formulated in this chapter.
+Thereby relevant aspects for the specific implementation will be considered.
+The analysis, the creation of requirments and the commitment from all sides to these requirements is an important step to sucessfully realize a project, not only in the software development area.
+It does not matter if it is a private project, a company product or a project from a customer.
+The better a project is defined and everyone is on the same state, the better the final result will be.
+In these thesis the \ac{FOKUS} acts as the customer.
+Each step has to be discussed and approved by a representative of the \ac{FOKUS}.
+Due to the fact that the prototype will be created from scretch most of the concepts have to be created in brainstroming meetings.
+An agile development process will be used to react to rapidly changing requirements.
+As mentioned before a Kanban like method will be used in this project.
 
-% In this chapter you will describe the requirements for your component. Try to group the
-% requirements into subsections such as ’technical requirements’, ’functional requirements’,
-% ’social requirements’ or something like this. If your component consist of different partial
-% components you can also group the requirements for the corresponding parts.
-% Explain the source of the requirements.
-% Example: The requirements for an X have been widely investigated by Organization
-% Y.
-% In his paper about Z, Mister X outlines the following requirements for a Component
-% X
 
 \section{Technical requirements}
 \label{section:technical-requirements}
@@ -23,28 +20,27 @@ Tools like Open Baton inherently supports OpenStack as the \ac{ETSI} \ac{MANO} \
 Most \ac{MANO} tools like Open Baton uses OpenStack which deploys virtual machines to virtualize the \acp{NF}.
 This is a rock solid solution for a cloud environment.
 Unfortunately a bare-metal virtualization is most of the times not feasible on small power devices like they are used in the \ac{IoT} area.
-Therefore OpenStack should be replaced by a more efficient and lightweight solution like container virtualization.
-The desired \acp{NF} can be bundeled in one or multiple containers and executed afterwards on the expected \ac{IoT} nodes.
+Therefore a much more efficient and lightweight solution like container virtualization should be used and handled by an orchestration engine.
+The desired service like a \acp{NF} can be bundeled in one or multiple containers and executed afterwards on the expected \ac{IoT} nodes.
 Such a bundle of containers should be passed to the node as a build plan or a blueprint of the service.
 The fog node engine should accept the blueprint and deploy the containers to the desired virtualization layer.
 Afterwards the lifecylce of the services should be monitored.
 
 % constraints
-The second functional requirement is the implementation of a constraint logic which will be used to filter relevant nodes during the \ac{NF} orchestration.
-A constraint can be a functional and non-functional constraint.
+The second functional requirement is the implementation of a constraint logic which will be used to filter relevant nodes during the orchestration.
+A constraint can be a functional and non-functional capability.
 For example a specific hardware component, like a sensor or a ZigBee dongle, which is necessary to execute the \ac{NF} or a hardware requirement, like \ac{CPU} power, \ac{RAM} or disk space.
 It could also be a non-functional constraint, for example a specific software which has to be installed or a protocal which can be used.
-The local orchestrator should manage these constraints for itself and if necessary for all adjacent nodes and should consider them while choosing a suitable nodes for the desired \ac{NF}.
+The engine should be able to manage these constraints by itself and if necessary for all adjacent nodes and should consider them while choosing a suitable nodes for the desired \ac{NF}.
 The whole functionality should work similar to the labels in Docker Swarm.
 There a Docker Swarm node can be have multiple labels, which can be considered when deploying an image.
 This behavior should be achieved by the fog node engine.
-% images should be found by the registry?
-% should only the server have these information or should the node himself have the infromations/schema and can provide it?
 
 Some side conditions should also be fulfilled.
 The whole system should be modular and easy to extend.
 Modules should be as decoupled as possible and the whole system should be controled via an \ac{API}.
-The centralized cloud environment should be easiely replacable and should not be exclusively bound to Open Baton.
+The centralized cloud environment should be easiely replacable and should not be exclusively bound to Open Baton or any other tool.
+The same applies to the prototype, it should not be bound to Docker only and should be able to use other virtualization tools.
 Finally the whole system should be well tested and documented.
 
 
@@ -52,17 +48,20 @@ Finally the whole system should be well tested and documented.
 \label{section:functional-requirements}
 % prototype behavior
 After the general conditions for the prototype has been defined, the functional requirements will also be addressed.
-When selecting the programming environment special attention is paid to the compatibility of the Open Baton framework. % TODO: was noch?
-This is particularly important as the effort to develop a prototype should be a s small as possible and the prototype should be natively applicable on the fog nodes.
-Open Baton has an build in plugin mechanism, which allows to replace for example the \ac{VIM} driver or the \ac{VNFM} so that any third party tool can be accessed via an \ac{API}.
-Because Open Baton and the whole environment around them is open source, it would be also feasible to extend the system if necessary, but with the addition, that the system still follows the \ac{ETSI} \ac{MANO} conventions.
-Beside that the prototype should be flexible enough to also fit in any other system by providing an \ac{API} to control the system.
-
-% GUI beahvior
-Additional it would be useful to create a \ac{GUI} for interacting with the prototype and show the functionallity of the system.
-This should only be a simple \ac{GUI} for testing and demonstration purposes and should not be necessary for executing the final prototype.
-Later on the prototype should be controlled via the \ac{API} from any other existing orchestration tool.
-A command line tool to control the system would be useful as well and eases the handling of the prototype.
+% When selecting the programming environment special attention is paid to the compatibility of the Open Baton framework. % TODO: was noch?
+% This is particularly important as the effort to develop a prototype should be a s small as possible and the prototype should be natively applicable on the fog nodes.
+% Open Baton has an build in plugin mechanism, which allows to replace for example the \ac{VIM} driver or the \ac{VNFM} so that any third party tool can be accessed via an \ac{API}.
+% Because Open Baton and the whole environment around them is open source, it would be also feasible to extend the system if necessary, but with the addition, that the system still follows the \ac{ETSI} \ac{MANO} conventions.
+% Beside that the prototype should be flexible enough to also fit in any other system by providing an \ac{API} to control the system.
+% \todo{Rework that section}
+%
+% % GUI beahvior
+% Additional it would be useful to create a \ac{GUI} for interacting with the prototype and show the functionallity of the system.
+% This should only be a simple \ac{GUI} for testing and demonstration purposes and should not be necessary for executing the final prototype.
+% Later on the prototype should be controlled via the \ac{API} from any other existing orchestration tool.
+% A command line tool to control the system would be useful as well and eases the handling of the prototype.
+\todo{Rework that section}
+\todo{also more}
 % TODO: probably more?
 
 \section{Use-Case-Analysis}
@@ -75,7 +74,6 @@ A command line tool to control the system would be useful as well and eases the 
 
 \section{Delineation from existing solutions}
 \label{section:delineation-from-existing-solutions}
-\todo{Rework that section}
 This section is intended to show the features of existing systems and the main differences will be highlighted.
 As mentioned before, the prototype to be developed should orchestrate virtualized containers on nodes based on functional and non-functional constraints.
 Therefore the focus of this consideration is the orchestration as well as the constraints.

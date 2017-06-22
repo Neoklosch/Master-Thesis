@@ -7,6 +7,7 @@ This chapter introduces the architectural design of plugin respect to the previo
 Therefore the used development environment will be analyzed.
 Followed by the initial architecture of the plugin to be developed.
 Based on that the different layer of the system will be elaborated.
+\todo{Rework that section}
 
 \section{Overview}
 % The concept chapter provides a high-level explanation of your solution. Try to explain
@@ -109,6 +110,9 @@ Finally the \textit{Monitoring Agenct} is used to log all ongoing events and giv
 % -> jedoch decoupled as much as possible
 % ---> DI, RxPy
 
+The working title of the project will be \textbf{Motey}.
+In the following the prototype will also be referenced as Motey.
+
 \subsection{Virtualization layer}
 The virtualization layer is basically an abstraction layer to generalize the different virtualization engines.
 Therefore a so called \ac{VAL} manager which will be implemented with the facade design pattern is used to load the plugins and abstract the methods of the plugins.
@@ -116,11 +120,11 @@ As mentioned before to realize the plugin functionality the Yapsy library will b
 The library offers a way to easily add new plugins to the system and is also designed to be easy to use.
 It only depends on Python standard libraries and lightweight by design.
 Each supported virtualization engine needs his own concrete plugin implementation which should be use an interface to have a common ground.
-The supported default engine is Docker, but could be extended in a future version of the prototype.
+The supported default engine is Docker, but could be extended in a future version of Motey.
 
 \subsection{Communication layer}
 \label{subsection:CommunicationLayer}
-The communication layer is a pretty important componant in the prototype.
+The communication layer is a pretty important component in the Motey engine.
 Here three different communication points are necessary to provide the basic functionalities which are needed for the fog node agent.
 
 The first subcomponent is the \textbf{node discovery}.
@@ -181,7 +185,7 @@ As mentioned in the \ref{subsection:CommunicationLayer} the endpoint will be imp
 Also internal components like the \ac{VAL} plugins can add new capabilities to the system.
 
 \subsection{Orchestration layer}
-As one of the most important layers, the \textit{Orchestration Layer} will be a connector between all the nodes in a cluster and also between multiple components in the prototype himself.
+As one of the most important layers, the \textit{Orchestration Layer} will be a connector between all the nodes in a cluster and also between multiple components in the Motey engine himself.
 Primary it is used to handle the business logic of the deployment of new services.
 If a new service will be send to the communication layer it will be forwarded to the orchestration layer and will be parsed, validated and handled by them.
 This layer is also responsible for checking the necessary capabilities for each service component and will search for suitable nodes in the cluster if one or multiple capabilites are not fulfilled.
@@ -207,14 +211,14 @@ Beside that, this component will also handle the lifecycle of a service during t
 \subsection{Continuous Integration}
 Continuous integration is nowadays a frequently used technique to automate repeating deployment steps into a self executing pipeline.
 It starts by running unit tests, code style checks and ends up with deploying the compiled programm to a server or a marktplace.
-Due to the fact that Github\footnote{\url{https://github.com}} will be used to host and maintain the git repository for the prototype, the pretty famous and semless integrated Travis CI\footnote{\url{https://travis-ci.org}} will be used to implement the continuous integration pipeline.
+Due to the fact that Github\footnote{\url{https://github.com}} will be used to host and maintain the git repository for the Motey project, the pretty famous and semless integrated Travis CI\footnote{\url{https://travis-ci.org}} will be used to implement the continuous integration pipeline.
 To start with Travis CI only the Github account has to be synced with the platform and a \ac{YAML} configuration file has to be placed in the root folder of the git repository.
 Travis CI supports several programming languages and also various third party services, like Docker Hub or Amazon AWS.
 Everytime a new commit will be pushed to the git remote repository, a new build will be started at Travis CI.
 At first a virtual machine will be started by Travis CI.
 Afterwards all necessary components like libraries and tools will be installed in the virtual machine.
 Finally all predefined tasks from the \ac{YAML} file will be executed.
-In terms of the prototype, unit tests will be executed, as well as code style checks and if a version from the master branch will be build, a Docker container will be created and pushed to the related Docker Hub repository.
+In terms of the Motey project, unit tests will be executed, as well as code style checks and if a version from the master branch will be build, a Docker container will be created and pushed to the related Docker Hub repository.
 This pipeline guarantees that the project is tested and a coding standard is enforced.
 Further the manual build of the Docker container including the upload to the Docker Hub will be obsolete.
 
