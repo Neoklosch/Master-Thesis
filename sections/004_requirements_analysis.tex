@@ -12,8 +12,8 @@ An agile development process will be used to react to rapidly changing requireme
 As mentioned before a Kanban like method will be used in this project.
 
 
-\section{Technical requirements}
-\label{section:technical-requirements}
+\section{Functional requirements}
+\label{section:functional-requirements}
 % virtualization
 As the fundamental requirement, the prototype to be developed has to create, manage and maintain virtualized containers on a fog node.
 Tools like Open Baton inherently supports OpenStack as the \ac{ETSI} \ac{MANO} \ac{VIM} layer.
@@ -67,26 +67,35 @@ The centralized cloud environment should be easiely replacable and should not be
 The same applies to the prototype, it should not be bound to Docker only and should be able to use other virtualization tools.
 Finally the whole system should be well tested and documented.
 
+\todo{GUI}
 
-\section{Functional requirements}
-\label{section:functional-requirements}
-% prototype behavior
-After the general conditions for the prototype has been defined, the functional requirements will also be addressed.
-% When selecting the programming environment special attention is paid to the compatibility of the Open Baton framework. % TODO: was noch?
-% This is particularly important as the effort to develop a prototype should be a s small as possible and the prototype should be natively applicable on the fog nodes.
-% Open Baton has an build in plugin mechanism, which allows to replace for example the \ac{VIM} driver or the \ac{VNFM} so that any third party tool can be accessed via an \ac{API}.
-% Because Open Baton and the whole environment around them is open source, it would be also feasible to extend the system if necessary, but with the addition, that the system still follows the \ac{ETSI} \ac{MANO} conventions.
-% Beside that the prototype should be flexible enough to also fit in any other system by providing an \ac{API} to control the system.
-% \todo{Rework that section}
-%
-% % GUI beahvior
-% Additional it would be useful to create a \ac{GUI} for interacting with the prototype and show the functionallity of the system.
-% This should only be a simple \ac{GUI} for testing and demonstration purposes and should not be necessary for executing the final prototype.
-% Later on the prototype should be controlled via the \ac{API} from any other existing orchestration tool.
-% A command line tool to control the system would be useful as well and eases the handling of the prototype.
-\todo{Rework that section}
-\todo{also more}
-% TODO: probably more?
+
+\section{Non-Functional requirements}
+\label{section:non-functional-requirements}
+After the functional conditions for the prototype, also the non-functional requirements will also be addressed.
+They will be classified into the following categories:
+
+\paragraph{Reliability} Due to the fact that the final product will only be a prototype and has only a few development iterations and testers, it will not be production ready. Nevertheless the prototype will be developed with stability and robustness in mind and it will also be well tested and documented.
+\paragraph{Performance} As a crucial requirement, extra attention will be payed for make the application as lightweight as possible and reducing the dependencies and tool chain as small as possible.
+The use of powerfull but resource consuming tools and libraries like huge databases or message queues will be renounced.
+Necessary libraries will be used if they are essential, but in general they will be selected with the requirement of being executed on low-power devices.
+\paragraph{Usability} The prototype should be easy to use, to install and to maintain.
+An easy to use installation script will be developed and the source code as well as the tool himself will be well documented.
+\paragraph{Maintainablity} Due to the fact that the prototype will be a solid base for further development, it will be created as modular as possible.
+It should also be well structured by using well known design patterns.
+Each component should be easy to replace and also easy to maintain.
+The project should be open source and extensible by everyone.
+Code tests and code style checks will help to ensure the functionality and extensibility of the application.
+\paragraph{Security} Also an important part as in nearly every project, also security will be considered.
+Especially in the \ac{IoT} security becomes important due to a several bad examples in the last years.% TODO: quellen: botnetz, etc.
+Therefore particular scenarios will be considered and recommendations will be addressed.
+Since this is only a prototype and showing up the functionality will be in focus, some provisions will only be demonstrated, but not implemented.
+\paragraph{Correctness} As mentioned before the code will be tested and code style checks will help to have a standardized code base.
+\paragraph{Flexibility} The software will be developed with some well known standards in mind like the \ac{MANO} specification, standard protocols and also design patterns to make the source code more readable and understandable.
+\paragraph{Scalability} To prototype will also be developed to be executed at a bunch of nodes at the same time.
+Primary usage will be in a cluster with several other nodes.
+This need will be considered during the whole development phase.
+
 
 \section{Use-Case-Analysis}
 \label{section:use-case-analysis}
