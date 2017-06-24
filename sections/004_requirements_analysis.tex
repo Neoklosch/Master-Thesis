@@ -36,7 +36,31 @@ The whole functionality should work similar to the labels in Docker Swarm.
 There a Docker Swarm node can be have multiple labels, which can be considered when deploying an image.
 This behavior should be achieved by the fog node engine.
 
-Some side conditions should also be fulfilled.
+Another important aspect is the lifecycle management of the node, the deployed services and images.
+In the prototype it has to be elaborated how the lifecycle of the several componants can be implemented.
+An sample implementation of a node management lifecycle is shown in the OpenFog Reference Architecture for Fog Computing\autocite[p. 52]{OpenFog:2017}.
+Figure \ref{fig:open_fog_node_mgm_lifecycle} describes the five steps of a typical lifecycle based on these architecture.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{resources/images/node_management_lifecycle.png}
+    \caption[Node management lifecycle]{Node management lifecycle. Adapted from: \autocite[p. 52]{OpenFog:2017}}
+    \label{fig:open_fog_node_mgm_lifecycle}
+\end{figure}
+
+\begin{itemize}
+  \item The \textbf{Commission} is the earliest phase in a lifecylce mostly used to perform action like identification, certificates or calibration of time.\autocite[p. 52]{OpenFog:2017}
+  \item In the \textbf{Provision} phase the node will be enrolled to the system so that the node can be discovered and identified and also advertise features and capabilities.\autocite[p. 52]{OpenFog:2017}
+  \item The \textbf{Operate} phase is the state of the node when everything operates normal. This includes the reliability, availability and serviceability of the node.\autocite[p. 52]{OpenFog:2017}
+  \item In contrast to that the \textbf{Recover} phase performs action if something operates out of norm.\autocite[p. 52]{OpenFog:2017} The node should be able to recover to the normal state.\autocite[p. 52]{OpenFog:2017}
+  \item Finally the \textbf{Decomission} phase is used for cleaning up sensitive data on the node and to unregister from other components.
+\end{itemize}
+
+In addition to the node lifecycle, an exemplarily lifecycle for services and images is shown in the \ac{ETSI} \ac{MANO} specification\autocite[p. 67 ff.]{ETSI:MANO:2014}
+These lifecylce is much more detailed than the node OpenFog node lifecycle and it handles several state from the instantiation of a service, over quering some data, up to the termination of service.
+Some of the specifications are tightly coupled to \acp{NFV}.
+However these lifecycle specification is a good starting point to elaborate a custom solution.
+
+Some secondary conditions should also be fulfilled.
 The whole system should be modular and easy to extend.
 Modules should be as decoupled as possible and the whole system should be controled via an \ac{API}.
 The centralized cloud environment should be easiely replacable and should not be exclusively bound to Open Baton or any other tool.
