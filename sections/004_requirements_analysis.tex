@@ -107,11 +107,72 @@ This need will be considered during the whole development phase.
 
 \section{Use-Case-Analysis}
 \label{section:use-case-analysis}
-\doit
-% Deploy VNFs in factory (e.g. mass production, tracking of stuff)
-% ad hoc deployment if truck arives at factory
-% detect the right nodes, e.g. software needs specific sensor or latency
-% Sequenzdiagramm für Ablauf vom Deployment bis zum container: IMG_20170526_201659.jpg
+This analysis will show up four exemplary use cases for the prototype to be developed.
+These use cases describes the system in a simplified and abstract manner.
+They will not refer to any technology but will show up the usage of the prototype from a user prespective.
+
+\paragraph{Service deployment from a cloud orchestrator}
+That will be the most common use case in this consideration.
+A service for example a \ac{NF} should be deployed to a single node.
+Therefore the prototype will be installed on the node himself.
+A cloud service such as Open Baton will orchestrate the deployment.
+To do so a so called blueprint which is basically a description of the service, the images and the capabilities that are necessary to execute the image, will be passed over to the prototype via an \ac{API}.
+The prototype will receive them and will parse them afterwards.
+All the provides images will be executed on the same node and at the end the service is up and running.
+The state of the services can be observed at any step of the process.
+
+\paragraph{Service deployment based on capabilities}
+Also in this case a cloud service like Open Baton will deploy a service to a node cluster.
+Again one node will get the blueprint and parse them.
+During the parsing of the blueprint the node does not fulfill one or multiple capabilites that are necessary to execute a specific image.
+If the node detects such an image, it will search for a node which is able to deploy an image with the given capabilites.
+For example one image needs a ZigBee dongle to measure data, so the capability \textit{ZigBee} is added to the image in the blueprint.
+The first node, Node A, has no ZigBee dongle connect and therefore they is not able to fulfill that requirement.
+Node A will then ask all the other nodes in the cluster if they can staisfy the need.
+Node B will respond that they is also not able to do so.
+Node C is able and will respond with a related message.
+Node A send over the image to be deployed and Node C will execute them.
+From that point on, Node A is still responsible for the whole service, but Node C is executing the image and will frequently be ask for the state of the image.
+This process can be repeat for one or multiple images.
+If each image was deployed, the service is up and running and can again observed by the user.
+
+\paragraph{A new node will appear}
+If a new node will be added to the cluster, all the other nodes should be informed about this circumstance.
+Therefore the appearing node will be send out a message with some meta information, with for example the \ac{IP} address of the node, to all the other nodes.
+Each node in the cluster will get the message and can store the information.
+Additionally the nodes will also send back a message with their meta information.
+Again each node will receive these message, including the newly added node.
+The new node can also store the information of the other nodes.
+From now on, all the nodes know each other and can directly communicate with each other.
+A centralized entity is no longer necessary.
+The deregistration of a node will be similar to the registration process.
+The disappearing node will send out a message with meta informations to all the other nodes.
+They will receive them and remove the node from the local storage.
+This disappeared node will no longer be part of the cluster.
+
+\paragraph{Lifecycle managment}
+The lifecycle management is important for the maintainer of the nodes.
+Each process and each task in the system should be transparent and comprehensible.
+Therefore the different entities should be expose their lifecycle.
+The first one is the node lifecycle.
+This represents the current state of the node.
+Depending from the state, a node can be able to deploy a service or not.
+Lets assume the node is currently setting up all the necessary configurations and tools, they will then be in the state of the \textit{configuration phase}.
+In this state a deployment will not be possible.
+Similar to that also the services and images will be have a lifecycle.
+When a service is deployed but does not have started all the related images, it will be in the state of \textit{instantiating} the service.
+If there occures an error while starting a container, the image and also the related service will be marked as \textit{Error} and the deployment will fail.
+All of these states should also be viewable by a centralized instance like the maintainer.
+
+% 1. Autonomes verhalten bei Cloud abwesenheit
+% -> cloud hat service auf cluster deployed
+% -> alles funktioniert wunderbar
+% -> verbindung zur cloud bricht ab
+% -> eine node wird deaktiviert, wo ein container drauf lief
+% -> container muss auf andere node erneut gestart werden
+% -> node sucht passende node und deployed container dort erneut
+% -> cloud kommt wieder
+% -> bekommt veränderung mitgeteilt
 
 \section{Delineation from existing solutions}
 \label{section:delineation-from-existing-solutions}
