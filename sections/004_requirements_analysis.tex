@@ -149,11 +149,15 @@ Just as Kubernetes, Docker Swarm is not \ac{ETSI} \ac{MANO} compliant and provid
 Due to the fact that it is a build-in function of Docker, the setup is quite easy and much more lightweight than Kubernetes.
 This means it will also work on \ac{IoT} devices by default.
 
-\paragraph{OpenStack}
-% VMs only -> my system much more lightweight -> optimal for IoT area
-% complicated -> huge setup effort -> several tools have to be configured
-% is suitable for NFVs not for IoT
-\doit
+\paragraph{OpenStack} is natively supported by Open Baton and will be used by default as the underlaying virtualization tool.
+It only supports \acp{VM} and is mainly designed to be used in a cloud environment as well.
+The installation processes is much complexer then for Docker Swarm or Kubernetes.
+There are much more dependencies and configurations to be made.
+
+Beside the huge setup effort, it is excellent for \acp{NFV}.
+It has a huge community, it is an established tool and very elaborated.
+Compared to other tools it is not flexible and lightweight enough for the usage in an \ac{IoT} context or more specific for the use directly on the nodes himself.
+There are some efforts to move OpenStack over to the \ac{IoT} infrastructure\autocite{OpenStack:IoT}\autocite{OpenStack:Kubernetes:IoT}, but also in these attempts it will only be used in the cloud level.
 
 \paragraph{Cloudify} is completely compatible to the \ac{ETSI} \ac{MANO} standard and can be used as the \ac{NFVO}, as well as the generic \ac{VNFM} of this architecture.\cite[cf.]{Cloudify:MANO}
 It is also able to interact with multiple \acp{VIM}, containers, infrastructures and devices and due to the fact that it can be extended with plugins, it is can be used together with several well known tools like OpenStack, Docker or even Kubernetes.\cite[cf.]{Cloudify:MANO}
