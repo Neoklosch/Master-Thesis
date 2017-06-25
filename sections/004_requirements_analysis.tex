@@ -36,6 +36,7 @@ The whole functionality should work similar to the labels in Docker Swarm.
 There a Docker Swarm node can be have multiple labels, which can be considered when deploying an image.
 This behavior should be achieved by the fog node engine.
 
+% lifecycle
 Another important aspect is the lifecycle management of the node, the deployed services and images.
 In the prototype it has to be elaborated how the lifecycle of the several componants can be implemented.
 An sample implementation of a node management lifecycle is shown in the OpenFog Reference Architecture for Fog Computing\autocite[p. 52 f.]{OpenFog:2017}.
@@ -60,14 +61,21 @@ These lifecylce is much more detailed than the node OpenFog node lifecycle and i
 Some of the specifications are tightly coupled to \acp{NFV}.
 However these lifecycle specification is a good starting point to elaborate a custom solution.
 
+% GUI
+The last functional component to be developed will be the \ac{GUI}.
+Those should only be used for demonstrate the basic functionalities of the prototype.
+It is not designed to use them in production.
+Therefore the \ac{GUI} will not have any security mechanismns like authorization, authentication or user management.
+It will only has a very basic design and a limited functionallity.
+This includes that existing nodes will be displayed with all the related services.
+Additionally it can be used to deploy new services and while using the existing endpoints.
+
 Some secondary conditions should also be fulfilled.
 The whole system should be modular and easy to extend.
 Modules should be as decoupled as possible and the whole system should be controled via an \ac{API}.
 The centralized cloud environment should be easiely replacable and should not be exclusively bound to Open Baton or any other tool.
 The same applies to the prototype, it should not be bound to Docker only and should be able to use other virtualization tools.
 Finally the whole system should be well tested and documented.
-
-\todo{GUI}
 
 
 \section{Non-Functional requirements}
