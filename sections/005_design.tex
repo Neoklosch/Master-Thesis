@@ -93,11 +93,17 @@ The \textit{Hardware Event Handler} is a communication endpoint for other third 
 For example an external hardware listener could send a message to the event handler to register a new connected device like a Zigbee dongle or a bluetooth stick.
 This component should allow multiple third party components to send events to them.
 Finally the \textit{Monitoring Agenct} is used to log all ongoing events and gives the maintainer of the system an overview of the system processes.
-\todo{write more - probabyl about architecture MVC}
-% MVC ohne View
-% -> keine spezielle architektur
-% -> jedoch decoupled as much as possible
-% ---> DI, RxPy
+
+As mentioned in the requirements section \ref{section:functional-requirements} the whole system should be modular and easy to extend.
+Therefore each layer will be as decoupled as possible.
+A clean architecture with decorated dependencies and only a single responsibility for each component.
+The whole code should be independent of any framework, independent of the other components and testable.
+To realize such an architecture, multiple design patterns will be used.
+\ac{DI} decouple the components and increase the testability.
+The decorator pattern will abstract concrete implementations by a centralized independent layer.
+The observer pattern can be used to handle streams of data for example from an \ac{API} endpoint.
+And finally the singleton pattern can prevent the construction of mulitple instances of a single module.
+All of them made the code base well structured and improve the readability as well as the comprehensibility
 
 \subsection{Virtualization layer}
 The virtualization layer is basically an abstraction layer to generalize the different virtualization engines.
