@@ -232,7 +232,18 @@ To handle the different states of the different engines, a transformation logic 
 
 
 \subsection{User interface}
-\doit
+As mentioned in section \ref{section:functional-requirements} the \ac{GUI} will only be used for demonstration purposes and is not designed for use them in production environments.
+The created \ac{REST} \ac{API} will be used to get all the necessary information and to deploy new services.
+A simple web layout based on Bootstrap\footnote{\url{http://getbootstrap.com}} as the CSS framework and Vue.js\footnote{\url{https://vuejs.org}} as the JavaScript frontend framework will be created.
+According to Wappalyzer\footnote{\url{https://wappalyzer.com/categories/web-frameworks}} is Bootstrap by far the most used \ac{CSS} framework out in there with a market share of 65.2\% (as of 26. June 2017).
+It is very elaborated and there are many templates available.
+Vue.js on the other side is relativly new and the new rising star on the JavaScript frontend framework market.
+It is much slimmer then tools like Angular.js\footnote{\url{https://angular.io}} or react\footnote{\url{https://facebook.github.io/react}} but has also less functionalities.
+It has a steep learning curve and optimal for small applications and rapid protoypes.
+Vue.js works natively together with Bootstrap so this will a rock solid solution.
+All the request will be done by Ajax requests to the \ac{API}.
+There will be no authentication or authorization due to the fat that it is only a prototypical implementation for demonstration purposes only.
+
 
 \section{Security}
 % https://www.golem.de/news/brickerbot-hacker-zerstoeren-das-internet-of-insecure-things-1704-127198.html
