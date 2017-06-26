@@ -182,7 +182,24 @@ Primary it is used to handle the business logic of the deployment of new service
 If a new service will be send to the communication layer it will be forwarded to the orchestration layer and will be parsed, validated and handled by them.
 This layer is also responsible for checking the necessary capabilities for each service component and will search for suitable nodes in the cluster if one or multiple capabilites are not fulfilled.
 Beside that, this component will also handle the lifecycle of a service during the deployment phase.
-\todo{more}
+\todo{more - Lifecycle}
+
+\subsection{Lifecycle management}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{resources/images/lifecycle_sequence_diagram_start_service.png}
+    \caption[Lifecycle management sequence diagram: starting a service]{Lifecycle management sequence diagram: starting a service}
+    \label{fig:lifecycle_mgm_squence_diagram_start_service}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{resources/images/lifecycle_sequence_diagram_stop_service.png}
+    \caption[Lifecycle management sequence diagram: stoping a service]{Lifecycle management sequence diagram: stoping a service}
+    \label{fig:lifecycle_mgm_squence_diagram_stop_service}
+\end{figure}
 
 % Sequenzdiagramm für LIFECYCLE of service
 % Sequenzdiagramm für deployment ablauf
