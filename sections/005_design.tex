@@ -233,6 +233,17 @@ To handle the different states of the different engines, a transformation logic 
 
 \subsection{User interface}
 As mentioned in section \ref{section:functional-requirements} the \ac{GUI} will only be used for demonstration purposes and is not designed for use them in production environments.
+Figure \ref{fig:gui_mockup} show the mockup of the web \ac{GUI}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{resources/images/gui_prototype.png}
+    \caption[Mockup of the web \ac{GUI}]{Mockup of the web \ac{GUI}}
+    \label{fig:gui_mockup}
+\end{figure}
+The page has only a few components like the header area, a navigation bar and the content area.
+In the mockup the service tab is shown.
+This view should list all the deployed services.
+Similar to this, the \textit{Nodes} tab should list all detected nodes and finally the \textit{deploy service} tab should add the possibility to upload \ac{YAML} data.
 The created \ac{REST} \ac{API} will be used to get all the necessary information and to deploy new services.
 A simple web layout based on Bootstrap\footnote{\url{http://getbootstrap.com}} as the CSS framework and Vue.js\footnote{\url{https://vuejs.org}} as the JavaScript frontend framework will be created.
 According to Wappalyzer\footnote{\url{https://wappalyzer.com/categories/web-frameworks}} is Bootstrap by far the most used \ac{CSS} framework out in there with a market share of 65.2\% (as of 26. June 2017).
