@@ -601,6 +601,7 @@ This is helpful for decoupeling the componants as well as replace or add a new c
 Beside that the manager simply forward the methods to the specific server.
 It is also used as a central place to start and stop all servers.
 
+
 \subsection{Capability management}
 Similar to the InterNodeOrchestrator the \textit{CapabilityEngine} is used as a connector between the communication layer and the in this case CapabilityRepository.
 Therefore the main components of the capability management are the CapabilityEngine and the \textit{ZeroMQServer}.
@@ -614,7 +615,39 @@ The received \ac{JSON} data will be again validate with the \textit{capability\_
 
 
 \subsection{User interface}
-\doit
+The whole Motey \ac{GUI} is located in a seperate folder called \textit{webclient}.
+Due to the fact that the \ac{GUI} is only for demonstration purposes, it should not be part of the main engine.
+Vue.js the used web framework is pretty lightweight, therefore only two files are necessary to execute the client.
+The \textit{index.html} file containes the skeleton of the page.
+In addition to that the \textit{main.js} file that is located in the \textit{js} folder contains the business logic of the page.
+Figure \ref{fig:motey_gui_screenshot} shows the final \ac{GUI}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{resources/images/motey_gui_screenshot.png}
+    \caption[Screenshot of the Motey \ac{GUI}]{Screenshot of the Motey \ac{GUI}}
+    \label{fig:motey_gui_screenshot}
+\end{figure}
+The header is fixed and only containes the name of the engine and a short description of the page content.
+Below them the navigation bar located.
+As in the mockup four different pages are available.
+The first called \textit{Motey} has a very short introduction into the web client.
+The second and also the selected one in the screenshot shows a list with all deployed services.
+\textit{Registered nodes} will show a list with all discovered nodes, again in a table.
+Finally the \textit{Send blueprint} contains a textarea to put in the \ac{YAML} service description and a button to send the data.
+
+The \textit{index.html} file contains also the files for the bootstrap and Vue.js libraries.
+They are loaded from a \ac{CDN} provider to speed up the loading time.
+This is possible because if the user already visited a page that uses the same \ac{CDN} provider and the same libraries, they will be cached in the browser internal cache.
+If the user then visits another site that try to load the files, they will be taken from the cache instead of requested again.
+This increases the page loading speed as well as reduces the traffic.
+Another benefit is that the files does not have to be stored on the server.
+
+Beyond that the \textit{main.js} file initializes the routes to handle the navigation bar redirects.
+Each route has an own controller similar to the Blueprint concept of the Flask server.
+The \textit{NodesListing} and \textit{ServiceListing} controllers mainly fetches the \ac{JSON} data from the \ac{REST} \ac{API} and map them to the related template in the \ac{HTML} file.
+The \textit{BlueprintTemplate} controller get the data from the textarea and send them over to the \ac{API}.
+Finally the \textit{Content-Type} of the request will be set to \textit{application/x-yaml} as specified in the server endpoint.
+As definied before, there is no user authentication or other access control mechanismns due to the fact that this \ac{GUI} is exclusivly made for testing purposes.
 
 %\subsection{Deployment and Continous Integration}
 % Travis.io
