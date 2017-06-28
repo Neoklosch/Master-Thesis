@@ -1,7 +1,5 @@
-\chapter{Implementation}\label{chapter:implementation}
-% This chapter describes the implementation of component X. Three systems were chosen
-% as reference implementations: a desktop version for Windows and Linux PCs, a Windows
-% Mobile version for Pocket PCs and a mobile version based on Android.
+\chapter{Implementation}
+\label{chapter:implementation}
 This chapter describes the implementation of the Motey engine as well as the deployment and capability logic.
 Used technologies, libraries and tools, as well as custom components would be presented and the functionality will be demonstrated.
 Thereby challenges and problems during the development of the plugins will be shown and the solutions will be discussed.
@@ -16,14 +14,9 @@ The following software is required to execute the whole software stack.
 \end{itemize}
 On hardware side Motey will be tested on Raspberry Pis type 2 B or newer.
 Depending on the amount and type of the executed Docker images, the hardware specifications may can vary.
-% TODO: installation instructions?
+
 
 \section{Project structure}
-
-% The implementation is seperated into 2 distinguished eclipse projects as depicted in
-% figure 5.1.
-% The following listing briefly describes the single packages of both projects in alphabetical
-% order to give an overview of the implementation:
 Beside the main folder with the Motey engine, the project contains several directories with helpfull scripts and tools.
 A brief overview about the project structure will givin in this section.
 A detailed explanation of all files will be omitted, as this would exceed the scope of the thesis.
@@ -71,7 +64,7 @@ A detailed explanation of all files will be omitted, as this would exceed the sc
 This section will show up some of the most important libraries used in the Motey engine.
 Each library will be introduced briefly and the reason for using it in the project will be shown.
 
-\paragraph{daemonize} allows to run a services as a daemon process.
+\paragraph{daemonize}\label{library:daemonize} allows to run a services as a daemon process.
 It is made exclusively for Unix-like systems.
 The library will create a pid file after starting the service.
 In the Motey engine, the file path can be configured via a configuration file.
@@ -671,9 +664,108 @@ The \textit{BlueprintTemplate} controller get the data from the textarea and sen
 Finally the \textit{Content-Type} of the request will be set to \textit{application/x-yaml} as specified in the server endpoint.
 As definied before, there is no user authentication or other access control mechanismns due to the fact that this \ac{GUI} is exclusivly made for testing purposes.
 
-%\subsection{Deployment and Continuous Integration}
-% Travis.io
-% Docker Container + Docker Hub
-% setup.py
-% Sphinx
-%\doit
+\subsection{Deployment and Continuous Integration}
+Travis CI as the tool of choice for the \ac{CI} uses a \textit{.travis.yml} configuration file.
+The content of the file is shown in listing \ref{code:travis_config}.
+
+\begin{listing}[H]
+  \begin{minted}{yaml}
+  sudo: true
+  services: docker
+  language: python
+  os: linux
+  cache: pip
+  python:
+    - "3.6"
+
+  install: "pip install -r motey-docker-image/requirements.txt"
+
+  script:
+    - pycodestyle --ignore=E241,E501 motey/
+    - pycodestyle --ignore=E241,E501 samples/
+    - python3 -m unittest tests/test_*.py
+
+  after_success:
+    - if [[ "$TRAVIS_BRANCH" = "master" ]]; then
+      docker build -t neoklosch/motey motey-docker-image;
+      docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+      docker push neoklosch/motey;
+      fi
+  \end{minted}
+  \caption{Travis CI configuration file}
+  \label{code:travis_config}
+\end{listing}
+
+There are some important parts in it.
+At first the script need root privileges to build and upload the Docker image.
+Line 1 add this privilege and in line 2 the Docker service is requested.
+The programming language the application to build is written in, is declared in line 3, in this case python.
+Line 6 and 7 defines the python version to use.
+There could be multiple, but due to the fact that the script should only be build one Docker image and should only upload them once, only one python version can be used.
+Otherwise multiple python version would be executed and after each sucessfully build version an cointainer would be build and uploaded.
+
+Line 9 defines the installation script.
+This will executed after the virtual environment are created by Travis CI.
+In this case the python requirements will be installed.
+Line 11 up to 14 are used to test the source code.
+A code style check is performed in line 12 and 13.
+It will check to code against the PEP 8 standard\footnote{\url{https://www.python.org/dev/peps/pep-0008}}, which is be used by several other libraries like the pretty famous Django project\footnote{\url{https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style}}.
+After that the unit tests will be executed.
+If there is an error during the execution of the \textit{script} block, the whole build process will be stopped and marked as error.
+The current state can be view in Travis CI at \url{https://travis-ci.org/Neoklosch/Motey} and also in the readme of the project at \url{https://github.com/Neoklosch/Motey} or \url{http://motey.readthedocs.io/en/latest}.
+
+The \textit{after\_success} block is used to create and upload the Docker image.
+It will only be executed if it is a master branch build (see line 17).
+This is reasonable because a development branch build can be unstable and should not be used to create an official Docker image.
+Line 18 will build the image and line 19 uploads it.
+Two environment variables are used here, because to upload an image, the username and ther password of the Docker Hub account has to be passed.
+Due to the fact that this file is under public version control, this sensible informations should not be commited.
+Therefore preconfigured login credentials are used.
+Finally the Docker image will be pushed in line 20.
+
+To build an image, a so called \textit{Dockerfile} has to be created.
+Listing \ref{code:motey_dockerfile} shows the Dockerfile for Motey.
+
+\begin{listing}[H]
+  \begin{minted}{dockerfile}
+  FROM ubuntu:xenial
+
+  MAINTAINER Neoklosch version: 0.0.1
+
+  ADD ./setup.sh /tmp/setup.sh
+  ADD ./requirements.txt /tmp/requirements.txt
+  RUN /bin/bash /tmp/setup.sh
+
+  EXPOSE 5023 5091 5092 5094 5094 1883
+
+  CMD ["motey", "start"]
+  \end{minted}
+  \caption{Dockerfile to create the Motey Docker image}
+  \label{code:motey_dockerfile}
+\end{listing}
+
+The \textit{FROM} command at line 1 defines the base image.
+In this case it is an \textit{Ubuntu} image in version 16.04 also called Xenial Xerus, which has a long-time support and is a pretty stable version.
+The \textit{ADD} command is used to add external files to the Docker container to be executed later or make them available in the image.
+The script adds a \textit{setup.sh} file that is executed in line 7.
+This file uses the \textit{requirements.txt} file, that is also added.
+Additional the ports in line 9 are exposed, which means they are provided to the Docker engine as used by the container.
+There is no automatical mapping between the host and the guest system ports, but they can be mapped much faster due to the \textit{EXPOSE} command.
+Finally the \textit{CMD} command will execute a specific shell command, in this case the \textit{motey start} command.
+
+This command is available after Motey was installed by the \textit{setup.py} file in the root folder.
+To install Motey, only two build steps has to be executed, that are shown in listing \ref{code:motey_setup}.
+
+\begin{listing}[H]
+  \begin{minted}{bash}
+  python3 setup.py build
+  python3 setup.py install
+  \end{minted}
+  \caption{Motey setup procedure}
+  \label{code:motey_setup}
+\end{listing}
+
+When the installation routine is done, the \textit{motey} command becomes available globally.
+The usage of the command line tool was shown in \ref{library:daemonize}.
+Beside the installation via the setup script, Motey can also be added as a Docker container named \textit{neoklosch/motey}.
+This method is prefered to make the first steps with Motey, because it is more isolated from the host system, easier to use, to remove and to update.
