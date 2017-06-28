@@ -236,15 +236,34 @@ Finally the created \ac{GUI} as well as the \ac{CI} pipeline will be explained.
 % You can also compare different approaches. Example: Since the implementation based
 % on X failed I choosed to implement the same aspect based on Y. The new approach
 % resulted in a much faster ...
+The main component in the Motey engine is the \textit{Core} class.
+It will start all the necessary components to run the engine.
+The core can be executed in debug mode or as a daemon.
+Latter creates a pid file which can be configured via the \textit{config.ini} file.
+The dependencies of the most important components is shown in figure \ref{fig:motey_class_diagram}.
 
-% Core samt daemon erklären
-% einzelne Pakete erklären
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{resources/images/class_diagram.png}
     \caption[Motey class diagram]{Motey class diagram}
     \label{fig:motey_class_diagram}
 \end{figure}
+
+This class diagram is simplified in a way that not all components and not all dependecy connections are shown.
+But it is pretty helpful to get an basic understand of the interconnection of the different layers.
+A good example of the decorator pattern can be found in the top left corner of the diagram.
+The \textit{CommunicationManager} acts as a decorator for all the connection endpoints.
+Therefore it is easy to add a new endpoint or replace an existing one, only the \textit{CommunicationManager} has to be modified instead of all the classes which uses the communication layer.
+Another example for that behavior is the \textit{VALManager}.
+Also this class acts as a decorator and manages all virtualization plugins, in this case the \textit{DockerVAL}.
+The repositories are a special case of the decorator pattern, because they covers the usage of the \textit{TinyDB} library, but they are also a centralized place for using them instead of all over in the engine.
+The \textit{CapabilityEngine} and the \textit{InterNodeOrchestrator} are the only componant that uses the \textit{CommunicationManger}.
+The \textit{Core} also imports that class but only to start them.
+Beside the \textit{Core} the \textit{InterNodeOrchestrator} is the central place in the app.
+Each event will be executed in the layer.
+Therefore most of the other components will be come together in this class.
+In the following the separate layers are discribed in detail.
+
 
 \subsection{Data layer}
 \label{subsection:impl-data-layer}
