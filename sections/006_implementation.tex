@@ -2,19 +2,19 @@
 % This chapter describes the implementation of component X. Three systems were chosen
 % as reference implementations: a desktop version for Windows and Linux PCs, a Windows
 % Mobile version for Pocket PCs and a mobile version based on Android.
-This chapter describes the implementation of the motey engine as well as the deployment and capability logic.
+This chapter describes the implementation of the Motey engine as well as the deployment and capability logic.
 Used technologies, libraries and tools, as well as custom components would be presented and the functionality will be demonstrated.
 Thereby challenges and problems during the development of the plugins will be shown and the solutions will be discussed.
 
 \section{Environment}
-To motey engine is designed to be exectued on low-power devices like a Raspberry Pi.
+To Motey engine is designed to be exectued on low-power devices like a Raspberry Pi.
 The following software is required to execute the whole software stack.
 \begin{itemize}
   \item Ubuntu version 14.10 or higher
   \item Python 3.5 or newer
   \item Docker 17.3 or higher
 \end{itemize}
-On hardware side motey will be tested on Raspberry Pis type 2 B or newer.
+On hardware side Motey will be tested on Raspberry Pis type 2 B or newer.
 Depending on the amount and type of the executed Docker images, the hardware specifications may can vary.
 % TODO: installation instructions?
 
@@ -24,7 +24,7 @@ Depending on the amount and type of the executed Docker images, the hardware spe
 % figure 5.1.
 % The following listing briefly describes the single packages of both projects in alphabetical
 % order to give an overview of the implementation:
-Beside the main folder with the motey engine, the project contains several directories with helpfull scripts and tools.
+Beside the main folder with the Motey engine, the project contains several directories with helpfull scripts and tools.
 A brief overview about the project structure will givin in this section.
 A detailed explanation of all files will be omitted, as this would exceed the scope of the thesis.
 
@@ -36,45 +36,45 @@ A detailed explanation of all files will be omitted, as this would exceed the sc
     \item{\textbf{File: .gitignore}} excludes file to be tracked by the version control system git.
     \item{\textbf{File: .travis.yml}} is used by the continuous integration tool Travis CI.
     \item{\textbf{File: AUTHORS.rst}} a list of all contributors.
-    \item{\textbf{File: CHANGELOG.rst}} this document records all notable changes to the motey engine.
+    \item{\textbf{File: CHANGELOG.rst}} this document records all notable changes to the Motey engine.
     \item{\textbf{File: LICENSE}} the License of the project (Apache License Version 2.0).
-    \item{\textbf{File: main.py}} can be used to start motey in debug mode.
+    \item{\textbf{File: main.py}} can be used to start Motey in debug mode.
     \item{\textbf{File: MANIFEST.in}} contains meta information for the Python setup procedure.
     \item{\textbf{File: README.rst}} file to show up a short documentation on github and will act as the starting point of the project.
-    \item{\textbf{File: setup.py}} will be used to install motey on a local machine.
+    \item{\textbf{File: setup.py}} will be used to install Motey on a local machine.
   \end{itemize}
   \item{\textbf{docs:}} contains the files to create and display the documentation resources.
   \begin{itemize}
     \item{\textbf{Directory: source}} has all the files to autogenerate the documentation files from the source code.
     \item{\textbf{File: Makefile}} this file was created by the Sphinx documentation tool. By executing the \textit{Makefile} the related documentation files will be created.
   \end{itemize}
-  \item{\textbf{motey:}} this folder contains the motey main engine. It is the main Python project. The whole structure will be explained on the next pages in detail.
+  \item{\textbf{motey:}} this folder contains the Motey main engine. It is the main Python project. The whole structure will be explained on the next pages in detail.
   \item{\textbf{motey-docker-image:}} has all the necessary files to create a Docker image.
   \begin{itemize}
     \item{\textbf{File: Dockerfile}} to build the Docker image. Is analogous to a Makefile but can only be used by the Docker engine.
     \item{\textbf{File: setup.sh}} will be executed during the build phase and will install necessary tools and can executed command line instructions.
-    \item{\textbf{File: requirements.txt}} a list with the Python requirements which are necessary to run the motey engine and which should be installed during the build phase via pip.
+    \item{\textbf{File: requirements.txt}} a list with the Python requirements which are necessary to run the Motey engine and which should be installed during the build phase via pip.
   \end{itemize}
   \item{\textbf{resources:}} is a resource folder for the github documentation. Will only be used by the \textit{README.rst} file in the root folder and the \textit{index.rst} file in the docs\/source folder.
-  \item{\textbf{samples:}} contains some samples to test the functionality of the motey engine. Is primarily a playground to test new functions.
+  \item{\textbf{samples:}} contains some samples to test the functionality of the Motey engine. Is primarily a playground to test new functions.
   \item{\textbf{scripts:}} some scripts which will be executed frequently during the development phase.
   \begin{itemize}
     \item{\textbf{Folder: config}} configuration files which could be used for the mosquitto \ac{MQTT} broker Docker image.
-    \item{\textbf{File: addcapability.py}} can be used to add new capability entries to a running motey instance.
+    \item{\textbf{File: addcapability.py}} can be used to add new capability entries to a running Motey instance.
     \item{\textbf{File: start\_test\_setup.sh}} can be used to start a new local Docker test cluster.
   \end{itemize}
   \item{\textbf{tests:}} contains all the unit test which are executed by the continuous integration script and the Python setup procedure.
-  \item{\textbf{webclient:}} this folder contains the \ac{GUI} for the motey engine. Will also be described on the next pages in detail.
+  \item{\textbf{webclient:}} this folder contains the \ac{GUI} for the Motey engine. Will also be described on the next pages in detail.
 \end{itemize}
 
 \section{Used external libraries}
-This section will show up some of the most important libraries used in the motey engine.
+This section will show up some of the most important libraries used in the Motey engine.
 Each library will be introduced briefly and the reason for using it in the project will be shown.
 
 \paragraph{daemonize} allows to run a services as a daemon process.
 It is made exclusively for Unix-like systems.
 The library will create a pid file after starting the service.
-In the motey engine, the file path can be configured via a configuration file.
+In the Motey engine, the file path can be configured via a configuration file.
 The daemon process can be controlled via a command line interface.
 \begin{listing}[H]
   \begin{minted}{shell}
@@ -94,7 +94,7 @@ The daemon process can be controlled via a command line interface.
   \caption{Command line interface documentation for the daemon process}
   \label{code:cli-tool}
 \end{listing}
-After the motey engine is installed via the setup script, this command line tool will be available in the terminal.
+After the Motey engine is installed via the setup script, this command line tool will be available in the terminal.
 
 \paragraph{dependency-injector} is a microframework for \acf{DI} in Python.
 The \ac{DI} pattern allows to move the responsibility for creating a dependency from the concrete objects to a factory or a framework which creates the dependency graph.
@@ -121,7 +121,7 @@ The Docker Python library is a wrapper around the Docker command line tool.
 Every command that can be executed with this tool can also be executed from any python code.
 In the initializing phase the library will connect to the Docker Engine \ac{API} and will perform all the actions through them.
 This can be realized via an \ac{URL} to the \ac{REST} \ac{API} or via an unix system socket connection.
-In the motey engine the second method will be used, but can be replaced without any limitations.
+In the Motey engine the second method will be used, but can be replaced without any limitations.
 The library is used as a \ac{VAL} plugin and will be automatically loaded at runtime via the VALManager and the Yapsy plugin system.
 
 \paragraph{Flask} is a framework to create web applications.
@@ -134,7 +134,7 @@ A Blueprint is basically a Python class that can define methods like \textit{get
 This is useful to create valid \ac{HATEOAS} \ac{REST} \acp{API}.
 Each Blueprint will be represented by an \ac{URL} endpoint.
 
-Listing \ref{code:flask-blueprint} illustrates the implementation of all \ac{API} endpoints in motey.
+Listing \ref{code:flask-blueprint} illustrates the implementation of all \ac{API} endpoints in Motey.
 \begin{listing}[H]
   \begin{minted}{python}
     def configure_url(self):
@@ -143,7 +143,7 @@ Listing \ref{code:flask-blueprint} illustrates the implementation of all \ac{API
       self.webserver.add_url_rule('/v1/service', view_func=Service.as_view('service'))
       self.webserver.add_url_rule('/v1/nodes', view_func=Nodes.as_view('nodes'))
   \end{minted}
-  \caption{Implementation of all Flask \ac{API} endpoints in motey}
+  \caption{Implementation of all Flask \ac{API} endpoints in Motey}
   \label{code:flask-blueprint}
 \end{listing}
 
@@ -157,9 +157,9 @@ It helps to address several output methods like the terminal, a file or even ema
 The style of the resulting message can be easily configured and it can be integrated into several other libraries.
 In addition to that, Logbook has a build-in support for messaging libraries like ZeroMQ, RabbitMQ or Redis.
 This allows to distribute log messages on heavily distributed systems like a huge node cluster.
-It was created by Armin Ronacher the crator of Flask and Georg Brandl the creator of Sphinx, both are tools that are used in motey.
+It was created by Armin Ronacher the crator of Flask and Georg Brandl the creator of Sphinx, both are tools that are used in Motey.
 Unfortunately there is no build-in support in Flask yet.
-In the motey engine Logbook will be extended by a wrapper class to simplify the configuration of the tool.
+In the Motey engine Logbook will be extended by a wrapper class to simplify the configuration of the tool.
 The output folder for the log messages can be configured via the global config file and will be loaded in the constructor of the wrapper class.
 If the folder path does not exist, it will be created.
 
@@ -175,7 +175,7 @@ This helps to realize the node discovery mechanism described in section \ref{sub
 \paragraph{pyzmq} is the third important communication library.
 It is the official Python binding for ZeroMQ.
 A detailed description of ZeroMQ can be found in section \ref{section:ZeroMQ} and in the great ZeroMQ guide at \url{http://zguide.zeromq.org/page:all}.
-This library is also abstracted by wrapper class in motey.
+This library is also abstracted by wrapper class in Motey.
 This helps to configure the ZeroMQ server and register all necessary nodes.
 A detailed explanition of the internals will be discussed in the following section \ref{subsection:implementation-communication-layer}.
 
@@ -198,14 +198,14 @@ But it is easy to use, has no execution overhead and it performs very well on sm
 The main purpose of the library is to be used for small apps where database server like MySQL\footnote{\url{https://www.mysql.com}} or MongoDB\footnote{\url{https://www.mongodb.com}} will be a huge overhead.
 Furthermore TinyDB has several extension to add more functionalities like indexing or caching.
 It also allows to easily extend the library with custom middlewares and extensions.
-In the motey engine, TinyDB is used in every \textit{repository} to decorate the usage of the library.
+In the Motey engine, TinyDB is used in every \textit{repository} to decorate the usage of the library.
 Thereby the used library can easily replaced by a different one, without refactoring several class in the project.
 A detailed discription of the implementation will be shown in \ref{subsection:impl-data-layer}.
 
 \paragraph{Yapsy} is a plugin system that was designed to make an application easily extensible and should also be easy to use.
 Several plugin systems are too complicated for a basic usage or have a huge dependency overhead.
 Yapsy claims to be different, because it is written in pure Python and can be used with only a few lines of code.
-In the motey engine all \ac{VAL} plugins will be loaded via Yapsy.
+In the Motey engine all \ac{VAL} plugins will be loaded via Yapsy.
 An extract of the VALManager with the method to register the plugins, is shown in listing \ref{code:yapsy-register-plugins}.
 \begin{listing}[H]
   \begin{minted}{python}
@@ -220,40 +220,43 @@ An extract of the VALManager with the method to register the plugins, is shown i
   \caption{Extract of the VALManager with the method to register plugins}
   \label{code:yapsy-register-plugins}
 \end{listing}
-In motey there is a specific folder where all images has to be located (line 2).
+In Motey there is a specific folder where all images has to be located (line 2).
 This could be extended in the future if necessary.
 Afterwards all the valid plugins will be loaded and activated (line 3).
 Finally for all activated plugins the \textit{activate} method will be executed, which is a custom implementation to call some functions after activating a plugin (line 4 and 5).
 All plugins can be used via the \textit{self.plugin\_manager}.
 
 \section{Important Implementation Aspects}
-% Do not explain every class in detail. Give a short introduction about the modules or
-% the eclipse projects. If you want to explain relevant code snippets use the ’lstlisting’ tag
-% of LaTeX. Put only short snippets into your thesis. Long listing should be part of the
-% annex.
+This section will introduce to the most important aspects of the implementation of the Motey engine.
+At first a short overview of the whole class structure will be shown, followed by a detailed explanation of the major components.
+Finally the created \ac{GUI} as well as the \ac{CI} pipeline will be explained.
 
+
+\subsection{Motey engine}
 % You can also compare different approaches. Example: Since the implementation based
 % on X failed I choosed to implement the same aspect based on Y. The new approach
 % resulted in a much faster ...
 
 % Core samt daemon erklären
-\doit
-
-\subsection{motey engine}
-% klassendiagramm
 % einzelne Pakete erklären
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{resources/images/class_diagram.png}
+    \caption[Motey class diagram]{Motey class diagram}
+    \label{fig:motey_class_diagram}
+\end{figure}
 
 \subsection{Data layer}
 \label{subsection:impl-data-layer}
 As mentioned before TinyDB is used as the database engine of choice.
 To abstract TinyDB from the rest of the source code, the repository pattern will be used.
 Each content type has its own database and also a related repository.
-Every repository is inheriting from a \textit{base repository}.
+All of them are inheriting from the \textit{BaseRepository}.
 This repository is used to implement some default methods and will also create the database path in the constructor if it is necessary.
-The repositories are pretty similar implementation-wise.
+Beside that all of them are pretty similar implementation-wise.
 They only differ in using different models and have some specific methods to be executed.
 These models are used to represent the related \ac{JSON} objects.
-Therefore each model have a static transform method to convert \ac{JSON} objects to the related model.
+Therefore each of them have a static transform method to convert \ac{JSON} objects to the related model.
 The models folder also contains a file called \textit{schemas.py}.
 This file contains the validation schemas for the different \ac{YAML} and \ac{JSON} objects that could be received by the nodes.
 A library called \textit{jsonschema} is used to validate the objects based on such a schema.
@@ -279,7 +282,7 @@ An example for a schema is shown in listing \ref{code:capability-schema}.
   \caption{Capability JSON validation schema}
   \label{code:capability-schema}
 \end{listing}
-The jsonschema library allows to validate the type of an entry (line 2, 7 and 10) and also if the fields are required or optional (line 13).
+The \textit{jsonschema} library allows to validate the type of an entry (line 2, 7 and 10) and also if the fields are required or optional (line 13).
 This guarantees that only valid objects will be processed.
 
 Another data layer component is the configuration reader.
@@ -499,7 +502,7 @@ There are four different routes:
 \end{itemize}
 
 \paragraph{MQTTServer}
-The purpose of using \ac{MQTT} in the motey engine is the node discovery.
+The purpose of using \ac{MQTT} in the Motey engine is the node discovery.
 Section \ref{subsection:CommunicationLayer} discribes the basic idea of it.
 To implement the logic the node must have knowledge about the \ac{IP} and port of the \ac{MQTT} broker as well as the authentication credentials if they are required.
 They can be configured via the gloabl configuration file.
@@ -532,7 +535,7 @@ All the nodes react to this by removing the meta data about this node from the d
 Section \ref{section:ZeroMQ} and \ref{subsection:CommunicationLayer} gave a detailed overview about ZeroMQ and how does it work.
 Now the concrete implementation will be discussed.
 The wrapper class \textit{ZeroMQServer} binds multiple sockets to the related ports.
-There are four sockets binded for the direct node-to-node communication via \ac{TCP} and one port to connect third party applications to the motey engine.
+There are four sockets binded for the direct node-to-node communication via \ac{TCP} and one port to connect third party applications to the Motey engine.
 The latter is used to add or remove capabilies on a node.
 ZeroMQ provides an \ac{IPC} protocol for such a use case.
 The ZeroMQServer will bind a socket with the Publish-Subscribe pattern that allows multiple publisher to connect to the endpoint.
@@ -540,7 +543,7 @@ Two important aspects have to be considered by using the Publish-Subscribe patte
 As in \ac{MQTT} each subscription has to be done to a topic.
 Listing \ref{code:ZeroMQ-pub-sub} show the subscription for the \textit{capabilityevent} at line 3.
 This also means that it is possible to send multiple different events to a single socket endpoint.
-In motey this feature is not used yet, but nevertheless it is necessary to subscribe to a topic because of the implementation specification of ZeroMQ.
+In Motey this feature is not used yet, but nevertheless it is necessary to subscribe to a topic because of the implementation specification of ZeroMQ.
 Without that, the subscriber will receive nothing.
 
 \begin{listing}[H]
@@ -649,7 +652,7 @@ The \textit{BlueprintTemplate} controller get the data from the textarea and sen
 Finally the \textit{Content-Type} of the request will be set to \textit{application/x-yaml} as specified in the server endpoint.
 As definied before, there is no user authentication or other access control mechanismns due to the fact that this \ac{GUI} is exclusivly made for testing purposes.
 
-%\subsection{Deployment and Continous Integration}
+%\subsection{Deployment and Continuous Integration}
 % Travis.io
 % Docker Container + Docker Hub
 % setup.py
