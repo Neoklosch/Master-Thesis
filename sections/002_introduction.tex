@@ -23,23 +23,23 @@ Currently a factory has a high degree of automation, but due to a lack of intell
 % Application Area - Anwendungsbereich
 % -- CS & CPS
 One solution to achieve that are \acp{CPS}.
-These are virtual systems which are connected with embedded systems to monitor and control physical processes.\cite[cf.][p. 363]{Lee:2008}
-A normal \acp{CS} is passive, means it could not interact with the physical world, with the appearance of \acp{CPS} things can communicate so the system has significantly more intelligence in sensors and actuators.\cite[cf.][p. 1363 f.]{Poovendran:2010}
+These are virtual systems which are connected with embedded systems to monitor and control physical processes.\autocite[cf.][p. 363]{Lee:2008}
+A normal \acp{CS} is passive, means it could not interact with the physical world, with the appearance of \acp{CPS} things can communicate so the system has significantly more intelligence in sensors and actuators.\autocite[cf.][p. 1363 f.]{Poovendran:2010}
 % Research Focus - Forschungsschwerpunkt aka Praxisproblem
 % -- Virtualization, Orchestration, Deployment of functions
 
 Another solution is to change the fundamental architecture of such a system from a monolithic to more distributed multicloud architecture.
-With Fog Computing the cloud moves away from centralized data centers to the edge of the underlying network.\cite[cf.][p. 380]{Pahl:2015}
+With Fog Computing the cloud moves away from centralized data centers to the edge of the underlying network.\autocite[cf.][p. 380]{Pahl:2015}
 Such a network can have thousands of nodes with multiple sensors, machines or smart components connected to them.
-An "intermediate layer between the IoT environment and the Cloud"\cite[p.236]{Brito:2016} enables a lot of new possibilities like pre-computation and storage of gathered data, which reduces traffic and resource overhead in the cloud, it keeps sensitive data on-premise\cite[cf.][p.236]{Brito:2016} and enables real-time applications to take decisions based on analytics running near the device and a lower latency.
+An "intermediate layer between the IoT environment and the Cloud"\autocite[p.236]{Brito:2016} enables a lot of new possibilities like pre-computation and storage of gathered data, which reduces traffic and resource overhead in the cloud, it keeps sensitive data on-premise\autocite[cf.][p.236]{Brito:2016} and enables real-time applications to take decisions based on analytics running near the device and a lower latency.
 On the other hand there are also a lot of challenges in these highly heterogeneous and hybrid environment.
-As an example in some scenarios multiple low power devices have to interact with each other, lossy signals and short range radio technologies are widely used and nodes can appear and disappear frequently.\cite[cf.][p. 325]{Yannuzzi:2014}
+As an example in some scenarios multiple low power devices have to interact with each other, lossy signals and short range radio technologies are widely used and nodes can appear and disappear frequently.\autocite[cf.][p. 325]{Yannuzzi:2014}
 Especially the last case is elaborated because the underlying system has to handle that.
 Furthermore the required applications running on these nodes can be change commonly and have to be deployed and removed in a dynamical way.
 
-Virtualization with \acp{VM} is a common approach in Cloud systems to provide elasticity of large-scale shared resources.\cite[cf.][p. 117]{Pahl:2016}
+Virtualization with \acp{VM} is a common approach in Cloud systems to provide elasticity of large-scale shared resources.\autocite[cf.][p. 117]{Pahl:2016}
 A more lightweight, less resource and time consuming solution is container virtualization.
-"Furthermore, they are flexible tools for packaging, delivering and orchestration software infrastructure services as well as application"\cite[p. 117]{Pahl:2016}.
+"Furthermore, they are flexible tools for packaging, delivering and orchestration software infrastructure services as well as application"\autocite[p. 117]{Pahl:2016}.
 Orchestration tools like Kubernetes\footnote{\url{https://kubernetes.io}} and Docker Swarm\footnote{\url{https://docs.docker.com/engine/swarm}} that can deploy, scale and manage containers to clusters of hosts have become established in the last years.
 If this technology can be moved over to the \ac{IoT} area, many challenges can be solved.
 Dynamically deployed applications at the edge of a network can store and preprocesses gather data even if a node have no connection to the cloud.
