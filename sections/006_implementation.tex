@@ -5,7 +5,7 @@ Used technologies, libraries and tools, as well as custom components would be pr
 Thereby challenges and problems during the development of the plugins will be shown and the solutions will be discussed.
 
 \section{Environment}
-To Motey engine is designed to be exectued on low-power devices like a Raspberry Pi.
+To Motey engine is designed to be executed on low-power devices like a Raspberry Pi.
 The following software is required to execute the whole software stack.
 \begin{itemize}
   \item Ubuntu version 14.10 or higher
@@ -17,15 +17,15 @@ Depending on the amount and type of the executed Docker images, the hardware spe
 
 
 \section{Project structure}
-Beside the main folder with the Motey engine, the project contains several directories with helpfull scripts and tools.
-A brief overview about the project structure will givin in this section.
+Beside the main folder with the Motey engine, the project contains several directories with helpful scripts and tools.
+A brief overview about the project structure will given in this section.
 A detailed explanation of all files will be omitted, as this would exceed the scope of the thesis.
 
 \begin{itemize}
   \item{\textbf{Directory: ./}} has all the necessary configuration files for the different services.
   \begin{itemize}
     \item{\textbf{File: .dockerignore}} is used during the build process of a Docker image. Excludes several folders during the build phase.
-    \item{\textbf{File: .editorconfig}} contains informations for \acp{IDE} and editors to guarantee a consistent coding style.
+    \item{\textbf{File: .editorconfig}} contains information for \acp{IDE} and editors to guarantee a consistent coding style.
     \item{\textbf{File: .gitignore}} excludes file to be tracked by the version control system git.
     \item{\textbf{File: .travis.yml}} is used by the continuous integration tool Travis CI.
     \item{\textbf{File: AUTHORS.rst}} a list of all contributors.
@@ -33,12 +33,12 @@ A detailed explanation of all files will be omitted, as this would exceed the sc
     \item{\textbf{File: LICENSE}} the License of the project (Apache License Version 2.0).
     \item{\textbf{File: main.py}} can be used to start Motey in debug mode.
     \item{\textbf{File: MANIFEST.in}} contains meta information for the Python setup procedure.
-    \item{\textbf{File: README.rst}} file to show up a short documentation on github and will act as the starting point of the project.
+    \item{\textbf{File: README.rst}} file to show up a short documentation on Github and will act as the starting point of the project.
     \item{\textbf{File: setup.py}} will be used to install Motey on a local machine.
   \end{itemize}
   \item{\textbf{docs:}} contains the files to create and display the documentation resources.
   \begin{itemize}
-    \item{\textbf{Directory: source}} has all the files to autogenerate the documentation files from the source code.
+    \item{\textbf{Directory: source}} has all the files to auto-generate the documentation files from the source code.
     \item{\textbf{File: Makefile}} this file was created by the Sphinx documentation tool. By executing the \textit{Makefile} the related documentation files will be created.
   \end{itemize}
   \item{\textbf{motey:}} this folder contains the Motey main engine. It is the main Python project. The whole structure will be explained on the next pages in detail.
@@ -48,11 +48,11 @@ A detailed explanation of all files will be omitted, as this would exceed the sc
     \item{\textbf{File: setup.sh}} will be executed during the build phase and will install necessary tools and can executed command line instructions.
     \item{\textbf{File: requirements.txt}} a list with the Python requirements which are necessary to run the Motey engine and which should be installed during the build phase via pip.
   \end{itemize}
-  \item{\textbf{resources:}} is a resource folder for the github documentation. Will only be used by the \textit{README.rst} file in the root folder and the \textit{index.rst} file in the docs\/source folder.
+  \item{\textbf{resources:}} is a resource folder for the Github documentation. Will only be used by the \textit{README.rst} file in the root folder and the \textit{index.rst} file in the docs\/source folder.
   \item{\textbf{samples:}} contains some samples to test the functionality of the Motey engine. Is primarily a playground to test new functions.
   \item{\textbf{scripts:}} some scripts which will be executed frequently during the development phase.
   \begin{itemize}
-    \item{\textbf{Folder: config}} configuration files which could be used for the mosquitto \ac{MQTT} broker Docker image.
+    \item{\textbf{Folder: config}} configuration files which could be used for the Mosquitto \ac{MQTT} broker Docker image.
     \item{\textbf{File: addcapability.py}} can be used to add new capability entries to a running Motey instance.
     \item{\textbf{File: start\_test\_setup.sh}} can be used to start a new local Docker test cluster.
   \end{itemize}
@@ -95,7 +95,7 @@ This grants the single responsibility concept for classes and makes the whole co
 It is also possible to mocked the object with the help of a mocking library.
 To realize \ac{DI} in the Motey a so called \textit{app\_module.py} was created which uses the \textit{dependency-injector} framework to create the dependency graph.
 Several \ac{IoC} containers are created in that file and will be used by the framework to generate the glue code.
-Most of the injected components are instanciated as singleton objects to guarantee that there is only one active instance of that component at a time.
+Most of the injected components are instantiated as singleton objects to guarantee that there is only one active instance of that component at a time.
 The implementation of the singleton design pattern is also provided by the framework.
 Listing \ref{code:app-module} demonstrates the implementation of such an \ac{IoC} container.
 \begin{listing}[H]
@@ -113,7 +113,7 @@ Listing \ref{code:app-module} demonstrates the implementation of such an \ac{IoC
 The Docker Python library is a wrapper around the Docker command line tool.
 Every command that can be executed with this tool can also be executed from any python code.
 In the initializing phase the library will connect to the Docker Engine \ac{API} and will perform all the actions through them.
-This can be realized via an \ac{URL} to the \ac{REST} \ac{API} or via an unix system socket connection.
+This can be realized via an \ac{URL} to the \ac{REST} \ac{API} or via an Unix system socket connection.
 In the Motey engine the second method will be used, but can be replaced without any limitations.
 The library is used as a \ac{VAL} plugin and will be automatically loaded at runtime via the VALManager and the Yapsy plugin system.
 
@@ -145,19 +145,19 @@ The first parameter indicates the endpoint \ac{URL} and the second parameter \te
 To pass them over, the Blueprint has to be converted to a Flask view by using the \textit{as\_view} method.
 The other endpoints are implemented equivalent.
 
-\paragraph{Logbook} is a small loging library that helps to standardize the output of log messages.
-It helps to address several output methods like the terminal, a file or even emails and linux desktop notifications.
+\paragraph{Logbook} is a small logging library that helps to standardize the output of log messages.
+It helps to address several output methods like the terminal, a file or even emails and Linux desktop notifications.
 The style of the resulting message can be easily configured and it can be integrated into several other libraries.
 In addition to that, Logbook has a build-in support for messaging libraries like ZeroMQ, RabbitMQ or Redis.
 This allows to distribute log messages on heavily distributed systems like a huge node cluster.
-It was created by Armin Ronacher the crator of Flask and Georg Brandl the creator of Sphinx, both are tools that are used in Motey.
+It was created by Armin Ronacher the creator of Flask and Georg Brandl the creator of Sphinx, both are tools that are used in Motey.
 Unfortunately there is no build-in support in Flask yet.
 In the Motey engine Logbook will be extended by a wrapper class to simplify the configuration of the tool.
 The output folder for the log messages can be configured via the global config file and will be loaded in the constructor of the wrapper class.
 If the folder path does not exist, it will be created.
 
 \paragraph{paho-mqtt} is the python implementation of the Eclipse paho\footnote{\url{http://www.eclipse.org/paho}} project that is basically the implementation of the \ac{MQTT} messaging protocols, which was already described in section \ref{section:MQTT}.
-The libarary allows to connect to a \ac{MQTT} broker like the Mosquitto broker.
+The library allows to connect to a \ac{MQTT} broker like the Mosquitto broker.
 It also comes with a variety of helper methods to eases the usage.
 A wrapper class to centralize the usage of the library was created and the configuration as well as some smaller improvements was made in this wrapper class.
 The whole configuration of the client can be configures via the global config file again.
@@ -170,30 +170,30 @@ It is the official Python binding for ZeroMQ.
 A detailed description of ZeroMQ can be found in section \ref{section:ZeroMQ} and in the great ZeroMQ guide at \url{http://zguide.zeromq.org/page:all}.
 This library is also abstracted by wrapper class in Motey.
 This helps to configure the ZeroMQ server and register all necessary nodes.
-A detailed explanition of the internals will be discussed in the following section \ref{subsection:implementation-communication-layer}.
+A detailed explanation of the internals will be discussed in the following section \ref{subsection:implementation-communication-layer}.
 
-\paragraph{Sphinx} is a tool to autogenerate a documentation out of the source code documentation.
-It supports several output formats like \ac{HTML}, \LaTeX\ or ePub and is the defacto standard in Python.
+\paragraph{Sphinx} is a tool to auto-generate a documentation out of the source code documentation.
+It supports several output formats like \ac{HTML}, \LaTeX\ or ePub and is the de facto standard in Python.
 The documentation hosting platform Read the Docs\footnote{\url{http://readthedocs.org}} completely supports Sphinx documentations.
-As mentioned before the Makefile in the docs folder will be used to autogenerate the documentation files.
+As mentioned before the Makefile in the docs folder will be used to auto-generate the documentation files.
 The scripts handles also the deployment of the documentation.
-Therefore the files will be generated, the current branch will be switched to \textit{gh-pages}, which is be used to display the github page at \url{https://neoklosch.github.io/Motey/} and a new commit will be pushed with an autogenerated commit message.
+Therefore the files will be generated, the current branch will be switched to \textit{gh-pages}, which is be used to display the Github page at \url{https://neoklosch.github.io/Motey/} and a new commit will be pushed with an auto-generated commit message.
 Finally the branch will be switched back again.
 Read the Docs has an active webhook that builds the builds the current documentation and display them at \url{http://motey.readthedocs.io}.
-The documentation is also used as the official github page of the project at \url{https://neoklosch.github.io/Motey}.
+The documentation is also used as the official Github page of the project at \url{https://neoklosch.github.io/Motey}.
 
 \paragraph{TinyDB} is a wrapper to implement a lightweight document oriented database.
 It stores the data into single \ac{JSON} files.
 The location can be configured via the global config file.
 TinyDB only supports very basic functionalities.
-For example it does not support indexes or relationships and it is not optimised concerning performance.
+For example it does not support indexes or relationships and it is not optimized concerning performance.
 But it is easy to use, has no execution overhead and it performs very well on smaller datasets.
 The main purpose of the library is to be used for small apps where database server like MySQL\footnote{\url{https://www.mysql.com}} or MongoDB\footnote{\url{https://www.mongodb.com}} will be a huge overhead.
 Furthermore TinyDB has several extension to add more functionalities like indexing or caching.
 It also allows to easily extend the library with custom middlewares and extensions.
 In the Motey engine, TinyDB is used in every \textit{repository} to decorate the usage of the library.
 Thereby the used library can easily replaced by a different one, without refactoring several class in the project.
-A detailed discription of the implementation will be shown in \ref{subsection:impl-data-layer}.
+A detailed description of the implementation will be shown in \ref{subsection:impl-data-layer}.
 
 \paragraph{Yapsy} is a plugin system that was designed to make an application easily extensible and should also be easy to use.
 Several plugin systems are too complicated for a basic usage or have a huge dependency overhead.
@@ -242,7 +242,7 @@ The dependencies of the most important components is shown in figure \ref{fig:mo
     \label{fig:motey_class_diagram}
 \end{figure}
 
-This class diagram is simplified in a way that not all components and not all dependecy connections are shown.
+This class diagram is simplified in a way that not all components and not all dependency connections are shown.
 But it is pretty helpful to get an basic understand of the interconnection of the different layers.
 A good example of the decorator pattern can be found in the top left corner of the diagram.
 The \textit{CommunicationManager} acts as a decorator for all the connection endpoints.
@@ -250,12 +250,12 @@ Therefore it is easy to add a new endpoint or replace an existing one, only the 
 Another example for that behavior is the \textit{VALManager}.
 Also this class acts as a decorator and manages all virtualization plugins, in this case the \textit{DockerVAL}.
 The repositories are a special case of the decorator pattern, because they covers the usage of the \textit{TinyDB} library, but they are also a centralized place for using them instead of all over in the engine.
-The \textit{CapabilityEngine} and the \textit{InterNodeOrchestrator} are the only componant that uses the \textit{CommunicationManger}.
+The \textit{CapabilityEngine} and the \textit{InterNodeOrchestrator} are the only component that uses the \textit{CommunicationManger}.
 The \textit{Core} also imports that class but only to start them.
 Beside the \textit{Core} the \textit{InterNodeOrchestrator} is the central place in the app.
 Each event will be executed in the layer.
 Therefore most of the other components will be come together in this class.
-In the following the separate layers are discribed in detail.
+In the following the separate layers are described in detail.
 
 
 \subsection{Data layer}
@@ -270,7 +270,7 @@ They only differ in using different models and have some specific methods to be 
 These models are used to represent the related \ac{JSON} objects.
 Therefore each of them have a static transform method to convert \ac{JSON} objects to the related model.
 The models folder also contains a file called \textit{schemas.py}.
-This file contains the validation schemas for the different \ac{YAML} and \ac{JSON} objects that could be received by the nodes.
+This file contains the validation schemes for the different \ac{YAML} and \ac{JSON} objects that could be received by the nodes.
 A library called \textit{jsonschema} is used to validate the objects based on such a schema.
 An example for a schema is shown in listing \ref{code:capability-schema}.
 \begin{listing}[H]
@@ -299,7 +299,7 @@ This guarantees that only valid objects will be processed.
 
 Another data layer component is the configuration reader.
 This is implemented with the default Python \textit{configparser}.
-The parsed configuration is only keept in memory.
+The parsed configuration is only kept in memory.
 The configuration file for the whole project is stored in the \textit{motey/configuration} folder and is called config.ini.
 Listing \ref{code:config-ini} show the sample content of that file.
 \begin{minted}{python}
@@ -335,7 +335,7 @@ image_terminate_replier = 5094
 \end{minted}
 \captionof{listing}{Example of the config.ini file\label{code:config-ini}}
 \vspace{0.5cm}
-Different sections can be seperated by squared brackets like \textit{[GENERAL]} like on line 1.
+Different sections can be separated by squared brackets like \textit{[GENERAL]} like on line 1.
 The entries are simple key-value pairs.
 Line 3 for example set the path to the used pid file.
 The usage of the configreader is shown in listing \ref{code:configreader-example}.
@@ -361,21 +361,21 @@ The so called InterNodeOrchestrator contains the main business logic of the appl
 It is the connector between the communication layer or more specific between all inter-node and client communication endpoints and the \ac{VAL}.
 The orchestrator uses the observer pattern to interact with the communication layer.
 At the startup of the orchestrator it will subscribe to an observer for example for receiving a new service.
-If a service event occures, it will start the \textit{instantiate\_service} method.
+If a service event occurs, it will start the \textit{instantiate\_service} method.
 This will be executed in a separate thread.
 At first the service will be stored in the data layer.
 The lifecycle will be changed to the \textit{instantiating} state.
 Afterwards the capabilities of each contained image has to be checked.
 This is necessary to identify the node that is handling the image.
-There are three different possiblities.
+There are three different possibilities.
 
 \begin{enumerate}
   \item there are no capabilities located in the image, therefore the current node starts the image.
-  \item there are capabilites and the current node is able to fulfill all of them. The same node is handling the image.
-  \item there are capabilites but the current node is not able to fulfill one or multiple of them. Another node has to be search to manage the image.
+  \item there are capabilities and the current node is able to fulfill all of them. The same node is handling the image.
+  \item there are capabilities but the current node is not able to fulfill one or multiple of them. Another node has to be search to manage the image.
 \end{enumerate}
 
-The capabilites of the current node are fetched via the \textit{CapabilityRepository}.
+The capabilities of the current node are fetched via the \textit{CapabilityRepository}.
 In each case the an image will always get an \ac{IP} address of the node that is handling them, even if it is the current node.
 Later on the communication layer will deploy the image via an ZeroMQ connection.
 This unifies the deployment process.
@@ -383,9 +383,9 @@ If the current node is not able to fulfill all required capabilities another nod
 Therefore the \textit{find\_node} method is going to be used.
 This method will at first fetch all the known nodes from the \textit{NodeRepository}.
 
-Afterwards it will send out a \textit{capabilites request} again via the communcation layer.
+Afterwards it will send out a \textit{capabilities request} again via the communication layer.
 That is a ZeroMQ request-reply call between two nodes.
-The targeted node sends back their capabilites.
+The targeted node sends back their capabilities.
 They will be passed back to the orchestrator which compares them with the capabilities of the image.
 If all of the are fulfilled then, this node becomes responsible for that image.
 This means the \ac{IP} address of the node will be stored in the image.
@@ -394,7 +394,7 @@ When non of the nodes suits, the state of the deployment will be marked as \text
 Otherwise the deployment phase starts.
 Each image will be passed via ZeroMQ call to the related \ac{IP} address to a deployment endpoint, which will then call the \textit{VALManager}.
 The latter will then instantiate the image via the related \ac{VAL} plugin.
-When all images finally started the state of the service will change to \textit{running} and the deployment sucessfully finished.
+When all images finally started the state of the service will change to \textit{running} and the deployment successfully finished.
 
 The state of the service is also handled by the orchestrator.
 It depends highly on the state of the images.
@@ -407,8 +407,8 @@ Based on the \ac{MANO} service lifecycle the following states was created:
   \item \textbf{INSTANTIATING} - The deployment phase was started, but is not done yet.
   \item \textbf{RUNNING} - All images are deployed and the service is running. Everything works normal.
   \item \textbf{STOPPING} - The termination phase was executed, but is not done yet.
-  \item \textbf{TERMINATED} - All images are terminated. The service no longer exsist.
-  \item \textbf{ERROR} - An error occured in one of the other states. A detailed description is stored in the service.
+  \item \textbf{TERMINATED} - All images are terminated. The service no longer exist.
+  \item \textbf{ERROR} - An error occurred in one of the other states. A detailed description is stored in the service.
 \end{itemize}
 
 All of them are located in a model object called \textit{ServiceState}.
@@ -455,10 +455,10 @@ Important in this method is that each status will again be requested via an Zero
 Also in this case a request-reply call between the nodes will be executed.
 Line 4 show this request.
 As all states are received and stored the mapping starts.
-Line 10 up to 12 show the mapping of the \textit{termianted} state.
-At first the list with all iamge states will be searched for this particular state.
+Line 10 up to 12 show the mapping of the \textit{terminated} state.
+At first the list with all image states will be searched for this particular state.
 If it is in the list, also the service will be marked as terminated.
-To make sure that all the related service images are termianted, not only a single one, all the other images will be terminated as well.
+To make sure that all the related service images are terminated, not only a single one, all the other images will be terminated as well.
 Line 12 shows the termination of the service.
 This behavior is also implemented for the \textit{error} and \textit{stopping} state.
 All the other states are mapped directly to the service.
@@ -475,10 +475,10 @@ The important implementation details of all of them will be described in this su
 All the necessary communication components are located in the \textit{motey/communication} folder.
 
 \paragraph{APIServer} This server is responsible for the \ac{REST} \ac{API}.
-Therefore the Flask server will be instanciated and configured in the constructor of the wrapper class.
+Therefore the Flask server will be instantiated and configured in the constructor of the wrapper class.
 The server will be executed in a separate thread due to the nature of a webserver to block the main thread because the it will run endless to receive all incoming requests.
 If it would not be implemented with a thread only the Flask server would be started and the following code would be blocked.
-Futhermore Flask has to be configured to accept cross-site requests, by disabeling the \textit{same origin policy} with a \textit{\ac{CORS}} library.
+Furthermore Flask has to be configured to accept cross-site requests, by disabling the \textit{same origin policy} with a \textit{\ac{CORS}} library.
 This behavior is a development only feature and it is strictly recommend to deactivate it in production mode.
 By deactivating it the server is vulnerable for \ac{CSRF} and clickjacking attacks.
 In the development phase cross-site requests should be allowed to make it easier to communicate between a web client and the \ac{REST} \ac{API}.
@@ -490,7 +490,7 @@ All routes are located in the \textit{motey/communication/api\_routes} directory
 There are four different routes:
 \begin{itemize}
   \item The \textbf{Capabilities} Blueprint which is used to send the capabilities of the node, add new capabilities or to remove them.
-  The \ac{HTTP} verb \textit{GET} is used to deliver all exisiting capabilites.
+  The \ac{HTTP} verb \textit{GET} is used to deliver all existing capabilities.
   If a request is received, the \textit{CapabilityRepository} will be used to fetch all capabilities and then they will be converted to a JSON string afterwards.
   The \ac{HTTP} verb \textit{PUT} will add new entries to the repository.
   After the \ac{JSON} request will be received, the content will be parsed and validated with the corresponding \ac{JSON} schema.
@@ -499,10 +499,10 @@ There are four different routes:
   This will end up in the \ac{HTTP} status code 201.
   The same logic will be used for the \textit{DELETE} request.
   \item The second endpoint is implemented as the \textbf{Nodes} Blueprint.
-  The only functionallity is to respond with all stored nodes as \ac{JSON}.
+  The only functionality is to respond with all stored nodes as \ac{JSON}.
   This is used for testing purposes and could also be helpful for maintaining the cluster.
   \item To get some information about the node health status the \textbf{NodeStatus} Blueprint was created.
-  It respond with some hardware informations like the current \ac{CPU} or memory usage.
+  It respond with some hardware information like the current \ac{CPU} or memory usage.
   This is also useful for maintaining the nodes.
   \item The last Blueprint implementation is the \textbf{Service} endpoint.
   It is used to get a \ac{JSON} list with all stored services via the \ac{HTTP} \textit{GET} verb and also to deploy and remove services.
@@ -510,15 +510,15 @@ There are four different routes:
   Both implementations are pretty similar.
   Also in this case the provided \ac{YAML} file will be validated.
   If it is valid the parsed service will be handed over to the orchestration layer and a 201 will be returned to the client.
-  If something went wrong a 400 will be returend.
+  If something went wrong a 400 will be returned.
 \end{itemize}
 
 \paragraph{MQTTServer}
 The purpose of using \ac{MQTT} in the Motey engine is the node discovery.
-Section \ref{subsection:CommunicationLayer} discribes the basic idea of it.
+Section \ref{subsection:CommunicationLayer} describes the basic idea of it.
 To implement the logic the node must have knowledge about the \ac{IP} and port of the \ac{MQTT} broker as well as the authentication credentials if they are required.
-They can be configured via the gloabl configuration file.
-As all the other classes, the \textit{MQTTServer} is a wrapper class for the Python \ac{MQTT} libarary.
+They can be configured via the global configuration file.
+As all the other classes, the \textit{MQTTServer} is a wrapper class for the Python \ac{MQTT} library.
 In the constructor the routes will be defined as well as some callbacks and the client will be configured.
 The \textit{start} method connects the client to the broker and execute the request loop.
 That is pretty similar to the implementation of the \textit{APIServer}.
@@ -534,12 +534,12 @@ Therefore the \ac{MQTT} client has to be executed in a separate thread too.
 Figure \ref{fig:node_discovery_squ_dia} shows how the node discovery will be implemented.
 Important aspect is that the sender node is also part of the subscribed nodes.
 This means after the \textit{connection} to the broker is established and the client is subscribed to the topics, each \textit{Node Request} will also be received by the sender himself.
-Benefit out of it, is that beside the fact that a new registered node gets all meta informations from all other nodes, also these nodes get the meta information of the new node.
+Benefit out of it, is that beside the fact that a new registered node gets all meta information from all other nodes, also these nodes get the meta information of the new node.
 In this way each node has knowledge of all the other nodes and can keep track of them.
 That is also the reason why the \textit{"Node Meta Data" from Node A} and \textit{"Node Meta Data" from Node X} are duplicated in figure \ref{fig:node_discovery_squ_dia}.
 Beside that the procedure is straight forward: At first one node send out a \textit{Node Request}.
 Each subscribed node will get it and send out a response with the \textit{Node Meta Data} to all the other nodes via the broker.
-The \textit{after\_connect} handler will be used to send out the \textit{Node Request} after a new nodes is sucessfully subscribed to the broker.
+The \textit{after\_connect} handler will be used to send out the \textit{Node Request} after a new nodes is successfully subscribed to the broker.
 Before a node disconnects, a \textit{Remove Node} request will be send out, that will inform each node that a specific node will be disappear.
 All the nodes react to this by removing the meta data about this node from the database.
 
@@ -548,7 +548,7 @@ Section \ref{section:ZeroMQ} and \ref{subsection:CommunicationLayer} gave a deta
 Now the concrete implementation will be discussed.
 The wrapper class \textit{ZeroMQServer} binds multiple sockets to the related ports.
 There are four sockets binded for the direct node-to-node communication via \ac{TCP} and one port to connect third party applications to the Motey engine.
-The latter is used to add or remove capabilies on a node.
+The latter is used to add or remove capabilities on a node.
 ZeroMQ provides an \ac{IPC} protocol for such a use case.
 The ZeroMQServer will bind a socket with the Publish-Subscribe pattern that allows multiple publisher to connect to the endpoint.
 Two important aspects have to be considered by using the Publish-Subscribe pattern in ZeroMQ.
@@ -576,8 +576,8 @@ Without that, the subscriber will receive nothing.
 \end{listing}
 
 The second important aspect is at line 9.
-An incoming message has always been parsed for a delemiter.
-The reason for that is, that the topic, in this case \textit{capabilityevent} have to be prepend to the message followed by the delimter.
+An incoming message has always been parsed for a delimiter.
+The reason for that is, that the topic, in this case \textit{capabilityevent} have to be prepend to the message followed by the delimiter.
 Listing \ref{code:ZeroMQ-capability-event-msg} show such a message.
 \begin{listing}[H]
   \begin{minted}{bash}
@@ -591,19 +591,19 @@ Therefore the topics and the delimiter has to be removed before the message can 
 The other four sockets are implemented with the Request-Reply pattern and are used to:
 \begin{itemize}
   \item reply to a capability request.
-  This is used by the \textit{InterNodeOrchestrator} to get the capabilites of other nodes.
+  This is used by the \textit{InterNodeOrchestrator} to get the capabilities of other nodes.
   The result is send as a \ac{JSON} string.
-  If there are no capabilites an empty \ac{JSON} array will be send.
+  If there are no capabilities an empty \ac{JSON} array will be send.
   \item deploy images is also used by the \textit{InterNodeOrchestrator} to deploy a single image to another node.
   The image model will be transformed to a \ac{JSON} object and send over as a string and vice versa and passed over to the \textit{VALManager} if received.
   \item return the status of an image. This is also used by the \textit{InterNodeOrchestrator} when the state of a service should be fetched. To current state of an image will be detected by the virtualization engine. Afterwards it will transformed to a unified image state. Finally the InterNodeOrchestrator maps the state of all images to the service state.
-  \item termainate an existing image instance.
+  \item terminate an existing image instance.
   Only the image id has to be send to perform that action.
   The \textit{VALManager} will handle the termination of the instance.
 \end{itemize}
 Important aspect while using the Request-Reply pattern, there can only be one connection established at the same time.
 In addition a reply must send by the consumer after a request was receive.
-As long as there was no message send back, the connection will be blocked and the consumer can not recevie any new messages.
+As long as there was no message send back, the connection will be blocked and the consumer can not receive any new messages.
 
 As discussed by the other servers, also this one have to be executed in threads.
 Difference here is that each socket has its own thread.
@@ -612,7 +612,7 @@ Therefore each loop would block the main thread.
 
 \paragraph{CommunicationManager}
 Finally the \textit{CommunicationManager} is used to decorate the servers from the rest of the source code.
-This is helpful for decoupeling the componants as well as replace or add a new communication component.
+This is helpful for decoupling the components as well as replace or add a new communication component.
 Beside that the manager simply forward the methods to the specific server.
 It is also used as a central place to start and stop all servers.
 
@@ -620,20 +620,20 @@ It is also used as a central place to start and stop all servers.
 \subsection{Capability management}
 Similar to the InterNodeOrchestrator the \textit{CapabilityEngine} is used as a connector between the communication layer and the in this case CapabilityRepository.
 Therefore the main components of the capability management are the CapabilityEngine and the \textit{ZeroMQServer}.
-The latter was extensively descibed in the previous section and is mainly used to receive new capabilites or to remove them after a request via one of the two ZeroMQ endpoints.
+The latter was extensively described in the previous section and is mainly used to receive new capabilities or to remove them after a request via one of the two ZeroMQ endpoints.
 The CapabilityEngine on the other side has two subscriptions to the observer located in the ZeroMQServer.
 These subscriptions reacts to add and remove requests of any external application.
 Due to the fact that the endpoints are implemented via the ZeroMQ \ac{IPC} protocol only application that are located on the node can interact with the CapabilityEngine.
-After a new add service request was received the \ac{JSON} data will be parsed, validated and tranformed to the capability model and afterwards stored via the \textit{CapabilityRepository} to the database.
+After a new add service request was received the \ac{JSON} data will be parsed, validated and transformed to the capability model and afterwards stored via the \textit{CapabilityRepository} to the database.
 The Removal of an entry is pretty similar.
-The received \ac{JSON} data will be again validate with the \textit{capability\_json\_schema} from the schemas model.
+The received \ac{JSON} data will be again validate with the \textit{capability\_json\_schema} from the schemes model.
 
 
 \subsection{User interface}
-The whole Motey \ac{GUI} is located in a seperate folder called \textit{webclient}.
+The whole Motey \ac{GUI} is located in a separate folder called \textit{webclient}.
 Due to the fact that the \ac{GUI} is only for demonstration purposes, it should not be part of the main engine.
 Vue.js the used web framework is pretty lightweight, therefore only two files are necessary to execute the client.
-The \textit{index.html} file containes the skeleton of the page.
+The \textit{index.html} file contains the skeleton of the page.
 In addition to that the \textit{main.js} file that is located in the \textit{js} folder contains the business logic of the page.
 Figure \ref{fig:motey_gui_screenshot} shows the final \ac{GUI}.
 \begin{figure}[H]
@@ -642,7 +642,7 @@ Figure \ref{fig:motey_gui_screenshot} shows the final \ac{GUI}.
     \caption[Screenshot of the Motey \ac{GUI}]{Screenshot of the Motey \ac{GUI}}
     \label{fig:motey_gui_screenshot}
 \end{figure}
-The header is fixed and only containes the name of the engine and a short description of the page content.
+The header is fixed and only contains the name of the engine and a short description of the page content.
 Below them the navigation bar located.
 As in the mockup four different pages are available.
 The first called \textit{Motey} has a very short introduction into the web client.
@@ -662,7 +662,7 @@ Each route has an own controller similar to the Blueprint concept of the Flask s
 The \textit{NodesListing} and \textit{ServiceListing} controllers mainly fetches the \ac{JSON} data from the \ac{REST} \ac{API} and map them to the related template in the \ac{HTML} file.
 The \textit{BlueprintTemplate} controller get the data from the textarea and send them over to the \ac{API}.
 Finally the \textit{Content-Type} of the request will be set to \textit{application/x-yaml} as specified in the server endpoint.
-As definied before, there is no user authentication or other access control mechanismns due to the fact that this \ac{GUI} is exclusivly made for testing purposes.
+As defined before, there is no user authentication or other access control mechanisms due to the fact that this \ac{GUI} is exclusively made for testing purposes.
 
 \subsection{Deployment and Continuous Integration}
 Travis CI as the tool of choice for the \ac{CI} uses a \textit{.travis.yml} configuration file.
@@ -702,7 +702,7 @@ Line 1 add this privilege and in line 2 the Docker service is requested.
 The programming language the application to build is written in, is declared in line 3, in this case python.
 Line 6 and 7 defines the python version to use.
 There could be multiple, but due to the fact that the script should only be build one Docker image and should only upload them once, only one python version can be used.
-Otherwise multiple python version would be executed and after each sucessfully build version an cointainer would be build and uploaded.
+Otherwise multiple python version would be executed and after each successfully build version an container would be build and uploaded.
 
 Line 9 defines the installation script.
 This will executed after the virtual environment are created by Travis CI.
@@ -718,8 +718,8 @@ The \textit{after\_success} block is used to create and upload the Docker image.
 It will only be executed if it is a master branch build (see line 17).
 This is reasonable because a development branch build can be unstable and should not be used to create an official Docker image.
 Line 18 will build the image and line 19 uploads it.
-Two environment variables are used here, because to upload an image, the username and ther password of the Docker Hub account has to be passed.
-Due to the fact that this file is under public version control, this sensible informations should not be commited.
+Two environment variables are used here, because to upload an image, the username and the password of the Docker Hub account has to be passed.
+Due to the fact that this file is under public version control, this sensible information should not be commited.
 Therefore preconfigured login credentials are used.
 Finally the Docker image will be pushed in line 20.
 
@@ -750,7 +750,7 @@ The \textit{ADD} command is used to add external files to the Docker container t
 The script adds a \textit{setup.sh} file that is executed in line 7.
 This file uses the \textit{requirements.txt} file, that is also added.
 Additional the ports in line 9 are exposed, which means they are provided to the Docker engine as used by the container.
-There is no automatical mapping between the host and the guest system ports, but they can be mapped much faster due to the \textit{EXPOSE} command.
+There is no automatic mapping between the host and the guest system ports, but they can be mapped much faster due to the \textit{EXPOSE} command.
 Finally the \textit{CMD} command will execute a specific shell command, in this case the \textit{motey start} command.
 
 This command is available after Motey was installed by the \textit{setup.py} file in the root folder.
@@ -768,4 +768,4 @@ To install Motey, only two build steps has to be executed, that are shown in lis
 When the installation routine is done, the \textit{motey} command becomes available globally.
 The usage of the command line tool was shown in \ref{library:daemonize}.
 Beside the installation via the setup script, Motey can also be added as a Docker container named \textit{neoklosch/motey}.
-This method is prefered to make the first steps with Motey, because it is more isolated from the host system, easier to use, to remove and to update.
+This method is preferred to make the first steps with Motey, because it is more isolated from the host system, easier to use, to remove and to update.

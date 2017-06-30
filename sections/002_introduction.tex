@@ -42,7 +42,7 @@ A more lightweight, less resource and time consuming solution is container virtu
 "Furthermore, they are flexible tools for packaging, delivering and orchestration software infrastructure services as well as application"\autocite[p. 117]{Pahl:2016}.
 Orchestration tools like Kubernetes\footnote{\url{https://kubernetes.io}} and Docker Swarm\footnote{\url{https://docs.docker.com/engine/swarm}} that can deploy, scale and manage containers to clusters of hosts have become established in the last years.
 If this technology can be moved over to the \ac{IoT} area, many challenges can be solved.
-Dynamically deployed applications at the edge of a network can store and preprocesses gather data even if a node have no connection to the cloud.
+Dynamically deployed applications at the edge of a network can store and preprocess gathered data even if a node have no connection to the cloud.
 Traffic can be reduced by only transmitting aggregated data back to the cloud.
 Lossy signals can be compensated due to an autonomous behavior of the different components.
 More often small low power devices with a limited computational power are used as \ac{IoT} nodes which also profit rather from lightweight container solutions than from resource consuming \acp{VM}.
@@ -70,7 +70,7 @@ A condition can be a hardware requirement, a required software or a dependencies
 The technical prerequisite and detailed requirements for the prototype as well as the usability of a \ac{GUI}, which could be for example Open Baton, an \ac{ETSI} \ac{NFV} compliant \ac{MANO} framework, have to be worked out.
 The cooperation with the \ac{FOKUS} plays a prominent role for this thesis, because they have a lot of knowledge and experience especially in this area of \ac{IoT} and \ac{NFV}.
 As the development method of choice a Kanban like process will be used.
-Kanban is very flexible but also staight forward.
+Kanban is very flexible but also straight forward.
 There is less meeting overhead then in Scrum, but it also helps to have an eye on the planed and spend resources.
 
 
@@ -90,11 +90,11 @@ There is less meeting overhead then in Scrum, but it also helps to have an eye o
 % -- was ist drin, was nicht
 As mentioned before, the engine to be developed will be a prototype for a fog node, this means the creation of a \ac{MANO} engine on the server side is out of scope for this thesis.
 Open Baton serves as the template for that project and especially the modular architecture and the resulting extensibility will be targeted.
-Beside that, the whole prototype will be created completely from scretch.
+Beside that, the whole prototype will be created completely from scratch.
 The container virtualization will be realized with Docker\footnote{\url{https://www.docker.com}}, an open source container platform.
 Docker has on \ac{API} where third party apps can communicate with and can control the engine himself.
-The functional and non-functional constraints could base on \ac{YAML} schemas which are part of the \ac{TOSCA} standard for example.
-These schemas should be extendable and should fit the needs of the constraint functionality.
+The functional and non-functional constraints could base on \ac{YAML} schemes which are part of the \ac{TOSCA} standard for example.
+These schemes should be extendable and should fit the needs of the constraint functionality.
 
 \begin{figure}[H]
     \centering
@@ -123,7 +123,7 @@ The definition of the requirements as well as features and capabilities of the p
 Based on that, the architecture of the system is illustrated in chapter \ref{chapter:concept}.
 The proof-of-concept implementation will be worked out in chapter \ref{chapter:implementation} and the functionality of the plugin will be demonstrated.
 Chapter \ref{chapter:evaluation} summarizes the results of the work and evaluates the viability in terms of software quality, usability and feature-completeness.
-Finally the gained learnings as well as an outlook for further improvements of the plugin will be argued in chapter \ref{chapter:conclusion}.
+Finally the gained learning as well as an outlook for further improvements of the plugin will be argued in chapter \ref{chapter:conclusion}.
 % TODO: can be more detailed
 
 % The ’structure’ or ’outline’ section gives a brief introduction into the main chapters of

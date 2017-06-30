@@ -32,7 +32,7 @@ When objects are able to capture and monitor their environment, a network can pe
 Therefore a new dimension of information and communication technology will be created, where users have access to everything at any time, everywhere.
 In addition to smart devices, subcategories are also emerging from the \ac{IoT} which, in addition to the physical devices, also describe technologies such as protocols and infrastructures.
 The "Smart Home" has been a prominent topic in media and business for many years.
-Smart City or Industrie 4.0 are also becoming established and are increasingly popular.
+Smart City or Industry 4.0 are also becoming established and are increasingly popular.
 But the Internet started with the appearance of bar codes and \ac{RFID} chips.\autocite[cf.][p. 13]{Kra:2013}
 The second step, which is more or less the current situation, sensors, physical devices, technical devices, data and software are connected to each other.\autocite[cf.][p. 13]{Kra:2013}
 This was achieved, in particular, by cloud computing, which provides the highly efficient memory and computing power that is indispensable for such networks.\autocite[cf.][p. 206]{Rui:2015}
@@ -76,7 +76,7 @@ At the end, the system can use customer wishes in every step in the process to b
   \label{tab:industryComponents}
 \end{table}
 
-Table \ref{tab:industryComponents} shows the six design principles which can be from the Industrie 4.0 components.
+Table \ref{tab:industryComponents} shows the six design principles which can be from the Industry 4.0 components.
 They can help companies to identify and implement Industry 4.0 scenarios.\autocite[cf.][p. 11]{Her:2015}
 
 \begin{enumerate}
@@ -139,7 +139,7 @@ However fog computing should not be seen as a competitor of cloud computing, it 
 According to the \ac{NIST} the definition of virtualization is: "Virtualization is the simulation of the software and/or hardware upon which other software runs. This simulated environment is called a virtual machine (VM)."\autocite[p. ES-1]{Sca:2011}.
 This means a \ac{VM}, also referred as guest system, can be executed in a real system, which is referred as host system.
 A \ac{VM} has its own \ac{OS} which is completely isolated from the other \acp{VM} and the host system.\autocite[cf.][p. 2]{Celesti:2016}
-Basically there are two types of virtualization: Process virtualization where the virtualizing software also known as \ac{VMM} is executed by the host \ac{OS} and only an application will be executed inside the guest \ac{OS} and on the other side there is the the system virtualization where the whole \ac{OS} as well as the application are running inside the virtualizing software.
+Basically there are two types of virtualization: Process virtualization where the virtualization software also known as \ac{VMM} is executed by the host \ac{OS} and only an application will be executed inside the guest \ac{OS} and on the other side there is the the system virtualization where the whole \ac{OS} as well as the application are running inside the virtualization software.
 Figure \ref{fig:vms_vs_docker} illustrate both concepts.
 Examples for process virtualization could be the \ac{JVM}\footnote{\url{https://www.java.com}}, the .Net framework\footnote{\url{https://www.microsoft.com/net}} or Docker\footnote{\url{https://www.docker.com}}, where VMWare\footnote{\url{http://www.vmware.com}}, Oracle Virtual Box\footnote{\url{https://www.virtualbox.org}}, XEN\footnote{\url{https://www.xenproject.org}} or Microsoft Hyper-V\footnote{\url{https://www.microsoft.com/de-de/cloud-platform/server-virtualization}} are only some examples for system virtualization.
 The benefits of all virtualization techniques are the rapid provisioning of resources which could be \ac{RAM}, disk storage, computation power or network bandwidth.
@@ -214,7 +214,7 @@ Overall \ac{NFV} can reduce \ac{OpEx} as well as \ac{CapEx} and can decreasing t
 To achieve \ac{NFV} the \ac{ETSI} has defined a framework the \ac{NFV-MANO}\footnote{\url{http://www.etsi.org/deliver/etsi_gs/NFV-MAN/001_099/001/01.01.01_60/gs_NFV-MAN001v010101p.pdf}} and the \ac{OASIS} created \ac{TOSCA} a \ac{NFV} specific data model and templates to coordinate and orchestrate the \ac{NF} into the cloud.
 
 \paragraph{\acs{OSS} /\ \acs{BSS}} refers to the \ac{OSS} and the \ac{BSS} of a telecommunication operator.\autocite[cf.]{Kahn:2015}
-The \ac{OSS} is responsible for the underlaying soft- and hardware system, for example for network and fault management.
+The \ac{OSS} is responsible for the underlying soft- and hardware system, for example for network and fault management.
 The \ac{BSS} on the other hand is responsible for the business handling, for example customer and product management.
 Both can be integrated with the \ac{NFV-MANO}.\autocite[cf.]{Kahn:2015}
 
@@ -223,7 +223,7 @@ Even if only a sub-functions or a sub-components of a hardware element is virtua
 Multiple sub-functions can act together as one \ac{VNF}.
 
 \paragraph{\ac{EMS}} is responsible for the functional management of a single or multiple \acp{VNF}.\autocite[cf.]{Kahn:2015}
-This includes fault, configuration, accounting, perfomance and security management.\autocite[cf.]{Kahn:2015}
+This includes fault, configuration, accounting, performance and security management.\autocite[cf.]{Kahn:2015}
 Furthermore the \ac{EMS} itself can be a \ac{VNF} or it can handle a \ac{VNF} through proprietary interfaces.\autocite[cf.]{Kahn:2015}
 
 \paragraph{\ac{NFVI}} is the environment where \acp{VNF} are executed.
@@ -244,9 +244,9 @@ The orchestrator interacts with the \ac{VNFM} to perform actions, but not with t
 
 \paragraph{\ac{TOSCA}} is developed by the \ac{OASIS} to deliver a declarative description of a \ac{NFV} application topology for network or cloud environments.\autocite[cf.]{Tosca:NFV}
 In figure \ref{fig:nfv_architecture} it is represented by the \textit{Service, VNF and Infrastructure Description} block.
-Beside that, it can also be used to define workflows which should be automated in a virtualized environment.\autocite[cf.]{Tosca:NFV}
-The \ac{TOSCA} modeling language can specify ndoes, whereby a node can be a network, a subnet or only a server software component, and it also handles relationships between the nodes and also services.\autocite[cf.]{Tosca:NFV}
-To define schemas, relationships and the configuration of such an infrastructure, it uses \ac{YAML} files for ease the usage.\autocite[cf.]{Tosca:NFV}
+Beside that, it can also be used to define a workflow which should be automated in a virtualized environment.\autocite[cf.]{Tosca:NFV}
+The \ac{TOSCA} modeling language can specify nodes, whereby a node can be a network, a subnet or only a server software component, and it also handles relationships between the nodes and also services.\autocite[cf.]{Tosca:NFV}
+To define schemes, relationships and the configuration of such an infrastructure, it uses \ac{YAML} files for ease the usage.\autocite[cf.]{Tosca:NFV}
 \ac{TOSCA} works pretty well with \ac{NFV-MANO} components to automate the deployment and management of \acp{NF} and services.
 
 
@@ -408,10 +408,10 @@ It communicates with the \ac{VIM} to orchestrate resources and services and it i
 A more detailed view of the Open Baton architecture is shown in figure \ref{fig:open_baton_detailed_architecture}.
 As mentioned before each component communicate over the message queue and can be extended or replaced if necessary.
 Additional components, such as the \ac{AE} or the \ac{FM} system, are provided to manage a network service at runtime.\autocite{openBatonDoc}
-The necessary informations are delivered from the monitoring system available at the \ac{NFVI} level, which can also be extended or replaced with any monitoring system by implementing a custom monitoring driver.\autocite{openBatonDoc}
+The necessary information are delivered from the monitoring system available at the \ac{NFVI} level, which can also be extended or replaced with any monitoring system by implementing a custom monitoring driver.\autocite{openBatonDoc}
 The \ac{VIM} Driver mechanism allows to replace OpenStack with external heterogeneous \acp{PoP}, but without the need of modifying the orchestration logic.\autocite{openBatonDoc}
 Beside the generic \ac{VNFM}, also the Juju\footnote{\url{https://www.ubuntu.com/cloud/juju}} \ac{VNFM} can be used to deploy Juju Charms or Open Baton \ac{VNF} packages.
-Open Baton also provides a marktplace\footnote{\url{http://marketplace.openbaton.org}} for free and open source \acp{VNF}, which can directly be loaded into the system.
+Open Baton also provides a marketplace\footnote{\url{http://marketplace.openbaton.org}} for free and open source \acp{VNF}, which can directly be loaded into the system.
 
 Furthermore Open Baton comes with a modern and easy to use \ac{GUI} and user management.
 The typical workflow of running a \ac{NFVI} is by starting them through the dashboard.
@@ -436,10 +436,10 @@ On the one side bandwidth in an \ac{IoT} network can be very limited due to a ba
 Hundreds or thousands of devices can probably send data at the same time.
 On top of that several devices like sensors and actuators can send a huge amount of data because a sensor reads data pretty fast but mostly only simple data like the temperature or the humidity or something similar.
 All conditions ends up in a huge network traffic.
-Therefore it is quite important the applications in an \ac{IoT} context use a lightweigt protocol which has less data overhead and can delivers data packages very fast.
+Therefore it is quite important the applications in an \ac{IoT} context use a lightweight protocol which has less data overhead and can delivers data packages very fast.
 Mostly it is not important to receive each package because for example in several use cases the temperature that is measured via a sensor does not change drastically in a few millisecond.
 It would be enough to get the data every second and even in this case it would be probably fine to loose a single package.
-But if there are hundreds of sensors sending the data it could me more usefull to reduce the bandwidth and also the latency.
+But if there are hundreds of sensors sending the data it could me more useful to reduce the bandwidth and also the latency.
 For some devices it could be crucial to react to events or issues as fast as possible.
 Hence the latency should be as low as possible.
 This also suggests to use a lightweight and fast protocol.
@@ -453,10 +453,10 @@ It has a publish/subscribe architecture, which makes it easy to implement and al
 The recipient of a message which is called consumer in the \ac{MQTT} context is completely decoupled from the sender, mostly called producer, via a broker.
 In general the workflow is that a consumer subscribe to a specific topic at the broker and the producer can send messages with a specific topic to the broker.
 The producer does not know if there is any consumer subscribed to the topic of a message.
-The broker is resonsible for delivering messages to consumers, by receiving them from the producer and send out copies to the consumers.
+The broker is responsible for delivering messages to consumers, by receiving them from the producer and send out copies to the consumers.
 Figure \ref{fig:mqtt_architecture} illustrates this concept.
 
-In contrast to Client/Server protocols such as the \acs{HTTP}, \ac{MQTT} is eventoriented, which means that the client does not have to constantly ask the server if there is new data, the broker informs the consumer when there is new data on a topic.\autocite[cf.]{Bayer:MQTT}
+In contrast to Client/Server protocols such as the \acs{HTTP}, \ac{MQTT} is event-oriented, which means that the client does not have to constantly ask the server if there is new data, the broker informs the consumer when there is new data on a topic.\autocite[cf.]{Bayer:MQTT}
 In direct comparison, this concept decrease the traffic, the amount of connections at the server and the delay of the message to be send to the clients.
 
 \begin{figure}[H]
@@ -466,36 +466,36 @@ In direct comparison, this concept decrease the traffic, the amount of connectio
     \label{fig:mqtt_architecture}
 \end{figure}
 
-Beside the publish/subscribe architecture and the lightweight protocol, \ac{MQTT} has only few but usful features.
+Beside the publish/subscribe architecture and the lightweight protocol, \ac{MQTT} has only few but useful features.
 \textbf{\ac{QoS}} define the level of reliability with which messages are delivered.\autocite[cf.]{Bayer:MQTT}
 There are three different levels, where each level differs in reliability and resources usage.\autocite[cf.]{Bayer:MQTT}
 In an \ac{IoT} context, for instance gathering temperature sensor data from a low power device, most of the time keeping the resources usage low is more important than the reliability of getting every single message.\newline
-At \textit{\ac{QoS} level 0 - at most once}, it is garantied that a message can only arrieves once, but they can also be lost during transfer.
+At \textit{\ac{QoS} level 0 - at most once}, it is guaranteed that a message can only arrives once, but they can also be lost during transfer.
 A single message will be send once and the publisher does not check the success of receiving them.
 This pattern is also called \textit{Fire and Forget}, it is fast and resources friendly.\autocite[cf.]{Bayer:MQTT}\newline
-At \textit{\ac{QoS} level 1 - at lest once}, it is grantied that a message will be received at the consumer.
-After the publisher send the message with a specific packet identifier, the consumer will confirm the receipt of the message with a so called pubback packat.
+At \textit{\ac{QoS} level 1 - at lest once}, it is guaranteed that a message will be received at the consumer.
+After the publisher send the message with a specific packet identifier, the consumer will confirm the receipt of the message with a so called pubback packet.
 The pubback packet also have the same packet identifier included, so that the publisher will know that the message was successfully delivered.
 If a message get lost during transmission, they will be resend.
 It is also possible, that the same message appears multiple times at the consumer, depending on the delay in the network.\newline
 The most secure but also most resources consuming level is At \textit{\ac{QoS} level 2 - exactly once}.
-At this level it is garantied, that a message is exactly received once.
+At this level it is guaranteed, that a message is exactly received once.
 It is not possible that a message appears multiple times or never.
 This level has a two-level confirmation process, where at first the consumer confirms the receive of the message and afterwards the producers confirms the receive of the confirmation.
-Therefor both sides can be sure to not send or receive duplicates and it is garantied that a message will be received.
+Therefor both sides can be sure to not send or receive duplicates and it is guaranteed that a message will be received.
 
-Forthermore the broker has two features to handle connection loses: the \textit{last will testament} and the \textit{message persistence}.
+Furthermore the broker has two features to handle connection loses: the \textit{last will testament} and the \textit{message persistence}.
 The former feature will send a last message from the broker to a consumer if the connection to the publisher will get lost.
 This could be for instances the information that the connection get lost or something similar.
-The message persistance will be used if one consumer lose the connection to the broker.
+The message persistence will be used if one consumer lose the connection to the broker.
 In this case the message will be stored and delivered as soon as the consumer reconnects.
 With the \textit{retrained messages} feature, a consumer which is connected for the first time to the broker will get the last message send for a specific topic. This can be useful if the temperature from a sensor should be displayed, but the value will only be fetched every 30 seconds. This would lead to the behaviour that the initial value on consumer side will in worst case be unknown for 30 seconds.
-\textit{Persistent sessions} allows a connection be established even if the consumer disappers. In this case all the messages incurred will be stored and delivered if the consumer resume the session. The session can be identified with a unique client identifier.\autocite[cf.]{Bayer:MQTT}
+\textit{Persistent sessions} allows a connection be established even if the consumer disappears. In this case all the messages incurred will be stored and delivered if the consumer resume the session. The session can be identified with a unique client identifier.\autocite[cf.]{Bayer:MQTT}
 
 Due to the fact that \ac{MQTT} is a simple protocol with a small footprint and the \ac{QoS} handshake enables the protocol to be independent from \acs{TCP} so that it can be used even on devices without a TCP/IP stack like embedded devices such as an Arduino.\autocite[cf.]{Bayer:MQTT}
 There the protocol can be used via a bus or a serial port.\autocite[cf.]{Bayer:MQTT}
-\ac{MQTT} himself support the protection of the messages via username nad password and the communication can be encrypted with \acs{SSL} or \acs{TLS} on the transport layer.\autocite[cf.]{Bayer:MQTT}
-The broker can additionally use client certificates to authenticate them or restrict the access via access conrol lists such as \acs{IP} filtering.\autocite[cf.]{Bayer:MQTT}
+\ac{MQTT} himself support the protection of the messages via username and password and the communication can be encrypted with \acs{SSL} or \acs{TLS} on the transport layer.\autocite[cf.]{Bayer:MQTT}
+The broker can additionally use client certificates to authenticate them or restrict the access via access control lists such as \acs{IP} filtering.\autocite[cf.]{Bayer:MQTT}
 \ac{MQTT} is available for most of the common programming languages and platforms.
 
 % https://www.predic8.de/mqtt.htm
@@ -503,27 +503,27 @@ The broker can additionally use client certificates to authenticate them or rest
 
 \subsection{ZeroMQ}
 \label{section:ZeroMQ}
-ZeroMQ is an messaging and communication framework to send atomic messages between applications and processec across various transports like \ac{TCP}, in-process, inter-process or multicast.\autocite[cf.]{ZeroMQ:Guide}
+ZeroMQ is an messaging and communication framework to send atomic messages between applications and processes across various transports like \ac{TCP}, in-process, inter-process or multicast.\autocite[cf.]{ZeroMQ:Guide}
 Every message will be send over sockets via several patterns like publish-subscribe, fan-out or a simple request-reply.\autocite[cf.]{ZeroMQ:Guide}
 ZeroMQ has an asynchronous I/O model which allows to create high-performance and scalable multicore applications.\autocite[cf.]{ZeroMQ:Guide}
-To distinguish it from messaging frameworks like \ac{AMQP}\footnote{\url{https://www.amqp.org}} ZeroMQ has no dedicated broker inbetween.
+To distinguish it from messaging frameworks like \ac{AMQP}\footnote{\url{https://www.amqp.org}} ZeroMQ has no dedicated broker in between.
 The benefit is that there is no single point of failure, not bottleneck and no need to maintain another component, but ZeroMQ still has the advantages of such a messaging system.
 
 ZeroMQ supports five different transport types.\newline
 \textbf{In-Process} is used for local (in-process or inter-thread) communication transport.
 This transport passes the messages directly via memory between threads.\autocite[cf.]{ZeroMQ:inproc}
 These transport type is optimal for creating multithreaded applications without providing access to the outside.
-This is the fastes tranport type available in ZeroMQ.\newline
-\textbf{\ac{IPC}} provides also a local communication transport, but passes messages via the \ac{OS} dependend \ac{IPC} machanism, for example UNIX domain sockets.
-An application can provide a local \ac{API} for another local appliction via \ac{IPC}.
+This is the fastest transport type available in ZeroMQ.\newline
+\textbf{\ac{IPC}} provides also a local communication transport, but passes messages via the \ac{OS} dependent \ac{IPC} mechanism, for example UNIX domain sockets.
+An application can provide a local \ac{API} for another local application via \ac{IPC}.
 Also \ac{IPC} is much faster than the \ac{TCP} communication.\newline
 \textbf{\ac{TCP}} is an ubiquitous, reliable, unicast transport to provide an \ac{API} over a network.\autocite[cf.]{ZeroMQ:tcp}\newline
 \textbf{\ac{PGM}} is a multicast communication transport using the \ac{PGM} standard protocol\footnote{\url{https://tools.ietf.org/html/rfc3208}} and the datagrams are layered directly on top of IP datagrams.\autocite[cf.]{ZeroMQ:pgm}
-It is helpful to send a squence of packets to multiple consumers at the same time.
+It is helpful to send a sequence of packets to multiple consumers at the same time.
 Therefore \ac{PGM} and also \acs{EPGM} can only be used with the publish/subscribe pattern.\newline
 \textbf{\ac{EPGM}} is similar to \ac{PGM} but with the difference that the PGM datagrams are encapsulated inside UDP datagrams.\autocite[cf.]{ZeroMQ:pgm}
 
-ZeroMQ has serveral basic patterns and most of them are combinable.
+ZeroMQ has several basic patterns and most of them are combinable.
 To describe them all in detail would exceed the scope of this work, so only the most relevant ones are considered.\newline
 \textbf{Request-Reply} is comparable with a \ac{HTTP} request-response.
 The client send a message to the server, which does some work and send back a message afterwards.
@@ -535,7 +535,7 @@ Figure \ref{fig:zeromq_req_rep} illustrates the pattern.\newline
     \caption[ZeroMQ Request-Reply architecture]{ZeroMQ Request-Reply architecture. Adapted from: \autocite{ZeroMQ:Guide}}
     \label{fig:zeromq_req_rep}
 \end{figure}
-The \textbf{Publish-Subscribe} pattern in ZeroMQ is basically comparable with the MQTT publish-susbcribe pattern, but without the broker inbetween.
+The \textbf{Publish-Subscribe} pattern in ZeroMQ is basically comparable with the MQTT publish-subscribe pattern, but without the broker in between.
 This ends up in the fact that every consumer has to now the publisher and has to connect to them.
 A direct connection between them will established.
 Similar to MQTT, the publisher will send out the message to every subscribed consumer.
@@ -550,12 +550,12 @@ Figure \ref{fig:zeromq_pub_sub} shows this pattern.
 \end{figure}
 The \textbf{Pipeline} pattern is also known as the \textit{Divide and Conquer} pattern.
 There we have Ventilator which produces multiple tasks that can be done in parallel, a set of worker that can process these tasks and a sink that collects the results from the workers.\autocite{ZeroMQ:Guide}
-Benefit of this pattern is, that the workers devide the tasks, this means it will increase the calculation time based on the connected workers.
-FUrthermore the works can pull a new task if they are done.
+Benefit of this pattern is, that the workers divide the tasks, this means it will increase the calculation time based on the connected workers.
+Furthermore the works can pull a new task if they are done.
 This means a worker has a minimal idle time.
 Queuing is provided by ZeroMQ.
 It is also possible to add and remove workers dynamically.
-This makes an application muchKleines Update: Montag hatte ich Telefonat mit den Jungs von Krypton, Gestern Coding Challenge. Beides gemeistert, Montag oder Dienstag folgt dann persönliches Treffen mit Interview + Coding Case Study. more scalable.
+This makes an application much more scalable.
 Finally the sink pull the data from the worker in a so called \textit{fair-queuing}.
 This means the sink will pull one package from each worker one after another, then he starts from the beginning and will pull again only one package, even if one or multiple worker should have multiple packages retrievable.
 The whole pattern is shown in figure \ref{fig:zeromq_pipeline}\newline
@@ -583,6 +583,6 @@ As mentioned before, there are much more combinations possible.
 A good overview of many of them can be found in the official guide\footnote{\url{http://zguide.zeromq.org/page:all}} of ZeroMQ.
 
 By default ZeroMQ has no encryption or authentication machanismn build in.
-There is a dedicated project called CurveZMQ\footnote{\url{http://curvezmq.org}} which enables these functionallities and it is also created by the ZeroMQ maintainers.
+There is a dedicated project called CurveZMQ\footnote{\url{http://curvezmq.org}} which enables these functionalities and it is also created by the ZeroMQ maintainers.
 Since ZeroMQ version 4.x CurveZMQ comes built-in.
 Finally ZeroMQ has libraries for most of the common programming languages.
