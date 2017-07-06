@@ -693,12 +693,6 @@ The content of the file is shown in listing \ref{code:travis_config}.
       docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
       docker push neoklosch/motey;
       fi
-    - if [[ "$TRAVIS_BRANCH" = "master" ]]; then
-      docker build -t neoklosch/motey-rpi motey-rpi-docker-image;
-      docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-      docker push neoklosch/motey-rpi;
-      fi
-
   \end{minted}
   \caption{Travis CI configuration file}
   \label{code:travis_config}
@@ -722,25 +716,26 @@ After that all the related unit tests will be executed.
 If there is an error during the execution of the \textit{script} block, the whole build process will be stopped and marked as error.
 The current state can be view in Travis CI at \url{https://travis-ci.org/Neoklosch/Motey} and also in the readme of the project at \url{https://github.com/Neoklosch/Motey} or \url{http://motey.readthedocs.io/en/latest}.
 
-The \textit{after\_success} block is used to create and upload the Docker images.
-There are two slightly different scripts to be executed.
-The first one will create and upload a normal Docker image and the second one will be used for a specific Raspberry Pi image.
-A Raspberry Pi is using a \ac{CPU} with an ARM architecture.
-Therefore Docker images that should be support ARM \acp{CPU} must have specific dependencies and has to be build differently.
-The Raspberry Pi image for Motey has a modified Dockerfile that loads a Raspbian base image instead of an Ubuntu image.
-Also the setup script is slightly different because Raspbian sometimes need other dependencies or has different preinstalled tools.
-
+The \textit{after\_success} block is used to create and upload the Docker image.
 Beside that the install routine and also the \ac{CI} commands are similar.
-Both images will only be executed if it is a master branch build (see line 17 and 22).
+The image will only be executed if it is a master branch build (see line 17).
 This is reasonable because a development branch build can be unstable and should not be used to create an official Docker image.
-Line 18 and 23 will build the image and line 19 and 24 uploads it.
+Line 18 will build the image and line 19 uploads it.
 Two environment variables are used here, because to upload an image, the username and the password of the Docker Hub account has to be passed.
 Due to the fact that this file is under public version control, this sensible information should not be commited.
 Therefore preconfigured login credentials are used.
-Finally the Docker image will be pushed in line 20 and 25.
+Finally the Docker image will be pushed in line 20.
 
+In the root folder of the Motey project there are two docker image directories.
+The first one can be used to create and upload a normal Docker image and it is called \textit{motey-docker-image}.
+That folder is also used in the \textit{after\_success} block.
+The second folder can be used to build and upload a specific Raspberry Pi Docker image.
+Both scripts are slightly different, because a Raspberry Pi is using a \ac{CPU} with an ARM architecture.
+Therefore Docker images that should support ARM \acp{CPU} must have specific dependencies and has to be build differently.
 To build an image, a so called \textit{Dockerfile} has to be created.
-Listing \ref{code:motey_dockerfile} shows the Dockerfile for Motey.
+The Dockerfile for the Raspberry Pi image is different to the one for the nomal image, because it load a Raspbian base image instead of an Ubuntu image like the normal file will do.
+Also the setup script is slightly different, because Raspbian sometimes need other dependencies or has different preinstalled tools.
+Listing \ref{code:motey_dockerfile} shows the Dockerfile for the normal Motey build.
 
 \begin{listing}[H]
   \begin{minted}{dockerfile}
