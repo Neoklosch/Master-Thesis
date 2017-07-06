@@ -48,6 +48,8 @@ A detailed explanation of all files will be omitted, as this would exceed the sc
     \item{\textbf{File: setup.sh}} will be executed during the build phase and will install necessary tools and can executed command line instructions.
     \item{\textbf{File: requirements.txt}} a list with the Python requirements which are necessary to run the Motey engine and which should be installed during the build phase via pip.
   \end{itemize}
+  \item{\textbf{motey-rpi-docker-image:}} is pretty similar to the motey-docker-image directory but is specifically made for the Raspberry Pi image.
+  \item{\textbf{performance\_test:}} contains scripts that are used to perform performance tests for the evalutation chapter.
   \item{\textbf{resources:}} is a resource folder for the Github documentation. Will only be used by the \textit{README.rst} file in the root folder and the \textit{index.rst} file in the docs\/source folder.
   \item{\textbf{samples:}} contains some samples to test the functionality of the Motey engine. Is primarily a playground to test new functions.
   \item{\textbf{scripts:}} some scripts which will be executed frequently during the development phase.
@@ -683,7 +685,7 @@ The content of the file is shown in listing \ref{code:travis_config}.
   script:
     - pycodestyle --ignore=E241,E501 motey/
     - pycodestyle --ignore=E241,E501 samples/
-    - python3 -m unittest tests/test_*.py
+    - python3 -m unittest tests/capabilityengine/test_* tests/communication/test_* tests/models/test_* tests/orchestrator/test_* tests/repositories/test_* tests/utils/test_* tests/val/test_*
 
   after_success:
     - if [[ "$TRAVIS_BRANCH" = "master" ]]; then
@@ -691,13 +693,19 @@ The content of the file is shown in listing \ref{code:travis_config}.
       docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
       docker push neoklosch/motey;
       fi
+    - if [[ "$TRAVIS_BRANCH" = "master" ]]; then
+      docker build -t neoklosch/motey-rpi motey-rpi-docker-image;
+      docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+      docker push neoklosch/motey-rpi;
+      fi
+
   \end{minted}
   \caption{Travis CI configuration file}
   \label{code:travis_config}
 \end{listing}
 
 There are some important parts in it.
-At first the script need root privileges to build and upload the Docker image.
+At first the script need root privileges to build and upload Docker images.
 Line 1 add this privilege and in line 2 the Docker service is requested.
 The programming language the application to build is written in, is declared in line 3, in this case python.
 Line 6 and 7 defines the python version to use.
@@ -710,18 +718,26 @@ In this case the python requirements will be installed.
 Line 11 up to 14 are used to test the source code.
 A code style check is performed in line 12 and 13.
 It will check to code against the \ac{PEP} 8 standard\footnote{\url{https://www.python.org/dev/peps/pep-0008}}, which is be used by several other libraries like the pretty famous Django project\footnote{\url{https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style}}.
-After that the unit tests will be executed.
+After that all the related unit tests will be executed.
 If there is an error during the execution of the \textit{script} block, the whole build process will be stopped and marked as error.
 The current state can be view in Travis CI at \url{https://travis-ci.org/Neoklosch/Motey} and also in the readme of the project at \url{https://github.com/Neoklosch/Motey} or \url{http://motey.readthedocs.io/en/latest}.
 
-The \textit{after\_success} block is used to create and upload the Docker image.
-It will only be executed if it is a master branch build (see line 17).
+The \textit{after\_success} block is used to create and upload the Docker images.
+There are two slightly different scripts to be executed.
+The first one will create and upload a normal Docker image and the second one will be used for a specific Raspberry Pi image.
+A Raspberry Pi is using a \ac{CPU} with an ARM architecture.
+Therefore Docker images that should be support ARM \acp{CPU} must have specific dependencies and has to be build differently.
+The Raspberry Pi image for Motey has a modified Dockerfile that loads a Raspbian base image instead of an Ubuntu image.
+Also the setup script is slightly different because Raspbian sometimes need other dependencies or has different preinstalled tools.
+
+Beside that the install routine and also the \ac{CI} commands are similar.
+Both images will only be executed if it is a master branch build (see line 17 and 22).
 This is reasonable because a development branch build can be unstable and should not be used to create an official Docker image.
-Line 18 will build the image and line 19 uploads it.
+Line 18 and 23 will build the image and line 19 and 24 uploads it.
 Two environment variables are used here, because to upload an image, the username and the password of the Docker Hub account has to be passed.
 Due to the fact that this file is under public version control, this sensible information should not be commited.
 Therefore preconfigured login credentials are used.
-Finally the Docker image will be pushed in line 20.
+Finally the Docker image will be pushed in line 20 and 25.
 
 To build an image, a so called \textit{Dockerfile} has to be created.
 Listing \ref{code:motey_dockerfile} shows the Dockerfile for Motey.
