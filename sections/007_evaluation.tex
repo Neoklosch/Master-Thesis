@@ -9,10 +9,20 @@ In this chapter the implementation of the plugins, based on the previously defin
 Afterwards a demonstration of the system will be shown.
 
 \section{Test Environment}
-% Raspberry Pi, Laptop, virtual environment
-\doit
+\label{section:test-environment}
+Motey and the performance scripts in section \ref{section:performance-evaluation} was tested on three different devices.
+\begin{enumerate}
+  \item \textbf{Raspberry Pi 2 Model B Version 1.1} hereinafter called \textbf{NeoPi}, that has a ARM Cortex-A7 \ac{CPU} with four cores each with 900 MHz and a 32-bit architecture. It has 1024 MB \ac{RAM} and a 10/100-MBit-Ethernet port. The device is running a Raspbian 8 (jessie) with Linux Kernel version 4.9.
+  \item \textbf{Raspberry Pi 3 Model B Version 1.2} hereinafter called \textbf{BuffPi}, is the currently the newest Raspberry Pi on the market. It has a ARM Cortex-A53 \ac{CPU} also with four cores, but each has 1200 MHz and 64-bit architecture. It also has 1024 MB \ac{RAM} and a 10/100-MBit-Ethernet port.  This devices is also runngin Raspbian 8 (jessie) with Linux Kernel version 4.9.
+  \item \textbf{Acer Aspire V5-573G} hereinafter called \textbf{Laptop}, with an Intel Core i7-4500U \ac{CPU} with two cores each 1.80 GHz and a 64-bit architecture as well. It has 8 GB \ac{RAM} and a 802.11n WiFi connection. It is running a Linux Mint 18.1  64-bit \ac{OS} with a Linux Kernel version 4.4.
+\end{enumerate}
+
+Both the \textit{NeoPi} and the \textit{BuffPi} are connected via ethernet to a router.
+The \textit{Laptop} is connect via 802.11n WiFi to the router.
+% todo: network information, multiple devices, etc.
 
 \section{Performance Evaluation}
+\label{section:performance-evaluation}
 % Docker vs. VMWare
 % there are several performance comparisons out there: for example \autocite{IBM:Performance:2014} or \autocite{Hussain:Performance:2014} or \autocite{Lloyd:Performance:2015}
 % hard to compare on a raspberry pi because of the ARM architecture
@@ -25,6 +35,7 @@ Afterwards a demonstration of the system will be shown.
 \doit
 
 \section{Scalability}
+\label{section:scalability}
 % MQTT maximum
 % weitere nodes hinzufügen
 % existierende entfernen
@@ -32,6 +43,7 @@ Afterwards a demonstration of the system will be shown.
 \doit
 
 \section{Code Verification}
+\label{section:code-verification}
 Code verification is a quite important technique in every development project.
 There are several possibilities to check and verify the integrity of the created source code.
 Two of them are used in this project.
