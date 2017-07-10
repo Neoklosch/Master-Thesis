@@ -133,34 +133,49 @@ But still for the \ac{TCP} mode, the results are self-evidently.
 
 
 \subsection{Performance MQTT}
-% versuchsaufbau erklären
-% daten format erklären
-% das es 10 durchläufe waren erklären
-% auf Problem mit packet loss eingehen
-% -> puffer muss groß genug sein
-% Diagram auswerten
-% -> auf QoS level eingehen
-% ---> unterschied significant
-% ---> mehr als doppelt so lang zwischen QoS 0 und QoS 2
-% ---> verglichen zu HTTP immer noch sehr schnell
+The last test setup was used to test the MQTT performance.
+Due to the fact that MQTT need a broker to be executed a third device the \textit{Laptop} was added.
+Each test was setup in three different ways.
+The Laptop, the BuffPi and the NeoPi were the broker each at a time.
+The BuffPi or the NeoPi were always the publisher and the receiver.
+Furthermore MQTT has three different types to be executed, which is called the \ac{QoS} level.
+The \ac{QoS} was explained in section \ref{section:MQTT}.
+The initial assumtion was that each level has a different performance.
+Also in this setup each request was sent 10.000 times and in ten iterations.
+All results are shown in section \ref{appendix:mqtt_test_results}.
+Figure \ref{fig:performance_mqtt_average_time_all_qos} shows the average time for each \ac{QoS} level where BuffPi was the broker as well as the publisher and the NeoPi was the consumer.
 
-% -> Broker Device eingehen
-% ---> langsamer Broker führt zu schlechterem Durchsatz
-% ---> selbst langsames Device noch gute werte verglichen zu HTTP
-% ---> Dennoch wichtig
-% ---> Empfehlung: Startes device aka Cloud for MQTT
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{resources/images/performance_mqtt_average_time_qos_1.png}
-    \caption[MQTT average time for QoS 1]{MQTT average time for QoS 1}
-    \label{fig:performance_mqtt_average_time_qos_1}
-\end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{resources/images/performance_mqtt_average_time.png}
     \caption[MQTT average time for all QoS levels]{MQTT average time for all QoS levels}
     \label{fig:performance_mqtt_average_time_all_qos}
 \end{figure}
+
+As expected the \ac{QoS} level performance differ significantly.
+The difference between \ac{QoS} 0 and \ac{QoS} 2 is more than two and a half of the time used for sending out the 10.000 requests.
+Therefore the \ac{QoS} level should be consciouly used in the required use case.
+Due to the fact that the MQTT system is used for the node discovery a lower \ac{QoS} level is suiteable.
+\ac{QoS} level 1 is recommended for that application.
+And even compared to the \ac{HTTP} connection, MQTT is much faster and more reliable for the node discovery.
+
+On the other side, the device that is executing the broker is much more crucial.
+Figure \ref{fig:performance_mqtt_average_time_qos_1} shows the difference between the three devices.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{resources/images/performance_mqtt_average_time_qos_1.png}
+    \caption[MQTT average time for QoS 1]{MQTT average time for QoS 1}
+    \label{fig:performance_mqtt_average_time_qos_1}
+\end{figure}
+
+The Laptop that has the most powerful hardware is also much faster by sending out the messages.
+NeoPi the weakest device in the test setup tokes nearly as twice as the Laptop.
+Compared to \ac{HTTP} even the NeoPi is much faster, but for a huge cluster the broker should be as powerful as possible.
+If possible the broker should be located in the cloud.
+There it has the better hardware and can also be better maintained.
+Nevertheless also a node in the fog node cluster can be used to act as a broker.
+It would be optimal to use a dedicated node for that job.
 
 
 \section{Scalability}
