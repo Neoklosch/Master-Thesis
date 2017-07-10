@@ -29,7 +29,7 @@ The \textit{Laptop} is connect via 802.11n WiFi to the router.
 In the following section some performance relevant tests are shown and analyzed.
 Especially the performance of the used virtualization method is crucial for the system as well as the connection performance of the used protocols are important.
 All evaluations are made with low-power devices in mind.
-This means a small overhead and a fast and leightweight solution is preferred. 
+This means a small overhead and a fast and leightweight solution is preferred.
 
 \subsection{Docker vs. KVM}
 Due to the fact that Docker is the main component in the created prototype, it is important to verify the performance on low-power devices.
@@ -42,7 +42,7 @@ Figure \ref{fig:ibm_kvm_docker_io} show the throughput for random I/O operations
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{resources/images/ibm_kvm_docker_io.png}
+    \includegraphics[width=\textwidth]{resources/images/performance_ibm_kvm_docker_io.png}
     \caption[KVM and Docker I/O throughput comparison by IBM]{KVM and Docker I/O throughput comparison by IBM. Adapted from: \autocite[p. 6]{IBM:Performance:2014}}
     \label{fig:ibm_kvm_docker_io}
 \end{figure}
@@ -59,12 +59,44 @@ Only the network troughput is nearly the same.\autocite[cf.][p. 52]{Russell:Perf
 Finally also the container size is much smaller in Docker than in \ac{KVM}.\autocite[cf.][p. 66]{Russell:Performance:2014}
 Overall Docker is much more lightweight and due to the fact that it supports the ARM architecture, it is well suiteable for the usage on low-power devices.
 
-\subsection{Performance ZeroMQ}
-\doit
-\subsection{Performance MQTT}
-\doit
 \subsection{Performance HTTP}
-\doit
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{resources/images/performance_http_server_comparison.png}
+    \caption[HTTP 10k requests - Server comparison]{HTTP 10k requests - Server comparison}
+    \label{fig:performance_http_server_comparison}
+\end{figure}
+
+\subsection{Performance ZeroMQ}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{resources/images/performance_zeromq_cc_vs_nc.png}
+    \caption[ZeroMQ comparison between new connection and constant connections]{ZeroMQ comparison between new connection and constant connections}
+    \label{fig:performance_zeromq_cc_vs_nc}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{resources/images/performance_zeromq_vs_http.png}
+    \caption[Performance comparison ZeroMQ vs. HTTP]{Performance comparison ZeroMQ vs. HTTP}
+    \label{fig:performance_zeromq_vs_http}
+\end{figure}
+
+\subsection{Performance MQTT}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{resources/images/performance_mqtt_average_time_qos_1.png}
+    \caption[MQTT average time for QoS 1]{MQTT average time for QoS 1}
+    \label{fig:performance_mqtt_average_time_qos_1}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{resources/images/performance_mqtt_average_time.png}
+    \caption[MQTT average time for all QoS levels]{MQTT average time for all QoS levels}
+    \label{fig:performance_mqtt_average_time_all_qos}
+\end{figure}
+
 
 \section{Scalability}
 \label{section:scalability}
