@@ -140,7 +140,7 @@ If there is any style check violation, the \ac{CI} build process will fail and t
 
   The command "pycodestyle --ignore=E241,E501 samples/" exited with 0.
   \end{minted}
-  \caption{Sample output of the style check validation from the Travis \ac{CI} build process number 148\autocite{Travis:Build:148}}
+  \caption[Sample output of the style check validation from the Travis \ac{CI} build process number 148]{Sample output of the style check validation from the Travis \ac{CI} build process number 148\autocite{Travis:Build:148}}
   \label{code:style_check_validation}
 \end{listing}
 
@@ -149,7 +149,7 @@ The first style check call fails due to multiple validations, but the second one
 
 The second verification is are the unit tests.
 A unit test is as the name implies a software test method which tests each component of an application.
-Each component should be tested as isolated as possible by invoking only one or a couple of methods from a unit and the result should be verified automatically and compared with an expected result.\autocite[cf.][p. 320]{Olan:2003:UTT:948785.948830}
+Each component should be tested as isolated as possible by invoking only one or a couple of methods from a unit and the result should be verified automatically and compared with an expected result.\autocite[cf.][p. 320]{Olan:2003:UTT}
 All the used objects in a class should be as independent from each other as possible.
 To ensure this, the objects have to be mocked by a mocking framework.
 The python unit test framework has a build-in mocking framework since version 3.
