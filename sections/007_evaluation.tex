@@ -8,7 +8,8 @@
 % Compare it with related work. Why is your solution better than a concurrent
 % approach from another organization?
 In this chapter the implementation of the plugins, based on the previously defined requirements and concepts, are evaluated.
-Afterwards a demonstration of the system will be shown.
+Therefore several performance tests will be analyzed and the code verification will be shown.
+Afterwards the final system is demonstrated.
 
 \section{Test Environment}
 \label{section:test-environment}
@@ -21,19 +22,44 @@ Motey and the performance scripts in section \ref{section:performance-evaluation
 
 Both the \textit{NeoPi} and the \textit{BuffPi} are connected via ethernet to a router.
 The \textit{Laptop} is connect via 802.11n WiFi to the router.
-% todo: network information, multiple devices, etc.
+% TODO: network information, multiple devices, etc.
 
 \section{Performance Evaluation}
 \label{section:performance-evaluation}
-% Docker vs. VMWare
-% there are several performance comparisons out there: for example \autocite{IBM:Performance:2014} or \autocite{Hussain:Performance:2014} or \autocite{Lloyd:Performance:2015}
-% hard to compare on a raspberry pi because of the ARM architecture
-% -> not that much virtualization tools supports ARM
-% Encryption vs. non Encryption
-% Performance ZeroMQ
-% ZeroMQ vs HTTP
-% Performance MQTT
-% MQTT vs HTTP
+
+\subsection{Docker vs. KVM}
+Due to the fact that Docker is the main component in the created prototype, it is important to verify the performance on low-power devices.
+Unfortunately a performance comparison with established \ac{VM} tools like VMWare or Xen on a Raspberry Pi is not possible, because nearly all of them does not support the ARM \ac{CPU} architecture.
+There are several performance tests on x86 architecture.
+IBM for example compared \acp{VM} or more specific \acp{KVM} with Docker in a research report\autocite{IBM:Performance:2014} from 2014.
+They conclusion was that \ac{KVM} has a significant overhead to every I/O operation.
+Therefore it is less suiteable for latency-sensitive workloads or high I/O rates.
+Figure \ref{fig:ibm_kvm_docker_io} show the throughput for random I/O operations for a native, a Docker virtualized and a \ac{KVM} virtualized system.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{resources/images/ibm_kvm_docker_io.png}
+    \caption[KVM and Docker I/O throughput comparison by IBM]{KVM and Docker I/O throughput comparison by IBM. Adapted from: \autocite[p. 6]{IBM:Performance:2014}}
+    \label{fig:ibm_kvm_docker_io}
+\end{figure}
+
+Compared to the native system, Docker has "nearly no overhead"\autocite[p. 6]{IBM:Performance:2014}.
+But also Docker has some drawbacks.
+For example it has an overhead for workloads with high packet rates.\autocite[cf.][p. 6]{IBM:Performance:2014}
+The overall conclusion by IBM was that Docker is more performant than a \ac{KVM} virtualized system.
+
+Another benchmarking comparison\autocite{Russell:Performance:2014} between Docker and \ac{KVM} that was also made by IBM show a much clearer result.
+In this test Docker is much more performant in nearly every point of view.
+It has less overhead in terms of \ac{CPU} usage\autocite[cf.][p. 25]{Russell:Performance:2014}, memory performance\autocite[cf.][p. 50]{Russell:Performance:2014} and boot time\autocite[cf.][p. 24]{Russell:Performance:2014}.
+Only the network troughput is nearly the same.\autocite[cf.][p. 52]{Russell:Performance:2014}
+Finally also the container size is much smaller in Docker than in \ac{KVM}.\autocite[cf.][p. 66]{Russell:Performance:2014}
+Overall Docker is much more lightweight and due to the fact that it supports the ARM architecture, it is well suiteable for the usage on low-power devices.
+
+\subsection{Performance ZeroMQ}
+\doit
+\subsection{Performance MQTT}
+\doit
+\subsection{Performance HTTP}
 \doit
 
 \section{Scalability}
