@@ -145,6 +145,14 @@ A \ac{VM} has its own \ac{OS} which is completely isolated from the other \acp{V
 Basically there are two types of virtualization: Process virtualization where the virtualization software also known as \ac{VMM} is executed by the host \ac{OS} and only an application will be executed inside the guest \ac{OS} and on the other side there is the the system virtualization where the whole \ac{OS} as well as the application are running inside the virtualization software.
 Figure \ref{fig:vms_vs_docker} illustrate both concepts.
 Examples for process virtualization could be the \ac{JVM}\footnote{\url{https://www.java.com}}, the .Net framework\footnote{\url{https://www.microsoft.com/net}} or Docker\footnote{\url{https://www.docker.com}}, where VMWare\footnote{\url{http://www.vmware.com}}, Oracle Virtual Box\footnote{\url{https://www.virtualbox.org}}, XEN\footnote{\url{https://www.xenproject.org}} or Microsoft Hyper-V\footnote{\url{https://www.microsoft.com/de-de/cloud-platform/server-virtualization}} are only some examples for system virtualization.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{resources/images/vm_vs_container.png}
+    \caption[Structure bare-metal virtualization vs. container virtualization]{Structure bare-metal virtualization vs. container virtualization. Adapted from: \autocite[p. 2]{Gallagher:2015}}
+    \label{fig:vms_vs_docker}
+\end{figure}
+
 The benefits of all virtualization techniques are the rapid provisioning of resources which could be \ac{RAM}, disk storage, computation power or network bandwidth.
 Beside that, no human interaction is necessary during the provisioning process.
 Elasticity which scales a system in a cost-efficient manner in both directions, up and down.
@@ -154,13 +162,6 @@ Different processes can not interfere with each other and the data of a single u
 A challenge despite all the mentioned benefits is the performance.
 Running \acp{VM} increases the overhead and reduces the overall performance of a system.
 Therefore the specific use case have to consider these behavior.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.6\textwidth]{resources/images/vm_vs_container.png}
-    \caption[Structure bare-metal virtualization vs. container virtualization]{Structure bare-metal virtualization vs. container virtualization. Adapted from: \autocite[p. 2]{Gallagher:2015}}
-    \label{fig:vms_vs_docker}
-\end{figure}
 
 
 \subsection{Virtual Machines}
@@ -203,18 +204,21 @@ For Docker, Kubernetes and Docker Swarm are the most popular at the moment.
 It takes into consideration \ac{SDN} and preparing for the use of non-proprietary software to hardware integration instead of multiple vendor specific devices for each function, e.g. routers, firewalls, storages, switches, etc.\autocite[cf.]{Rivenes:2014}
 Now high-performance firewalls and load balancing software for example can run on commodity PC hardware and traffic can be off-loaded onto inexpensive programmable switches.\autocite[cf.]{Noble:2015}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.75\textwidth]{resources/images/nfv_architecture.png}
-    \caption[NFV architecture]{NFV architecture. Adapted from: \autocite{NFV:Architecture}}
-    \label{fig:nfv_architecture}
-\end{figure}
-
 Some benefits are speed, agility and cost reduction in deployment as well as execution manner.\autocite[cf.]{Noble:2015}
 Using homogeneous hardware simplifies the process of planning and reduces power, cooling and space needs.\autocite[cf.]{Noble:2015}
 Through virtualization providers can utilize resources more effectively, by allocating only the necessary resources for a specific functionality.\autocite[cf.]{Noble:2015}
 Overall \ac{NFV} can reduce \ac{OpEx} as well as \ac{CapEx} and can decreasing the time necessary to deploy new services to the network.\autocite[cf.]{Noble:2015}
 To achieve \ac{NFV} the \ac{ETSI} has defined a framework the \ac{NFV-MANO}\footnote{\url{http://www.etsi.org/deliver/etsi_gs/NFV-MAN/001_099/001/01.01.01_60/gs_NFV-MAN001v010101p.pdf}} and the \ac{OASIS} created \ac{TOSCA} a \ac{NFV} specific data model and templates to coordinate and orchestrate the \ac{NF} into the cloud.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{resources/images/nfv_architecture.png}
+    \caption[NFV architecture]{NFV architecture. Adapted from: \autocite{NFV:Architecture}}
+    \label{fig:nfv_architecture}
+\end{figure}
+
+Figure \ref{fig:nfv_architecture} shows the \ac{NFV} architecture in total.
+The whole structure can be separated into smaller subsections.
 
 \paragraph{\acs{OSS} /\ \acs{BSS}} refers to the \ac{OSS} and the \ac{BSS} of a telecommunication operator.\autocite[cf.]{Kahn:2015}
 The \ac{OSS} is responsible for the underlying soft- and hardware system, for example for network and fault management.
@@ -255,9 +259,11 @@ To define schemes, relationships and the configuration of such an infrastructure
 
 \section{Existing tools}
 
-There are several advantages of using frameworks and sophisticated tools, for example they reduces the time and energy in developing any software, they are more secure, well tested and they provides a standardized system through which users can develop applications.
+There are several advantages of using frameworks and sophisticated tools, for example they reduces the time and energy in developing any software by solving well known or very specific problems.
+They are more secure because several development iterations are done by developing them, they are well tested and they provides a standardized system through which users can develop applications.
 They also allow to create a prototype of an application in a short amount of time.
 To achieve the benefits the user has to spend some time to learn the concepts, functions and how to use a framework.
+Also a downside could be that specific problems are not solved by the library and sometimes complicate workarounds have to be made to add missing features.
 
 \subsection{Linux Containers}
 When we talk about container virtualization nowadays, Docker have to become one of the most famous tools out there.
@@ -416,6 +422,13 @@ The \ac{VIM} Driver mechanism allows to replace OpenStack with external heteroge
 Beside the generic \ac{VNFM}, also the Juju\footnote{\url{https://www.ubuntu.com/cloud/juju}} \ac{VNFM} can be used to deploy Juju Charms or Open Baton \ac{VNF} packages.
 Open Baton also provides a marketplace\footnote{\url{http://marketplace.openbaton.org}} for free and open source \acp{VNF}, which can directly be loaded into the system.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{resources/images/open_baton_architecture.png}
+    \caption[Open Baton detailed architecture]{Open Baton detailed architecture. Adapted from: \autocite{openBatonDoc}}
+    \label{fig:open_baton_detailed_architecture}
+\end{figure}
+
 Furthermore Open Baton comes with a modern and easy to use \ac{GUI} and user management.
 The typical workflow of running a \ac{NFVI} is by starting them through the dashboard.
 The user input, in this case deploying a \ac{VNF}, will be submitted as a request to the \ac{NFVO}.
@@ -426,12 +439,6 @@ Open Baton now can send lifecycle events to all the \acp{VNFM} responsible for t
 Finally the \acp{VNFM} processes the \acp{VNF} via the \ac{EMS} on to the given resources of the \ac{NFVI} on the datacenter.
 The services are started and the system is up and running.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{resources/images/open_baton_architecture.png}
-    \caption[Open Baton detailed architecture]{Open Baton detailed architecture. Adapted from: \autocite{openBatonDoc}}
-    \label{fig:open_baton_detailed_architecture}
-\end{figure}
 
 \section{Messaging}
 Messaging protocols are crucial for the \ac{IoT} area.
@@ -464,7 +471,7 @@ In direct comparison, this concept decrease the traffic, the amount of connectio
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\textwidth]{resources/images/mqtt_architecture.png}
+    \includegraphics[width=0.85\textwidth]{resources/images/mqtt_architecture.png}
     \caption[MQTT publish/subscribe architecture]{MQTT publish/subscribe architecture. Adapted from: \autocite{Bayer:MQTT}}
     \label{fig:mqtt_architecture}
 \end{figure}
@@ -511,16 +518,15 @@ Every message will be send over sockets via several patterns like publish-subscr
 ZeroMQ has an asynchronous I/O model which allows to create high-performance and scalable multicore applications.\autocite[cf.]{ZeroMQ:Guide}
 To distinguish it from messaging frameworks like \ac{AMQP}\footnote{\url{https://www.amqp.org}} ZeroMQ has no dedicated broker in between.
 The benefit is that there is no single point of failure, not bottleneck and no need to maintain another component, but ZeroMQ still has the advantages of such a messaging system.
-
-ZeroMQ supports five different transport types.\newline
+ZeroMQ supports five different transport types.\newline\newline
 \textbf{In-Process} is used for local (in-process or inter-thread) communication transport.
 This transport passes the messages directly via memory between threads.\autocite[cf.]{ZeroMQ:inproc}
 These transport type is optimal for creating multithreaded applications without providing access to the outside.
-This is the fastest transport type available in ZeroMQ.\newline
+This is the fastest transport type available in ZeroMQ.\newline\newline
 \textbf{\ac{IPC}} provides also a local communication transport, but passes messages via the \ac{OS} dependent \ac{IPC} mechanism, for example UNIX domain sockets.
 An application can provide a local \ac{API} for another local application via \ac{IPC}.
-Also \ac{IPC} is much faster than the \ac{TCP} communication.\newline
-\textbf{\ac{TCP}} is an ubiquitous, reliable, unicast transport to provide an \ac{API} over a network.\autocite[cf.]{ZeroMQ:tcp}\newline
+Also \ac{IPC} is much faster than the \ac{TCP} communication.\newline\newline
+\textbf{\ac{TCP}} is an ubiquitous, reliable, unicast transport to provide an \ac{API} over a network.\autocite[cf.]{ZeroMQ:tcp}\newline\newline
 \textbf{\ac{PGM}} is a multicast communication transport using the \ac{PGM} standard protocol\footnote{\url{https://tools.ietf.org/html/rfc3208}} and the datagrams are layered directly on top of IP datagrams.\autocite[cf.]{ZeroMQ:pgm}
 It is helpful to send a sequence of packets to multiple consumers at the same time.
 Therefore \ac{PGM} and also \acs{EPGM} can only be used with the publish/subscribe pattern.\newline
@@ -538,6 +544,7 @@ Figure \ref{fig:zeromq_req_rep} illustrates the pattern.\newline
     \caption[ZeroMQ Request-Reply architecture]{ZeroMQ Request-Reply architecture. Adapted from: \autocite{ZeroMQ:Guide}}
     \label{fig:zeromq_req_rep}
 \end{figure}
+
 The \textbf{Publish-Subscribe} pattern in ZeroMQ is basically comparable with the MQTT publish-subscribe pattern, but without the broker in between.
 This ends up in the fact that every consumer has to now the publisher and has to connect to them.
 A direct connection between them will established.
@@ -545,14 +552,18 @@ Similar to MQTT, the publisher will send out the message to every subscribed con
 It is also possible to subscribe to more than one topic.
 In ZeroMQ this pattern is represented by PUB-SUB socket pairs.
 Figure \ref{fig:zeromq_pub_sub} shows this pattern.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{resources/images/zeromq-pub-sub.png}
     \caption[ZeroMQ Publish-Subscribe architecture]{ZeroMQ Publish-Subscribe architecture. Adapted from: \autocite{ZeroMQ:Guide}}
     \label{fig:zeromq_pub_sub}
 \end{figure}
+
+\newpage
+
 The \textbf{Pipeline} pattern is also known as the \textit{Divide and Conquer} pattern.
-There we have Ventilator which produces multiple tasks that can be done in parallel, a set of worker that can process these tasks and a sink that collects the results from the workers.\autocite{ZeroMQ:Guide}
+There we have the \textit{Ventilator} which produces multiple tasks that can be done in parallel, a set of worker that can process these tasks and a sink that collects the results from the workers.\autocite{ZeroMQ:Guide}
 Benefit of this pattern is, that the workers divide the tasks, this means it will increase the calculation time based on the connected workers.
 Furthermore the works can pull a new task if they are done.
 This means a worker has a minimal idle time.
@@ -562,28 +573,32 @@ This makes an application much more scalable.
 Finally the sink pull the data from the worker in a so called \textit{fair-queuing}.
 This means the sink will pull one package from each worker one after another, then he starts from the beginning and will pull again only one package, even if one or multiple worker should have multiple packages retrievable.
 The whole pattern is shown in figure \ref{fig:zeromq_pipeline}\newline
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{resources/images/zeromq-vernitlator.png}
     \caption[ZeroMQ Pipeline architecture]{ZeroMQ Pipeline architecture. Adapted from: \autocite{ZeroMQ:Guide}}
     \label{fig:zeromq_pipeline}
 \end{figure}
+
 \textbf{Exclusive pair} connects tow sockets exclusively, for example two threads in a process.\autocite{ZeroMQ:Guide}
 \newline
 \textbf{Combinations of them} at least these some of the patterns in ZeroMQ.
 All of these patterns can be combined to create much more advanced combinations.
 Figure \ref{fig:zeromq_comination} illustrates such a combination.
+
+There is a combination between two publish-subscribe patterns and a proxy in between.
+This could be helpful to create a nested topology, for instances for a controller in a smart home environment.
+Multiple controllers can be subscribed to a server and multiple nodes can be subscribed to one controller.
+As mentioned before, there are much more combinations possible.
+A good overview of many of them can be found in the official guide\footnote{\url{http://zguide.zeromq.org/page:all}} of ZeroMQ.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{resources/images/zeromq-complex.png}
     \caption[ZeroMQ combination of patterns]{ZeroMQ combination of patterns. Adapted from: \autocite{ZeroMQ:Guide}}
     \label{fig:zeromq_comination}
 \end{figure}
-There is a combination between two publish-subscribe patterns and a proxy in between.
-This could be helpful to create a nested topology, for instances for a controller in a smart home environment.
-Multiple controllers can be subscribed to a server and multiple nodes can be subscribed to one controller.
-As mentioned before, there are much more combinations possible.
-A good overview of many of them can be found in the official guide\footnote{\url{http://zguide.zeromq.org/page:all}} of ZeroMQ.
 
 By default ZeroMQ has no encryption or authentication machanismn build in.
 There is a dedicated project called CurveZMQ\footnote{\url{http://curvezmq.org}} which enables these functionalities and it is also created by the ZeroMQ maintainers.

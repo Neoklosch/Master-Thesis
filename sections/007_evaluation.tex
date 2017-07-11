@@ -45,7 +45,7 @@ Compared to the native system, Docker has "nearly no overhead"\autocite[p. 6]{IB
 But also Docker has some drawbacks.
 For example it has an overhead for workloads with high packet rates.\autocite[cf.][p. 6]{IBM:Performance:2014}
 The overall conclusion by IBM was that Docker is more performant than a \ac{KVM} virtualized system.
-
+\newpage
 Another benchmarking comparison\autocite{Russell:Performance:2014} between Docker and \ac{KVM} that was also made by IBM show a much clearer result.
 In this test Docker is much more performant in nearly every point of view.
 It has less overhead in terms of \ac{CPU} usage\autocite[cf.][p. 25]{Russell:Performance:2014}, memory performance\autocite[cf.][p. 50]{Russell:Performance:2014} and boot time\autocite[cf.][p. 24]{Russell:Performance:2014}.
@@ -89,7 +89,8 @@ To test the ZeroMQ performance, the test has to be splitted up into two differen
 The first one is called \textit{\ac{CC}}.
 This means, once a ZeroMQ connection is established, all of the 10.000 request are send via this one session.
 \textit{\ac{NC}} is used to simulate the case where each connection has to be closed before a new request will be send.
-This is more realistic to the implementation in Motey, because the connection to one node will established in the moment they are needed and closed as soon as the request is done.
+This is more realistic to the implementation in Motey, because the connection to one node will established in the moment they are needed and closed as soon as the request is done.\newline
+
 Beside that the test setup is the same like in the \ac{HTTP} performance test.
 The scripts are located in \textit{performance\_tests/zeromq} folder, the \textit{server.py} script is the same for both variant, only the client scripts differ.
 Each client send out 10.000 requests and each iteration is performed ten times.
@@ -105,8 +106,8 @@ The total test results are in section \ref{appendix:zeromq_test_results}.
 The difference between the \ac{CC} and \ac{NC} is significant.
 The \ac{CC} is around four times faster then the \ac{NC}.
 Certainly this relates to the connection and deconnection phase of the socket.
-On the other side the difference between the two devices is minimal and can be neglected in this evaluation.
-
+On the other side the difference between the two devices is minimal and can be neglected in this evaluation.\newline
+\newpage
 The comparison between ZeroMQ and \ac{HTTP} is much more crucial.
 Compared to the \ac{CC} \ac{HTTP} is around 20 times slower.
 Even compared to the \ac{NC} it is around 5 times slower.
@@ -151,17 +152,10 @@ The difference between \ac{QoS} 0 and \ac{QoS} 2 is more than two and a half of 
 Therefore the \ac{QoS} level should be consciouly used in the required use case.
 Due to the fact that the MQTT system is used for the node discovery a lower \ac{QoS} level is suiteable.
 \ac{QoS} level 1 is recommended for that application.
-And even compared to the \ac{HTTP} connection, MQTT is much faster and more reliable for the node discovery.
+And even compared to the \ac{HTTP} connection, MQTT is much faster and more reliable for the node discovery.\newline
 
 On the other side, the device that is executing the broker is much more crucial.
-Figure \ref{fig:performance_mqtt_average_time_qos_1} shows the difference between the three devices.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{resources/images/performance_mqtt_average_time_qos_1.png}
-    \caption[MQTT average time for QoS 1]{MQTT average time for QoS 1}
-    \label{fig:performance_mqtt_average_time_qos_1}
-\end{figure}
+Figure \ref{fig:performance_mqtt_average_time_qos_1} shows the difference between the three devices.\newline
 
 The Laptop that has the most powerful hardware is also much faster by sending out the messages.
 NeoPi the weakest device in the test setup tokes nearly as twice as the Laptop.
@@ -170,6 +164,13 @@ If possible the broker should be located in the cloud.
 There it has the better hardware and can also be better maintained.
 Nevertheless also a node in the fog node cluster can be used to act as a broker.
 It would be optimal to use a dedicated node for that job.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{resources/images/performance_mqtt_average_time_qos_1.png}
+    \caption[MQTT average time for QoS 1]{MQTT average time for QoS 1}
+    \label{fig:performance_mqtt_average_time_qos_1}
+\end{figure}
 
 One important learning about MQTT, in \ac{QoS} level 1 and 2 messages has to be persisted in a local cache.
 This took some time and it is possible that if the receive message on the broker exceed the message queue.

@@ -229,14 +229,17 @@ Finally the created \ac{GUI} as well as the \ac{CI} pipeline will be explained.
 
 
 \subsection{Motey engine}
-% You can also compare different approaches. Example: Since the implementation based
-% on X failed I choosed to implement the same aspect based on Y. The new approach
-% resulted in a much faster ...
 The main component in the Motey engine is the \textit{Core} class.
 It will start all the necessary components to run the engine.
 The core can be executed in debug mode or as a daemon.
 Latter creates a pid file which can be configured via the \textit{config.ini} file.
 The dependencies of the most important components is shown in figure \ref{fig:motey_class_diagram}.
+
+This class diagram is simplified in a way that not all components and not all dependency connections are shown.
+But it is pretty helpful to get an basic understand of the interconnection of the different layers.
+A good example of the decorator pattern can be found in the top left corner of the diagram.
+The \textit{CommunicationManager} acts as a decorator for all the connection endpoints.
+Therefore it is easy to add a new endpoint or replace an existing one, only the \textit{CommunicationManager} has to be modified instead of all the classes which uses the communication layer.
 
 \begin{figure}[H]
     \centering
@@ -245,11 +248,6 @@ The dependencies of the most important components is shown in figure \ref{fig:mo
     \label{fig:motey_class_diagram}
 \end{figure}
 
-This class diagram is simplified in a way that not all components and not all dependency connections are shown.
-But it is pretty helpful to get an basic understand of the interconnection of the different layers.
-A good example of the decorator pattern can be found in the top left corner of the diagram.
-The \textit{CommunicationManager} acts as a decorator for all the connection endpoints.
-Therefore it is easy to add a new endpoint or replace an existing one, only the \textit{CommunicationManager} has to be modified instead of all the classes which uses the communication layer.
 Another example for that behavior is the \textit{VALManager}.
 Also this class acts as a decorator and manages all virtualization plugins, in this case the \textit{DockerVAL}.
 The repositories are a special case of the decorator pattern, because they covers the usage of the \textit{TinyDB} library, but they are also a centralized place for using them instead of all over in the engine.
@@ -370,13 +368,14 @@ At first the service will be stored in the data layer.
 The lifecycle will be changed to the \textit{instantiating} state.
 Afterwards the capabilities of each contained image has to be checked.
 This is necessary to identify the node that is handling the image.
-There are three different possibilities.
-
+\newpage
+There are three different possibilities:
 \begin{enumerate}
   \item there are no capabilities located in the image, therefore the current node starts the image.
   \item there are capabilities and the current node is able to fulfill all of them. The same node is handling the image.
   \item there are capabilities but the current node is not able to fulfill one or multiple of them. Another node has to be search to manage the image.
 \end{enumerate}
+\bigskip
 
 The capabilities of the current node are fetched via the \textit{CapabilityRepository}.
 In each case the an image will always get an \ac{IP} address of the node that is handling them, even if it is the current node.
@@ -384,7 +383,7 @@ Later on the communication layer will deploy the image via an ZeroMQ connection.
 This unifies the deployment process.
 If the current node is not able to fulfill all required capabilities another node in the cluster will be searched to run the image.
 Therefore the \textit{find\_node} method is going to be used.
-This method will at first fetch all the known nodes from the \textit{NodeRepository}.
+This method will at first fetch all the known nodes from the \textit{NodeRepository}.\newline
 
 Afterwards it will send out a \textit{capabilities request} again via the communication layer.
 That is a ZeroMQ request-reply call between two nodes.
@@ -397,13 +396,13 @@ When non of the nodes suits, the state of the deployment will be marked as \text
 Otherwise the deployment phase starts.
 Each image will be passed via ZeroMQ call to the related \ac{IP} address to a deployment endpoint, which will then call the \textit{VALManager}.
 The latter will then instantiate the image via the related \ac{VAL} plugin.
-When all images finally started the state of the service will change to \textit{running} and the deployment successfully finished.
+When all images finally started the state of the service will change to \textit{running} and the deployment successfully finished.\newline
 
 The state of the service is also handled by the orchestrator.
 It depends highly on the state of the images.
 If at least only a single image is in a \textit{error} state, the whole service will be marked as erroneous.
 This behaviour is similar for the other states.
-Based on the \ac{MANO} service lifecycle the following states was created:
+Based on the \ac{MANO} service lifecycle the following states was created:\newline
 
 \begin{itemize}
   \item \textbf{INITIAL} - The service is created, but no other action was performed so far.
@@ -413,6 +412,7 @@ Based on the \ac{MANO} service lifecycle the following states was created:
   \item \textbf{TERMINATED} - All images are terminated. The service no longer exist.
   \item \textbf{ERROR} - An error occurred in one of the other states. A detailed description is stored in the service.
 \end{itemize}
+\bigskip
 
 All of them are located in a model object called \textit{ServiceState}.
 
@@ -465,7 +465,7 @@ To make sure that all the related service images are terminated, not only a sing
 Line 12 shows the termination of the service.
 This behavior is also implemented for the \textit{error} and \textit{stopping} state.
 All the other states are mapped directly to the service.
-Finally the new state will be stored in the \textit{ServiceRepository} and the state returned (line 26 and 27).
+Finally the new state will be stored in the \textit{ServiceRepository} and the state returned (line 26 and 27).\newline
 
 The termination of a service is pretty similar to the creation beside the fact that there is no capability comparison and node retrieval.
 The image termination command will directly passed over to the related node.
@@ -484,11 +484,11 @@ If it would not be implemented with a thread only the Flask server would be star
 Furthermore Flask has to be configured to accept cross-site requests, by disabling the \textit{same origin policy} with a \textit{\ac{CORS}} library.
 This behavior is a development only feature and it is strictly recommend to deactivate it in production mode.
 By deactivating it the server is vulnerable for \ac{CSRF} and clickjacking attacks.
-In the development phase cross-site requests should be allowed to make it easier to communicate between a web client and the \ac{REST} \ac{API}.
+In the development phase cross-site requests should be allowed to make it easier to communicate between a web client and the \ac{REST} \ac{API}.\newline
 
 In addition all the configured \ac{API} will be initialized.
 As mentioned before these routes can be implemented as Flask Blueprints.
-All routes are located in the \textit{motey/communication/api\_routes} directory.
+All routes are located in the \textit{motey/communication/api\_routes} directory.\newline
 
 There are four different routes:
 \begin{itemize}
@@ -538,8 +538,9 @@ Figure \ref{fig:node_discovery_squ_dia} shows how the node discovery will be imp
 Important aspect is that the sender node is also part of the subscribed nodes.
 This means after the \textit{connection} to the broker is established and the client is subscribed to the topics, each \textit{Node Request} will also be received by the sender himself.
 Benefit out of it, is that beside the fact that a new registered node gets all meta information from all other nodes, also these nodes get the meta information of the new node.
-In this way each node has knowledge of all the other nodes and can keep track of them.
-That is also the reason why the \textit{"Node Meta Data" from Node A} and \textit{"Node Meta Data" from Node X} are duplicated in figure \ref{fig:node_discovery_squ_dia}.
+In this way each node has knowledge of all the other nodes and can keep track of them.\newline
+
+This is also the reason why the \textit{"Node Meta Data" from Node A} and \textit{"Node Meta Data" from Node X} are duplicated in figure \ref{fig:node_discovery_squ_dia}.
 Beside that the procedure is straight forward: At first one node send out a \textit{Node Request}.
 Each subscribed node will get it and send out a response with the \textit{Node Meta Data} to all the other nodes via the broker.
 The \textit{after\_connect} handler will be used to send out the \textit{Node Request} after a new nodes is successfully subscribed to the broker.
@@ -589,7 +590,7 @@ Listing \ref{code:ZeroMQ-capability-event-msg} show such a message.
   \caption{Example ZeroMQ capability event message}
   \label{code:ZeroMQ-capability-event-msg}
 \end{listing}
-Therefore the topics and the delimiter has to be removed before the message can be parsed.
+Therefore the topics and the delimiter has to be removed before the message can be parsed.\newline
 
 The other four sockets are implemented with the Request-Reply pattern and are used to:
 \begin{itemize}
@@ -604,9 +605,11 @@ The other four sockets are implemented with the Request-Reply pattern and are us
   Only the image id has to be send to perform that action.
   The \textit{VALManager} will handle the termination of the instance.
 \end{itemize}
+\bigskip
+
 Important aspect while using the Request-Reply pattern, there can only be one connection established at the same time.
 In addition a reply must send by the consumer after a request was receive.
-As long as there was no message send back, the connection will be blocked and the consumer can not receive any new messages.
+As long as there was no message send back, the connection will be blocked and the consumer can not receive any new messages.\newline
 
 As discussed by the other servers, also this one have to be executed in threads.
 Difference here is that each socket has its own thread.
@@ -651,14 +654,14 @@ As in the mockup four different pages are available.
 The first called \textit{Motey} has a very short introduction into the web client.
 The second and also the selected one in the screenshot shows a list with all deployed services.
 \textit{Registered nodes} will show a list with all discovered nodes, again in a table.
-Finally the \textit{Send blueprint} contains a textarea to put in the \ac{YAML} service description and a button to send the data.
+Finally the \textit{Send blueprint} contains a textarea to put in the \ac{YAML} service description and a button to send the data.\newline
 
 The \textit{index.html} file contains also the files for the bootstrap and Vue.js libraries.
 They are loaded from a \ac{CDN} provider to speed up the loading time.
 This is possible because if the user already visited a page that uses the same \ac{CDN} provider and the same libraries, they will be cached in the browser internal cache.
 If the user then visits another site that try to load the files, they will be taken from the cache instead of requested again.
 This increases the page loading speed as well as reduces the traffic.
-Another benefit is that the files does not have to be stored on the server.
+Another benefit is that the files does not have to be stored on the server.\newline
 
 Beyond that the \textit{main.js} file initializes the routes to handle the navigation bar redirects.
 Each route has an own controller similar to the Blueprint concept of the Flask server.
@@ -705,7 +708,7 @@ Line 1 add this privilege and in line 2 the Docker service is requested.
 The programming language the application to build is written in, is declared in line 3, in this case python.
 Line 6 and 7 defines the python version to use.
 There could be multiple, but due to the fact that the script should only be build one Docker image and should only upload them once, only one python version can be used.
-Otherwise multiple python version would be executed and after each successfully build version an container would be build and uploaded.
+Otherwise multiple python version would be executed and after each successfully build version an container would be build and uploaded.\newline
 
 Line 9 defines the installation script.
 This will executed after the virtual environment are created by Travis CI.
@@ -715,7 +718,7 @@ A code style check is performed in line 12 and 13.
 It will check to code against the \ac{PEP} 8 standard\footnote{\url{https://www.python.org/dev/peps/pep-0008}}, which is be used by several other libraries like the pretty famous Django project\footnote{\url{https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style}}.
 After that all the related unit tests will be executed.
 If there is an error during the execution of the \textit{script} block, the whole build process will be stopped and marked as error.
-The current state can be view in Travis CI at \url{https://travis-ci.org/Neoklosch/Motey} and also in the readme of the project at \url{https://github.com/Neoklosch/Motey} or \url{http://motey.readthedocs.io/en/latest}.
+The current state can be view in Travis CI at \url{https://travis-ci.org/Neoklosch/Motey} and also in the readme of the project at \url{https://github.com/Neoklosch/Motey} or \url{http://motey.readthedocs.io/en/latest}.\newline
 
 The \textit{after\_success} block is used to create and upload the Docker image.
 Beside that the install routine and also the \ac{CI} commands are similar.
@@ -725,7 +728,7 @@ Line 18 will build the image and line 19 uploads it.
 Two environment variables are used here, because to upload an image, the username and the password of the Docker Hub account has to be passed.
 Due to the fact that this file is under public version control, this sensible information should not be commited.
 Therefore preconfigured login credentials are used.
-Finally the Docker image will be pushed in line 20.
+Finally the Docker image will be pushed in line 20.\newline
 
 In the root folder of the Motey project there are two docker image directories.
 The first one can be used to create and upload a normal Docker image and it is called \textit{motey-docker-image}.
@@ -763,7 +766,7 @@ The script adds a \textit{setup.sh} file that is executed in line 7.
 This file uses the \textit{requirements.txt} file, that is also added.
 Additional the ports in line 9 are exposed, which means they are provided to the Docker engine as used by the container.
 There is no automatic mapping between the host and the guest system ports, but they can be mapped much faster due to the \textit{EXPOSE} command.
-Finally the \textit{CMD} command will execute a specific shell command, in this case the \textit{motey start} command.
+Finally the \textit{CMD} command will execute a specific shell command, in this case the \textit{motey start} command.\newline
 
 This command is available after Motey was installed by the \textit{setup.py} file in the root folder.
 To install Motey, only two build steps has to be executed, that are shown in listing \ref{code:motey_setup}.
