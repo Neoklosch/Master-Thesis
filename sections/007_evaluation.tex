@@ -1,12 +1,6 @@
 \chapter{Evaluation}
 \label{chapter:evaluation}
 \minitoc\vspace{.5cm}
-% In this chapter the implementation of Component X is evaluated. An example instance
-% was created for every service. The following chapter validates the component implemented
-% in the previous chapter against the requirements.
-% Put some screenshots in this section! Map the requirements with your proposed solution.
-% Compare it with related work. Why is your solution better than a concurrent
-% approach from another organization?
 In this chapter the implementation of the plugins, based on the previously defined requirements and concepts, are evaluated.
 Therefore several performance tests will be analyzed and the code verification will be shown.
 Afterwards the final system is demonstrated.
@@ -177,6 +171,27 @@ There it has the better hardware and can also be better maintained.
 Nevertheless also a node in the fog node cluster can be used to act as a broker.
 It would be optimal to use a dedicated node for that job.
 
+One important learning about MQTT, in \ac{QoS} level 1 and 2 messages has to be persisted in a local cache.
+This took some time and it is possible that if the receive message on the broker exceed the message queue.
+If this happens all following messages from that node will be dropped.
+To fix that issue the total amount of messages in the queue must be extended.
+Therefore the mosquitto config has to be configured by adding the following lines:
+
+\begin{listing}[H]
+  \begin{minted}{bash}
+  max_inflight_messages 1000
+  max_queued_messages 10000
+  \end{minted}
+  \caption[mosquitto config modification to fix the messages dropped issue]{mosquitto config modification to fix the messages dropped issue}
+  \label{code:performance_mosquitto_config}
+\end{listing}
+
+The first parameter adjust the maximum number of "messages that can be in the process of being transmitted simultaneously"\autocite{Mosquitto:Conf:Documentation}.
+The \textit{max\_queued\_messages} modify the maximum number of messages that can be hold in the queue.\autocite[cf.]{Mosquitto:Conf:Documentation}
+Especially this number has to be increased in the tests, because the scripts sends out a huge amount of publish calls in a very short time.
+In general these numbers has to be adjusted specificly for each use case.
+Furthermore these configs are only important if a \ac{QoS} level 1 or 2 is used, because level 0 does not persist any messages.
+
 
 \section{Scalability}
 \label{section:scalability}
@@ -298,6 +313,3 @@ Especially in an extrem programming environment \ac{TDD} in combination with pai
 
 Motey was created with the "normal" unit testing approach, due to the fact that it was a one man project with rapidly changing requirements and an explorative approach to create the prototype.
 Nevertheless both methods ends up in a well tested code base and an assured code stability.
-
-\section{Conclusion}
-\doit
