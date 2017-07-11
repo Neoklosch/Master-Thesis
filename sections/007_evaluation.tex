@@ -193,14 +193,6 @@ In general these numbers has to be adjusted specificly for each use case.
 Furthermore these configs are only important if a \ac{QoS} level 1 or 2 is used, because level 0 does not persist any messages.
 
 
-\section{Scalability}
-\label{section:scalability}
-% MQTT maximum
-% weitere nodes hinzufügen
-% existierende entfernen
-% Docker Container maximum
-\doit
-
 \section{Code Verification}
 \label{section:code-verification}
 Code verification is a quite important technique in every development project.
@@ -244,6 +236,7 @@ The first style check call fails due to multiple validations, but the second one
 
 The second verification is are the unit tests.
 A unit test is as the name implies a software test method which tests each component of an application.
+This method is a white box test, because the source code of the well known and only the results are tested.
 Each component should be tested as isolated as possible by invoking only one or a couple of methods from a unit and the result should be verified automatically and compared with an expected result.\autocite[cf.][p. 320]{Olan:2003:UTT}
 All the used objects in a class should be as independent from each other as possible.
 To ensure this, the objects have to be mocked by a mocking framework.
@@ -261,14 +254,16 @@ When the unit test are part of the \ac{CI}, each build will be checked.
 This reduces the risk of the deployment of faulty code.
 And finally unit tests can be a good starting point for new team members, because it helps to understand the functionality of a class.
 An unit test can acts as some kind of documentation.
+
 The downsides are that unit tests are coded.
-This means also unit tests can have errors.
-Furthermore poorly written unit tests or tests that a written unpleasured can end up in a wrong feeling of safeness.
+This means also unit tests can have errors and they have to be maintained if the source code of the main project is changed.
+Furthermore poorly written unit tests or tests that are written unpleasured can end up in a wrong feeling of safeness.
 Some error case could not be catched and the submitted code is still faulty.
-Additionally the test setup is not realistic.
-Integration test are more accurate in terms of the human behavior.
+Additionally the test setup is not a realistic environment.
+Integration test are in general more accurate in terms of the human behavior.
+They test complete workflows and not only single components or functions.
 Also the dependencies between the component and the interaction between them can be tested much better with integration test.
-The most critical part of unit test in the economy is that the take time.
+In many projects the most critical part of unit tests are, that they take time.
 For each written component, the realted tests take a significant time to be developed.
 In a real life project this could be unacceptable even if it is important to have them.\newline
 
@@ -297,12 +292,23 @@ In a real life project this could be unacceptable even if it is important to hav
   \label{code:sample_unit_test}
 \end{listing}
 
-% TODO
-\todo{describe the listing}\newline
+Listing \ref{code:sample_unit_test} shows an extract from the \textit{ServiceRepository} unit test.
+The test starts with a \textit{setUp} method (line 3) that is executed before each test.
+In this case some static variables will be created (line 4 - 6) and the internally used libraries are mocked (line 7 - 9).
+Finally the \textit{ServiceRepository} itself will be created.
+The \textit{test\_has\_entry} method is one of multiple tests.
+This method checks if a value exists in the database.
+Therefore the result of the database serch method is mocked (line 13) and the \textit{has} command is executed (line 15).
+Finally the results of the method are checked.
+At first the script tests if a specific method is called, in this case the \textit{search} method of the database (line 17).
+Afterwards the result of the \textit{ServiceRepository} \textit{has} method is checked (line 18).
+If everything went fine, the test will execute with a status 0 as shown in listing \ref{code:style_check_validation}.
 
 Unit testing in general can be realized in two different ways.
-The first possibility is the by writing the tests after the code is done.
-\todo{finalize this paragraph}\newline
+The first possibility is to write the tests after the coding of the component is done.
+This is the standard way in many projects these days.
+The advantage is that the code is done and normally no big changes cames after that.
+This means also changes on the test suite are seldom.
 
 The second possibility is the \ac{TDD}, that is related to the test-first programming concept of the extreme programming development.
 In this development methodology the tests are written before the implementation of a class is created.
