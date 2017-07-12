@@ -8,24 +8,29 @@ Issues that remained unsolved are described in the following section.
 At the end the impact for the industry and an outlook for the Motey project is shown.
 
 \section{Summary}
-% analyse phase beschreiben -> was war ziel, wie gefunden (mit Mathias in meetings)
-% Motey nochmal erklären (VAL, Capabilities und node discovery)
-% CI funktioniert gut und baut alles automatisch
-% test laufen durch und werden in jedem Build process durchlaufen
-% code ist dokumentiert und getestet (coverage wäre geil)
-% die evaluation zeigt das die verwendete Technologie gut geeignet ist (Docker, ZeroMQ und MQTT)
+Objective of this thesis was the "Design and Development of a Fog Service Orchestration Engine for Smart Factories".
+Therefore a prototype for such an orchestration engine called Motey was created.
+The application was created in cooperation with the \acf{FOKUS}.
+The main idea of the project was worked out in an iterative process together with supervisors of the \ac{FOKUS}.
+In several meetings the objectives was analyzed and elaborated.
+Motey is designed to be executed on each fog node and is able to instanciate an inter-node connection.
+Each node has knowledge of all the other nodes and can communicate with them right at the moment they have to.\newline
 
+The application is also able to handle different so called capabilites.
+That are functional and non-functional requirements a node can fulfill.
+These capabilities are used to deploy images, for example \acp{NF} to a one or more nodes.
+The node that receives a deployment schema check the requirements of the contained images and deploy them on the same node if it is possible or on other nodes that are able to deploy them.
+Labels can be configured from within the node itself or from any external application.
+Finally an image will be started via the related virtualization tool.
+In case of the prototype and as a primary requirement of this project, Docker is the default engine.
+For the inter-node communication the ZeroMQ and \ac{MQTT} protocols are used.
+They are much faster than the pretty famous \ac{HTTP} protocol, as shown in the performance evaluation section \ref{section:performance-evaluation}.
+An \ac{HTTP} \ac{REST} \ac{API} is also available to enable compatibility with well known cloud orchestration engines like Open Baton or OpenStack.
 
-
-% Explain what you did during the last 6 month on 1 or 2 pages!
-% The work done can be summarized into the following work steps
-% • Analysis of available technologies
-% • Selection of 3 relevant services for implementation
-% • Design and implementation of X on Windows
-% • Design and implementation of X on mobile devices
-% • Documentation based on X
-% • Evaluation of the proposed solution
-\doit
+The whole application is well documented and tested.
+Each component has a related unit test and the documentation is available online at \url{https://neoklosch.github.io/Motey/}.
+A \ac{CI} pipeline is used to automatically build each new version, test them and finally deploy them as a Docker image to the Docker Hub.
+This is espacially useful to reduce the overhead of repeating tasks, to guarantee the correctness of the current version and also to have an up-to-date version available via the Docker infrastructure.
 
 \section{Dissemination}
 % integration in open baton denkbar
