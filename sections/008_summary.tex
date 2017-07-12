@@ -1,13 +1,22 @@
 \chapter{Conclusion}
 \label{chapter:conclusion}
 \minitoc\vspace{.5cm}
-% The final chapter summarizes the thesis. The first subsection outlines the main ideas
-% behind Component X and recapitulates the work steps. Issues that remained unsolved
-% are then described. Finally the potential of the proposed solution and future work is
-% surveyed in an outlook.
-\doit
+This final chapter sums up the thesis as well as the created prototype called Motey.
+The first section outlines the initial idea behind the project and reprocues the different work stages.
+In section \ref{section:summary_impact} the usage of the project is shown and the uses cases is elaborated.
+Issues that remained unsolved are described in the following section.
+At the end the impact for the industry and an outlook for the Motey project is shown.
 
 \section{Summary}
+% analyse phase beschreiben -> was war ziel, wie gefunden (mit Mathias in meetings)
+% Motey nochmal erklären (VAL, Capabilities und node discovery)
+% CI funktioniert gut und baut alles automatisch
+% test laufen durch und werden in jedem Build process durchlaufen
+% code ist dokumentiert und getestet (coverage wäre geil)
+% die evaluation zeigt das die verwendete Technologie gut geeignet ist (Docker, ZeroMQ und MQTT)
+
+
+
 % Explain what you did during the last 6 month on 1 or 2 pages!
 % The work done can be summarized into the following work steps
 % • Analysis of available technologies
@@ -19,14 +28,47 @@
 \doit
 
 \section{Dissemination}
+% integration in open baton denkbar
+% als weiterentwicklung für arbeiten im bereich autonomous deployment in fog
+% Smart Factories
+% Papers planed (?)
+
 % Who uses your component or who will use it? Industry projects, EU projects, open
 % source...? Is it integrated into a larger environment? Did you publish any papers?
 \doit
 
 \section{Impact}
+\label{section:summary_impact}
 % Summarize the main problems. How did you solve them? Why didn’t you solve them?
+
+% node discovery
+% -> central broker where each node have to registered to
+% -> information on each new node
+
+% virt on low power devices
+% -> docker
+% -> XEN & Co not possible
+
+% capabilities
+% -> external API
+% ---> ZeroMQ
+
+% Inter node connection
+% -> node discovery + ZeroMQ
 \doit
 
 \section{Outlook}
 % Future work will enhance Component X with new services and features that can be used
+
+% basic well developed fundament
+% a lot of space to improve, because complex topic
+% more autonomous
+% -> if centralized level is absent, still do some shit
+% access control / right management / master node
+% node discovery
+% -> master node can be the new MQTT broker
+% capability management
+% -> final integration with hardware component
+% -> autonomous behavior if one label disappers -> container will be deployed on different node
+% full integration and test with open baton
 \doit
