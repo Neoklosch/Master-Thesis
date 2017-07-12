@@ -3,9 +3,7 @@
 \minitoc\vspace{.5cm}
 This final chapter sums up the thesis as well as the created prototype called Motey.
 The first section outlines the initial idea behind the project and reprocues the different work stages.
-In section \ref{section:summary_impact} the usage of the project is shown and the uses cases is elaborated.
-Issues that remained unsolved are described in the following section.
-At the end the impact for the industry and an outlook for the Motey project is shown.
+Issues that remained unsolved are described in the last section as well as an outlook for the Motey project is shown.
 
 \section{Summary}
 Objective of this thesis was the "Design and Development of a Fog Service Orchestration Engine for Smart Factories".
@@ -32,19 +30,32 @@ Each component has a related unit test and the documentation is available online
 A \ac{CI} pipeline is used to automatically build each new version, test them and finally deploy them as a Docker image to the Docker Hub.
 This is espacially useful to reduce the overhead of repeating tasks, to guarantee the correctness of the current version and also to have an up-to-date version available via the Docker infrastructure.
 
-\section{Dissemination}
+Biggest challenges in this project were to create a fast and lightweight inter-connection between the nodes, that was achieved by the protocols of choice ZeroMQ and \ac{MQTT}, as well as the abstraction of the virtualization underlying virtualization tools.
+The latter partly kept unsolved, because only a few virtualization tools supports the ARM \ac{CPU} architecture.
+Whereas ARM is a common architecture on low power devices.
+Therefore the integration of famous virtulization tools is not possible at the moment.
+Due to the fact that \ac{IoT} becomes more and more important in the next years hopefully also the tools will adjusted in this direction.
+However Docker as the main virtualization tool in this thesis is available for ARM \acp{CPU} yet and also implemented in Motey.
+As a lightweight solution for virtualization this is a good starting point so far.
+
+% \section{Dissemination}
+% Who uses your component or who will use it? Industry projects, EU projects, open
+% source...? Is it integrated into a larger environment? Did you publish any papers?
+
 % integration in open baton denkbar
 % als weiterentwicklung für arbeiten im bereich autonomous deployment in fog
 % Smart Factories
 % Papers planed (?)
+%
+% Currently Motey is released as an Open Source project at Github \url{https://github.com/Neoklosch/Motey}.
+% The basic idea is to use this as a solid fundermental for bigger projects inside the \ac{FOKUS}.
+%
+% \doit
 
-% Who uses your component or who will use it? Industry projects, EU projects, open
-% source...? Is it integrated into a larger environment? Did you publish any papers?
-\doit
-
-\section{Impact}
-\label{section:summary_impact}
+% \section{Impact}
+% \label{section:summary_impact}
 % Summarize the main problems. How did you solve them? Why didn’t you solve them?
+
 
 % node discovery
 % -> central broker where each node have to registered to
@@ -60,20 +71,33 @@ This is espacially useful to reduce the overhead of repeating tasks, to guarante
 
 % Inter node connection
 % -> node discovery + ZeroMQ
-\doit
+
+% didn't solved -> real autonomous behavior
+% didn't solved -> access managemnt and so on
+% \doit
 
 \section{Outlook}
-% Future work will enhance Component X with new services and features that can be used
+Motey is a well developed and pretty solid basis for further development.
+As in every bigger project, Motey has significant room for improvements.
+For example the autonomous behavior can be improved a lot.
+One possibility could be to implement much more responsibility in case of the absence of the centralized fog level.
+One of the nodes could become a master node.
+These nodes then can act as a delegate for the centralized level.
+It can be track the state of the other nodes and can react to unexpected issues.
+Another possiblity could be an improved access control or right management.
+Some nodes could have more rights than others.
+Therefore an hierarchy could be created and sensitive images or images that handle sensitve data could be easily identified.
+Especially for security reasons that becomes very important.\newline
 
-% basic well developed fundament
-% a lot of space to improve, because complex topic
-% more autonomous
-% -> if centralized level is absent, still do some shit
-% access control / right management / master node
-% node discovery
-% -> master node can be the new MQTT broker
-% capability management
-% -> final integration with hardware component
-% -> autonomous behavior if one label disappers -> container will be deployed on different node
-% full integration and test with open baton
-\doit
+The node discovery can be improved by making the \ac{MQTT} broker replaceable.
+This could be achieved by having an logic that moves the broker over to a node that is up and running if the broker disappears.
+Such a behavior makes the system reliable and again more autonomously.
+Finally the integration of third party applications can be ensured.
+For example the integration of Open Baton as the centralized orchestrator could be realized.
+Also node specific tools like a hardware detection engine, that can deploy images or at least add new capabilites to Motey based on the connected hardware are imaginable.\newline
+
+Motey can be seen as a good starting point for a complex environment made for fog computing.
+It is easy to extend, is lightweight during execution and networking.
+Due to the fact that it can be deployed via Docker out of the box it is easy to test and the documentation and the unit test should help to understand the fundermantels pretty easy.
+At the end the created project successfully reveal that the developed concept works out pretty well in a prototypical quality.
+The result can thus be considered as solid basis for further development.
