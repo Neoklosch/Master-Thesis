@@ -10,7 +10,7 @@ Afterwards the final system is demonstrated.
 Motey and the performance scripts in section \ref{section:performance-evaluation} was tested on three different devices.
 \begin{enumerate}
   \item \textbf{Raspberry Pi 2 Model B Version 1.1} hereinafter called \textbf{NeoPi}, that has a ARM Cortex-A7 \ac{CPU} with four cores each with 900 MHz and a 32-bit architecture. It has 1024 MB \ac{RAM} and a 10/100-MBit-Ethernet port. The device is running a Raspbian 8 (jessie) with Linux Kernel version 4.9.
-  \item \textbf{Raspberry Pi 3 Model B Version 1.2} hereinafter called \textbf{BuffPi}, is the currently the newest Raspberry Pi on the market. It has a ARM Cortex-A53 \ac{CPU} also with four cores, but each has 1200 MHz and 64-bit architecture. It also has 1024 MB \ac{RAM} and a 10/100-MBit-Ethernet port.  This devices is also runngin Raspbian 8 (jessie) with Linux Kernel version 4.9.
+  \item \textbf{Raspberry Pi 3 Model B Version 1.2} hereinafter called \textbf{BuffPi}, is the currently the newest Raspberry Pi on the market. It has a ARM Cortex-A53 \ac{CPU} also with four cores, but each has 1200 MHz and 64-bit architecture. It also has 1024 MB \ac{RAM} and a 10/100-MBit-Ethernet port.  This devices is also running Raspbian 8 (jessie) with Linux Kernel version 4.9.
   \item \textbf{Acer Aspire V5-573G} hereinafter called \textbf{Laptop}, with an Intel Core i7-4500U \ac{CPU} with two cores each 1.80 GHz and a 64-bit architecture as well. It has 8 GB \ac{RAM} and a 802.11n WiFi connection. It is running a Linux Mint 18.1  64-bit \ac{OS} with a Linux Kernel version 4.4.
 \end{enumerate}
 
@@ -23,7 +23,7 @@ The \textit{Laptop} is connect via 802.11n WiFi to the router.
 In the following section some performance relevant tests are shown and analyzed.
 Especially the performance of the used virtualization method is crucial for the system as well as the connection performance of the used protocols are important.
 All evaluations are made with low-power devices in mind.
-This means a small overhead and a fast and leightweight solution is preferred.
+This means a small overhead and a fast and lightweight solution is preferred.
 
 \subsection{Docker vs. KVM}
 Due to the fact that Docker is the main component in the created prototype, it is important to verify the performance on low-power devices.
@@ -31,7 +31,7 @@ Unfortunately a performance comparison with established \ac{VM} tools like VMWar
 There are several performance tests on x86 architecture.
 IBM for example compared \acp{VM} or more specific \acp{KVM} with Docker in a research report\autocite{IBM:Performance:2014} from 2014.
 They conclusion was that \ac{KVM} has a significant overhead to every I/O operation.
-Therefore it is less suiteable for latency-sensitive workloads or high I/O rates.
+Therefore it is less suitable for latency-sensitive workloads or high I/O rates.
 Figure \ref{fig:ibm_kvm_docker_io} show the throughput for random I/O operations for a native, a Docker virtualized and a \ac{KVM} virtualized system.
 
 \begin{figure}[H]
@@ -49,13 +49,13 @@ The overall conclusion by IBM was that Docker is more performant than a \ac{KVM}
 Another benchmarking comparison\autocite{Russell:Performance:2014} between Docker and \ac{KVM} that was also made by IBM show a much clearer result.
 In this test Docker is much more performant in nearly every point of view.
 It has less overhead in terms of \ac{CPU} usage\autocite[cf.][p. 25]{Russell:Performance:2014}, memory performance\autocite[cf.][p. 50]{Russell:Performance:2014} and boot time\autocite[cf.][p. 24]{Russell:Performance:2014}.
-Only the network troughput is nearly the same.\autocite[cf.][p. 52]{Russell:Performance:2014}
+Only the network throughput is nearly the same.\autocite[cf.][p. 52]{Russell:Performance:2014}
 Finally also the container size is much smaller in Docker than in \ac{KVM}.\autocite[cf.][p. 66]{Russell:Performance:2014}
-Overall Docker is much more lightweight and due to the fact that it supports the ARM architecture, it is well suiteable for the usage on low-power devices.
+Overall Docker is much more lightweight and due to the fact that it supports the ARM architecture, it is well suitable for the usage on low-power devices.
 
 \subsection{Performance HTTP}
 To test the \ac{HTTP} performance of the application two simplified test scripts are created.
-Both are located in the \textit{performance\_tests/http} folder in the motey project.
+Both are located in the \textit{performance\_tests/http} folder in the Motey project.
 The \textit{server.py} script starts a Flask server and waits for a POST request.
 If it gets one it will send back a static container id.
 The \textit{client.py} script is used to send the \ac{JSON} data to the server.
@@ -74,7 +74,7 @@ Figure \ref{fig:performance_http_server_comparison} shows the result of the test
 \end{figure}
 
 There are two bars indicating the time needed to send 10.000 requests: the left one, that represents a setup where the more powerful BuffPi was the server and the NeoPi was the client, tokes in total more time, then the setup where the NeoPi is the server.
-This is a suprising outcome because the assumtion was that the server tokes more computation time then the client.
+This is a surprising outcome because the assumption was that the server tokes more computation time then the client.
 But the results prove the opposite.
 If the less powerful device is the server the packages are much faster sent the vice versa.
 Overall using \ac{HTTP} as the protocol of choice, the messaging is pretty slow.
@@ -105,7 +105,7 @@ The total test results are in section \ref{appendix:zeromq_test_results}.
 
 The difference between the \ac{CC} and \ac{NC} is significant.
 The \ac{CC} is around four times faster then the \ac{NC}.
-Certainly this relates to the connection and deconnection phase of the socket.
+Certainly this relates to the connection and disconnection phase of the socket.
 On the other side the difference between the two devices is minimal and can be neglected in this evaluation.\newline
 \newpage
 The comparison between ZeroMQ and \ac{HTTP} is much more crucial.
@@ -121,7 +121,7 @@ Figure \ref{fig:performance_zeromq_vs_http} shows the test results.
 \end{figure}
 
 In addition to that \ac{HTTP} have a huge packet overhead that will consume more network bandwidth.
-ZeroMQ is well suiteable for low latency connections and on the same side more lightweight.
+ZeroMQ is well suitable for low latency connections and on the same side more lightweight.
 In the test ZeroMQ is always used in \ac{TCP} mode.
 The creator of ZeroMQ promise that the \ac{IPC} and especially the inter-thread protocol are much faster than \ac{TCP}.\autocite[cf.]{ZeroMQ:UicastTransports}
 But still for the \ac{TCP} mode, the results are self-evidently.
@@ -135,7 +135,7 @@ The Laptop, the BuffPi and the NeoPi were the broker each at a time.
 The BuffPi or the NeoPi were always the publisher and the receiver.
 Furthermore MQTT has three different types to be executed, which is called the \ac{QoS} level.
 The \ac{QoS} was explained in section \ref{section:MQTT}.
-The initial assumtion was that each level has a different performance.
+The initial assumption was that each level has a different performance.
 Also in this setup each request was sent 10.000 times and in ten iterations.
 All results are shown in section \ref{appendix:mqtt_test_results}.
 Figure \ref{fig:performance_mqtt_average_time_all_qos} shows the average time for each \ac{QoS} level where BuffPi was the broker as well as the publisher and the NeoPi was the consumer.
@@ -149,8 +149,8 @@ Figure \ref{fig:performance_mqtt_average_time_all_qos} shows the average time fo
 
 As expected the \ac{QoS} level performance differ significantly.
 The difference between \ac{QoS} 0 and \ac{QoS} 2 is more than two and a half of the time used for sending out the 10.000 requests.
-Therefore the \ac{QoS} level should be consciouly used in the required use case.
-Due to the fact that the MQTT system is used for the node discovery a lower \ac{QoS} level is suiteable.
+Therefore the \ac{QoS} level should be consciously used in the required use case.
+Due to the fact that the MQTT system is used for the node discovery a lower \ac{QoS} level is suitable.
 \ac{QoS} level 1 is recommended for that application.
 And even compared to the \ac{HTTP} connection, MQTT is much faster and more reliable for the node discovery.\newline
 
@@ -176,21 +176,21 @@ One important learning about MQTT, in \ac{QoS} level 1 and 2 messages has to be 
 This took some time and it is possible that if the receive message on the broker exceed the message queue.
 If this happens all following messages from that node will be dropped.
 To fix that issue the total amount of messages in the queue must be extended.
-Therefore the mosquitto config has to be configured by adding the following lines:
+Therefore the Mosquitto config has to be configured by adding the following lines:
 
 \begin{listing}[H]
   \begin{minted}{bash}
   max_inflight_messages 1000
   max_queued_messages 10000
   \end{minted}
-  \caption[mosquitto config modification to fix the messages dropped issue]{mosquitto config modification to fix the messages dropped issue}
+  \caption[Mosquitto config modification to fix the messages dropped issue]{Mosquitto config modification to fix the messages dropped issue}
   \label{code:performance_mosquitto_config}
 \end{listing}
 
 The first parameter adjust the maximum number of "messages that can be in the process of being transmitted simultaneously"\autocite{Mosquitto:Conf:Documentation}.
 The \textit{max\_queued\_messages} modify the maximum number of messages that can be hold in the queue.\autocite[cf.]{Mosquitto:Conf:Documentation}
 Especially this number has to be increased in the tests, because the scripts sends out a huge amount of publish calls in a very short time.
-In general these numbers has to be adjusted specificly for each use case.
+In general these numbers has to be adjusted specifically for each use case.
 Furthermore these configs are only important if a \ac{QoS} level 1 or 2 is used, because level 0 does not persist any messages.
 
 
@@ -248,8 +248,8 @@ Each injected object can be easily mocked outside of the class.
 Due to the fact that Python allows to modify each class member at any time, \ac{DI} is not really necessary, but it helps to make it clearer to understand and the code more readable and maintainable.\newline
 
 The advantages of unit tests in general are that problems can be easier localized and much faster detected.
-If an error occures during unit testing a former well working code, it is obvious that the last code changes are the reason for the error.
-This benefit is also helpful to readuce the fear of refactoring or extend code parts.
+If an error occurs during unit testing a former well working code, it is obvious that the last code changes are the reason for the error.
+This benefit is also helpful to reduce the fear of refactoring or extend code parts.
 Even pretty old parts of an application can be modified without the risk of any major problems.
 When the unit test are part of the \ac{CI}, each build will be checked.
 This reduces the risk of the deployment of faulty code.
@@ -258,14 +258,14 @@ An unit test can acts as some kind of documentation.
 
 The downsides are that unit tests are coded.
 This means also unit tests can have errors and they have to be maintained if the source code of the main project is changed.
-Furthermore poorly written unit tests or tests that are written unpleasured can end up in a wrong feeling of safeness.
-Some error case could not be catched and the submitted code is still faulty.
+Furthermore poorly written unit tests or tests that are written unmotivated can end up in a wrong feeling of safeness.
+Some error case could not be caught and the submitted code is still faulty.
 Additionally the test setup is not a realistic environment.
 Integration test are in general more accurate in terms of the human behavior.
 They test complete workflows and not only single components or functions.
 Also the dependencies between the component and the interaction between them can be tested much better with integration test.
 In many projects the most critical part of unit tests are, that they take time.
-For each written component, the realted tests take a significant time to be developed.
+For each written component, the related tests take a significant time to be developed.
 In a real life project this could be unacceptable even if it is important to have them.\newline
 
 \begin{listing}[H]
@@ -299,7 +299,7 @@ In this case some static variables will be created (line 4 - 6) and the internal
 Finally the \textit{ServiceRepository} itself will be created.
 The \textit{test\_has\_entry} method is one of multiple tests.
 This method checks if a value exists in the database.
-Therefore the result of the database serch method is mocked (line 13) and the \textit{has} command is executed (line 15).
+Therefore the result of the database search method is mocked (line 13) and the \textit{has} command is executed (line 15).
 Finally the results of the method are checked.
 At first the script tests if a specific method is called, in this case the \textit{search} method of the database (line 17).
 Afterwards the result of the \textit{ServiceRepository} \textit{has} method is checked (line 18).
@@ -308,7 +308,7 @@ If everything went fine, the test will execute with a status 0 as shown in listi
 Unit testing in general can be realized in two different ways.
 The first possibility is to write the tests after the coding of the component is done.
 This is the standard way in many projects these days.
-The advantage is that the code is done and normally no big changes cames after that.
+The advantage is that the code is done and normally no big changes comes after that.
 This means also changes on the test suite are seldom.
 
 The second possibility is the \ac{TDD}, that is related to the test-first programming concept of the extreme programming development.
@@ -316,7 +316,7 @@ In this development methodology the tests are written before the implementation 
 This helps to plan the architecture of a class and catch edge cases before the implementation is done.
 \ac{TDD} is an iterative process where at first the test is written, then the test will be executed and must fail, afterwards the code is written and the tests should be executed again, but this time successfully.
 Finally the process can be repeated for example if the code has to be refactored or extended.
-Especially in an extrem programming environment \ac{TDD} in combination with pair programming and code reviews are reasonable.\newline
+Especially in an extreme programming environment \ac{TDD} in combination with pair programming and code reviews are reasonable.\newline
 
 Motey was created with the "normal" unit testing approach, due to the fact that it was a one man project with rapidly changing requirements and an explorative approach to create the prototype.
 Nevertheless both methods ends up in a well tested code base and an assured code stability.

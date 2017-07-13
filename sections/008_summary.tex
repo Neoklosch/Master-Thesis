@@ -2,7 +2,7 @@
 \label{chapter:conclusion}
 \minitoc\vspace{.5cm}
 This final chapter sums up the thesis as well as the created prototype called Motey.
-The first section outlines the initial idea behind the project and reprocues the different work stages.
+The first section outlines the initial idea behind the project and reproduce the different work stages.
 Issues that remained unsolved are described in the last section as well as an outlook for the Motey project is shown.
 
 \section{Summary}
@@ -11,10 +11,10 @@ Therefore a prototype for such an orchestration engine called Motey was created.
 The application was created in cooperation with the \acf{FOKUS}.
 The main idea of the project was worked out in an iterative process together with supervisors of the \ac{FOKUS}.
 In several meetings the objectives was analyzed and elaborated.
-Motey is designed to be executed on each fog node and is able to instanciate an inter-node connection.
+Motey is designed to be executed on each fog node and is able to instantiate an inter-node connection.
 Each node has knowledge of all the other nodes and can communicate with them right at the moment they have to.\newline
 
-The application is also able to handle different so called capabilites.
+The application is also able to handle different so called capabilities.
 That are functional and non-functional requirements a node can fulfill.
 These capabilities are used to deploy images, for example \acp{NF} to a one or more nodes.
 The node that receives a deployment schema check the requirements of the contained images and deploy them on the same node if it is possible or on other nodes that are able to deploy them.
@@ -28,12 +28,12 @@ An \ac{HTTP} \ac{REST} \ac{API} is also available to enable compatibility with w
 The whole application is well documented and tested.
 Each component has a related unit test and the documentation is available online at \url{https://neoklosch.github.io/Motey/}.
 A \ac{CI} pipeline is used to automatically build each new version, test them and finally deploy them as a Docker image to the Docker Hub.
-This is espacially useful to reduce the overhead of repeating tasks, to guarantee the correctness of the current version and also to have an up-to-date version available via the Docker infrastructure.
+This is especially useful to reduce the overhead of repeating tasks, to guarantee the correctness of the current version and also to have an up-to-date version available via the Docker infrastructure.
 
 Biggest challenges in this project were to create a fast and lightweight inter-connection between the nodes, that was achieved by the protocols of choice ZeroMQ and \ac{MQTT}, as well as the abstraction of the virtualization underlying virtualization tools.
 The latter partly kept unsolved, because only a few virtualization tools supports the ARM \ac{CPU} architecture.
 Whereas ARM is a common architecture on low power devices.
-Therefore the integration of famous virtulization tools is not possible at the moment.
+Therefore the integration of famous virtualization tools is not possible at the moment.
 Due to the fact that \ac{IoT} becomes more and more important in the next years hopefully also the tools will adjusted in this direction.
 However Docker as the main virtualization tool in this thesis is available for ARM \acp{CPU} yet and also implemented in Motey.
 As a lightweight solution for virtualization this is a good starting point so far.
@@ -84,9 +84,9 @@ One possibility could be to implement much more responsibility in case of the ab
 One of the nodes could become a master node.
 These nodes then can act as a delegate for the centralized level.
 It can be track the state of the other nodes and can react to unexpected issues.
-Another possiblity could be an improved access control or right management.
+Another possibility could be an improved access control or right management.
 Some nodes could have more rights than others.
-Therefore an hierarchy could be created and sensitive images or images that handle sensitve data could be easily identified.
+Therefore an hierarchy could be created and sensitive images or images that handle sensitive data could be easily identified.
 Especially for security reasons that becomes very important.\newline
 
 The node discovery can be improved by making the \ac{MQTT} broker replaceable.
@@ -94,10 +94,10 @@ This could be achieved by having an logic that moves the broker over to a node t
 Such a behavior makes the system reliable and again more autonomously.
 Finally the integration of third party applications can be ensured.
 For example the integration of Open Baton as the centralized orchestrator could be realized.
-Also node specific tools like a hardware detection engine, that can deploy images or at least add new capabilites to Motey based on the connected hardware are imaginable.\newline
+Also node specific tools like a hardware detection engine, that can deploy images or at least add new capabilities to Motey based on the connected hardware are imaginable.\newline
 
 Motey can be seen as a good starting point for a complex environment made for fog computing.
 It is easy to extend, is lightweight during execution and networking.
-Due to the fact that it can be deployed via Docker out of the box it is easy to test and the documentation and the unit test should help to understand the fundermantels pretty easy.
+Due to the fact that it can be deployed via Docker out of the box it is easy to test and the documentation and the unit test should help to understand the fundamentals pretty easy.
 At the end the created project successfully reveal that the developed concept works out pretty well in a prototypical quality.
 The result can thus be considered as solid basis for further development.
