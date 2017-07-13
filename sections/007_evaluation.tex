@@ -106,8 +106,7 @@ The total test results are in section \ref{appendix:zeromq_test_results}.
 The difference between the \ac{CC} and \ac{NC} is significant.
 The \ac{CC} is around four times faster then the \ac{NC}.
 Certainly this relates to the connection and disconnection phase of the socket.
-On the other side the difference between the two devices is minimal and can be neglected in this evaluation.\newline
-\newpage
+On the other side the difference between the two devices is minimal and can be neglected in this evaluation.
 The comparison between ZeroMQ and \ac{HTTP} is much more crucial.
 Compared to the \ac{CC} \ac{HTTP} is around 20 times slower.
 Even compared to the \ac{NC} it is around 5 times slower.
@@ -256,18 +255,6 @@ This reduces the risk of the deployment of faulty code.
 And finally unit tests can be a good starting point for new team members, because it helps to understand the functionality of a class.
 An unit test can acts as some kind of documentation.
 
-The downsides are that unit tests are coded.
-This means also unit tests can have errors and they have to be maintained if the source code of the main project is changed.
-Furthermore poorly written unit tests or tests that are written unmotivated can end up in a wrong feeling of safeness.
-Some error case could not be caught and the submitted code is still faulty.
-Additionally the test setup is not a realistic environment.
-Integration test are in general more accurate in terms of the human behavior.
-They test complete workflows and not only single components or functions.
-Also the dependencies between the component and the interaction between them can be tested much better with integration test.
-In many projects the most critical part of unit tests are, that they take time.
-For each written component, the related tests take a significant time to be developed.
-In a real life project this could be unacceptable even if it is important to have them.\newline
-
 \begin{listing}[H]
   \begin{minted}{python}
   class TestServiceRepository(unittest.TestCase):
@@ -292,6 +279,18 @@ In a real life project this could be unacceptable even if it is important to hav
   \caption{Extract from the Motey unit test of the ServiceRepository}
   \label{code:sample_unit_test}
 \end{listing}
+
+The downsides are that unit tests are coded.
+This means also unit tests can have errors and they have to be maintained if the source code of the main project is changed.
+Furthermore poorly written unit tests or tests that are written unmotivated can end up in a wrong feeling of safeness.
+Some error case could not be caught and the submitted code is still faulty.
+Additionally the test setup is not a realistic environment.
+Integration test are in general more accurate in terms of the human behavior.
+They test complete workflows and not only single components or functions.
+Also the dependencies between the component and the interaction between them can be tested much better with integration test.
+In many projects the most critical part of unit tests are, that they take time.
+For each written component, the related tests take a significant time to be developed.
+In a real life project this could be unacceptable even if it is important to have them.\newline
 
 Listing \ref{code:sample_unit_test} shows an extract from the \textit{ServiceRepository} unit test.
 The test starts with a \textit{setUp} method (line 3) that is executed before each test.

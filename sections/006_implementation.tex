@@ -365,10 +365,11 @@ At the startup of the orchestrator it will subscribe to an observer for example 
 If a service event occurs, it will start the \textit{instantiate\_service} method.
 This will be executed in a separate thread.
 At first the service will be stored in the data layer.
-The lifecycle will be changed to the \textit{instantiating} state.
+The lifecycle will be changed to the \textit{instantiating} state.\newline
+
 Afterwards the capabilities of each contained image has to be checked.
-This is necessary to identify the node that is handling the image.
-\newpage
+This is necessary to identify the node that is handling the image.\newline
+
 There are three different possibilities:
 \begin{enumerate}
   \item there are no capabilities located in the image, therefore the current node starts the image.
@@ -484,8 +485,7 @@ If it would not be implemented with a thread only the Flask server would be star
 Furthermore Flask has to be configured to accept cross-site requests, by disabling the \textit{same origin policy} with a \textit{\ac{CORS}} library.
 This behavior is a development only feature and it is strictly recommend to deactivate it in production mode.
 By deactivating it the server is vulnerable for \ac{CSRF} and clickjacking attacks.
-In the development phase cross-site requests should be allowed to make it easier to communicate between a web client and the \ac{REST} \ac{API}.\newline
-
+In the development phase cross-site requests should be allowed to make it easier to communicate between a web client and the \ac{REST} \ac{API}.
 In addition all the configured \ac{API} will be initialized.
 As mentioned before these routes can be implemented as Flask Blueprints.
 All routes are located in the \textit{motey/communication/api\_routes} directory.\newline
@@ -715,7 +715,7 @@ This will executed after the virtual environment are created by Travis CI.
 In this case the python requirements will be installed.
 Line 11 up to 14 are used to test the source code.
 A code style check is performed in line 12 and 13.
-It will check to code against the \ac{PEP} 8 standard\footnote{\url{https://www.python.org/dev/peps/pep-0008}}, which is be used by several other libraries like the pretty famous Django project\footnote{\url{https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style}}.
+It will check to code against the \ac{PEP} 8 standard\footnote{\url{https://www.python.org/dev/peps/pep-0008}}, which is be used by several other libraries like the pretty famous Django project{\interfootnotelinepenalty10000 \footnote{\url{https://docs.djangoproject.com/en/dev/internals/contributing/writing-code/coding-style}}}.
 After that all the related unit tests will be executed.
 If there is an error during the execution of the \textit{script} block, the whole build process will be stopped and marked as error.
 The current state can be view in Travis CI at \url{https://travis-ci.org/Neoklosch/Motey} and also in the readme of the project at \url{https://github.com/Neoklosch/Motey} or \url{http://motey.readthedocs.io/en/latest}.\newline
