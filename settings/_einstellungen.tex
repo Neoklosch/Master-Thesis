@@ -261,4 +261,14 @@
     \widowpenalty=10000
     \displaywidowpenalty=10000
 
-% \usepackage{bookmark}
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\Large\raggedleft\color{ob_orange}}
+  {\MakeUppercase{\chaptertitlename}%
+    \rlap{ \resizebox{!}{1.5cm}{\thechapter} \rule{5cm}{1.5cm}}}
+  {10pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{30pt}{20pt}
+
+% \titleformat{\section}
+%   {\normalfont\sffamily\Large\bfseries}
+%   {\thesection}{1em}{}
