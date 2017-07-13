@@ -13,6 +13,7 @@ table
 \addbibresource{bib/bibliography.bib}
 
 \begin{document}
+\selectlanguage{english}
 
 \pagenumbering{gobble}
 \clearpage
@@ -48,25 +49,9 @@ table
 
 \pagestyle{plain}
 
-\tableofcontents
-\cleardoublepage
+\include{sections/001_listings}
 
-\listoffigures
-\protect \addcontentsline{toc}{chapter}{List of Figures}
-\mtcaddchapter
-\cleardoublepage
-
-\listoftables
-\protect \addcontentsline{toc}{chapter}{List of Tables}
-\mtcaddchapter
-\cleardoublepage
-
-\listoflistings
-\protect \addcontentsline{toc}{chapter}{List of Listings}
-\mtcaddchapter
-\cleardoublepage
-
-\lohead[\putchapterthumb]{\putchapterthumb}
+% \lohead[\putchapterthumb]{\putchapterthumb}
 \pagenumbering{arabic}
 \setcounter{page}{1}
 
@@ -89,5 +74,7 @@ table
 
 \include{sections/009_bibliography}
 \mtcaddchapter
+
+\include{sections/xx4_index}
 
 \end{document}

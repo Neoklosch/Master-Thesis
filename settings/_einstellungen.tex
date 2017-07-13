@@ -82,7 +82,7 @@
 \usepackage[utf8]{inputenc}   % Zeichensatz, ermöglicht die direkte Eingabe von Umlauten im Editor
 \usepackage[pdftex]{graphicx} % Einbindung von Grafiken (pdf, png, jpg)
 \usepackage{float}            % bietet Option [H] für bombenfestes Verankern
-\usepackage[english]{babel}   % Silbentrennung nach der neuen deutschen Rechtschreibung, z.B.: Sys-tem
+\usepackage[ngerman, english]{babel}   % Silbentrennung nach der neuen deutschen Rechtschreibung, z.B.: Sys-tem
 \usepackage{amstext}          % für Klartext via \text{} in Formeln
 \usepackage{amsfonts}         % für komplexere Formeln (Mengensymbole ...)
 \usepackage{amssymb}          % für komplexere Formeln (Mengensymbole ...)
@@ -101,7 +101,6 @@
 %\usepackage{colortbl}
 \usepackage{tabu}
 %\usepackage[hyphens]{url}     % für \url{http://www}, Option hyp erlaubt auch Umbruch nach "-"
-\usepackage{makeidx}          % Package zur Indexerstellung
 \usepackage{multicol}         % zur Indexerstellung in zwei Spalten
 % \usepackage[numbers, square]{natbib}   % Für \setlength{\bibsep}{3mm}; square macht eckige Klammern
 \usepackage{csquotes}
@@ -136,8 +135,8 @@
   xleftmargin=0.6cm
 }
 
-\usepackage{settings/chapterthumb}
-\usepackage{wrapfig}
+% \usepackage{settings/chapterthumb}
+% \usepackage{wrapfig}
 
 \counterwithout{figure}{chapter}
 \counterwithout{table}{chapter}
@@ -191,22 +190,6 @@
 
 \sloppy                       % großzügiger Zeilenumbruch
                               % -> keine rechts rausragenden Zeilen mehr
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Index-Erstellung
-%
-% Anmerkung: für die Indexerstellung muss auch die TeXnicCenter-IDE angepasst
-% werden:
-% 1.) Projekt / Eigenschaften / verwendet MakeIndex [x]
-% 2.) Ausgabe / Ausgabeprofil definieren
-%
-\makeindex % erstelle einen Index bzw. ein Sachverzeichnis)
-%
-% Wenn kein Index gewünscht ist: einfach \makeindex auskommentieren
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
@@ -264,9 +247,18 @@
 \usepackage[nohints]{minitoc}                 % ToC for chapters
 \dominitoc[n]                                 % ToC: no caption
 \renewcommand{\mtcSfont}{\small}              % ToC: small
-\usepackage{makeidx}                          % Make an index
-\makeindex                                    % Make an index
 
 \newcommand{\doit}{\begin{figure}[H]\includegraphics[width=0.2\textwidth]{resources/images/do_it.jpg}\end{figure}}
 
 \usepackage{palatino}
+% \usepackage{kpfonts}
+% \usepackage{utopia}
+% \usepackage[bitstream-charter]{mathdesign}
+
+% no "Schusterjungen"
+    \clubpenalty=10000
+% no "Hurenkinder"
+    \widowpenalty=10000
+    \displaywidowpenalty=10000
+
+% \usepackage{bookmark}
