@@ -22,11 +22,11 @@ The \textit{Laptop} is connect via 802.11n WiFi to the router.
 \label{section:performance-evaluation}
 In the following section some performance relevant tests are shown and analyzed.
 Especially the performance of the used virtualization method is crucial for the system as well as the connection performance of the used protocols are important.
-All evaluations are made with low-power devices in mind.
+All evaluations are made with low power devices in mind.
 This means a small overhead and a fast and lightweight solution is preferred.
 
 \subsection{Docker vs. KVM}
-Due to the fact that Docker is the main component in the created prototype, it is important to verify the performance on low-power devices.
+Due to the fact that Docker is the main component in the created prototype, it is important to verify the performance on low power devices.
 Unfortunately a performance comparison with established \ac{VM} tools like VMWare or Xen on a Raspberry Pi is not possible, because nearly all of them does not support the ARM \ac{CPU} architecture.
 There are several performance tests on x86 architecture.
 IBM for example compared \acp{VM} or more specific \acp{KVM} with Docker in a research report\autocite{IBM:Performance:2014} from 2014.
@@ -51,7 +51,7 @@ In this test Docker is much more performant in nearly every point of view.
 It has less overhead in terms of \ac{CPU} usage\autocite[cf.][p. 25]{Russell:Performance:2014}, memory performance\autocite[cf.][p. 50]{Russell:Performance:2014} and boot time\autocite[cf.][p. 24]{Russell:Performance:2014}.
 Only the network throughput is nearly the same.\autocite[cf.][p. 52]{Russell:Performance:2014}
 Finally also the container size is much smaller in Docker than in \ac{KVM}.\autocite[cf.][p. 66]{Russell:Performance:2014}
-Overall Docker is much more lightweight and due to the fact that it supports the ARM architecture, it is well suitable for the usage on low-power devices.
+Overall Docker is much more lightweight and due to the fact that it supports the ARM architecture, it is well suitable for the usage on low power devices.
 
 \subsection{Performance HTTP}
 To test the \ac{HTTP} performance of the application two simplified test scripts are created.

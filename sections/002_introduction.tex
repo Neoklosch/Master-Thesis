@@ -25,7 +25,7 @@ Currently a factory has a high degree of automation, but due to a lack of intell
 % -- CS & CPS
 One solution to achieve that are \acp{CPS}.
 These are virtual systems which are connected with embedded systems to monitor and control physical processes.\autocite[cf.][p. 363]{Lee:2008}
-A normal \acp{CS} is passive, means it could not interact with the physical world, with the appearance of \acp{CPS} things can communicate so the system has significantly more intelligence in sensors and actuators.\autocite[cf.][p. 1363 f.]{Poovendran:2010}
+A normal \ac{CS} is passive, means it could not interact with the physical world, with the appearance of \acp{CPS} things can communicate so the system has significantly more intelligence in sensors and actuators.\autocite[cf.][p. 1363 f.]{Poovendran:2010}
 % Research Focus - Forschungsschwerpunkt aka Praxisproblem
 % -- Virtualization, Orchestration, Deployment of functions
 \newpage
@@ -100,25 +100,25 @@ These schemes should be extendable and should fit the needs of the constraint fu
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth]{resources/images/conceptual_architecture.png}
-    \caption[Conceptual architecture]{Conceptual architecture.}
+    \caption[Conceptual architecture based on a draft of the \ac{FOKUS}]{Conceptual architecture based on a draft of the FOKUS}
     \label{fig:conceptual_architecture}
 \end{figure}
 
-Figure \ref{fig:conceptual_architecture} shows a conceptual architecture design.
+Figure \ref{fig:conceptual_architecture} shows a conceptual architecture design that based on a draft of the \ac{FOKUS}.
 On the right side is the abstract cloud infrastructure.
-The \ac{NFVI} on the left side includes the Fog Node
 These could be for example Open Baton or any other \ac{MANO} compliant Framework.
-A single fog node should have the fog node engine, which is the prototype to be developed, as well as a docker engine up and running.
+The \ac{NFVI} on the left side includes the Fog Node.
+A single fog node should have the fog node engine, which is the prototype to be developed, as well as an up and running Docker engine.
 The constraint handling is part of the fog node engine and the concrete implementation has to be worked out.
-The fog node engine can orchestrate the local Docker containers, or if it necessary, it can orchestrate containers to one or multiple other fog nodes.
+The fog node engine can orchestrate the local Docker containers, or if it necessary, it can move containers over to one or multiple other fog nodes.
 This allows the system to be more flexible and it can achieve an autonomous orchestration level.
 The autonomous orchestration of containers between fog nodes without an existing connection to the cloud server is desirable, but not part of this thesis.
-Due to the fact that the prototype will be used in an \ac{IoT} context, the system will be tested on low power devices, for example on a raspberry pi\footnote{\url{https://www.raspberrypi.org}} cluster.
+Due to the fact that the prototype will be used in an \ac{IoT} context, the system will be tested on low power devices, for example on a Raspberry Pi\footnote{\url{https://www.raspberrypi.org}} cluster.
 It is out of scope to create a system which guaranteed to be executed on arbitrary devices, but theoretically this could be achieved with a system like Open Baton and Docker.
 
 
 \section{Outline}
-In chapter \ref{chapter:state-of-the-art} an introduction in relevant topics like the \ac{IoT} with the Industry 4.0, \acp{CPS} and Fog Computing as subtopics, virtualization especially container virtualization and orchestration and \ac{NFV} is given.
+In chapter \ref{chapter:state-of-the-art} an introduction into relevant topics like the \ac{IoT} with the Industry 4.0, \acp{CPS} and Fog Computing as subtopics, virtualization, especially container virtualization and orchestration and \ac{NFV} is given.
 Followed by a comparison of several established tools available on the market and finally some messaging concepts like \ac{MQTT} and ZeroMQ.
 The definition of the requirements as well as features and capabilities of the prototype will be shown in chapter \ref{chapter:requirements-analysis}.
 Based on that, the architecture of the system is illustrated in chapter \ref{chapter:concept}.
