@@ -1,9 +1,9 @@
-\chapter{Concept}
+\chapter{Concept and design}
 \label{chapter:concept}
 \minitoc\vspace{.5cm}
-This chapter introduces the architectural design of prototype respect to the previously defined requirements.
-Therefore the used development environment will be analyzed.
-Followed by the definition of an abstract t architecture of the prototype to be developed.
+This chapter introduces the architectural design of the prototype respecting the previously defined requirements.
+Therefore, the used development environment will be analyzed.
+Followed by the definition of an abstract architecture of the prototype to be developed.
 Based on that the different layer of the system will be elaborated as well as some security concerns and the continuous integration environment.
 The working title of the project will be \textbf{Motey}.
 In the following the prototype will also be referenced as Motey.
@@ -11,24 +11,25 @@ In the following the prototype will also be referenced as Motey.
 
 \section{Development environment}
 The development environment is crucial for both the implementation of the Motey engine, as well as the choice of possible plugins and libraries.
-It should be easy to used and fast to implement, but it should also consider the knowledge of the \ac{FOKUS} as well as the developer.
+It should be easy to use and fast to implement, but it should also consider the knowledge of the \ac{FOKUS} as well as the developer.
 
-\paragraph{Java} is still one of the most important programming languages in the market.\autocite[cf.]{ProgramminLanguage:2017}
-Java is platform independent, because Java will not be executed directly in the \ac{OS}, instead it will be executed in the \ac{JVM}.
-The downside is, that especially because of the \ac{JVM}, Java programs are much more inefficient regarding \ac{RAM} and \ac{CPU} usage.
-Java is object oriented, which makes it easy to extend.
-There are a lot of well designed and developed established libraries and tools in the market, which makes it easy to create rapid prototypes.
+% \paragraph{Java} is still one of the most important programming languages in the market.\autocite[cf.]{ProgramminLanguage:2017}
+% Java is platform independent, because Java will not be executed directly in the \ac{OS}, instead it will be executed in the \ac{JVM}.
+% The downside is, that especially because of the \ac{JVM}, Java programs are much more inefficient regarding \ac{RAM} and \ac{CPU} usage.
+% Java is object oriented, which makes it easy to extend.
+% There are a lot of well designed and developed established libraries and tools in the market, which makes it easy to create rapid prototypes.
+%
+% \paragraph{Node.js} is a relatively young programming environment, which was created 2009 by Ryan Dahl and based on the Google JavaScript engine V8.
+% The V8 engine is written in C++, which makes the language less resources consuming then for example Java.
+% A program will be written in JavaScript, but it is also possible to load C or C++ extension.
+% Node.js is also available for all common \acp{OS}.
+% Due to the fact that Node.js has a build-in webserver component, it is easy to create web applications.
+% Libraries can be added via the package manager called npm.
+% JavaScript and also Node.js have a pretty active community, which tends to be as messy as they is increasing.
+% There is enormous amount of libraries and tools in the market, where each library has its reason to exist, but it is also a vast of pretty similar designs and use-cases.
 
-\paragraph{Node.js} is a relatively young programming environment, which was created 2009 by Ryan Dahl and based on the Google JavaScript engine V8.
-The V8 engine is written in C++, which makes the language less resources consuming then for example Java.
-A program will be written in JavaScript, but it is also possible to load C or C++ extension.
-Node.js is also available for all common \acp{OS}.
-Due to the fact that Node.js has a build-in webserver component, it is easy to create web applications.
-Libraries can be added via the package manager called npm.
-JavaScript and also Node.js have a pretty active community, which tends to be as messy as they is increasing.
-There is enormous amount of libraries and tools in the market, where each library has its reason to exist, but it is also a vast of pretty similar designs and use-cases.
-
-\paragraph{Python} is one of the most used programming languages with a huge and active community.\autocite[cf.]{ProgramminLanguage:2017}
+\subsection{Programming Language}
+Python is one of the most used programming languages with a huge and active community.\autocite[cf.]{ProgramminLanguage:2017}
 It is a dynamic typed programming language with an automatic memory management which uses both, reference counting and garbage collection at the same time.\autocite[cf.]{Python:GarbageCollection}
 Python can use several programming paradigms like the object oriented programming or functional programming.
 Core philosophy is make it simple, make it beautiful, make it explicit and make it readable.
@@ -38,17 +39,31 @@ Python has a tremendous amount of libraries which can be installed via the Pytho
 Similar to Node.js Python allows to write C extension.
 Finally there are several Python compilers which compiles Python code to other high-level languages like Java, C or JavaScript.
 
-\paragraph{Go} is the new emerging language created by Google and was announced end of 2009.
-It follows the traditions of C, but also takes added concepts to create a more modern programming language.
-According to their own statements go is expressive, concise, clean, and efficient.\autocite[cf.]{Go:Documentation}
-Furthermore it has a garbage collection and run-time reflection, it is fast, statically typed and a compiled language.\autocite[cf.]{Go:Documentation}
-Go is used in production by several tools like Docker, Kubernetes and OpenShift.
-Downside is that there are not so much libraries out right now and there are no long time experience in the critical mass.
+% \paragraph{Go} is the new emerging language created by Google and was announced end of 2009.
+% It follows the traditions of C, but also takes added concepts to create a more modern programming language.
+% According to their own statements go is expressive, concise, clean, and efficient.\autocite[cf.]{Go:Documentation}
+% Furthermore it has a garbage collection and run-time reflection, it is fast, statically typed and a compiled language.\autocite[cf.]{Go:Documentation}
+% Go is used in production by several tools like Docker, Kubernetes and OpenShift.
+% Downside is that there are not so much libraries out right now and there are no long time experience in the critical mass.
 
 Open Baton, as one of the actively maintained project at the \ac{FOKUS}, is written in Java and is also has ports to Python and go.
 Python in general is used for several projects at the \ac{FOKUS}.
 Taking also the criteria from section \ref{section:functional-requirements} into account Python will be used as the  programming environments of choice.
 The \ac{GUI} will only be a very basic web client, which uses Vue.js\footnote{\url{https://vuejs.org}} as its main framework and some smaller tools like the pretty famous bootstrap framework.
+
+\subsection{Continuous Integration}
+Continuous integration is nowadays a frequently used technique to automate repeating deployment steps into a self executing pipeline.
+It starts by running unit tests, code style checks and ends up with deploying the compiled program to a server or a marketplace.
+Due to the fact that Github\footnote{\url{https://github.com}} will be used to host and maintain the git repository for the Motey project, the pretty famous and seamless integrated Travis CI\footnote{\url{https://travis-ci.org}} will be used to implement the continuous integration pipeline.
+To start with Travis CI only the Github account has to be synced with the platform and a \ac{YAML} configuration file has to be placed in the root folder of the git repository.
+Travis CI supports several programming languages and also various third party services, like Docker Hub or Amazon AWS.
+Every time a new commit will be pushed to the git remote repository, a new build will be started at Travis CI.
+At first a virtual machine will be started by Travis CI.
+Afterwards all necessary components like libraries and tools will be installed in the virtual machine.
+Finally all predefined tasks from the \ac{YAML} file will be executed.
+In terms of the Motey project, unit tests will be executed, as well as code style checks and if a version from the master branch will be build, a Docker container will be created and pushed to the related Docker Hub repository.
+This pipeline guarantees that the project is tested and a coding standard is enforced.
+Further the manual build of the Docker container including the upload to the Docker Hub will be obsolete.
 
 
 \section{Architecture of the system}
@@ -86,7 +101,7 @@ A detailed description will be shown in the following sections.
 
 One of the most important components is the \textit{Local Orchestrator}.
 It is responsible for the deployment of the containers as well as the inter-node communication.
-The latter is necessary to let the nodes act in an autonomously was, so that they can react to changing requirements, even when the centralized fog level disappears.
+The latter is necessary to let the nodes act in an autonomously way, so that they can react to changing requirements, even when the centralized fog level disappears.
 Therefore each node must have knowledge and should be able to interact with each other.
 Beside that the local orchestrator is tightly coupled to the \textit{\ac{VAL} Manager}.
 This is an abstraction layer for each virtualization component in the system, for example Docker or a bare-metal virtualization like XEN.
@@ -281,18 +296,3 @@ In case of the prototype the following steps should be implemented:
 That should be the minimal setup for securing the nodes.
 To make them production ready even much more improvements should be implemented.
 Again, just because this is a rapid prototype which should show off the possibilities of such an engine, the security will be neglected and the implementation only annotated.
-
-
-\section{Continuous Integration}
-Continuous integration is nowadays a frequently used technique to automate repeating deployment steps into a self executing pipeline.
-It starts by running unit tests, code style checks and ends up with deploying the compiled program to a server or a marketplace.
-Due to the fact that Github\footnote{\url{https://github.com}} will be used to host and maintain the git repository for the Motey project, the pretty famous and seamless integrated Travis CI\footnote{\url{https://travis-ci.org}} will be used to implement the continuous integration pipeline.
-To start with Travis CI only the Github account has to be synced with the platform and a \ac{YAML} configuration file has to be placed in the root folder of the git repository.
-Travis CI supports several programming languages and also various third party services, like Docker Hub or Amazon AWS.
-Every time a new commit will be pushed to the git remote repository, a new build will be started at Travis CI.
-At first a virtual machine will be started by Travis CI.
-Afterwards all necessary components like libraries and tools will be installed in the virtual machine.
-Finally all predefined tasks from the \ac{YAML} file will be executed.
-In terms of the Motey project, unit tests will be executed, as well as code style checks and if a version from the master branch will be build, a Docker container will be created and pushed to the related Docker Hub repository.
-This pipeline guarantees that the project is tested and a coding standard is enforced.
-Further the manual build of the Docker container including the upload to the Docker Hub will be obsolete.
