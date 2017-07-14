@@ -1,7 +1,7 @@
 \chapter{Requirements Analysis}
 \label{chapter:requirements-analysis}
 \minitoc\vspace{.5cm}
-Based on the fundamentals the requirements for the prototype to be developed will be formulated in this chapter.
+Based on the fundamentals, the requirements for the prototype to be developed will be formulated in this chapter.
 Thereby relevant aspects for the specific implementation will be considered.
 The analysis, the creation of requirements and the commitment from all sides to these requirements is an important step to successfully realize a project, not only in the software development area.
 It does not matter if it is a private project, a company product or a project from a customer.
@@ -22,7 +22,7 @@ Most \ac{MANO} tools like Open Baton uses OpenStack which deploys virtual machin
 This is a rock solid solution for a cloud environment.
 Unfortunately a bare-metal virtualization is most of the times not feasible on small power devices like they are used in the \ac{IoT} area.
 Therefore a much more efficient and lightweight solution like container virtualization should be used and handled by an orchestration engine.
-The desired service like a \acp{NF} can be bundled in one or multiple containers and executed afterwards on the expected \ac{IoT} nodes.
+The desired service, like a \ac{NF}, can be bundled in one or multiple containers and executed afterwards on the expected \ac{IoT} nodes.
 Such a bundle of containers should be passed to the node as a build plan or a blueprint of the service.
 The fog node engine should accept the blueprint and deploy the containers to the desired virtualization layer.
 Afterwards the lifecycle of the services should be monitored.
@@ -183,7 +183,7 @@ As mentioned before, the prototype to be developed should orchestrate virtualize
 Therefore the focus of this consideration is the orchestration as well as the constraints.
 
 \paragraph{Kubernetes} is especially made for Docker and can orchestrate, scale and manage containers.
-It is open source, made by Google and one of the most popular orchestration tools out there.
+It is open source, made by Google and one of the most popular orchestration tools in the market.
 It has on huge and pretty active community and is used by several well known companies\autocite{Kubernetes:Case-Studies} like ebay\footnote{\url{http://www.ebay.com}} and Wikimedia\footnote{\url{https://www.wikimedia.org}}.
 Due to the fact, that is exclusively made for Docker, it means that the system is not made to easily switch the underlying container engine if needed.
 

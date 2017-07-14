@@ -11,24 +11,24 @@
 \minitoc\vspace{.5cm}
 
 This chapter will give an overview into the background and concepts of this thesis.
-In the first section the \ac{IoT} an related subtopics like smart factories and Smart Cities are considered.
-\acp{CPS}, that are important for the development of smart factories are also covered in this section.
-Virtualization in general is the main topic of the second section.
-First the area of \acp{VM} will be highlighted, followed by Container Virtualization.
-Both are related to each other and sharing some basic ideas.
-Container Orchestration as an own subsection show some possibilities of Container Virtualization.
+In the first section the \ac{IoT} and related subtopics like smart factories and Smart Cities are considered.
+\acp{CPS} are important for the development of smart factories and are also covered in this section.
+Virtualization in general is the main topic of the section \ref{section:state_virtualization}.
+First \acp{VM} are highlighted, followed by Container Virtualization.
+Both are related to each other and share some basic ideas.
+Container Orchestration show exemplary possibilities of Container Virtualization.
 The last subsection \ac{NFV} concludes with an introduction into the virtualization of network node functions to create communication services.
 Afterwards a brief overview of some major existing tools will be given.
 The chapter will be finished with an excursion to two important messaging systems.
 
 
 \section{Internet of Things}
-The \ac{IoT} has been a subject of great media- and economically growth in the recent years.
+\ac{IoT} has grown strongly in the media and economy in the recent years.
 In the year 2008 the number of devices which are connected to the Internet was higher than the human population.\autocite[cf.][p. 3]{Eva:2011}
 Cisco Internet Business Solutions Group predicted that the number will grow up to 50 billion in 2020, this equates to around 6 devices per person.\autocite[cf.][p. 4]{Eva:2011}
-Most of today\'s interactions are \ac{H2H} or \ac{H2M} communication.
+Most of today's interactions are \ac{H2H} or \ac{H2M} communication.
 The \ac{IoT} on the other hand aim for the \ac{M2M} communication.
-This allows every physical devices to be interconnected and to communicate with each other.
+This allows every physical device to be interconnected and to communicate with each other.
 These devices are also called "Smart Devices".
 Creating a network where all physical objects and people are connected via software is one primary goal of the \ac{IoT}.\autocite[cf.][p.206]{Rui:2015}\autocite[cf.][p.2]{Kra:2013}
 When objects are able to capture and monitor their environment, a network can perceive external stimuli and respond to them.\autocite[cf.][p. 40]{Itu11}
@@ -36,7 +36,7 @@ Therefore a new dimension of information and communication technology will be cr
 In addition to smart devices, subcategories are also emerging from the \ac{IoT} which, in addition to the physical devices, also describe technologies such as protocols and infrastructures.
 The "Smart Home" has been a prominent topic in media and business for many years.
 Smart City or Industry 4.0 are also becoming established and are increasingly popular.
-But the Internet started with the appearance of bar codes and \ac{RFID} chips.\autocite[cf.][p. 13]{Kra:2013}
+But the \ac{IoT} started with the appearance of bar codes and \ac{RFID} chips.\autocite[cf.][p. 13]{Kra:2013}
 The second step, which is more or less the current situation, sensors, physical devices, technical devices, data and software are connected to each other.\autocite[cf.][p. 13]{Kra:2013}
 This was achieved, in particular, by cloud computing, which provides the highly efficient memory and computing power that is indispensable for such networks.\autocite[cf.][p. 206]{Rui:2015}
 The next step could be a "Cognitive Internet of Things", which enables easier object and data reuse across application areas, for example through interoperable solutions, high-speed Internet connections and a semantic information distribution.\autocite[cf.][p. V]{Kra:2013}
@@ -44,7 +44,7 @@ Just as the omnipresent information processing in everyday life, also known as "
 
 
 \subsection{Industry 4.0 and smart factories}
-The industry as an changing environment is currently in the state of the so called "fourth industrial revolution".
+The industry we know is changing and is currently in the state of the so called "fourth industrial revolution".
 The first industrial revolution was driven by steam powered machines.
 Mass production and division of labor was the primary improvement of the second industrial revolution, whereas the third revolution was characterized by using electronics and the integration of \ac{IT} into manufacturing processes.\autocite[cf.][p. 1]{Lom:2016}
 In the recent years the size, cost and power consumption of chipsets are reduced which made it possible to embed sensors into devices and machines much easier and cheaper.\autocite[cf.][p. 1]{Brito:2016}
@@ -55,7 +55,7 @@ Significantly higher productivity, efficiency, and self-managing production proc
 It also aims for an intelligent connection between different companies and units.
 Autonomous production and logistics processes creating a real-time lean manufacturing ecosystem that is more efficient and flexible.\autocite[cf.]{Lyd:2016}
 "This will facilitate smart value-creation chains that include all of the life-cycle phases of the product from the initial product idea, development, production, use, and maintenance to recycling."\autocite{Lyd:2016}
-At the end, the system can use customer wishes in every step in the process to be flexible and responsive.\autocite[cf.]{Lyd:2016}
+At the end, the system can use customer requirements in every step in the process to be flexible and responsive.\autocite[cf.]{Lyd:2016}
 
 \taburulecolor{ob_dark_gray}
 \begin{table}[htpb]
@@ -91,9 +91,9 @@ They can help companies to identify and implement Industry 4.0 scenarios.\autoci
   \item \textit{Modularity} The system is able to be adjusted in case of seasonal fluctuations or changed product characteristics, by replacing or expanding individual modules.\autocite[cf.][p. 11]{Her:2015}
 \end{enumerate}
 
-Another important aspect of Industry 4.0 is the implementation of process automation with the focused on three distinct aspects.
-Starting with the vertical integration, which contains the connection and communication of subsystems within the factory enables flexible and adaptable manufacturing systems.\autocite[cf.][p. 7 ff.]{Vbw:2014}
-The horizontal integration, as the second aspect, enables technical processes to be integrated in cross-company business processes and to be synchronized in real time through multiple participants to optimize value chain outputs.\autocite[cf.][p. 7 ff.]{Vbw:2014}
+Another important aspect of Industry 4.0 is the implementation of process automation with focus on three distinct aspects.
+Vertical integration, that contains the connection and communication of subsystems within the factory, enables flexible and adaptable manufacturing systems.\autocite[cf.][p. 7 ff.]{Vbw:2014}
+Horizontal integration, as the second aspect, enables technical processes to be integrated in cross-company business processes and to be synchronized in real time through multiple participants to optimize value chain outputs.\autocite[cf.][p. 7 ff.]{Vbw:2014}
 Finally end-to-end engineering, planning, and process control for each step in the production process.\autocite[cf.]{Lyd:2016}
 
 \begin{figure}[H]
@@ -106,11 +106,11 @@ Finally end-to-end engineering, planning, and process control for each step in t
 Figure \ref{fig:vertical_horizontal_integration} illustrates this concept.
 The left side shows the whole production process over company boundaries on the horizontal scale, as well as the industry value chain on the vertical scale which is specific for each company.
 On the right side there is an exemplary industry value chain which starts with the raw materials and ends with the sale of the product to illustrates an more specific example of the vertical integration.
-From a technical site this means each machine in a factory has exactly to know what they have to do.
+From a technical perspective this means each machine in a factory has exactly to know what they have to do.
 The underlying system has to be modular and move away from a monolithic centralized system, to a decentralized system which is located locally near the machines himself.
 The communication path between them have to grow shorter.
 The machines have to be self organized and should communicate between each other even if the core system is not reachable because of lossy signals or other connection issues.
-If this can be achieved there will be an highly flexible, individualized and resource friendly mass production, which can be cheaper, faster and can have a much higher fault tolerance.
+If this can be achieved there will be an highly flexible, individualized and resource friendly mass production, which can be cheaper, faster and can be more fault tolerant.
 
 
 \subsection{Cyber Physical Systems}
@@ -126,12 +126,12 @@ In summary \acp{CPS} can help to enable the vision of smart factories in both th
 
 
 \subsection{Fog Computing}
-In the beginning of Cloud Computing most of the systems based on a monolithic architecture.
+In the beginning of Cloud Computing most of the systems are based on a monolithic architecture.
 Over time the system was broken down to a more distributes multicloud architecture, similar to microservices.
 With the appearance of Fog Computing the Cloud also moves from centralized data centers to the edge of the underlying network.
-Main goal is to improve the efficiency, reduce the traffic and the amount of data which is transferred to the cloud and also process, analyze and store data locally, as well as keeping sensitive data inside the network for security reasons.\autocite[cf.][p. 236]{Brito:2016}\autocite[cf.][p. 325]{Yannuzzi:2014}\autocite[cf.][p. 4]{Lom:2016}
+Main goal is to reduce the traffic and the amount of data which is transferred to the cloud and also process, analyze and store data locally, as well as keeping sensitive data inside the network for security reasons.\autocite[cf.][p. 236]{Brito:2016}\autocite[cf.][p. 325]{Yannuzzi:2014}\autocite[cf.][p. 4]{Lom:2016}
 In contrast to the goals the definition and understanding of Fog Computing differs.
-One perspective is to that the processing of the data take place on smart devices, e.g. sensors, embedded systems, etc., at the end of the network or in smart router or other gateway devices.\autocite[cf.][p. 4]{Lom:2016}
+One perspective is to that the processing of the data take place on smart devices, e.g. embedded systems, etc., at the end of the network or in smart router or other gateway devices.\autocite[cf.][p. 4]{Lom:2016}
 Another interpretation is that fog computing appears as an intermediate layer between smart devices and the cloud.\autocite[cf.][p. 236]{Brito:2016}
 Processing the data near devices enables lower latency and real-time applications can take decisions based on analytics running there.
 That is important because a continuous connection to the cloud can not always be ensured.
@@ -139,6 +139,7 @@ However fog computing should not be seen as a competitor of cloud computing, it 
 
 
 \section{Virtualization}
+\label{section:state_virtualization}
 According to the \ac{NIST} the definition of virtualization is: "Virtualization is the simulation of the software and/or hardware upon which other software runs. This simulated environment is called a virtual machine (VM)."\autocite[p. ES-1]{Sca:2011}.
 This means a \ac{VM}, also referred as guest system, can be executed in a real system, which is referred as host system.
 A \ac{VM} has its own \ac{OS} which is completely isolated from the other \acp{VM} and the host system.\autocite[cf.][p. 2]{Celesti:2016}
@@ -190,11 +191,11 @@ Compared to \acp{VM}, the number of containers on the same physical host can be 
 \subsection{Container Orchestration}
 Containers by itself helps to develop and deploy applications, but containers release their full potential only when they are used together with an orchestration engine.
 Before orchestration engines, the deployment of an application or service was realized via \ac{CI} and deployment tools like Vagrant or Ansible.
-Deployment scripts or plans was created and be executed every time an application changed or should be scaled up on a new machine.
+Deployment scripts or plans were created and be executed every time an application changed or should be scaled up on a new machine.
 This was less flexible and error-prone.
 Orchestration engines cover these needs by automatically choosing new machines, deploying containers, handle the lifecycle of them and monitor the system.
 These flexibility enables a new level of abstraction and automatization of deployment.
-There are a bunch of orchestration engines out there.
+There are a bunch of orchestration engines in the market.
 For Docker, Kubernetes and Docker Swarm are the most popular at the moment.
 
 
@@ -207,7 +208,7 @@ Now high-performance firewalls and load balancing software for example can run o
 Some benefits are speed, agility and cost reduction in deployment as well as execution manner.\autocite[cf.]{Noble:2015}
 Using homogeneous hardware simplifies the process of planning and reduces power, cooling and space needs.\autocite[cf.]{Noble:2015}
 Through virtualization providers can utilize resources more effectively, by allocating only the necessary resources for a specific functionality.\autocite[cf.]{Noble:2015}
-Overall \ac{NFV} can reduce \ac{OpEx} as well as \ac{CapEx} and can decreasing the time necessary to deploy new services to the network.\autocite[cf.]{Noble:2015}
+Overall \ac{NFV} can reduce \ac{OpEx} as well as \ac{CapEx} and can decrease the time necessary to deploy new services to the network.\autocite[cf.]{Noble:2015}
 To achieve \ac{NFV} the \ac{ETSI} has defined a framework the \ac{NFV-MANO}\footnote{\url{http://www.etsi.org/deliver/etsi_gs/NFV-MAN/001_099/001/01.01.01_60/gs_NFV-MAN001v010101p.pdf}} and the \ac{OASIS} created \ac{TOSCA} a \ac{NFV} specific data model and templates to coordinate and orchestrate the \ac{NF} into the cloud.
 
 \begin{figure}[H]
@@ -259,45 +260,48 @@ To define schemes, relationships and the configuration of such an infrastructure
 
 \section{Existing tools}
 
-There are several advantages of using frameworks and sophisticated tools, for example they reduces the time and energy in developing any software by solving well known or very specific problems.
-They are more secure because several development iterations are done by developing them, they are well tested and they provides a standardized system through which users can develop applications.
-They also allow to create a prototype of an application in a short amount of time.
-To achieve the benefits the user has to spend some time to learn the concepts, functions and how to use a framework.
+Using frameworks and third party tools can reduces the time spend on developing software by solving well known or sometimes very specific problems.
+Based on the framework and tool they can be more secure, because several development iterations are done during creating them and they provides a standardized system through which users can develop applications.
+They can also allow to create a prototype of an application in a short amount of time.
+Drawback is, to achieve the benefits the user has to spend some time to learn the concepts, functions and how to use a framework.
 Also a downside could be that specific problems are not solved by the library and sometimes complicate workarounds have to be made to add missing features.
+Moreover it can be take some time to find an appropriate framework that fit the needs, is well tested and has a good documentation.
+Therefore finding and learning good frameworks and third party tools can be a time consuming task.
+Some of them are elaborated in the following.
 
 \subsection{Linux Containers}
-When we talk about container virtualization nowadays, Docker have to become one of the most famous tools out there.
+When we talk about container virtualization nowadays, Docker have to become one of the most famous tools in the market.
 It based on \ac{LXC}\footnote{\url{https://linuxcontainers.org/}} a technology which uses kernel mechanisms like \textit{namespaces} or \textit{cgroups} to isolate processes on a shared \ac{OS}.\autocite[cf.][p. 381]{Pahl:2015}
 Namespaces for example are used to isolate groups of processes whereas cgroups are used to manage and limit resources access just like restricting the memory, disc space or \ac{CPU} usage.\autocite[cf.][p. 381]{Pahl:2015}
 "The goal of \ac{LXC} is to create an environment as close as possible to a standard Linux installation but without the need for a separate kernel."\autocite[p. 72]{Tosatto:2015}
-There are several other container virtualization tools out there like OpenVZ\footnote{\url{https://openvz.org/Main_Page}} or Linux-VServer\footnote{\url{http://www.linux-vserver.org}}.
+There are several other container virtualization tools in the market like OpenVZ\footnote{\url{https://openvz.org/Main_Page}} or Linux-VServer\footnote{\url{http://www.linux-vserver.org}}.
 In contrast to them, an advantage of \ac{LXC} is that it runs on an unmodified Linux kernel.
 This means that \ac{LXC} can be executed in most of the popular Linux distributions these days.
 
 \subsection{Docker}
-As mentioned before, Docker based on \ac{LXC}.
-This allows the Docker Engine to build, deploy and run containers in an easy and customizable way.
+As mentioned before, Docker is based on \ac{LXC}.
 Similar to \acp{VM}, containers are executed from images.
 A mayor benefit of Docker is the fact, that Docker images can be combined like build blocks.
-Each image can build on top of another.
+Each image can be used to be the basis for a new one.
 Figure \ref{fig:docker_container_structure} illustrates the concept for the image of the pretty famous Django\footnote{\url{https://www.djangoproject.com/}} web framework.
 In that case, the Django image, which is the resulting image, based on the Python 3.4 image which again based on the Debian Jessy image.
-All of them are read-only, but Docker adds a writable layer, also known as \textit{container layer}, on top of the images as soon as the container will be created.
+All of them are read-only, but Docker adds a writable layer, also known as \textit{container layer}, on top of the images as soon as the container is created.
 File system operations such as creating new files, modifying or deleting existing files are written directly to these layer.\autocite[cf.]{dockerImages}
-The other images don\'t get involved.
+The other images don't get involved.
 These chaining mechanism of images allows Docker to ease the use of dependencies and administrative overhead.
 
 Beside that, Docker is split up in several components, such as the Docker Engine, the Docker Registries and Docker Compose to mention only a few.
 The Docker Engine is a client-server application which can be distinguished by the Docker client, a \ac{REST} \ac{API} and the Docker server.
 Latter is a daemon process which "creates and manages Docker objects, such as images, containers, networks, and data volumes"\autocite{dockerEngine}.
-The client is a \ac{CLI}, which interact via a \ac{REST} \ac{API} with the daemon.\autocite[cf.]{dockerEngine}
+The Docker client is a \ac{CLI} tool, which interact via a \ac{REST} \ac{API} with the daemon.\autocite[cf.]{dockerEngine}
 
 % Docker Registries
 Another component, the Docker Registry, is basically a library of Docker images.
-They can be public or private available, as well as on the same machine like the Docker daemon or an external server.\autocite[cf.]{dockerEngine}
-The most popular one it the official Docker Hub\footnote{\url{https://hub.docker.com}}.
+The most popular one is the official Docker Hub\footnote{\url{https://hub.docker.com}}.
+There each package can be available public or private.
+It is also possible to have a local repository stored on the same machine as the Docker daemon or on an external server.\autocite[cf.]{dockerEngine}
 There is also an Docker Store\footnote{\url{https://store.docker.com}}, where customers can buy and sell trusted and enterprise ready containers and plugins.
-With the Docker client it is pretty easy to \textit{search} for new containers and to \textit{pull} containers from or \textit{push} containers to a specific repository.
+With the Docker \ac{CLI} client it is pretty easy to \textit{search} for new containers and to \textit{pull} containers from or \textit{push} containers to a specific repository.
 
 \begin{figure}[H]
     \centering
@@ -308,8 +312,8 @@ With the Docker client it is pretty easy to \textit{search} for new containers a
 
 % Docker Compose
 With Docker Compose multiple Docker Containers can be executed as a single application.
-Therefore YAML compose file will be used to configure and combine the services.
-For example the already mentioned Django image can be executed and linked together with a MongoDB\footnote{\url{https://www.mongodb.com}} images.
+Therefore, YAML compose file will be used to configure and combine the services.
+For example the already mentioned Django image can be executed and linked together with a MongoDB\footnote{\url{https://www.mongodb.com}} image.
 The main benefit is the ease of configure dependencies between several containers and configuration steps.
 These concept is similar to deployment tools like Vagrant\footnote{\url{https://www.vagrantup.com}}, Ansible\footnote{\url{https://www.ansible.com}} or Puppet\footnote{\url{https://puppet.com}}.
 
@@ -409,9 +413,9 @@ All the resources in the \ac{NFVI} are controlled by the \ac{VIM}, in this case 
 \end{figure}
 
 In the basic configuration Open Baton provides a generic \ac{VNFM} with generic \ac{EMS} related to the \acp{VNF}, but it can also be replaced with custom components.
-The \ac{VNFM} can use a \ac{REST} \ac{API} or an \ac{AMQP} message queue to communicate with the system.
+The \ac{VNFM} can use a \ac{REST} \ac{API} or an \ac{AMQP} message queue to communicate with the core system.
 Figure \ref{fig:open_baton_abstract_architecture} illustrates the abstract architecture of Open Baton together with OpenStack and a generic \ac{VNFM}.
-The \ac{NFVO} is completely designed and implemented as described in the \ac{ETSI} \ac{MANO} standard.\autocite{openBatonDoc}
+The \ac{NFVO} is designed and implemented as described in the \ac{ETSI} \ac{MANO} standard.\autocite{openBatonDoc}
 It communicates with the \ac{VIM} to orchestrate resources and services and it is implemented as a separate module, so it can be replaced with a custom one if necessary.
 
 A more detailed view of the Open Baton architecture is shown in figure \ref{fig:open_baton_detailed_architecture}.
@@ -444,9 +448,9 @@ The services are started and the system is up and running.
 Messaging protocols are crucial for the \ac{IoT} area.
 On the one side bandwidth in an \ac{IoT} network can be very limited due to a bad infrastructure or connection issues and on the other side a huge amount of data can be generated by all the connected devices.
 Hundreds or thousands of devices can probably send data at the same time.
-On top of that several devices like sensors and actuators can send a huge amount of data because a sensor reads data pretty fast but mostly only simple data like the temperature or the humidity or something similar.
-All conditions ends up in a huge network traffic.
-Therefore it is quite important the applications in an \ac{IoT} context use a lightweight protocol which has less data overhead and can delivers data packages very fast.
+On top of that several devices like sensors and actuators can send a huge amount of data because a sensor reads data pretty fast but mostly only raw data like the temperature or the humidity or something similar.
+All of these circumstances can end up in a huge network traffic.
+Therefore it is quite important that the applications in an \ac{IoT} context use a lightweight protocol which has less data overhead and can delivers data packages.
 Mostly it is not important to receive each package because for example in several use cases the temperature that is measured via a sensor does not change drastically in a few millisecond.
 It would be enough to get the data every second and even in this case it would be probably fine to loose a single package.
 But if there are hundreds of sensors sending the data it could me more useful to reduce the bandwidth and also the latency.
