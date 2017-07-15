@@ -608,3 +608,45 @@ By default ZeroMQ has no encryption or authentication machanismn build in.
 There is a dedicated project called CurveZMQ\footnote{\url{http://curvezmq.org}} which enables these functionalities and it is also created by the ZeroMQ maintainers.
 Since ZeroMQ version 4.x CurveZMQ comes built-in.
 Finally ZeroMQ has libraries for most of the common programming languages.
+
+\section{Related work}
+\label{section:related_work}
+An overview of how to apply the concept of microservices for the \ac{IoT} is shown in \autocite{Butzin:2016}.
+The one of the presented patterns is to use container virtualization to split up the tools and use them on low power devices.
+Also in this work, Docker was used as the tool of choice.
+It describes that the usage of container virtualization enables a better testibility, ease the service deployment and make the tools scale better.\autocite[cf.][p. 5]{Butzin:2016}
+They also mentioned that using tools like Docker at the very edge of a network, e.g. on sensors and actuators, is nearly not possible due to the overhead and dependencies of such tools.\autocite[cf.][p. 5]{Butzin:2016}
+Therefore the concept of fog and edge computing is presented as a viable solution, where low power devices like smartphones or small \acp{PC} that are able to them.\autocite[cf.][p. 5]{Butzin:2016}
+
+Another study \autocite{Pahl:2015} gives some insights about containers and clusters for the edge cloud.
+It defines edge computing as moving applications from a centralized cloud to the edge of the underlying network in a way that analytics and knowledge generation services are placed at the source of the data e.g. sensors and actuators.\autocite[cf.][p. 380]{Pahl:2015}
+Beside that the edge network might be disconnected from the cloud environment and still have to perform without any issues.
+That implies, that edge computing must be able to compute and store data "to address data collection, (pre-)processing, and distribution"\autocite[p. 380]{Pahl:2015}.
+If these requirements are fulfilled such a network is called "edge cloud" that is technically a micro-cloud.\autocite[cf.][p. 121]{Pahl:2016}
+Multiple edge clouds can be located side by side in a network.
+In general edge devices like an Raspberry Pi or any other small \ac{PC}, that enables the coputation and storage of data, have several sensors and actors connected to them.
+An Raspberry Pi is powerful enough to do the job, but is cheap, consume less energy than a normal \ac{PC} and is easy to integrate in an existing environment.\autocite[cf.][p. 118]{Pahl:2016}
+
+Futhermore this paper describes a so called container-based cluster architecture\autocite[p. 384]{Pahl:2015}.
+There, each node can be the hosts of one or multiple virtualization containers.
+Multiple containers can be grouped together to a services, even if the containers are deployed on different nodes.\autocite[cf.][p. 384]{Pahl:2015}
+Volumes stores data for appplications that can persist data on a node.\autocite[cf.][p. 384]{Pahl:2015}
+Finally containers can have dependecies, again also across multiple nodes, to communicate with each other.\autocite[cf.][p. 384]{Pahl:2015}
+This behavior is similar to the basic concept of services and pods in Kubernetes.
+
+For the orchestration and services desciption, the authors point out \ac{TOSCA} that is supported by Cloudify.
+A \ac{TOSCA} orchestration plan is defined in \ac{YAML} and is used to deploy the containers on the nodes.
+Beside that \ac{TOSCA} can also describe the infrastructure of the system.
+
+In a future publication, the same authors are using this technological basis to create an \ac{PaaS} service based on a Raspberry Pi cluster\autocite{Pahl:2016}.
+% Based on the study of \autocite{Pahl:2015} the whole architecture was deployed in a Raspberry Pi cluster in \autocite{Pahl:2016}.
+The presented architecture is used to be a bridge "between IoT, local compute devices and data centre clouds"\autocite[p. 117]{Pahl:2016}.
+As mentioned before a Raspberry Pi is powerful engough to do this job for example to gather data at the edge of a network and to enable a communication channel with the cloud infrastructure.\autocite[cf.][p. 117]{Pahl:2016}
+Container virtualization is used to make the software to be deployed portable and interoperable.\autocite[cf.][p. 117]{Pahl:2016}
+Therefore, Docker is used as the tool of choice.
+To deploy the containers to the edge cloud cluster, a custom tool was developed instead of using an existing solutions like Kubernetes.\autocite[cf.][p. 122]{Pahl:2016}
+This allows more flexibility in monitoring and maintaining the nodes.\autocite[cf.][p. 122]{Pahl:2016}
+As the storage solution they used OpenStack Swift.
+The outcome of the work was working environment that was able to deploy and monitor an edge cloud infrastructure.
+As mentioned in the paper, there is significant space for improvements, like a working orchestration engine, some data and network management aspects and better semantic descriptions.
+Overall this works shows the need of a solid infrastructure at the network edge to enable edge computing capabilites.
