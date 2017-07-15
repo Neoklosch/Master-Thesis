@@ -650,3 +650,20 @@ As the storage solution they used OpenStack Swift.
 The outcome of the work was working environment that was able to deploy and monitor an edge cloud infrastructure.
 As mentioned in the paper, there is significant space for improvements, like a working orchestration engine, some data and network management aspects and better semantic descriptions.
 Overall this works shows the need of a solid infrastructure at the network edge to enable edge computing capabilites.
+
+The project of \autocite{Stubbs:2015} focuses on service discovery by implementing them via the Serfnode\footnote{\url{https://github.com/waltermoreira/serfnode}} for distributed systems of microservices.
+Service discovery is a mechanism to detect services and service providers in a network without a centralized managment level.
+Each consumer has knowledge of any other provider and the related capabilities of that provider.
+Serfnode is a decentralized open source service discovery solution based on the Serf project\footnote{\url{https://www.serf.io}}.
+It can be used to enable edge nodes to discover other service provider in a network in real time to faciliate communication.\autocite[cf.][p. 34]{Stubbs:2015}
+Sernode itself can be deployed as a Docker container on a node.
+Unfortunately there is no Raspberry Pi Docker image available at the times this thesis was created.
+After the container is deployed, Serfnode can be configured to enable a service discovery mechanism that provide and can gather informations about one or multiple Docker container across a cluster without modifiying the original containers.\autocite[cf.][p. 34]{Stubbs:2015}
+There are several service discovery tools out in the market, but Serfnode distinguishes itself as lightweight, platform-agnostic and easy to incorporate with Docker.\autocite[cf.][p. 34]{Stubbs:2015}
+
+It also contains a monitoring and self-healing mechanisms.\autocite[cf.][p. 34]{Stubbs:2015}
+In addition Serfnode uses an event handling mechanism that reacts to join, leave and fail events of a node.\autocite[cf.][p. 38]{Stubbs:2015}
+For example it informs each node in the cluster about a newly appeared node at start-up.\autocite[cf.][p. 37]{Stubbs:2015}
+Also in this project \ac{YAML} is used as the description language for the service description.
+Beside Serfnode some other service discovery tools like Consul\footnote{\url{https://www.consul.io}}, Synapse\footnote{\url{http://airbnb.io/projects/synapse}} and CoreOS\footnote{\url{https://coreos.com/fleet/docs/latest/examples/service-discovery.html}} are describted with the outcome that they are fits better in a cloud environment and are to heavy for an edge node cluster.\autocite[cf.][p. 36]{Stubbs:2015}
+Also the whole orchestration part is not covered by Serfnode itself.
