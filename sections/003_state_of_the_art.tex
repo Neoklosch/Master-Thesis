@@ -627,7 +627,15 @@ Multiple edge clouds can be located side by side in a network.
 In general edge devices like an Raspberry Pi or any other small \ac{PC}, that enables the coputation and storage of data, have several sensors and actors connected to them.
 An Raspberry Pi is powerful enough to do the job, but is cheap, consume less energy than a normal \ac{PC} and is easy to integrate in an existing environment.\autocite[cf.][p. 118]{Pahl:2016}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{resources/images/container_based_cluster_architecture.png}
+    \caption[Container-based cluster architecture]{Container-based cluster architecture. Adapted from: \autocite[p. 384]{Pahl:2015}}
+    \label{fig:container_based_cluster_architecture}
+\end{figure}
+
 Futhermore this paper describes a so called container-based cluster architecture\autocite[p. 384]{Pahl:2015}.
+Figure \ref{fig:container_based_cluster_architecture} outline these.
 There, each node can be the hosts of one or multiple virtualization containers.
 Multiple containers can be grouped together to a services, even if the containers are deployed on different nodes.\autocite[cf.][p. 384]{Pahl:2015}
 Volumes stores data for appplications that can persist data on a node.\autocite[cf.][p. 384]{Pahl:2015}
