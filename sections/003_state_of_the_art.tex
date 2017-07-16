@@ -675,3 +675,36 @@ For example it informs each node in the cluster about a newly appeared node at s
 Also in this project \ac{YAML} is used as the description language for the service description.
 Beside Serfnode some other service discovery tools like Consul\footnote{\url{https://www.consul.io}}, Synapse\footnote{\url{http://airbnb.io/projects/synapse}} and CoreOS\footnote{\url{https://coreos.com/fleet/docs/latest/examples/service-discovery.html}} are describted with the outcome that they are fits better in a cloud environment and are to heavy for an edge node cluster.\autocite[cf.][p. 36]{Stubbs:2015}
 Also the whole orchestration part is not covered by Serfnode itself.
+
+Another Docker based solution is presented in \autocite{Rufino:2017}.
+There, the main focus is on the distributed architecture.
+Basically also with this system services, that are based on Docker images, should be deployed to the edge of the network and the responsibilities of the different components should be separated.
+Three different layers are provided to enable that behavior:
+
+\begin{enumerate}
+  \item The sensing layer.
+  That is used to gather the data from sensors or to display informations.
+  It should represent a \ac{CPS}.
+  \item The Mediation layer.
+  That is acts as a gateway between the sensing layer and the cloud infrastructure.
+  It contain three software components: a \ac{SDN} controller, a database and a \ac{MLU}.\autocite[cf.][p. 1534]{Rufino:2017}
+  The \ac{SDN} controller is used to manage the different software based network components, like a router or a firewall.
+  The database is used to store the data from the sensing layer.
+  Finally the \ac{MLU} provides local intelligence, for example to detect and deploy real-time requirements.\autocite[cf.][p. 1534]{Rufino:2017}
+  \item The cloud computing layer is presented as the enterprise layer.
+  This is used for computational tasks like data-mining and evaluation.\autocite[cf.][p. 1534]{Rufino:2017}
+  Also the results from the \ac{MLU} can be analysed and necessary actions can be performed.\autocite[cf.][p. 1534]{Rufino:2017}
+  Finally this layer is also responsible for the orchestration of the services.
+  Further a centralized control point available to monitor the system and to perform task on the network.
+  Fault management can be enabled by providing redundancy at different layers and also through the application of orchestration rules.\autocite[cf.][p. 1535]{Rufino:2017}
+\end{enumerate}
+
+The test setup was also made with Raspberry Pis that represents the edge network devices as well as the gateway.
+The Docker images are orchestrated with Docker Swarm and custom performance test scripts are created to measure some performance values.
+As the communication protocol a \ac{REST} base interface was created.
+The scripts are creating data on the sensing layer, send them over to the gateway where the data is stored and finally will be fetched from the enterprise layer.\autocite[cf.][p. 1535]{Rufino:2017}
+The measured performance for writing the data, starting a container and terminate them again is presented in the work.
+Overall the proposed architecture demonstrates that a distributed architecture composed of several well known components can be deployed on different devices and can still perform well.
+Unfortunately the \ac{MLU} component was not descibed and measured results were not adequate analyzed.
+Nevertheless, the presented architecture worked and the feasibility of such a system was shown.
+
