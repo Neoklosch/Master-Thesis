@@ -755,3 +755,22 @@ To do so, Docker Swarm, Kubernetes and Apache Mesos are analyzed.\autocite[cf.][
 As the result Docker Swarm is used because it is already integrated in Docker have a sufficient performance.\autocite[cf.][p. 7]{Bellavista:2017}
 Conclusively the project demonstrated that a gateway layer is feasible to implement and make a system robust and independent from the cloud layer.
 
+The authors of \autocite{Morabito:2016} created also a gateway layer for the \ac{IoT} but additionally made them available as a \ac{GaaS}.
+This means the gateway is still a layer between the end user or the cloud layer and the application or device layer.
+Moreover, the it can start and stop necessary containers on demand.
+This is called "On-demand activation" of applications.\autocite[cf.][p. 3]{Morabito:2016}
+To do so a socket-activation framework is used.\autocite[cf.][p. 3]{Morabito:2016}
+Unfortunately this framework is not named in the paper.
+The applications that should be activated on-demand are virtualized with Docker as in the other papers and they are also executed on Raspberry Pis.
+As also discussed in the other works a container orchestration tool is used, sadly also this tool remains unspecified.
+
+Another approach in \autocite{Morabito:2016} is the multi-tenant platform.
+Due to the isolation of the Docker containers, the gateway can be shared between different tenants, that are used by different end users.\autocite[cf.][p. 2]{Morabito:2016}
+This is useful to provide data for different users trough the same gateway.
+It is also possible to start multiple containers with the same application to provide customized usability.
+For example in the performance tests of the work the authors started multiple containers with a Wildfly\footnote{\url{http://wildfly.org}} web server and an Elasticsearch\footnote{\url{https://www.elastic.co/products/elasticsearch}} instance.\autocite[cf.][p. 2]{Morabito:2016}
+
+The performance results are similar to the test results of the other references.
+Docker is comparable with a native environment beside the network troughput, which is lower.\autocite[cf.][p. 4]{Morabito:2016}
+This also affects also the power consumption during network communication, which is a bit higher than in a native environment.\autocite[cf.][p. 4]{Morabito:2016}
+Overall also in this test case, Docker performs good enougth to be used for this use case.\autocite[cf.][p. 4]{Morabito:2016}
