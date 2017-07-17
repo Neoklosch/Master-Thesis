@@ -144,14 +144,15 @@ The first subcomponent is the \textbf{node discovery}.
 The idea behind the node discovery is that each node automatically can register and unregister himself to the cluster.
 This means in the moment of the startup of a node, they will send out a message, with an information request about all subscribed nodes.
 To realize that \ac{MQTT} will be the tool of choice.
-The \ac{MQTT} broker will receive and forward the message to all subscribed nodes and each node will response with an information message to the broker again, which will send the message out again.
+The \ac{MQTT} broker will receive and forward the message to all subscribed nodes and each node will response with an information message back to the broker.
+The broker then send this information message to all nodes again.
 Therefore each node will be up-to-date at each time.
 As long as there is no appearance or disappearance of any node, the network will not be stressed.
 To provide a better flexibility the \ac{MQTT} broker can be executed in the centralized fog level or even on a node in the autonomous fog level.
 This allows the system to operate even if the centralized fog level disappears due to network issues or any other communication problems.
 It is also possible to let all nodes communicate which each other once they shared their information.
-Smaller connection issues can be covered with this mechanism.
-As the \ac{MQTT} broker Mosquitto\footnote{\url{https://mosquitto.org}} will be the tool of choice.
+Smalle connection issues can be covered with this mechanism.
+The \ac{MQTT} broker Mosquitto\footnote{\url{https://mosquitto.org}} will be the tool of choice.
 It is an eclipse\footnote{\url{http://www.eclipse.org}} project which means it is open source and under continuous development.
 The project website describes itself as "a lightweight server implementation of the MQTT protocol that is suitable for all situations from full power machines to embedded and low power machines"\autocite{Eclipse:Mosquitto}.
 
@@ -216,7 +217,7 @@ Figure \ref{fig:lifecycle_mgm_squence_diagram_start_service} show up the lifecyc
     \label{fig:lifecycle_mgm_squence_diagram_start_service}
 \end{figure}
 
-At first a client, for example a webservices via the \ac{REST} \ac{API}, will start a service.
+At first the client requests the orchestrator via the \ac{REST} \ac{API}, to start a service.
 Therefore the related service blueprint will be uploaded to the node.
 The orchestrator will directly start with the lifecycle management by creating an service with an \textit{inital} state.
 Afterwards the blueprint gets checked by the orchestrator.
@@ -242,9 +243,9 @@ Figure \ref{fig:lifecycle_mgm_squence_diagram_stop_service} illustrates this beh
     \label{fig:lifecycle_mgm_squence_diagram_stop_service}
 \end{figure}
 
-The lifecycle management of the images is not handled by the orchestrator himself, it will be detected via the lifecycle management of the virtualization engine like Docker or XEN.
+The lifecycle states of the containers are not handled by the orchestrator himself, they are detected via the lifecycle management of the virtualization engine like Docker or XEN.
 Due to the fact that the service is tightly coupled to the images, the state of the images will directly affect the state of the service.
-If only one image will change its state to \textit{error} the whole service will be marked as \textit{error}.
+If only one container change its state to \textit{error} the whole service will be marked as \textit{error}.
 To handle the different states of the different engines, a transformation logic between the state will be implemented.
 
 
@@ -259,15 +260,16 @@ Figure \ref{fig:gui_mockup} show the mockup of the web \ac{GUI}.
     \label{fig:gui_mockup}
 \end{figure}
 
-The page has only a few components like the header area, a navigation bar and the content area.
+The page has components like the header area, a navigation bar and the content area.
 In the mockup the service tab is shown.
 This view should list all the deployed services.
-Similar to this, the \textit{Nodes} tab should list all detected nodes and finally the \textit{deploy service} tab should add the possibility to upload \ac{YAML} data.
-The created \ac{REST} \ac{API} will be used to get all the necessary information and to deploy new services.
-A simple web layout based on Bootstrap\footnote{\url{http://getbootstrap.com}} as the CSS framework and Vue.js\footnote{\url{https://vuejs.org}} as the JavaScript frontend framework will be created.
-According to Wappalyzer\footnote{\url{https://wappalyzer.com/categories/web-frameworks}} is Bootstrap by far the most used \ac{CSS} framework out in there with a market share of 65.2\% (as of 26. June 2017).
+Similar to this, the \textit{Nodes} tab should list all detected nodes and finally the \textit{deploy service} tab should add the possibility to upload a blueprint.
+The created \ac{REST} \ac{API} will be used to get all the necessary informations to be displayed and to deploy new services.
+A web layout based on Bootstrap\footnote{\url{http://getbootstrap.com}} as the \ac{CSS} framework will be created.
+Further, Vue.js\footnote{\url{https://vuejs.org}} is used as the JavaScript frontend framework.
+According to Wappalyzer\footnote{\url{https://wappalyzer.com/categories/web-frameworks}} Bootstrap is the most used \ac{CSS} framework out in the market, with a share of 65.2\% (as of 26. June 2017).
 It is very elaborated and there are many templates available.
-Vue.js on the other side is relatively new and the new rising star on the JavaScript frontend framework market.
+Vue.js on the other side is relatively new in the JavaScript frontend framework market.
 It is much slimmer then tools like Angular.js\footnote{\url{https://angular.io}} or react\footnote{\url{https://facebook.github.io/react}} but has also less functionalities.
 It has a steep learning curve and optimal for small applications and rapid prototypes.
 Vue.js works natively together with Bootstrap so this will a rock solid solution.

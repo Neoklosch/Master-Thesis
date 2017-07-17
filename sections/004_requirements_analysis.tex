@@ -67,7 +67,6 @@ The last functional component to be developed will be the \ac{GUI}.
 Those should only be used for demonstrate the basic functionalities of the prototype.
 It is not designed to use them in production.
 Therefore the \ac{GUI} will not have any security mechanisms like authorization, authentication or user management.
-It will only has a very basic design and a limited functionality.
 This includes that existing nodes will be displayed with all the related services.
 Additionally it can be used to deploy new services and while using the existing endpoints.
 
@@ -82,11 +81,10 @@ Finally the whole system should be well tested and documented.
 
 \section{Non-Functional requirements}
 \label{section:non-functional-requirements}
-After the functional conditions for the prototype, also the non-functional requirements will also be addressed.
-They will be classified into the following categories:
+The non-functional requirements are also addressed and they are classified into the following categories:
 
-\paragraph{Reliability} Due to the fact that the final product will only be a prototype and has only a few development iterations and testers, it will not be production ready. Nevertheless the prototype will be developed with stability and robustness in mind and it will also be well tested and documented.
-\paragraph{Performance} As a crucial requirement, extra attention will be payed for make the application as lightweight as possible and reducing the dependencies and tool chain as small as possible.
+\paragraph{Reliability} Due to the fact that the final product will only be a prototype and has only a few development iterations, it will not be production ready. Nevertheless the prototype will be developed with stability and robustness in mind and the code will be well tested and documented.
+\paragraph{Performance} As a crucial requirement, extra attention will be payed to make the application as lightweight as possible and reduce the dependencies and tool chain.
 The use of powerful but resource consuming tools and libraries like huge databases or message queues will be renounced.
 Necessary libraries will be used if they are essential, but in general they will be selected with the requirement of being executed on low power devices.
 \paragraph{Usability} The prototype should be easy to use, to install and to maintain.
@@ -99,10 +97,10 @@ Code tests and code style checks will help to ensure the functionality and exten
 \paragraph{Security} Also an important part as in nearly every project, also security will be considered.
 Especially in the \ac{IoT} security becomes important due to a several bad examples in the last years.% TODO: quellen: botnetz, etc.
 Therefore particular scenarios will be considered and recommendations will be addressed.
-Since this is only a prototype and showing up the functionality will be in focus, some provisions will only be demonstrated, but not implemented.
+The focus of the prototype will be on showing up the functionality of the application, without implementing security related machanisms right down to the latest detail.
 \paragraph{Correctness} As mentioned before the code will be tested and code style checks will help to have a standardized code base.
 \paragraph{Flexibility} The software will be developed with some well known standards in mind like the \ac{MANO} specification, standard protocols and also design patterns to make the source code more readable and understandable.
-\paragraph{Scalability} To prototype will also be developed to be executed at a bunch of nodes at the same time.
+\paragraph{Scalability} The prototype will also be developed to be executed on several nodes at the same time.
 Primary usage will be in a cluster with several other nodes.
 This need will be considered during the whole development phase.
 
@@ -120,7 +118,7 @@ Therefore the prototype will be installed on the node himself.
 A cloud service such as Open Baton will orchestrate the deployment.
 To do so a so called blueprint which is basically a description of the service, the images and the capabilities that are necessary to execute the image, will be passed over to the prototype via an \ac{API}.
 The prototype will receive them and will parse them afterwards.
-All the provides images will be executed on the same node and at the end the service is up and running.
+All the provided images will be executed on the same node and at the end the service is up and running.
 The state of the services can be observed at any step of the process.
 
 \paragraph{Service deployment based on capabilities}
@@ -155,7 +153,7 @@ This disappeared node will no longer be part of the cluster.
 \paragraph{Lifecycle management}
 The lifecycle management is important for the maintainer of the nodes.
 Each process and each task in the system should be transparent and comprehensible.
-Therefore the different entities should be expose their lifecycle.
+Therefore the different components should expose their lifecycle state if requested.
 The first one is the node lifecycle.
 This represents the current state of the node.
 Depending from the state, a node can be able to deploy a service or not.
@@ -178,13 +176,13 @@ All of these states should also be viewable by a centralized instance like the m
 
 \section{Delineation from existing solutions}
 \label{section:delineation-from-existing-solutions}
-This section is intended to show the features of existing systems and the main differences will be highlighted.
+This section is intended to show the features of existing tools and framework to heighlight main differences to the application to be developed.
 As mentioned before, the prototype to be developed should orchestrate virtualized containers on nodes based on functional and non-functional constraints.
 Therefore the focus of this consideration is the orchestration as well as the constraints.
 
 \paragraph{Kubernetes} is especially made for Docker and can orchestrate, scale and manage containers.
-It is open source, made by Google and one of the most popular orchestration tools in the market.
-It has on huge and pretty active community and is used by several well known companies\autocite{Kubernetes:Case-Studies} like ebay\footnote{\url{http://www.ebay.com}} and Wikimedia\footnote{\url{https://www.wikimedia.org}}.
+It is open source, developed by Google and one of the most popular orchestration tools in the market.
+It has an active community and is used by several well known companies\autocite{Kubernetes:Case-Studies} like ebay\footnote{\url{http://www.ebay.com}} and Wikimedia\footnote{\url{https://www.wikimedia.org}}.
 Due to the fact, that is exclusively made for Docker, it means that the system is not made to easily switch the underlying container engine if needed.
 
 As mentioned in section \ref{subsection:state-of-the-art:kubernetes} Kubernetes supports labels.
@@ -193,12 +191,12 @@ The labels are stored on the Kubernetes Master and can be used to filter specifi
 This behavior is pretty close to the one which should be achieved.
 
 Kubernetes is made for the cloud, which means it is not intended to be used on low power devices.
-There are some trials to do so, but until know it is not used in a productive \ac{IoT} environment.
+There are some attempts to do so, but until now it is not used in a productive \ac{IoT} environment.
 Furthermore Kubernetes is not \ac{ETSI} \ac{MANO} compliant, but provides an easy to use web \ac{UI}.
 
-\paragraph{Docker Swarm} is pretty similar to Kubernetes from a functional point of view, which means it has nearly the same pros and cons.
-It is open source as well, has a quite active community and it is also made exclusively for Docker.
-Biggest benefit compared to Kubernetes is, that it is build the Docker Engine.
+\paragraph{Docker Swarm} is pretty similar to Kubernetes from a functional point of view.
+It is open source, has an active community and it is also made exclusively for Docker.
+Biggest benefit compared to Kubernetes is, that it is natively included in the Docker Engine.
 No separate installation is necessary and it can be used out of the box.
 
 Also in terms of labels, both platforms are similar.
@@ -206,9 +204,10 @@ Docker Swarm uses labels in the same way Kubernetes is using them.
 The user can add them during the initialization phase or edit them during runtime.
 They are also key-value pairs or alternatively keys only.
 By default labels can not be predefined in a \ac{JSON} file and applied to the node afterwards.
-The placement have to be done by hand via the Docker client or the \ac{REST} \ac{API}.
+The placement have to be done manually via the Docker client or the \ac{REST} \ac{API}.
 
-Just as Kubernetes, Docker Swarm is not \ac{ETSI} \ac{MANO} compliant and provides no build-in \ac{GUI}, but there are several third party tools out in the market.
+Just as Kubernetes, Docker Swarm is not \ac{ETSI} \ac{MANO} compliant and provides no build-in \ac{GUI}.
+There are several third party \acp{GUI} that fix that issue, but this implies an additional setup and maintance effort.
 Due to the fact that it is a build-in function of Docker, the setup is quite easy and much more lightweight than Kubernetes.
 This means it will also work on \ac{IoT} devices by default.
 
@@ -217,20 +216,20 @@ It only supports \acp{VM} and is mainly designed to be used in a cloud environme
 The installation processes is much more complex then for Docker Swarm or Kubernetes.
 There are much more dependencies and configurations to be made.
 
-Beside the huge setup effort, it is excellent for \acp{NFV}.
-It has a huge community, it is an established tool and very elaborated.
+Beside the setup effort, it is an well known and established tool for \acp{NFV}, it has an active community and it is elaborated.
 Compared to other tools it is not flexible and lightweight enough for the usage in an \ac{IoT} context or more specific for the use directly on the nodes himself.
 There are some efforts to move OpenStack over to the \ac{IoT} infrastructure\autocite{OpenStack:IoT}\autocite{OpenStack:Kubernetes:IoT}, but also in these attempts it will only be used in the cloud level.
 
 \paragraph{Cloudify} is completely compatible to the \ac{ETSI} \ac{MANO} standard and can be used as the \ac{NFVO}, as well as the generic \ac{VNFM} of this architecture.\autocite[cf.]{Cloudify:MANO}
-It is also able to interact with multiple \acp{VIM}, containers, infrastructures and devices and due to the fact that it can be extended with plugins, it is can be used together with several well known tools like OpenStack, Docker or even Kubernetes.\autocite[cf.]{Cloudify:MANO}
+It is also able to interact with multiple \acp{VIM}, containers, infrastructures and devices and due to the fact that it can be extended with plugins, it can be used together with several well known tools like OpenStack, Docker or even Kubernetes.\autocite[cf.]{Cloudify:MANO}
 Through these flexibility Cloudify can also be used in an \ac{IoT} environment if an appropriate \acp{VIM} plugin is used.
-Downside is that Cloudify himself is very limited without a powerful underlying orchestration tool.
+Downside is that Cloudify himself need an orchestration tool like OpenStack to be used as \ac{NFVO}.
+Without an underlying orchestration tool it is limited.
 
 By default it is also not possible to orchestrate functionalities based on constraints.
 To enable this behavior the used plugin has to support such a functionality like Docker Swarm or Kubernetes.
 Cloudify provides an easy to use \ac{GUI} where the user can use the whole system, as well as a clean command line tool.
-By using \ac{YAML} files to build blueprints based on the \ac{TOSCA} standard, the creation of such a blueprint is similar to well known workflows like the creation of a Ansible or Vagrant deployment schema.
+By using the \ac{YAML} formate to build service blueprints, the creation of them is similar to well known Ansible or Vagrant deployment schemes.
 With the help of the Cloudify Composer the creation of a blueprint is getting much easier and also usable for users without any coding experience.
 
 % https://www.sdxcentral.com/products/gigaspace-cloudify/

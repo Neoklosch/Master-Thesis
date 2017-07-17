@@ -18,7 +18,9 @@ Depending on the amount and type of the executed Docker images, the hardware spe
 
 
 \section{Project structure}
-Beside the main folder with the Motey engine, the project contains several directories with helpful scripts and tools.
+The project can be found on Github at \url{https://github.com/Neoklosch/Motey}.
+The main folder contains the Motey engine.
+Beside that, the project contains several directories with helpful scripts and tools.
 A brief overview about the project structure will given in this section.
 A detailed explanation of all files will be omitted, as this would exceed the scope of the thesis.
 
@@ -254,8 +256,8 @@ The repositories are a special case of the decorator pattern, because they cover
 The \textit{CapabilityEngine} and the \textit{InterNodeOrchestrator} are the only component that uses the \textit{CommunicationManger}.
 The \textit{Core} also imports that class but only to start them.
 Beside the \textit{Core} the \textit{InterNodeOrchestrator} is the central place in the app.
-Each event will be executed in the layer.
-Therefore most of the other components will be come together in this class.
+Each event will be executed in that layer.
+Therefore, most of the other components converge in this class.
 In the following the separate layers are described in detail.
 
 
@@ -358,7 +360,7 @@ The configuration object must be imported from the configreader module (see line
 Due to the implementation of the import logic in Python, the containing script will be executed only once, regardless how many files import that module.
 
 \subsection{Orchestration layer}
-The so called InterNodeOrchestrator contains the main business logic of the application.
+The so called \textit{InterNodeOrchestrator} contains the main business logic of the application.
 It is the connector between the communication layer or more specific between all inter-node and client communication endpoints and the \ac{VAL}.
 The orchestrator uses the observer pattern to interact with the communication layer.
 At the startup of the orchestrator it will subscribe to an observer for example for receiving a new service.
@@ -370,11 +372,13 @@ The lifecycle will be changed to the \textit{instantiating} state.\newline
 Afterwards the capabilities of each contained image has to be checked.
 This is necessary to identify the node that is handling the image.\newline
 
-There are three different possibilities:
+In the blueprint, the capabilities assigned to an image can have thre different conditions:
 \begin{enumerate}
-  \item there are no capabilities located in the image, therefore the current node starts the image.
-  \item there are capabilities and the current node is able to fulfill all of them. The same node is handling the image.
-  \item there are capabilities but the current node is not able to fulfill one or multiple of them. Another node has to be search to manage the image.
+  \item there are no capabilities assigned to an image, therefore the current node start the image and manage the resulting container.
+  \item all the assigned capabilites can be fulfilled by the current node. This node then start the image and is responsible responsible for the resulting container.
+  \item one or more capabilities can not be fulfill by the current node. Another node that meet the requirements must be found to handle the deployment of the image.
+
+   to start the image and manage the resulting container.
 \end{enumerate}
 \bigskip
 
