@@ -280,6 +280,8 @@ This means that \ac{LXC} can be executed in most of the popular Linux distributi
 
 \subsection{Docker}
 As mentioned before, Docker is based on \ac{LXC}.
+It extends \ac{LXC} with a kernel- and application-level API that is used to isolate the CPU, memory, I/O and network layers.\autocite[cf.][p. 82]{Bernstein:2014}
+Docker also uses the \textit{namespace} or \textit{cgroup} mechanisms to isolate the underlying operating environment.\autocite[cf.][p. 82]{Bernstein:2014}
 Similar to \acp{VM}, containers are executed from images.
 A mayor benefit of Docker is the fact, that Docker images can be combined like build blocks.
 Each image can be used to be the basis for a new one.
@@ -707,4 +709,41 @@ The measured performance for writing the data, starting a container and terminat
 Overall the proposed architecture demonstrates that a distributed architecture composed of several well known components can be deployed on different devices and can still perform well.
 Unfortunately the \ac{MLU} component was not descibed and measured results were not adequate analyzed.
 Nevertheless, the presented architecture worked and the feasibility of such a system was shown.
+
+\autocite{Bellavista:2017} demonstrate the feasability of fog computing architecture with an extended Kura\footnote{\url{https://eclipse.org/kura}} version as the gateway software and Docker as the virtualization tool.
+The device layer is realized again with some Raspberry Pi nodes.
+The main focus of the work is on the gateway layer.
+Kura itself is an open source \ac{IoT} gateway software aggregate the data of multiple connected devices and can also control them.\autocite[cf.][p. 2]{Bellavista:2017}
+It uses \ac{MQTT} with a publish/subscribe architecture to get the informations and also to send them to the cloud.\autocite[cf.][p. 2]{Bellavista:2017}
+In a sensor-to-cloud architecture the latency is a drawback and a stable connection can not guaranteed.\autocite[cf.][p. 1]{Bellavista:2017}
+The advantage of having a gateway in a fog computing environment is that the latency can be reduced by shorten the connection distance as well as having an local endpoint to bypass connection losses.\autocite[cf.][p. 1]{Bellavista:2017}
+
+As presented in the paper Kura has some limitations.
+For example there can only be one \ac{MQTT} broker and this one has to be placed in the cloud.\autocite[cf.][p. 3]{Bellavista:2017}
+This can lead to be a bottleneck regarding network traffic, the data from the gateways can only be forwarded to the cloud directly and there is always a persistent socket connection to the cloud, that also end up in a unnecessary traffic overhead.\autocite[cf.][p. 3]{Bellavista:2017}
+Therefore, the authors extended Kura and made them able to be used with a gateway-side \ac{MQTT} broker.
+This allows to aggregate the data locally in the cluster.\autocite[cf.][p. 3]{Bellavista:2017}
+There is no longer a need for having a stable connection to the cloud.
+Which in turn enable real-time behavior by analyzing the gathered data and also to react to them.\autocite[cf.][p. 3]{Bellavista:2017}
+It is also possible to prioritize the messages to be send and to decide when to send the data to the cloud.\autocite[cf.][p. 3]{Bellavista:2017}
+Especially the latter can help to reduce the traffic to the cloud.
+Finally this structure is called a "Gateway-cloud" but in fact it is pretty similar to the edge cloud mentioned in \autocite{Pahl:2016}.
+
+With the help of the new Kura version new network topologies for the gateways are possible.
+Two of them the "Cluster Organization" and the "Mesh Organization" are mentioned in the work.\autocite[cf.][p. 4]{Bellavista:2017}
+Former is based on a tree hierarchie.
+Multiple fog devices are connected to one gateway.
+Further, multiple gateways can exists side by side.
+They are all again connected to another local gateway that aggregates the data from all the other gateways.
+This one is finally connected to the cloud infrastructure.
+In the mesh organization every gateway can be interconnected to each other.
+There are one or more gateways that are connected to the cloud.
+Depending of the use case of an application the topology can be changed.
+
+For the virtualization part \autocite{Bellavista:2017} uses Docker as the tool of choice.
+A fog node skeleton is provide where each component is separated in the gateway and virtualized by Docker.\autocite[cf.][p. 6]{Bellavista:2017}
+The orchestration of the containers is again realized by the cloud level.
+To do so, Docker Swarm, Kubernetes and Apache Mesos are analyzed.\autocite[cf.][p. 6 f.]{Bellavista:2017}
+As the result Docker Swarm is used because it is already integrated in Docker have a sufficient performance.\autocite[cf.][p. 7]{Bellavista:2017}
+Conclusively the project demonstrated that a gateway layer is feasible to implement and make a system robust and independent from the cloud layer.
 
