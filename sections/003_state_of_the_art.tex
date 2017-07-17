@@ -730,15 +730,23 @@ Especially the latter can help to reduce the traffic to the cloud.
 Finally this structure is called a "Gateway-cloud" but in fact it is pretty similar to the edge cloud mentioned in \autocite{Pahl:2016}.
 
 With the help of the new Kura version new network topologies for the gateways are possible.
-Two of them the "Cluster Organization" and the "Mesh Organization" are mentioned in the work.\autocite[cf.][p. 4]{Bellavista:2017}
+Two of them the "Cluster Organization" and the "Mesh Organization" are mentioned in the work and the latter is shown in figure \ref{fig:kura_gateway_topologies}.\autocite[cf.][p. 4]{Bellavista:2017}
 Former is based on a tree hierarchie.
-Multiple fog devices are connected to one gateway.
+There, multiple fog devices are connected to one gateway.
 Further, multiple gateways can exists side by side.
 They are all again connected to another local gateway that aggregates the data from all the other gateways.
 This one is finally connected to the cloud infrastructure.
-In the mesh organization every gateway can be interconnected to each other.
-There are one or more gateways that are connected to the cloud.
+In the mesh organization every gateway and every node can be interconnected to each other as shown in figure \ref{fig:kura_gateway_topologies}.
+There are also one or more gateways that are connected to the cloud.
+If there would only be one track in figure \ref{fig:kura_gateway_topologies}, the architecture would change from a mash organization to a cluster organization.
 Depending of the use case of an application the topology can be changed.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{resources/images/kura_topologies.png}
+    \caption[Mesh topologies for Kura gateways]{Mesh topologies for Kura gateways. Adapted from: \autocite[p. 4]{Bellavista:2017}}
+    \label{fig:kura_gateway_topologies}
+\end{figure}
 
 For the virtualization part \autocite{Bellavista:2017} uses Docker as the tool of choice.
 A fog node skeleton is provide where each component is separated in the gateway and virtualized by Docker.\autocite[cf.][p. 6]{Bellavista:2017}
