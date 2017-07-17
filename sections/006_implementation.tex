@@ -423,53 +423,22 @@ All of them are located in a model object called \textit{ServiceState}.
 
 If a service state request is performed by the client, the request will then be received in the communication layer and passed over to the orchestrator.
 Afterwards The \textit{get\_service\_status} method is executed which maps the states of the images to the service state.
-Listing \ref{code:service-state-lifecycle} shows this method.
+Figure \ref{fig:lifecycle_mapping} show the mapping logic of the lifecycle states.
 
-\begin{listing}[H]
-  \begin{minted}{python}
-  def get_service_status(self, service):
-    image_status_list = []
-    for image in service.images:
-        image_status = self.communication_manager.request_image_status(image)
-        image_status_list.append(image_status)
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{resources/images/lifecycle_state.png}
+    \caption[The mapping of the service lifecycle state]{The mapping of the service lifecycle state}
+    \label{fig:lifecycle_mapping}
+\end{figure}
 
-    if Image.ImageState.ERROR in image_status_list:
-        service.state = Service.ServiceState.ERROR
-        self.terminate_service(service=service)
-    elif Image.ImageState.TERMINATED in image_status_list:
-        service.state = Service.ServiceState.TERMINATED
-        self.terminate_service(service=service)
-    elif Image.ImageState.STOPPING in image_status_list:
-        service.state = Service.ServiceState.STOPPING
-        self.terminate_service(service=service)
-    elif Image.ImageState.INSTANTIATING in image_status_list:
-        service.state = Service.ServiceState.INSTANTIATING
-    elif Image.ImageState.INITIAL in image_status_list:
-        service.state = Service.ServiceState.INITIAL
-    elif len(image_status_list) > 0 and image_status_list[1:] == image_status_list[:-1] and \
-            image_status_list[0] == Image.ImageState.RUNNING:
-        service.state = Service.ServiceState.RUNNING
-    else:
-        service.state = Service.ServiceState.ERROR
-
-    self.service_repository.update(dict(service))
-    return service.state
-  \end{minted}
-  \caption{The mapping of the service lifecycle state.}
-  \label{code:service-state-lifecycle}
-\end{listing}
-
-Important in this method is that each status will again be requested via an ZeroMQ endpoint.
+Important while mapping the lifecycle states is, that each status will be requested via a ZeroMQ endpoint.
 Also in this case a request-reply call between the nodes will be executed.
-Line 4 show this request.
-As all states are received and stored the mapping starts.
-Line 10 up to 12 show the mapping of the \textit{terminated} state.
-At first the list with all image states will be searched for this particular state.
-If it is in the list, also the service will be marked as terminated.
-To make sure that all the related service images are terminated, not only a single one, all the other images will be terminated as well.
-Line 12 shows the termination of the service.
-This behavior is also implemented for the \textit{error} and \textit{stopping} state.
-All the other states are mapped directly to the service.
+This is performed by the \textit{CommunicationManager} again.
+After all states are received and stored in a lsit, the mapping starts.
+Then, the list will be searched for each state.
+If one of the shown state is found, the related state in the service is set.
+If for example one of the images is in the \textit{STOPPING} state, also the service is marked as \textit{STOPPING}.
 Finally the new state will be stored in the \textit{ServiceRepository} and the state returned (line 26 and 27).\newline
 
 The termination of a service is pretty similar to the creation beside the fact that there is no capability comparison and node retrieval.
