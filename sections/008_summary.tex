@@ -30,7 +30,7 @@ Each component has a related unit test and the documentation is available online
 A \ac{CI} pipeline is used to automatically build each new version, test them and finally deploy them as a Docker image to the Docker Hub.
 This is especially useful to reduce the overhead of repeating tasks, to guarantee the correctness of the current version and also to have an up-to-date version available via the Docker infrastructure.
 
-Biggest challenges in this project were to create a fast and lightweight inter-connection between the nodes, that was achieved by the protocols of choice ZeroMQ and \ac{MQTT}, as well as the abstraction of the virtualization underlying virtualization tools.
+Biggest challenges in this project were to create a fast and lightweight inter-connection between the nodes, that was achieved by the protocols of choice ZeroMQ and \ac{MQTT}, as well as the abstraction of the underlying virtualization tools.
 The latter partly kept unsolved, because only a few virtualization tools supports the ARM \ac{CPU} architecture.
 Whereas ARM is a common architecture on low power devices.
 Therefore the integration of famous virtualization tools is not possible at the moment.
@@ -80,7 +80,7 @@ As a lightweight solution for virtualization this is a good starting point so fa
 Motey is a well developed and pretty solid basis for further development.
 As in every bigger project, Motey has significant room for improvements.
 For example the autonomous behavior can be improved a lot.
-One possibility could be to implement much more responsibility in case of the absence of the centralized fog level.
+One possibility could be ability to respond to real-time requirements even in case of the absence of the centralized cloud level.
 One of the nodes could become a master node.
 These nodes then can act as a delegate for the centralized level.
 It can be track the state of the other nodes and can react to unexpected issues.

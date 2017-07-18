@@ -1,44 +1,27 @@
 \pdfbookmark{Abstract}{abstract}
 \chapter*{Abstract}\label{chapter:abstract}
-\todo{Research Area - write about the research area} Lorem ipsum dolor sit amet, consectetur adipisic-
-ing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-fugiat nulla pariatur.
+The \ac{IoT} is one of the biggest topics in the recent years.
+In order to limit the vast area of \ac{IoT}, more and more standards are defined and subtopics established.
+The Industry 4.0, that includes smart factories, is one of them, with the goal to improve the value chain in a factory, enable process automation and adding intelligent connections between different companies and units.
+The fundamental architecture that is necessary in this context is a highly distributed architecture, that can have thousands of nodes with multiple sensors, machines or smart components connected to them.
 
+The concept of Fog Computing bring the cloud and the related functionalities as close to the underlying network as possible, to create smaller independent fog clouds.
+Virtual Machines are a common approach in cloud systems, but due to the fact that in an \ac{IoT} context mostly low power devices are used, these technology is not feasible in any case.
+In addition, in some scenarios these devices have to interact in a highly heterogeneous and hybrid environment.
+Lossy signals and short range radio technologies are widely used and nodes can appear and disappear frequently.
+The latency has to keept low to enable real-time applications, the traffic and resource overhead must be as small as possible and for security and data privacy reasons, sensitive data should keept on-premise.
 
-\todo{Application Area - write about the application area} Lorem ipsum dolor sit amet, consectetur
-adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur.
+This thesis describes an approach to design and implement a fog service orchestration engine for smart factories.
+The aim of this work is to create a prototypical implementation of an orchestration engine for a fog node, called Motey, that can deploy Docker containers to the same node or on any other fog node in the cluster.
+Furthermore, the prototype should consider specific functional and non-functional constraints while deploying the containers.
+A condition can be a hardware requirement, a required software or a dependency to another node.
 
+One of the biggest challenge in this project was to create a fast and lightweight connection between the nodes, that was achieved by the ZeroMQ protocol.
+The node discovery, that enables each node to have knowledge of all the others, is realized with the \acs{MQTT} protocoal and is used to establish the mentioned inter node connection.
+The abstraction of the underlying virtualization tools partly kept unsolved, because only a few virtualization tools supports the ARM \acs{CPU} architecture.
 
-\todo{Research Issue - write about the research issue} Lorem ipsum dolor sit amet, consectetur adipisic-
-ing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-fugiat nulla pariatur.
-
-
-\todo{Own Approach - write about the own approach} Lorem ipsum dolor sit amet, consectetur adipisic-
-ing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-fugiat nulla pariatur.
-
-
-\todo{Scientific Contributions - write about the scientific contributions} Lorem ipsum dolor sit amet, consectetur
-adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur.
-
-
-\todo{Validation \& Outlook - write about the validation and outlook} Lorem ipsum dolor sit amet, consectetur
-adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur.
-
-\doit
+Motey can be seen as a good starting point for a complex environment made for fog computing.
+It has also space for some improvements, for example the autonomous behavior can be improved a lot.
+One possibility could be ability to respond to real-time requirements even in case of the absence of the centralized cloud level.
+At the end the created project successfully reveal that the developed concept works out pretty well in a prototypical quality.
+Motey is a well developed, tested and documented and can be considered as a pretty solid basis for further development.

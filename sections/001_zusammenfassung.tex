@@ -1,40 +1,28 @@
 \begin{otherlanguage}{ngerman}
 \pdfbookmark{Zusammenfassung}{Zusammenfassung}
 \chapter*{Zusammenfassung}\label{chapter:zusammenfassung}
-\todo{Forschungsbereich} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Das Internet der Dinge (\acs{IoT}) ist eins der bedeutenstend Themen der letzten Jahre.
+Um die enorme Bandbreite im Bereich \acs{IoT} zu begrenzen wurden mehrere Standards und Unterkategorien eingeführt, z.b. die Industrie 4.0, welche Smart Factories beinhaltet.
+Sie hat zum Ziel, die Produktionskette in Fabriken zu optimieren, Prozessautomation zu schaffen und intelligente Verbindungen zwischen verschiedenen Abteilungen und Firmen zu schaffen.
+Um diese Ziele zu erreichen ist eine hochgradig verteilte Architektur notwendig, welche tausende von Nodes mit mehreren Sensoren, Maschinen oder smarten Objekten verbunden sein kann.
 
+Das Konzept des Fog Computing bringt dabei die Cloud und der dazugehörigen Funktionalitäten näher an die darunter liegende Netzwerkschicht, um kleinere unabhängige fog clouds zu schaffen.
+Virtual Machines sind ein verbreitete Methode in Cloud System, sind jedoch nur bedingt im \ac{IoT} Kontext anwendbar, da hier meist leistungsschwache Geräte verwendet werden, die diese nur bedingt ausführen können.
+Zudem sind die Geräte in manchen Fällen in einem hoch heterogenen und hybriden Umfeld im Einsatz.
+Verlustbehaftete Signale und kurzstrecken Technologien sind häufig im Einsatz und Nodes können hochfrequent erscheinen und verschwinden.
+Die Latenz muss klein gehalten werden, um Echtzeitanwendungen zu erstellen, der Datenverkehr und die Resourcennutzen müssen so klein wie möglich gehalten werde und aus Sicherheits- und Datenschutzgründen sollten sensitive Daten vor Ort gehalten werden.
 
-\todo{Anwendungsbereich} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Diese Abschlussarbeit zeigt den Entwurf und die Umsetzung einer Fog Service orchestration Engine für Smart Factories auf.
+Das Ziel dieser Arbeit ist die prototypische Umsetzung einer orchestration Engine, genannt Motey, die auf einer Fog Node ausgeführt wird, um Docker Container, auf die selbe oder eine andere im Cluster befindliche Node, aufzuspielen.
+Weiterhing soll der Prototype funktionale und nicht funktionale Abhängigkeiten beim aufspielen der Container beachten.
+Das können Hardwareanforderungen, eine vorausgesetzte Software oder Abhängigkeiten zu anderen Containern sein.
+Eine der größten Herausforderungen in diesem Projekt war es eine schnelle und leichtgewichtige Verbindungen zwischen den Nodes, welche mittels des ZeroMQ Protokols umgesetzt wurde.
+Die Node Discovery, welche es ermöglicht das jede Node Kenntnis über all die anderen hat, wurde mittels \acs{MQTT} protocol umgesetzt und wird benutzt um die Inter-Node Kommunikation zu ermöglichen.
+Die Abstraktion des zugrundeliegenden Virtualisierungsoftware bliebt teilweise ungelöst, da nur wenige Virtualisierungstools die ARM \acs{CPU} Architektur unterstützen.
 
-
-\todo{Problemstellung} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-
-
-\todo{Eigener Ansatz} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-
-
-\todo{Wissenschaftlicher Beitrag} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-
-
-\todo{Validierung \& Ausblick} Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-
-\doit
+Motey kann jedoch als ein guter Ausgangspunkt für eine komplexe Fog Computing Umgebung gesehen werden.
+Es hat zudem Platz für einige Erweiterungen, z.B. für kann ein erweitertes autonomes Verhalten implementiert werden.
+Ein Beispiel hierfür kann die Fähigkeit zum reagieren auf Echtzeitanforderungen sein, selbst bei einer fehlenden Cloudebene sein.
+Zusammenfassend zeigt das erstellte Projekt erfolgreich, dass das erarbeitete Konzept in einer prototypischen Qualität funktioniert.
+Motey is gut umgesetzt, getested und dokumentiert und kann als solid Grundlage für eine weiterentwicklung betrachtet werden.
 \end{otherlanguage}
