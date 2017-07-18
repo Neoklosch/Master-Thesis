@@ -43,13 +43,12 @@ Furthermore the required applications running on these nodes can be changed ofte
 \acp{VM} are a common approach in Cloud systems to provide elasticity of large-scale shared resources.\autocite[cf.][p. 117]{Pahl:2016}
 A more lightweight, less resource and time consuming solution is container virtualization.
 "Furthermore, they are flexible tools for packaging, delivering and orchestration software infrastructure services as well as application"\autocite[p. 117]{Pahl:2016}.
-Orchestration tools like Kubernetes\footnote{\url{https://kubernetes.io}} and Docker Swarm\footnote{\url{https://docs.docker.com/engine/swarm}} that can deploy, scale and manage containers to clusters of hosts have become established in the last years.
-If this technology can be applied to the \ac{IoT} area, many challenges can be solved.
-Dynamically deployed applications at the edge of a network can store and preprocess gathered data even if a node have no connection to the cloud.
-Traffic can be reduced by only transmitting aggregated data back to the cloud.
-Lossy signals can be compensated due to an autonomous behavior of the different components.
-More often small low power devices with a limited computational power are used as \ac{IoT} devices which also profit rather from lightweight container solutions than from resource consuming \acp{VM}.
-This thesis shows the possibilities of container orchestration for the \ac{IoT} and smart factories by creating a prototypical implementation of an orchestration engine that can be executed on fog nodes.
+Orchestration tools like Kubernetes\footnote{\url{https://kubernetes.io}} and Docker Swarm\footnote{\url{https://docs.docker.com/engine/swarm}}, that can deploy, scale and manage containers to clusters of hosts, have become established in the last years.
+If this technologies can be applied to the \ac{IoT} area, some of the main issues in that context can be solved.
+For example lossy signals can be compensated and traffic can be reduces by having services dynamically deployed to a cluster of nodes or an intermediate layer.
+The challenge is to deploy these services, connect them and let them interact with each other, even without the presence of a cloud layer.
+An autonomous behavior could be enabled if the nodes are able to communicate directly.
+This thesis demonstrate the possibilities of container orchestration for the \ac{IoT} and smart factories by creating a prototypical implementation of an orchestration engine that can be executed on fog nodes.
 Therefore an engine will be created that can orchestrate containers based on functional and non-functional constraints onto a single fog node or between a cluster of fog nodes.
 
 
