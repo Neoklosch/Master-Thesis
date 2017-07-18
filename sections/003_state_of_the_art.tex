@@ -555,12 +555,10 @@ Figure \ref{fig:zeromq_pub_sub} shows this pattern.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{resources/images/zeromq-pub-sub.png}
+    \includegraphics[width=0.75\textwidth]{resources/images/zeromq-pub-sub.png}
     \caption[ZeroMQ Publish-Subscribe architecture]{ZeroMQ Publish-Subscribe architecture. Adapted from: \autocite{ZeroMQ:Guide}}
     \label{fig:zeromq_pub_sub}
 \end{figure}
-
-\newpage
 
 The \textbf{Pipeline} pattern is also known as the \textit{Divide and Conquer} pattern.
 There we have the \textit{Ventilator} which produces multiple tasks that can be done in parallel, a set of worker that can process these tasks and a sink that collects the results from the workers.\autocite{ZeroMQ:Guide}
@@ -585,13 +583,18 @@ The whole pattern is shown in figure \ref{fig:zeromq_pipeline}\newline
 \newline
 \textbf{Combinations of them} at least these some of the patterns in ZeroMQ.
 All of these patterns can be combined to create much more advanced combinations.
-Figure \ref{fig:zeromq_comination} illustrates such a combination.
+Figure \ref{fig:zeromq_comination} illustrates such a combination.\newline
 
 There is a combination between two publish-subscribe patterns and a proxy in between.
 This could be helpful to create a nested topology, for instances for a controller in a smart home environment.
 Multiple controllers can be subscribed to a server and multiple nodes can be subscribed to one controller.
 As mentioned before, there are much more combinations possible.
-A good overview of many of them can be found in the official guide\footnote{\url{http://zguide.zeromq.org/page:all}} of ZeroMQ.
+A good overview of many of them can be found in the official guide\footnote{\url{http://zguide.zeromq.org/page:all}} of ZeroMQ.\newline
+
+By default ZeroMQ has no encryption or authentication machanismn build in.
+There is a dedicated project called CurveZMQ\footnote{\url{http://curvezmq.org}} which enables these functionalities and it is also created by the ZeroMQ maintainers.
+Since ZeroMQ version 4.x CurveZMQ comes built-in.
+Finally ZeroMQ has libraries for most of the common programming languages.\newline
 
 \begin{figure}[H]
     \centering
@@ -600,10 +603,6 @@ A good overview of many of them can be found in the official guide\footnote{\url
     \label{fig:zeromq_comination}
 \end{figure}
 
-By default ZeroMQ has no encryption or authentication machanismn build in.
-There is a dedicated project called CurveZMQ\footnote{\url{http://curvezmq.org}} which enables these functionalities and it is also created by the ZeroMQ maintainers.
-Since ZeroMQ version 4.x CurveZMQ comes built-in.
-Finally ZeroMQ has libraries for most of the common programming languages.
 
 \section{Related work}
 \label{section:related_work}

@@ -419,11 +419,10 @@ Based on the \ac{MANO} service lifecycle the following states was created:\newli
 \end{itemize}
 \bigskip
 
-All of them are located in a model object cad \textit{ServiceState}.
-
+All of them are located in a model object called \textit{ServiceState}.
 If a service state request is performed by the client, the request will then be received in the communication layer and passed over to the orchestrator.
 Afterwards The \textit{get\_service\_status} method is executed which maps the states of the images to the service state.
-Figure \ref{fig:lifecycle_mapping} show the mapping logic of the lifecycle states.
+Figure \ref{fig:lifecycle_mapping} show the mapping logic of the lifecycle states.\newline
 
 \begin{figure}[H]
     \centering
@@ -498,7 +497,7 @@ As all the other classes, the \textit{MQTTServer} is a wrapper class for the Pyt
 In the constructor the routes will be defined as well as some callbacks and the client will be configured.
 The \textit{start} method connects the client to the broker and execute the request loop.
 That is pretty similar to the implementation of the \textit{APIServer}.
-Therefore the \ac{MQTT} client has to be executed in a separate thread too.
+Therefore the \ac{MQTT} client has to be executed in a separate thread too.\newline
 
 \begin{figure}[H]
     \centering
@@ -533,7 +532,7 @@ As in \ac{MQTT} each subscription has to be done to a topic.
 Listing \ref{code:ZeroMQ-pub-sub} show the subscription for the \textit{capabilityevent} at line 3.
 This also means that it is possible to send multiple different events to a single socket endpoint.
 In Motey this feature is not used yet, but nevertheless it is necessary to subscribe to a topic because of the implementation specification of ZeroMQ.
-Without that, the subscriber will receive nothing.
+Without that, the subscriber will receive nothing.\newline
 
 \begin{listing}[H]
   \begin{minted}{python}
@@ -614,13 +613,8 @@ Due to the fact that the \ac{GUI} is only for demonstration purposes, it should 
 Vue.js the used web framework is pretty lightweight, therefore only two files are necessary to execute the client.
 The \textit{index.html} file contains the skeleton of the page.
 In addition to that the \textit{main.js} file that is located in the \textit{js} folder contains the business logic of the page.
-Figure \ref{fig:motey_gui_screenshot} shows the final \ac{GUI}.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{resources/images/motey_gui_screenshot.png}
-    \caption[Screenshot of the Motey \ac{GUI}]{Screenshot of the Motey \ac{GUI}}
-    \label{fig:motey_gui_screenshot}
-\end{figure}
+Figure \ref{fig:motey_gui_screenshot} shows the final \ac{GUI}.\newline
+
 The header is fixed and only contains the name of the engine and a short description of the page content.
 Below them the navigation bar located.
 As in the mockup four different pages are available.
@@ -628,6 +622,13 @@ The first called \textit{Motey} has a very short introduction into the web clien
 The second and also the selected one in the screenshot shows a list with all deployed services.
 \textit{Registered nodes} will show a list with all discovered nodes, again in a table.
 Finally the \textit{Send blueprint} contains a textarea to put in the \ac{YAML} service description and a button to send the data.\newline
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{resources/images/motey_gui_screenshot.png}
+    \caption[Screenshot of the Motey \ac{GUI}]{Screenshot of the Motey \ac{GUI}}
+    \label{fig:motey_gui_screenshot}
+\end{figure}
 
 The \textit{index.html} file contains also the files for the bootstrap and Vue.js libraries.
 They are loaded from a \ac{CDN} provider to speed up the loading time.
@@ -645,7 +646,7 @@ As defined before, there is no user authentication or other access control mecha
 
 \subsection{Deployment and Continuous Integration}
 Travis CI as the tool of choice for the \ac{CI} uses a \textit{.travis.yml} configuration file.
-The content of the file is shown in listing \ref{code:travis_config}.
+The content of the file is shown in listing \ref{code:travis_config}.\newline
 
 \begin{listing}[H]
   \begin{minted}{yaml}
@@ -712,7 +713,7 @@ Therefore Docker images that should support ARM \acp{CPU} must have specific dep
 To build an image, a so called \textit{Dockerfile} has to be created.
 The Dockerfile for the Raspberry Pi image is different to the one for the nomal image, because it load a Raspbian base image instead of an Ubuntu image like the normal file will do.
 Also the setup script is slightly different, because Raspbian sometimes need other dependencies or has different preinstalled tools.
-Listing \ref{code:motey_dockerfile} shows the Dockerfile for the normal Motey build.
+Listing \ref{code:motey_dockerfile} shows the Dockerfile for the normal Motey build.\newline
 
 \begin{listing}[H]
   \begin{minted}{dockerfile}
@@ -742,7 +743,7 @@ There is no automatic mapping between the host and the guest system ports, but t
 Finally the \textit{CMD} command will execute a specific shell command, in this case the \textit{motey start} command.\newline
 
 This command is available after Motey was installed by the \textit{setup.py} file in the root folder.
-To install Motey, only two build steps has to be executed, that are shown in listing \ref{code:motey_setup}.
+To install Motey, only two build steps has to be executed, that are shown in listing \ref{code:motey_setup}.\newline
 
 \begin{listing}[H]
   \begin{minted}{bash}
@@ -765,23 +766,14 @@ There are several possibilities to check and verify the integrity of the created
 Two of them are used in this project.
 The style check is used to ensure the compliance with the code style guidelines and the unit tests are used to verify the correctness of the code and the outcome of the functions itself.
 As the guidelines the pretty famous \ac{PEP} 8 style guide\footnote{\url{https://www.python.org/dev/peps/pep-0008}} is used.
-\ac{PEP} 8 is used in the Python standard library code and is well established in the community.
-A standardized code style is recommended in team projects as well as in open source projects.
-But also in private project a commitment to a specific style can be helpful to make the project easier to maintain.
-The code in general becomes more readable, more understandable and the amount of errors can be decreased.
-Due to the fact that overall code is read more often than it is written, other people will be satisfied by having a common understanding of the "grammar" of the code to be used.
-As the tool of choice the library \textit{pycodestyle} will be used.
-The style check is part of the \ac{CI} pipeline and the concrete implementation was shown in listing \ref{code:travis_config}.
-If there is any style check violation, the \ac{CI} build process will fail and the new Docker image will not be uploaded.
+\ac{PEP} 8 is used in the Python standard library code and is well established in the community.\newline
 
 \begin{listing}[H]
-  \begin{minted}{bash}
+  \begin{minted}{text}
   $ pycodestyle --ignore=E241,E501 motey/
   motey/di/app_module.py:48:38: E128 continuation line under-indented for visual indent
   motey/di/app_module.py:49:38: E128 continuation line under-indented for visual indent
-  motey/di/app_module.py:50:38: E128 continuation line under-indented for visual indent
-  motey/di/app_module.py:51:38: E128 continuation line under-indented for visual indent
-  motey/di/app_module.py:52:38: E128 continuation line under-indented for visual indent
+  [...]
   motey/di/app_module.py:53:38: E128 continuation line under-indented for visual indent
   motey/di/app_module.py:54:38: E128 continuation line under-indented for visual indent
   motey/configuration/configreader.py:6:66: E703 statement ends with a semicolon
@@ -792,14 +784,22 @@ If there is any style check violation, the \ac{CI} build process will fail and t
 
   The command "pycodestyle --ignore=E241,E501 samples/" exited with 0.
   \end{minted}
-  \caption[Sample output of the style check validation from the Travis CI build process number 148]{Sample output of the style check validation from the Travis CI build process number 148\autocite{Travis:Build:148}}
+  \caption[Output of the style check validation from Travis CI build process \#148]{Output of the style check validation from Travis CI build process \#148\autocite{Travis:Build:148}}
   \label{code:style_check_validation}
 \end{listing}
+
+A standardized code style is recommended in team projects as well as in open source projects.
+But also in private project a commitment to a specific style can be helpful to make the project easier to maintain.
+The code in general becomes more readable, more understandable and the amount of errors can be decreased.
+Due to the fact that overall code is read more often than it is written, other people will be satisfied by having a common understanding of the "grammar" of the code to be used.
+As the tool of choice the library \textit{pycodestyle} will be used.
+The style check is part of the \ac{CI} pipeline and the concrete implementation was shown in listing \ref{code:travis_config}.
+If there is any style check violation, the \ac{CI} build process will fail and the new Docker image will not be uploaded.\newline
 
 Listing \ref{code:style_check_validation} shows an example output of the Travis \ac{CI} build process.
 The first style check call fails due to multiple validations, but the second one exited successfully.\newline
 
-The second verification is are the unit tests.
+The second verification are the unit tests.
 A unit test is as the name implies a software test method which tests each component of an application.
 This method is a white box test, because the source code of the well known and only the results are tested.
 Each component should be tested as isolated as possible by invoking only one or a couple of methods from a unit and the result should be verified automatically and compared with an expected result.\autocite[cf.][p. 320]{Olan:2003:UTT}
@@ -818,7 +818,19 @@ Even pretty old parts of an application can be modified without the risk of any 
 When the unit test are part of the \ac{CI}, each build will be checked.
 This reduces the risk of the deployment of faulty code.
 And finally unit tests can be a good starting point for new team members, because it helps to understand the functionality of a class.
-An unit test can acts as some kind of documentation.
+An unit test can acts as some kind of documentation.\newline
+
+The downsides are that unit tests are coded.
+This means also unit tests can have errors and they have to be maintained if the source code of the main project is changed.
+Furthermore poorly written unit tests or tests that are written unmotivated can end up in a wrong feeling of safeness.
+Some error case could not be caught and the submitted code is still faulty.
+Additionally the test setup is not a realistic environment.
+Integration test are in general more accurate in terms of the human behavior.
+They test complete workflows and not only single components or functions.
+Also the dependencies between the component and the interaction between them can be tested much better with integration test.
+In many projects the most critical part of unit tests are, that they take time.
+For each written component, the related tests take a significant time to be developed.
+In a real life project this could be unacceptable even if it is important to have them.\newline
 
 \begin{listing}[H]
   \begin{minted}{python}
@@ -845,18 +857,6 @@ An unit test can acts as some kind of documentation.
   \label{code:sample_unit_test}
 \end{listing}
 
-The downsides are that unit tests are coded.
-This means also unit tests can have errors and they have to be maintained if the source code of the main project is changed.
-Furthermore poorly written unit tests or tests that are written unmotivated can end up in a wrong feeling of safeness.
-Some error case could not be caught and the submitted code is still faulty.
-Additionally the test setup is not a realistic environment.
-Integration test are in general more accurate in terms of the human behavior.
-They test complete workflows and not only single components or functions.
-Also the dependencies between the component and the interaction between them can be tested much better with integration test.
-In many projects the most critical part of unit tests are, that they take time.
-For each written component, the related tests take a significant time to be developed.
-In a real life project this could be unacceptable even if it is important to have them.\newline
-
 Listing \ref{code:sample_unit_test} shows an extract from the \textit{ServiceRepository} unit test.
 The test starts with a \textit{setUp} method (line 3) that is executed before each test.
 In this case some static variables will be created (line 4 - 6) and the internally used libraries are mocked (line 7 - 9).
@@ -867,13 +867,13 @@ Therefore the result of the database search method is mocked (line 13) and the \
 Finally the results of the method are checked.
 At first the script tests if a specific method is called, in this case the \textit{search} method of the database (line 17).
 Afterwards the result of the \textit{ServiceRepository} \textit{has} method is checked (line 18).
-If everything went fine, the test will execute with a status 0 as shown in listing \ref{code:style_check_validation}.
+If everything went fine, the test will execute with a status 0 as shown in listing \ref{code:style_check_validation}.\newline
 
 Unit testing in general can be realized in two different ways.
 The first possibility is to write the tests after the coding of the component is done.
 This is the standard way in many projects these days.
 The advantage is that the code is done and normally no big changes comes after that.
-This means also changes on the test suite are seldom.
+This means also changes on the test suite are seldom.\newline
 
 The second possibility is the \ac{TDD}, that is related to the test-first programming concept of the extreme programming development.
 In this development methodology the tests are written before the implementation of a class is created.
