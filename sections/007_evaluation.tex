@@ -86,7 +86,7 @@ But the results prove the opposite.
 If the less powerful device is the server the packages are much faster sent the vice versa.
 Overall using \ac{HTTP} as the protocol of choice, the messaging is pretty slow.
 To send the 10.000 request even the faster setup toke 03:31 minutes.
-This result depends on the huge package overhead in \ac{HTTP} and also the need for waiting for the request.
+This result depends on the package overhead in \ac{HTTP} and also the need for waiting for the request.
 Such a setup is fits well for simple status or rarely sent deployment requests, but not for high frequently used inter-node connections or in a low latency environment.
 
 \subsection{Performance ZeroMQ}
@@ -126,7 +126,7 @@ Figure \ref{fig:performance_zeromq_vs_http} shows the test results.
     \label{fig:performance_zeromq_vs_http}
 \end{figure}
 
-In addition to that \ac{HTTP} have a huge packet overhead that will consume more network bandwidth.
+In addition to that \ac{HTTP} have a packet overhead that will consume more network bandwidth.
 ZeroMQ is well suitable for low latency connections and on the same side more lightweight.
 In the test ZeroMQ is always used in \ac{TCP} mode.
 The creator of ZeroMQ promise that the \ac{IPC} and especially the inter-thread protocol are much faster than \ac{TCP}.\autocite[cf.]{ZeroMQ:UicastTransports}
