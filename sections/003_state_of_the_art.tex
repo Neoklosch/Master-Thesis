@@ -33,6 +33,7 @@ These devices are also called "Smart Devices".
 Creating a network where all physical objects and people are connected via software is one primary goal of the \ac{IoT}.\autocite[cf.][p.206]{Rui:2015}\autocite[cf.][p.2]{Kra:2013}
 When objects are able to capture and monitor their environment, a network can perceive external stimuli and respond to them.\autocite[cf.][p. 40]{Itu11}
 Therefore a new dimension of information and communication technology will be created, where users have access to everything at any time, everywhere.
+This, omnipresent information processing in everyday life, is also known as "Ubiquitous Computing", which was first mentioned in the "The Computer for the 21st Century"\autocite{Wei:1991} by Marks Weiser.
 In addition to smart devices, subcategories are also emerging from the \ac{IoT} which, in addition to the physical devices, also describe technologies such as protocols and infrastructures.
 The "Smart Home" has been a prominent topic in media and business for many years.
 Smart City or Industry 4.0 are also becoming established and are increasingly popular.
@@ -40,7 +41,7 @@ But the \ac{IoT} started with the appearance of bar codes and \ac{RFID} chips.\a
 The second step, which is more or less the current situation, sensors, physical devices, technical devices, data and software are connected to each other.\autocite[cf.][p. 13]{Kra:2013}
 This was achieved, in particular, by cloud computing, which provides the highly efficient memory and computing power that is indispensable for such networks.\autocite[cf.][p. 206]{Rui:2015}
 The next step could be a "Cognitive Internet of Things", which enables easier object and data reuse across application areas, for example through interoperable solutions, high-speed Internet connections and a semantic information distribution.\autocite[cf.][p. V]{Kra:2013}
-Just as the omnipresent information processing in everyday life, also known as "Ubiquitous Computing", which was first mentioned in the "The Computer for the 21st Century"\autocite{Wei:1991} by Marks Weiser, it will take some time until it is ubiquitous.
+Just as the Ubiquitous Computing, it will take some time until it is omnipresent.
 
 
 \subsection{Industry 4.0 and smart factories}
@@ -53,7 +54,7 @@ The Industry 4.0 is the fourth step in this evolution and was first mentioned wi
 
 Significantly higher productivity, efficiency, and self-managing production processes where everything from machines up to goods can communicate and cooperate with each other directly are the visions of the Industry 4.0.\autocite[cf.]{Lyd:2016}
 It also aims for an intelligent connection between different companies and units.
-Autonomous production and logistics processes creating a real-time lean manufacturing ecosystem that is more efficient and flexible.\autocite[cf.]{Lyd:2016}
+Autonomous production and logistics processes creates a real-time lean manufacturing ecosystem that is more efficient and flexible.\autocite[cf.]{Lyd:2016}
 "This will facilitate smart value-creation chains that include all of the life-cycle phases of the product from the initial product idea, development, production, use, and maintenance to recycling."\autocite{Lyd:2016}
 At the end, the system can use customer requirements in every step in the process to be flexible and responsive.\autocite[cf.]{Lyd:2016}
 
@@ -109,8 +110,8 @@ On the right side there is an exemplary industry value chain which starts with t
 From a technical perspective this means each machine in a factory has exactly to know what they have to do.
 The underlying system has to be modular and move away from a monolithic centralized system, to a decentralized system which is located locally near the machines himself.
 The communication path between them have to grow shorter.
-The machines have to be self organized and should communicate between each other even if the core system is not reachable because of lossy signals or other connection issues.
-If this can be achieved there will be an highly flexible, individualized and resource friendly mass production, which can be cheaper, faster and can be more fault tolerant.
+The machines have to be self organized and should communicate between each other, even if the core system is not reachable, because of lossy signals or other connection issues.
+This can enable flexibility, a better fault tolerance and individualized mass production.\autocite[cf.]{Lyd:2016}
 
 
 \subsection{Cyber Physical Systems}
@@ -209,7 +210,8 @@ Some benefits are speed, agility and cost reduction in deployment as well as exe
 Using homogeneous hardware simplifies the process of planning and reduces power, cooling and space needs.\autocite[cf.]{Noble:2015}
 Through virtualization providers can utilize resources more effectively, by allocating only the necessary resources for a specific functionality.\autocite[cf.]{Noble:2015}
 Overall \ac{NFV} can reduce \ac{OpEx} as well as \ac{CapEx} and can decrease the time necessary to deploy new services to the network.\autocite[cf.]{Noble:2015}
-To achieve \ac{NFV} the \ac{ETSI} has defined a framework the \ac{NFV-MANO}\footnote{\url{http://www.etsi.org/deliver/etsi_gs/NFV-MAN/001_099/001/01.01.01_60/gs_NFV-MAN001v010101p.pdf}} and the \ac{OASIS} created \ac{TOSCA} a \ac{NFV} specific data model and templates to coordinate and orchestrate the \ac{NF} into the cloud.
+To achieve \ac{NFV} the \ac{ETSI} has defined a framework the \ac{NFV-MANO}\footnote{\url{http://www.etsi.org/deliver/etsi_gs/NFV-MAN/001_099/001/01.01.01_60/gs_NFV-MAN001v010101p.pdf}} to coordinate and orchestrate the \ac{NF} into the cloud.
+The \ac{OASIS} created \ac{TOSCA} a data model and templates description that can be used for \ac{NFV}.
 
 \begin{figure}[H]
     \centering
@@ -250,12 +252,12 @@ It is responsible for the global resources management, such as computing and net
 The orchestrator interacts with the \ac{VNFM} to perform actions, but not with the \acp{VNF} directly.\autocite[cf.]{Kahn:2015}
 \ac{TOSCA} is often used with \ac{NFV-MANO} frameworks like Cloudify\footnote{\url{http://getcloudify.org}} or Open Baton.\autocite[cf.]{Tosca:NFV}
 
-\paragraph{\ac{TOSCA}} is developed by the \ac{OASIS} to deliver a declarative description of a \ac{NFV} application topology for network or cloud environments.\autocite[cf.]{Tosca:NFV}
+\paragraph{\ac{TOSCA}} is developed by the \ac{OASIS} and can be used to deliver a declarative description of a \ac{NFV} application topology for network or cloud environments.\autocite[cf.]{Tosca:NFV}
+It is not part of the \ac{NFV-MANO} standard, but it works pretty well together with it, to automate the deployment and management of \acp{NF} and services.
 In figure \ref{fig:nfv_architecture} it is represented by the \textit{Service, VNF and Infrastructure Description} block.
 Beside that, it can also be used to define a workflow which should be automated in a virtualized environment.\autocite[cf.]{Tosca:NFV}
 The \ac{TOSCA} modeling language can specify nodes, whereby a node can be a network, a subnet or only a server software component, and it also handles relationships between the nodes and also services.\autocite[cf.]{Tosca:NFV}
 To define schemes, relationships and the configuration of such an infrastructure, it uses \ac{YAML} files for ease the usage.\autocite[cf.]{Tosca:NFV}
-\ac{TOSCA} works pretty well with \ac{NFV-MANO} components to automate the deployment and management of \acp{NF} and services.
 
 
 \section{Existing tools}
@@ -404,7 +406,7 @@ But as mentioned before, both tools are pretty similar and aim for the same goal
 Open Baton\footnote{\url{https://openbaton.github.io}} is an open source \ac{ETSI} \ac{NFV} compliant \ac{MANO} Framework\autocite[cf.]{openBatonDoc}.
 "It enables virtual Network Services deployments on top of heterogeneous \ac{NFV} Infrastructures."\autocite{openBatonDoc}
 It works together with OpenStack and provides a plugin mechanism which allows to add additional \acp{VIM}.\autocite[cf.]{openBatonDoc}
-In Open Baton it is implemented as the \ac{VIM} as first \ac{PoP} and uses the OpenStack \acp{API}.\autocite{openBatonDoc}
+OpenStack is implemented as the \ac{VIM} and it is the first \ac{PoP}.\autocite{openBatonDoc}
 All the resources in the \ac{NFVI} are controlled by the \ac{VIM}, in this case OpenStack.
 
 \begin{figure}[H]
@@ -436,13 +438,12 @@ Open Baton also provides a marketplace\footnote{\url{http://marketplace.openbato
 \end{figure}
 
 Furthermore Open Baton comes with a modern and easy to use \ac{GUI} and user management.
-The typical workflow of running a \ac{NFVI} is by starting them through the dashboard.
+To start a \ac{NFVI} the included dashboard, \ac{REST} \ac{API} or \ac{CLI} can be used.
 The user input, in this case deploying a \ac{VNF}, will be submitted as a request to the \ac{NFVO}.
-There the orchestrator request the \ac{VIM}, for example OpenStack, to instantiate the network service.
-The \ac{VIM} allocated the resources on the datacenter and starts the \acp{VM} based on the provided service description, for example through a \ac{TOSCA} description.
+There the orchestrator request the \ac{VIM}, for example OpenStack, to allocate the necessary resources and instantiate the \ac{VM} afterwards.
 After the machines are finally booted, the \acp{EMS} will be installed to communicate with the \acp{VNFM}.
-Open Baton now can send lifecycle events to all the \acp{VNFM} responsible for the \acp{VNF} which are part of the network service.
-Finally the \acp{VNFM} processes the \acp{VNF} via the \ac{EMS} on to the given resources of the \ac{NFVI} on the datacenter.
+Open Baton now can send node lifecycle events to all the \acp{VNFM} responsible for the \acp{VNF} which are part of the network service.
+Finally the \acp{VNFM} processes the \acp{VNF}, that is defined by a \ac{TOSCA} \ac{YAML} description, via the \ac{EMS} on to the given resources of the \ac{NFVI} on the datacenter.
 The services are started and the system is up and running.
 
 
@@ -542,14 +543,7 @@ ZeroMQ has several basic patterns and most of them are combinable.
 To describe them all in detail would exceed the scope of this work, so only the most relevant ones are considered.\newline
 \textbf{Request-Reply} is comparable with a \ac{HTTP} request-response.
 The client send a message to the server, which does some work and send back a message afterwards.
-It is represented by the REQ-REP socket pairs in ZeroMQ.
-Figure \ref{fig:zeromq_req_rep} illustrates the pattern.\newline
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.25\textwidth]{resources/images/zeromq-req-rep.png}
-    \caption[ZeroMQ Request-Reply architecture]{ZeroMQ Request-Reply architecture. Adapted from: \autocite{ZeroMQ:Guide}}
-    \label{fig:zeromq_req_rep}
-\end{figure}
+It is represented by the REQ-REP socket pairs in ZeroMQ.\newline
 
 The \textbf{Publish-Subscribe} pattern in ZeroMQ is basically comparable with the MQTT publish-subscribe pattern, but without the broker in between.
 This ends up in the fact that every consumer has to now the publisher and has to connect to them.

@@ -4,9 +4,6 @@
 Based on the fundamentals, the requirements for the prototype to be developed will be formulated in this chapter.
 Thereby relevant aspects for the specific implementation will be considered.
 The analysis, the creation of requirements and the commitment from all sides to these requirements is an important step to successfully realize a project, not only in the software development area.
-It does not matter if it is a private project, a company product or a project from a customer.
-The better a project is defined and everyone is on the same state, the better the final result will be.
-In these thesis the \ac{FOKUS} acts as the customer.
 Each step has to be discussed and approved by a representative of the \ac{FOKUS}.
 Due to the fact that the prototype will be created from scratch most of the concepts have to be created in brainstorming meetings.
 An agile development process will be used to react to rapidly changing requirements.
@@ -58,7 +55,7 @@ Figure \ref{fig:open_fog_node_mgm_lifecycle} describes the five steps of a typic
 \end{itemize}
 
 In addition to the node lifecycle, an exemplary lifecycle for services and images is shown in the \ac{ETSI} \ac{MANO} specification\autocite[p. 67 ff.]{ETSI:MANO:2014}
-These lifecycle is much more detailed than the node OpenFog node lifecycle and it handles several state from the instantiation of a service, over querying some data, up to the termination of service.
+These lifecycle handles several state from the instantiation of a service, over querying some data, up to the termination of service.
 Some of the specifications are tightly coupled to \acp{NFV}.
 However these lifecycle specification is a good starting point to elaborate a custom solution.
 
@@ -88,7 +85,7 @@ The non-functional requirements are also addressed and they are classified into 
 The use of powerful but resource consuming tools and libraries like huge databases or message queues will be renounced.
 Necessary libraries will be used if they are essential, but in general they will be selected with the requirement of being executed on low power devices.
 \paragraph{Usability} The prototype should be easy to use, to install and to maintain.
-An easy to use installation script will be developed and the source code as well as the tool himself will be well documented.
+An easy to use installation script will be developed, the source code will be well documented and an user guide will be created.
 \paragraph{Maintainability} Due to the fact that the prototype will be a solid base for further development, it will be created as modular as possible.
 It should also be well structured by using well known design patterns.
 Each component should be easy to replace and also easy to maintain.
@@ -114,6 +111,7 @@ They will not refer to any technology but will show up the usage of the prototyp
 \paragraph{Service deployment from a cloud orchestrator}
 That will be the most common use case in this consideration.
 A service for example a \ac{NF} should be deployed to a single node.
+Figure \ref{fig:use_case_deploy_service} illustrate this use case.
 Therefore the prototype will be installed on the node himself.
 A cloud service such as Open Baton will orchestrate the deployment.
 To do so a so called blueprint which is basically a description of the service, the images and the capabilities that are necessary to execute the image, will be passed over to the prototype via an \ac{API}.
@@ -121,24 +119,40 @@ The prototype will receive them and will parse them afterwards.
 All the provided images will be executed on the same node and at the end the service is up and running.
 The state of the services can be observed at any step of the process.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{resources/images/use_case_deploy_service.png}
+    \caption[Use case: Service deployment from a cloud orchestrator]{Use case: Service deployment from a cloud orchestrator}
+    \label{fig:use_case_deploy_service}
+\end{figure}
+
 \paragraph{Service deployment based on capabilities}
 Also in this case a cloud service like Open Baton will deploy a service to a node cluster.
+Figure \ref{fig:use_case_deploy_service_multiple_nodes} illustrate this use case.
 Again one node will get the blueprint and parse them.
-During the parsing of the blueprint the node does not fulfill one or multiple capabilities that are necessary to execute a specific image.
-If the node detects such an image, it will search for a node which is able to deploy an image with the given capabilities.
-For example one image needs a ZigBee dongle to measure data, so the capability \textit{ZigBee} is added to the image in the blueprint.
-The first node, Node A, has no ZigBee dongle connect and therefore they is not able to fulfill that requirement.
-Node A will then ask all the other nodes in the cluster if they can satisfy the need.
-Node B will respond that they is also not able to do so.
+Each image has capabilites attached to them.
+During the parsing of the blueprint, the application check if the node can fulfill all of these capabilities.
+If an image can not used by this node, the application will search for a node, that is able to deploy the image.
+For example, if one image needs a ZigBee dongle to measure data, than the capability \textit{ZigBee} is added to the image in the blueprint.
+The first node, Node A, has no ZigBee dongle connect and therefore, it is not able to fulfill that requirement.
+Node A will then ask all the other nodes in the cluster, if they can satisfy the need.
+Node B will respond that it is also not able to do so.
 Node C is able and will respond with a related message.
 Node A send over the image to be deployed and Node C will execute them.
-From that point on, Node A is still responsible for the whole service, but Node C is executing the image and will frequently be ask for the state of the image.
+From that point on, Node A is still responsible for the whole service, but Node C is executing the container that was started from the image and will frequently be ask for the state of the container.
 This process can be repeat for one or multiple images.
 If each image was deployed, the service is up and running and can again observed by the user.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{resources/images/use_case_deploy_service_multiple_nodes.png}
+    \caption[Use case: Service deployment based on capabilities]{Use case: Service deployment based on capabilities}
+    \label{fig:use_case_deploy_service_multiple_nodes}
+\end{figure}
+
 \paragraph{A new node will appear}
 If a new node will be added to the cluster, all the other nodes should be informed about this circumstance.
-Therefore the appearing node will be send out a message with some meta information, with for example the \ac{IP} address of the node, to all the other nodes.
+Therefore the appearing node will be send out a message with some meta information, with for example the \ac{IP} address of the node, to the broker, that send them to all the other nodes.
 Each node in the cluster will get the message and can store the information.
 Additionally the nodes will also send back a message with their meta information.
 Again each node will receive these message, including the newly added node.
@@ -191,7 +205,7 @@ The labels are stored on the Kubernetes Master and can be used to filter specifi
 This behavior is pretty close to the one which should be achieved.
 
 Kubernetes is made for the cloud, which means it is not intended to be used on low power devices.
-There are some attempts to do so, but until now it is not used in a productive \ac{IoT} environment.
+There are some attempts\autocite{kubernetes-installer-rpi}\autocite{kubernetes-on-arm}\autocite{hypriot:kubernetes-on-rpi} to do so, but until now there is no official solution for that.
 Furthermore Kubernetes is not \ac{ETSI} \ac{MANO} compliant, but provides an easy to use web \ac{UI}.
 
 \paragraph{Docker Swarm} is pretty similar to Kubernetes from a functional point of view.
