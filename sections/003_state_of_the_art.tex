@@ -16,15 +16,15 @@ In the first section the \ac{IoT} and related subtopics like smart factories and
 Virtualization in general is the main topic of the section \ref{section:state_virtualization}.
 First \acp{VM} are highlighted, followed by Container Virtualization.
 Both are related to each other and share some basic ideas.
-Container Orchestration show exemplary possibilities of Container Virtualization.
-The last subsection \ac{NFV} concludes with an introduction into the virtualization of network node functions to create communication services.
+Container Orchestration shows exemplary possibilities of Container Virtualization.
+The last subsection \ac{NFV} concludes with an introduction of the virtualization of network node functions to create communication services.
 Afterwards a brief overview of some major existing tools will be given.
 The chapter will be finished with an excursion to two important messaging systems.
 
 
 \section{Internet of Things}
 \ac{IoT} has grown strongly in the media and economy in the recent years.
-In the year 2008 the number of devices which are connected to the Internet was higher than the human population.\autocite[cf.][p. 3]{Eva:2011}
+In the year 2008 the number of devices, that are connected to the Internet was higher than the human population.\autocite[cf.][p. 3]{Eva:2011}
 Cisco Internet Business Solutions Group predicted that the number will grow up to 50 billion in 2020, this equates to around 6 devices per person.\autocite[cf.][p. 4]{Eva:2011}
 Most of today's interactions are \ac{H2H} or \ac{H2M} communication.
 The \ac{IoT} on the other hand aim for the \ac{M2M} communication.
@@ -33,7 +33,7 @@ These devices are also called "Smart Devices".
 Creating a network where all physical objects and people are connected via software is one primary goal of the \ac{IoT}.\autocite[cf.][p.206]{Rui:2015}\autocite[cf.][p.2]{Kra:2013}
 When objects are able to capture and monitor their environment, a network can perceive external stimuli and respond to them.\autocite[cf.][p. 40]{Itu11}
 Therefore a new dimension of information and communication technology will be created, where users have access to everything at any time, everywhere.
-This, omnipresent information processing in everyday life, is also known as "Ubiquitous Computing", which was first mentioned in the "The Computer for the 21st Century"\autocite{Wei:1991} by Marks Weiser.
+This, omnipresent information processing in everyday life, is also known as "Ubiquitous Computing", which was first mentioned in "The Computer for the 21st Century"\autocite{Wei:1991} by Mark Weiser.
 In addition to smart devices, subcategories are also emerging from the \ac{IoT} which, in addition to the physical devices, also describe technologies such as protocols and infrastructures.
 The "Smart Home" has been a prominent topic in media and business for many years.
 Smart City or Industry 4.0 are also becoming established and are increasingly popular.
@@ -48,11 +48,11 @@ Just as the Ubiquitous Computing, it will take some time until it is omnipresent
 The industry we know is changing and is currently in the state of the so called "fourth industrial revolution".
 The first industrial revolution was driven by steam powered machines.
 Mass production and division of labor was the primary improvement of the second industrial revolution, whereas the third revolution was characterized by using electronics and the integration of \ac{IT} into manufacturing processes.\autocite[cf.][p. 1]{Lom:2016}
-In the recent years the size, cost and power consumption of chipsets are reduced which made it possible to embed sensors into devices and machines much easier and cheaper.\autocite[cf.][p. 1]{Brito:2016}
+In the recent years the size, cost and power consumption of chipsets were reduced, which made it possible to embed sensors into devices and machines much easier and cheaper.\autocite[cf.][p. 1]{Brito:2016}
 The Industry 4.0 is the fourth step in this evolution and was first mentioned with the German term "Industrie 4.0" at the Hannover Fair in 2011.\autocite[cf.][p. 1]{Lom:2016}
 "Industrie 4.0 is a collective term for technologies and concepts of value chain organization."\autocite[cf.][p. 11]{Her:2015}
 
-Significantly higher productivity, efficiency, and self-managing production processes where everything from machines up to goods can communicate and cooperate with each other directly are the visions of the Industry 4.0.\autocite[cf.]{Lyd:2016}
+Significantly higher productivity, efficiency, and self-managing production processes, where everything from machines up to goods can communicate and cooperate with each other directly, are the visions of the Industry 4.0.\autocite[cf.]{Lyd:2016}
 It also aims for an intelligent connection between different companies and units.
 Autonomous production and logistics processes creates a real-time lean manufacturing ecosystem that is more efficient and flexible.\autocite[cf.]{Lyd:2016}
 "This will facilitate smart value-creation chains that include all of the life-cycle phases of the product from the initial product idea, development, production, use, and maintenance to recycling."\autocite{Lyd:2016}
@@ -84,7 +84,7 @@ Table \ref{tab:industryComponents} shows the six design principles which can be 
 They can help companies to identify and implement Industry 4.0 scenarios.\autocite[cf.][p. 11]{Her:2015}
 
 \begin{enumerate}
-  \item \textit{Interoperability} \ac{CPS} of various manufacturers are connected with each other. Standards will be the key success factor in this area.\autocite[cf.][p. 11]{Her:2015}
+  \item \textit{Interoperability} \ac{CPS} of various manufacturers are connected with each other. Standards will be the key success factor in this subject.\autocite[cf.][p. 11]{Her:2015}
   \item \textit{Virtualization} \ac{CPS} are able to monitor physical processes via sensors. The resulting data is linked to virtual plant and simulation models. These models are virtual copies of physical world entities.\autocite[cf.][p. 11]{Her:2015}
   \item \textit{Decentralization} \ac{CPS} are able to make decisions on their own, for example when \ac{RFID} chips send the necessary working steps to the machine. Only in cases of failure the systems delegate task to a higher level.\autocite[cf.][p. 11]{Her:2015}
   \item \textit{Real-Time Capability} Data has to be collected and analyzed in real time and the status of the plant is permanently tracked and analyzed. This enables the \ac{CPS} to react to a failure of a machine and can reroute the products to another machine.\autocite[cf.][p. 11]{Her:2015}
@@ -107,9 +107,9 @@ Finally end-to-end engineering, planning, and process control for each step in t
 Figure \ref{fig:vertical_horizontal_integration} illustrates this concept.
 The left side shows the whole production process over company boundaries on the horizontal scale, as well as the industry value chain on the vertical scale which is specific for each company.
 On the right side there is an exemplary industry value chain which starts with the raw materials and ends with the sale of the product to illustrates an more specific example of the vertical integration.
-From a technical perspective this means each machine in a factory has exactly to know what they have to do.
-The underlying system has to be modular and move away from a monolithic centralized system, to a decentralized system which is located locally near the machines himself.
-The communication path between them have to grow shorter.
+From a technical perspective this means each machine in a factory has exactly to know what to do.
+The underlying system has to be modular and has to move away from a monolithic centralized system to a decentralized system, that is located locally near the machines itself.
+The communication path between them has to grow shorter.
 The machines have to be self organized and should communicate between each other, even if the core system is not reachable, because of lossy signals or other connection issues.
 This can enable flexibility, a better fault tolerance and individualized mass production.\autocite[cf.]{Lyd:2016}
 
@@ -118,7 +118,7 @@ This can enable flexibility, a better fault tolerance and individualized mass pr
 As we already now, in smart factories every physical device is connected to each other.
 Everything can be captured and monitored in each step of a production process.
 With \acp{CPS} every physical entity has a digital representation in the virtual system.\autocite[cf.][p. 1363]{Poovendran:2010}
-Before a \ac{CS} was passive, which means there was no communication between the physical and the virtual world.\autocite[cf.][p. 1364]{Poovendran:2010}
+Previously a \ac{CS} was passive, which means there was no communication between the physical and the virtual world.\autocite[cf.][p. 1364]{Poovendran:2010}
 While new technologies in the physical world, like new materials, hardware and energy, are developed, the technologies in the virtual worlds are also being improved, for example through the use of new protocols, networking, storage and computing technologies.\autocite[cf.][p. 1364]{Poovendran:2010}
 This adds more intelligence in such systems, as well as a much more flexible and modular structure.
 A \ac{CPS} can organize production automatically and autonomously, which eliminate the need of having a central process control.\autocite[cf.]{Lom:2016}
@@ -132,7 +132,7 @@ Over time the system was broken down to a more distributes multicloud architectu
 With the appearance of Fog Computing the Cloud also moves from centralized data centers to the edge of the underlying network.
 Main goal is to reduce the traffic and the amount of data which is transferred to the cloud and also process, analyze and store data locally, as well as keeping sensitive data inside the network for security reasons.\autocite[cf.][p. 236]{Brito:2016}\autocite[cf.][p. 325]{Yannuzzi:2014}\autocite[cf.][p. 4]{Lom:2016}
 In contrast to the goals the definition and understanding of Fog Computing differs.
-One perspective is to that the processing of the data take place on smart devices, e.g. embedded systems, etc., at the end of the network or in smart router or other gateway devices.\autocite[cf.][p. 4]{Lom:2016}
+One perspective is, that the processing of the data take place on smart devices, e.g. embedded systems, etc., at the end of the network or in smart router or other gateway devices.\autocite[cf.][p. 4]{Lom:2016}
 Another interpretation is that fog computing appears as an intermediate layer between smart devices and the cloud.\autocite[cf.][p. 236]{Brito:2016}
 Processing the data near devices enables lower latency and real-time applications can take decisions based on analytics running there.
 That is important because a continuous connection to the cloud can not always be ensured.
@@ -144,7 +144,7 @@ However fog computing should not be seen as a competitor of cloud computing, it 
 According to the \ac{NIST} the definition of virtualization is: "Virtualization is the simulation of the software and/or hardware upon which other software runs. This simulated environment is called a virtual machine (VM)."\autocite[p. ES-1]{Sca:2011}.
 This means a \ac{VM}, also referred as guest system, can be executed in a real system, which is referred as host system.
 A \ac{VM} has its own \ac{OS} which is completely isolated from the other \acp{VM} and the host system.\autocite[cf.][p. 2]{Celesti:2016}
-Basically there are two types of virtualization: Process virtualization where the virtualization software also known as \ac{VMM} is executed by the host \ac{OS} and only an application will be executed inside the guest \ac{OS} and on the other side there is the the system virtualization where the whole \ac{OS} as well as the application are running inside the virtualization software.
+Basically there are two types of virtualization: Process virtualization, where the virtualization software also known as \ac{VMM} is executed by the host \ac{OS} and only an application will be executed inside the guest \ac{OS} and on the other side there is the the system virtualization where the whole \ac{OS} as well as the application are running inside the virtualization software.
 Figure \ref{fig:vms_vs_docker} illustrate both concepts.
 Examples for process virtualization could be the \ac{JVM}\footnote{\url{https://www.java.com}}, the .Net framework\footnote{\url{https://www.microsoft.com/net}} or Docker\footnote{\url{https://www.docker.com}}, where VMWare\footnote{\url{http://www.vmware.com}}, Oracle Virtual Box\footnote{\url{https://www.virtualbox.org}}, XEN\footnote{\url{https://www.xenproject.org}} or Microsoft Hyper-V\footnote{\url{https://www.microsoft.com/de-de/cloud-platform/server-virtualization}} are only some examples for system virtualization.
 
@@ -156,7 +156,7 @@ Examples for process virtualization could be the \ac{JVM}\footnote{\url{https://
 \end{figure}
 
 The benefits of all virtualization techniques are the rapid provisioning of resources which could be \ac{RAM}, disk storage, computation power or network bandwidth.
-Beside that, no human interaction is necessary during the provisioning process.
+Besides that, no human interaction is necessary during the provisioning process.
 Elasticity which scales a system in a cost-efficient manner in both directions, up and down.
 Customer as well as the provider profit from such a system.
 Security based on the isolation of the \acp{VM} is another benefit.
@@ -174,7 +174,7 @@ It needs only a basic OS to schedule \acp{VM}.
 The hypervisor runs directly on the hardware of the machine without any host \ac{OS} in between.
 This is more efficient, but requires special device drivers to be executed.
 The other type is the \textit{hosted virtualization}.
-Unlike the first type the \ac{VMM} run as a host \ac{OS} process and the \acp{VM} as a process supported by the \ac{VMM}.
+Unlike the first type, the \ac{VMM} runs as a host \ac{OS} process and the \acp{VM} as a process supported by the \ac{VMM}.
 No special drivers are needed for these type of virtualization, but by comparison the overhead is much bigger.
 For both types, the performance limitation remains.
 Each \ac{VM} need a full guest \ac{OS} image in addition to binaries and libraries which are necessary for the application to be executed.\autocite[cf.][p. 381]{Pahl:2015}
@@ -183,35 +183,35 @@ If only a single application, which only needs a few binaries and libraries, is 
 
 \subsection{Container Virtualization}
 Container virtualization which is also known as Operating System-level virtualization, is the second virtualization mechanism.
-It based on fast and lightweight process virtualization to encapsulate an entire application with its dependencies into a ready-to-deploy virtual container.\autocite[cf.][p. 72]{Tosatto:2015}
+It based on fast and lightweight process virtualization to encapsulate an entire application with its dependencies on a ready-to-deploy virtual container.\autocite[cf.][p. 72]{Tosatto:2015}
 Such a container can be executed on the host \ac{OS} which allows an application to run as a sand-boxed user-space instance.\autocite[cf.][p. 1]{Anderson:2016}
 All containers share a single \ac{OS} kernel, so the isolation supposed to be weaker compared to hypervisor based virtualization.\autocite[cf.][p. 2]{Celesti:2016}
 Compared to \acp{VM}, the number of containers on the same physical host can be much higher, because the overhead of a full \ac{OS} virtualization is eliminated.\autocite[cf.][p. 2]{Celesti:2016}
 
 
 \subsection{Container Orchestration}
-Containers by itself helps to develop and deploy applications, but containers release their full potential only when they are used together with an orchestration engine.
+Containers by itself help to develop and deploy applications, but containers release their full potential only when they are used together with an orchestration engine.
 Before orchestration engines, the deployment of an application or service was realized via \ac{CI} and deployment tools like Vagrant or Ansible.
-Deployment scripts or plans were created and be executed every time an application changed or should be scaled up on a new machine.
+Deployment scripts or plans were created and executed every time an application changed or should be scaled up on a new machine.
 This was less flexible and error-prone.
 Orchestration engines cover these needs by automatically choosing new machines, deploying containers, handle the lifecycle of them and monitor the system.
 These flexibility enables a new level of abstraction and automatization of deployment.
 There are a bunch of orchestration engines in the market.
-For Docker, Kubernetes and Docker Swarm are the most popular at the moment.
+For example Docker, Kubernetes and Docker Swarm are the most popular at the moment.
 
 
 \subsection{Network Function Virtualization}
 \ac{NFV} is an architectural framework to provide a methodology for the design, implementation, and deployment of \acp{NF} through software virtualization.\autocite[cf.][p. 8]{ETSI:NFV:2013}\autocite[cf.]{Rivenes:2014}
 "These \acp{NF} are referred as \acp{VNF}."\autocite[p. 8]{ETSI:NFV:2013}
 It takes into consideration \ac{SDN} and preparing for the use of non-proprietary software to hardware integration instead of multiple vendor specific devices for each function, e.g. routers, firewalls, storages, switches, etc.\autocite[cf.]{Rivenes:2014}
-Now high-performance firewalls and load balancing software for example can run on commodity PC hardware and traffic can be off-loaded onto inexpensive programmable switches.\autocite[cf.]{Noble:2015}
+For example high-performance firewalls and load balancing software can run now on commodity PC hardware and traffic can be off-loaded onto inexpensive programmable switches.\autocite[cf.]{Noble:2015}
 
 Some benefits are speed, agility and cost reduction in deployment as well as execution manner.\autocite[cf.]{Noble:2015}
 Using homogeneous hardware simplifies the process of planning and reduces power, cooling and space needs.\autocite[cf.]{Noble:2015}
 Through virtualization providers can utilize resources more effectively, by allocating only the necessary resources for a specific functionality.\autocite[cf.]{Noble:2015}
 Overall \ac{NFV} can reduce \ac{OpEx} as well as \ac{CapEx} and can decrease the time necessary to deploy new services to the network.\autocite[cf.]{Noble:2015}
-To achieve \ac{NFV} the \ac{ETSI} has defined a framework the \ac{NFV-MANO}\footnote{\url{http://www.etsi.org/deliver/etsi_gs/NFV-MAN/001_099/001/01.01.01_60/gs_NFV-MAN001v010101p.pdf}} to coordinate and orchestrate the \ac{NF} into the cloud.
-The \ac{OASIS} created \ac{TOSCA} a data model and templates description that can be used for \ac{NFV}.
+To achieve \ac{NFV} the \ac{ETSI} has defined a framework, the \ac{NFV-MANO}\footnote{\url{http://www.etsi.org/deliver/etsi_gs/NFV-MAN/001_099/001/01.01.01_60/gs_NFV-MAN001v010101p.pdf}}, to coordinate and orchestrate the \ac{NF} into the cloud.
+The \ac{OASIS} created \ac{TOSCA}, a data model and templates description that can be used for \ac{NFV}.
 
 \begin{figure}[H]
     \centering
@@ -229,7 +229,7 @@ The \ac{BSS} on the other hand is responsible for the business handling, for exa
 Both can be integrated with the \ac{NFV-MANO}.\autocite[cf.]{Kahn:2015}
 
 \paragraph{\acp{VNF}} are the virtualized network elements, for example a virtualized router or virtualized firewall.
-Even if only a sub-functions or a sub-components of a hardware element is virtualized, it is called \ac{VNF}.\autocite[cf.]{Kahn:2015}
+Even if only a sub-function or a sub-component of a hardware element is virtualized, it is called \ac{VNF}.\autocite[cf.]{Kahn:2015}
 Multiple sub-functions can act together as one \ac{VNF}.
 
 \paragraph{\ac{EMS}} is responsible for the functional management of a single or multiple \acp{VNF}.\autocite[cf.]{Kahn:2015}
@@ -238,16 +238,16 @@ Furthermore the \ac{EMS} itself can be a \ac{VNF} or it can handle a \ac{VNF} th
 
 \paragraph{\ac{NFVI}} is the environment where \acp{VNF} are executed.
 This includes physical resources as well as virtual resources and the virtualization layer.
-The physical resources could be a commodity switch, a server or a storage device.
+The physical resources can be a commodity switch, a server or a storage device.
 These physical resources can be abstracted into virtual resources through the virtualization layer which is normally a hypervisor.
-If the virtualization part is missing, the software runs natively on the hardware and the entity is no longer a \ac{VNF} it is then a \ac{PNF}.\autocite[cf.]{Kahn:2015}
+If the virtualization part is missing, the software runs natively on the hardware and the entity is no longer a \ac{VNF}, it is then a \ac{PNF}.\autocite[cf.]{Kahn:2015}
 
 \paragraph{\ac{NFV-MANO}} consists of three main parts.
 The \ac{VIM} is "responsible for controlling and managing the NFVI compute, network and storage resources within one operator’s infrastructure domain"\autocite{Kahn:2015}.
 The \ac{VNFM} manages one or multiple \acp{VNF}.
 This includes the life cycle management of the \ac{VNF} instances, such as instantiate, edit or shut down an \ac{VNF} instance.\autocite[cf.]{Tosca:NFV}
 In contrast to the \ac{EMS}, the \ac{VNFM} handles the virtual part of the \ac{VNF}, for example instantiate an instance, while the \ac{EMS} handles the functional part of an \ac{VNF}, such as issue handling for a \ac{VNF}.
-The orchestrator as the third component in the \ac{NFV-MANO} block manage network services of \acp{VNF}.
+The orchestrator as the third component in the \ac{NFV-MANO} block that is managing network services of \acp{VNF}.
 It is responsible for the global resources management, such as computing and networking resources among multiple \acp{VIM}.\autocite[cf.]{Kahn:2015}
 The orchestrator interacts with the \ac{VNFM} to perform actions, but not with the \acp{VNF} directly.\autocite[cf.]{Kahn:2015}
 \ac{TOSCA} is often used with \ac{NFV-MANO} frameworks like Cloudify\footnote{\url{http://getcloudify.org}} or Open Baton.\autocite[cf.]{Tosca:NFV}
@@ -272,9 +272,9 @@ Therefore finding and learning good frameworks and third party tools can be a ti
 Some of them are elaborated in the following.
 
 \subsection{Linux Containers}
-When we talk about container virtualization nowadays, Docker have to become one of the most famous tools in the market.
-It based on \ac{LXC}\footnote{\url{https://linuxcontainers.org/}} a technology which uses kernel mechanisms like \textit{namespaces} or \textit{cgroups} to isolate processes on a shared \ac{OS}.\autocite[cf.][p. 381]{Pahl:2015}
-Namespaces for example are used to isolate groups of processes whereas cgroups are used to manage and limit resources access just like restricting the memory, disc space or \ac{CPU} usage.\autocite[cf.][p. 381]{Pahl:2015}
+When we talk about container virtualization nowadays, Docker is one of the most famous tools in the market.
+It based on \ac{LXC}\footnote{\url{https://linuxcontainers.org/}}, a technology which uses kernel mechanisms like \textit{namespaces} or \textit{cgroups} to isolate processes on a shared \ac{OS}.\autocite[cf.][p. 381]{Pahl:2015}
+Namespaces for example are used to isolate groups of processes, whereas cgroups are used to manage and limit resources access just like restricting the memory, disc space or \ac{CPU} usage.\autocite[cf.][p. 381]{Pahl:2015}
 "The goal of \ac{LXC} is to create an environment as close as possible to a standard Linux installation but without the need for a separate kernel."\autocite[p. 72]{Tosatto:2015}
 There are several other container virtualization tools in the market like OpenVZ\footnote{\url{https://openvz.org/Main_Page}} or Linux-VServer\footnote{\url{http://www.linux-vserver.org}}.
 In contrast to them, an advantage of \ac{LXC} is that it runs on an unmodified Linux kernel.
@@ -285,10 +285,10 @@ As mentioned before, Docker is based on \ac{LXC}.
 It extends \ac{LXC} with a kernel- and application-level API that is used to isolate the CPU, memory, I/O and network layers.\autocite[cf.][p. 82]{Bernstein:2014}
 Docker also uses the \textit{namespace} or \textit{cgroup} mechanisms to isolate the underlying operating environment.\autocite[cf.][p. 82]{Bernstein:2014}
 Similar to \acp{VM}, containers are executed from images.
-A mayor benefit of Docker is the fact, that Docker images can be combined like build blocks.
+A mayor benefit of Docker is the fact, that Docker images can be combined like building blocks.
 Each image can be used to be the basis for a new one.
 Figure \ref{fig:docker_container_structure} illustrates the concept for the image of the pretty famous Django\footnote{\url{https://www.djangoproject.com/}} web framework.
-In that case, the Django image, which is the resulting image, based on the Python 3.4 image which again based on the Debian Jessy image.
+In that case, the Django image, which is the resulting image, based on the Python 3.4 image, that again based on the Debian Jessy image.
 All of them are read-only, but Docker adds a writable layer, also known as \textit{container layer}, on top of the images as soon as the container is created.
 File system operations such as creating new files, modifying or deleting existing files are written directly to these layer.\autocite[cf.]{dockerImages}
 The other images don't get involved.
@@ -301,8 +301,8 @@ The Docker client is a \ac{CLI} tool, which interact via a \ac{REST} \ac{API} wi
 
 % Docker Registries
 Another component, the Docker Registry, is basically a library of Docker images.
-The most popular one is the official Docker Hub\footnote{\url{https://hub.docker.com}}.
-There each package can be available public or private.
+The most popular is called Docker Hub\footnote{\url{https://hub.docker.com}}.
+There, each package can be available for public or private use.
 It is also possible to have a local repository stored on the same machine as the Docker daemon or on an external server.\autocite[cf.]{dockerEngine}
 There is also an Docker Store\footnote{\url{https://store.docker.com}}, where customers can buy and sell trusted and enterprise ready containers and plugins.
 With the Docker \ac{CLI} client it is pretty easy to \textit{search} for new containers and to \textit{pull} containers from or \textit{push} containers to a specific repository.
@@ -319,11 +319,11 @@ With Docker Compose multiple Docker Containers can be executed as a single appli
 Therefore, YAML compose file will be used to configure and combine the services.
 For example the already mentioned Django image can be executed and linked together with a MongoDB\footnote{\url{https://www.mongodb.com}} image.
 The main benefit is the ease of configure dependencies between several containers and configuration steps.
-These concept is similar to deployment tools like Vagrant\footnote{\url{https://www.vagrantup.com}}, Ansible\footnote{\url{https://www.ansible.com}} or Puppet\footnote{\url{https://puppet.com}}.
+This concept is similar to deployment tools like Vagrant\footnote{\url{https://www.vagrantup.com}}, Ansible\footnote{\url{https://www.ansible.com}} or Puppet\footnote{\url{https://puppet.com}}.
 
 % Benefits
 A major benefit of Docker is that the execution environment of an application is completely the same on a local machine as on the production environment.\autocite[cf.][p. 2]{Gallagher:2015}
-There is no need to do things differently when switching from a development environment like a local machine, to a production environment like a server.\autocite[cf.][p. 2]{Gallagher:2015}
+There is no need to do things differently when switching from a development environment, like a local machine, to a production environment like a server.\autocite[cf.][p. 2]{Gallagher:2015}
 
 \subsection{Kubernetes}
 \label{subsection:state-of-the-art:kubernetes}
@@ -334,7 +334,7 @@ The system can for example schedule on which node a container should be executed
 
 Figure \ref{fig:kubernetes_architecture} illustrates the basic architecture of Kubernetes.
 The user can interact with the Kubernetes system via a \ac{CLI}, an \ac{UI} or a third party application, over a \ac{REST} \ac{API} to the Kubernetes Master or more specifically the \ac{API} Server in the master.
-The master himself controls the one or multiple nodes, monitor the system, schedule resources or pull new images from the repository, to name only a few tasks.
+The master itself controls the one or multiple nodes, monitors the system, schedule resources or pulls new images from the repository, to name only a few tasks.
 
 \begin{figure}[H]
     \centering
@@ -354,16 +354,16 @@ Pods can also share functionality to other Pods inside a Kubernetes cluster.
 A logical set of Pods and the access policy of them is called a Kubernetes service.
 Such a service can abstract multiple Pod replicas and manage them.
 A frontend which have access to the service do not care about changes in the service.
-Any change, be it a down scale or an up scale of the system, remains unseen for the frontend.
+Any change, either a down scale or an up scale of the system, remains unseen for the frontend.
 They are exposed through internal or external endpoints to the users or the cluster.\autocite[cf.][p. 11]{MSV:2016}
 Labels can be used to organize and to select subsets of Kubernetes Objects, such as Pods or Services.\autocite[cf.]{Kubernetes:labels:2016}
-They are simply key-value pairs which and should be meaningful and relevant to users, but do not imply semantics to the core system.\autocite[cf.]{Kubernetes:labels:2016}
+They are simply key-value pairs, which should be meaningful and relevant to users, but do not imply semantics to the core system.\autocite[cf.]{Kubernetes:labels:2016}
 
 The kube-proxy is a network proxy and load balancer which is accessible from the outside of the system via a Kubernetes service.\autocite[cf.][p. 7]{Mulyana:2016}
-"Each node and can do simple TCP,UDP stream forwarding or round robin TCP,UDP forwarding across a set of backends."\autocite{Kubernetes:kube-proxy:2016}
+"This reflects services as defined in the Kubernetes API on each node and can do simple TCP,UDP stream forwarding or round robin TCP,UDP forwarding across a set of backends."\autocite{Kubernetes:kube-proxy:2016}
 The Replication Controller is one of the mayor controllers in a Kubernetes System.
 It ensures that a specified number of pod replicas are running and available at any time.\autocite[cf.]{Kubernetes:replication-controller:2016}
-If for example one node disappear because of connection issues, the Replication Controller will start a new one.
+For example, if one node disappears because of connection issues, the Replication Controller will start a new one.
 If the disappeared node is available back again it will kill a node.
 These functionality increases the stability, the availability and the scalability of the system in an autonomous manner.
 The last important component in Kubernetes are rolling updates.
@@ -511,7 +511,7 @@ With the \textit{retrained messages} feature, a consumer which is connected for 
 
 Due to the fact that \ac{MQTT} is a simple protocol with a small footprint and the \ac{QoS} handshake enables the protocol to be independent from \acs{TCP} so that it can be used even on devices without a TCP/IP stack like embedded devices such as an Arduino.\autocite[cf.]{Bayer:MQTT}
 There the protocol can be used via a bus or a serial port.\autocite[cf.]{Bayer:MQTT}
-\ac{MQTT} himself support the protection of the messages via username and password and the communication can be encrypted with \acs{SSL} or \acs{TLS} on the transport layer.\autocite[cf.]{Bayer:MQTT}
+\ac{MQTT} itself support the protection of the messages via username and password and the communication can be encrypted with \acs{SSL} or \acs{TLS} on the transport layer.\autocite[cf.]{Bayer:MQTT}
 The broker can additionally use client certificates to authenticate them or restrict the access via access control lists such as \acs{IP} filtering.\autocite[cf.]{Bayer:MQTT}
 \ac{MQTT} is available for most of the common programming languages and platforms.
 

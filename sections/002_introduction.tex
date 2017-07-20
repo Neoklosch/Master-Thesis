@@ -10,15 +10,15 @@
 % Research Context - Forschungskontext
 % -- IoT
 The \ac{IoT} is one of the biggest topics in the recent years.
-Companies with a focus in that area have an enormous market growth with plenty of new opportunities, use cases, technologies, services and devices.
-Bain \& Company predicts an annual revenue of \$450 billion for companies who selling hardware, software and comprehensive solutions in the \ac{IoT} context by 2020.\autocite{Bosche:2016}
+Companies with a focus on that subject have an enormous market growth with plenty of new opportunities, use cases, technologies, services and devices.
+Bain \& Company predicts an annual revenue of \$450 billion for companies selling hardware, software and comprehensive solutions in the \ac{IoT} context by 2020.\autocite{Bosche:2016}
 In order to limit the vast area of \ac{IoT}, more and more standards are defined and subtopics established.
 The \ac{IERC} divided them into eight categories: Smart Cities, Smart Health-care, Smart Transport and Smart Industry, also known as Industry 4.0, to mention only a few.\autocite[cf.][p. 7]{IERC:2011}
 All of them are well connected, for example a Smart Factory, which is a part of the Smart Industry, can get a delivery from a self driving truck (Smart Transport) which navigates through a Smart City to get to the factory.
 Such information networks are one of the main goals of \ac{IoT}.
 % Research Area - Forschungsgebiet
 % -- Smart Factories
-In the Industry 4.0 for example, multiple smart factories should be interconnect into a distributed and autonomous value chain.
+In the Industry 4.0 for example, multiple smart factories should be interconnected to a distributed and autonomous value chain.
 Also, the automation level in a single factory will be increased which helps to have a more flexible and efficient production process.
 Currently a factory has a high degree of automation, but due to a lack of intelligence and communication between the machines and the underlying system, they can not react to changing requirements or unexpected situations.
 % Application Area - Anwendungsbereich
@@ -73,7 +73,7 @@ The technical prerequisite and detailed requirements for the prototype as well a
 The cooperation with the \ac{FOKUS} plays a prominent role for this thesis, because of their knowledge and experience in the area of \ac{IoT} and \ac{NFV}.
 As the development method of choice a Kanban like process will be used.
 Kanban is flexible but also straight forward.
-There is less meeting overhead then in Scrum, but it also helps to have an eye on the planed and spend resources.
+There is less meeting overhead than in Scrum, but it also helps to have an eye on the planed and spend resources.
 
 
 \section{Scope}
@@ -94,7 +94,7 @@ As mentioned before, the engine to be developed will be a prototype for a fog no
 Open Baton serves as the template for that project and especially the modular architecture and the resulting extensibility will be targeted.
 Beside that, the whole prototype will be created completely from scratch.
 The container virtualization will be realized with Docker\footnote{\url{https://www.docker.com}}, an open source container platform.
-Docker has on \ac{API} where third party apps can communicate with and can control the engine himself.
+Docker has on \ac{API} where third party apps can communicate with and can control the engine itself.
 The functional and non-functional constraints can be stored and transfered for example as \ac{YAML} schemes which are part of the \ac{TOSCA} standard.
 These schemes should be extendable and should fit the needs of the constraint functionality.
 
@@ -107,7 +107,7 @@ These schemes should be extendable and should fit the needs of the constraint fu
 
 Figure \ref{fig:conceptual_architecture} shows a conceptual architecture design that based on a draft of the \ac{FOKUS}.
 On the right side is the abstract cloud infrastructure.
-These could be for example Open Baton or any other \ac{MANO} compliant Framework.
+This could be for example Open Baton or any other \ac{MANO} compliant Framework.
 The cloud infrastructure will be considered while developing the prototype, but the development or integration of such a component is out of scope for this thesis.
 The \ac{NFVI} on the left side includes the Fog Node.
 A single fog node should have the fog node engine, which is the prototype to be developed, as well as the Docker engine.
@@ -116,11 +116,11 @@ The fog node engine can orchestrate the local Docker containers, or if it necess
 This allows the system to be more flexible and it can achieve an autonomous orchestration level.
 The autonomous orchestration of containers between fog nodes without an existing connection to the cloud server is desirable, but not part of this thesis.
 Due to the fact that the prototype will be used in an \ac{IoT} context, the system will be tested on low power devices, for example on a Raspberry Pi\footnote{\url{https://www.raspberrypi.org}} cluster.
-It is out of scope to create a system that guarantee to be executable on arbitrary devices, but theoretically this could be achieved by using platform an independent programming language and corresponding frameworks.
+It is out of scope to create a system that guarantees to be executable on arbitrary devices, but theoretically this could be achieved by using platform an independent programming language and corresponding frameworks.
 
 
 \section{Outline}
-In chapter \ref{chapter:state-of-the-art} an introduction into relevant topics like the \ac{IoT} in the context of Industry 4.0, \acp{CPS} and Fog Computing as subtopics, virtualization, especially container virtualization and orchestration and \ac{NFV} is given.
+In chapter \ref{chapter:state-of-the-art} an introduction is given to relevant topics like the \ac{IoT} in the context of Industry 4.0, \acp{CPS} and Fog Computing as subtopics, virtualization, especially container virtualization and orchestration and \ac{NFV}.
 Followed by a comparison of several established tools available on the market and finally some messaging concepts like \ac{MQTT} and ZeroMQ.
 The definition of the requirements as well as features and capabilities of the prototype will be shown in chapter \ref{chapter:requirements-analysis}.
 Based on that, the architecture of the system is illustrated in chapter \ref{chapter:concept}.

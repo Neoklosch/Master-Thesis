@@ -141,7 +141,7 @@ The communication layer is a pretty important component in the Motey engine.
 Here three different communication points are necessary to provide the basic functionalities which are needed for the fog node agent.
 
 The first subcomponent is the \textbf{node discovery}.
-The idea behind the node discovery is that each node automatically can register and unregister himself to the cluster.
+The idea behind the node discovery is that each node automatically can register and unregister itself to the cluster.
 This means in the moment of the startup of a node, they will send out a message, with an information request about all subscribed nodes.
 To realize that \ac{MQTT} will be the tool of choice.
 The \ac{MQTT} broker will receive and forward the message to all subscribed nodes and each node will response with an information message back to the broker.
@@ -174,7 +174,7 @@ It will be mainly used for the communication with the centralized fog level, bec
 In comparison to an implementation with ZeroMQ, this is much bigger overhead in terms of traffic and latency, but to have a better compatibility with other systems, this \ac{API} will be implemented.
 As the tool of choice Flask\footnote{\url{http://flask.pocoo.org}} will be used.
 It is a lightweight and robust Python webserver, which is open source, well documented and under constant development.
-The \ac{REST} \ac{API} himself will follow the \ac{HATEOAS} constraint with the addition that each endpoint will have a version number in the \ac{URL} to ensure backwards compatibility if something changes in the implementation.
+The \ac{REST} \ac{API} itself will follow the \ac{HATEOAS} constraint with the addition that each endpoint will have a version number in the \ac{URL} to ensure backwards compatibility if something changes in the implementation.
 
 All the mentioned subcomponents should be controlled by a so called \textit{communication manager} which will be implemented with the facade design pattern.
 That decouples the communication layer from the other components, the whole system can be maintained much easier and each subcomponent can be easy replaced by any other technology if necessary.
@@ -202,7 +202,7 @@ Also internal components like the \ac{VAL} plugins can add new capabilities to t
 
 
 \subsection{Orchestration layer}
-As one of the most important layers, the \textit{Orchestration Layer} will be a connector between all the nodes in a cluster and also between multiple components in the Motey engine himself.
+As one of the most important layers, the \textit{Orchestration Layer} will be a connector between all the nodes in a cluster and also between multiple components in the Motey engine itself.
 Primary it is used to handle the business logic of the deployment of new services.
 If a new service will be send to the communication layer it will be forwarded to the orchestration layer and will be parsed there.
 Afterwards the service will be validated and finally deployed by the orchestrator.
@@ -243,7 +243,7 @@ Figure \ref{fig:lifecycle_mgm_squence_diagram_stop_service} illustrates this beh
     \label{fig:lifecycle_mgm_squence_diagram_stop_service}
 \end{figure}
 
-The lifecycle states of the containers are not handled by the orchestrator himself, they are detected via the lifecycle management of the virtualization engine like Docker or XEN.
+The lifecycle states of the containers are not handled by the orchestrator itself, they are detected via the lifecycle management of the virtualization engine like Docker or XEN.
 Due to the fact that the service is tightly coupled to the images, the state of the images will directly affect the state of the service.
 If only one container change its state to \textit{error} the whole service will be marked as \textit{error}.
 To handle the different states of the different engines, a transformation logic between the state will be implemented.

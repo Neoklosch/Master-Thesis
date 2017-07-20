@@ -508,7 +508,7 @@ Therefore the \ac{MQTT} client has to be executed in a separate thread too.\newl
 
 Figure \ref{fig:node_discovery_squ_dia} shows how the node discovery will be implemented.
 Important aspect is that the sender node is also part of the subscribed nodes.
-This means after the \textit{connection} to the broker is established and the client is subscribed to the topics, each \textit{Node Request} will also be received by the sender himself.
+This means after the \textit{connection} to the broker is established and the client is subscribed to the topics, each \textit{Node Request} will also be received by the sender itself.
 Benefit out of it, is that beside the fact that a new registered node gets all meta information from all other nodes, also these nodes get the meta information of the new node.
 In this way each node has knowledge of all the other nodes and can keep track of them.\newline
 
