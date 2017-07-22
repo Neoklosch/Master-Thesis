@@ -151,7 +151,7 @@ As long as there is no appearance or disappearance of any node, the network will
 To provide a better flexibility the \ac{MQTT} broker can be executed in the centralized fog level or even on a node in the autonomous fog level.
 This allows the system to operate even if the centralized fog level disappears due to network issues or any other communication problems.
 It is also possible to let all nodes communicate which each other once they shared their information.
-Smalle connection issues can be covered with this mechanism.
+Smaller connection issues can be covered with this mechanism.
 The \ac{MQTT} broker Mosquitto\footnote{\url{https://mosquitto.org}} will be the tool of choice.
 It is an eclipse\footnote{\url{http://www.eclipse.org}} project which means it is open source and under continuous development.
 The project website describes itself as "a lightweight server implementation of the MQTT protocol that is suitable for all situations from full power machines to embedded and low power machines"\autocite{Eclipse:Mosquitto}.
@@ -173,7 +173,7 @@ The last subcomponent is the \textbf{\ac{REST} \ac{API}}.
 It will be mainly used for the communication with the centralized fog level, because most of the orchestration tools in the market are using \ac{REST} for transferring data.
 In comparison to an implementation with ZeroMQ, this is much bigger overhead in terms of traffic and latency, but to have a better compatibility with other systems, this \ac{API} will be implemented.
 As the tool of choice Flask\footnote{\url{http://flask.pocoo.org}} will be used.
-It is a lightweight and robust Python webserver, which is open source, well documented and under constant development.
+It is a lightweight and robust Python web server, which is open source, well documented and under constant development.
 The \ac{REST} \ac{API} itself will follow the \ac{HATEOAS} constraint with the addition that each endpoint will have a version number in the \ac{URL} to ensure backwards compatibility if something changes in the implementation.
 
 All the mentioned subcomponents should be controlled by a so called \textit{communication manager} which will be implemented with the facade design pattern.
@@ -219,7 +219,7 @@ Figure \ref{fig:lifecycle_mgm_squence_diagram_start_service} show up the lifecyc
 
 At first the client requests the orchestrator via the \ac{REST} \ac{API}, to start a service.
 Therefore the related service blueprint will be uploaded to the node.
-The orchestrator will directly start with the lifecycle management by creating an service with an \textit{inital} state.
+The orchestrator will directly start with the lifecycle management by creating an service with an \textit{initial} state.
 Afterwards the blueprint gets checked by the orchestrator.
 If it is not valid, the state of the service would be set to \textit{error}.
 In this case everything went fine and the state changes to \textit{instantiating}.

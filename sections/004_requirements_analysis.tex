@@ -94,7 +94,7 @@ Code tests and code style checks will help to ensure the functionality and exten
 \paragraph{Security} Also an important part as in nearly every project, security will be considered.
 Especially in the \ac{IoT} security becomes important due to several bad examples in the last years.% TODO: quellen: botnetz, etc.
 Therefore particular scenarios will be considered and recommendations will be addressed.
-The focus of the prototype will be on showing up the functionality of the application, without implementing security related machanisms right down to the latest detail.
+The focus of the prototype will be on showing up the functionality of the application, without implementing security related mechanisms right down to the latest detail.
 \paragraph{Correctness} As mentioned before the code will be tested and code style checks will help to have a standardized code base.
 \paragraph{Flexibility} The software will be developed with some well known standards in mind like the \ac{MANO} specification, standard protocols and also design patterns to make the source code more readable and understandable.
 \paragraph{Scalability} The prototype will also be developed to be executed on several nodes at the same time.
@@ -130,7 +130,7 @@ The state of the services can be observed at any step of the process.
 Also in this case a cloud service like Open Baton will deploy a service to a node cluster.
 Figure \ref{fig:use_case_deploy_service_multiple_nodes} illustrate this use case.
 Again one node will get the blueprint and parse them.
-Each image has capabilites attached to them.
+Each image has capabilities attached to them.
 During the parsing of the blueprint, the application check if the node can fulfill all of these capabilities.
 If an image can not used by this node, the application will search for a node, that is able to deploy the image.
 For example, if one image needs a ZigBee dongle to measure data, than the capability \textit{ZigBee} is added to the image in the blueprint.
@@ -190,13 +190,13 @@ All of these states should also be viewable by a centralized instance like the m
 
 \section{Delineation from existing solutions}
 \label{section:delineation-from-existing-solutions}
-This section is intended to show the features of existing tools and framework to heighlight main differences to the application to be developed.
+This section is intended to show the features of existing tools and framework to highlight main differences to the application to be developed.
 As mentioned before, the prototype to be developed should orchestrate virtualized containers on nodes based on functional and non-functional constraints.
 Therefore the focus of this consideration is the orchestration as well as the constraints.
 
 \paragraph{Kubernetes} is especially made for Docker and can orchestrate, scale and manage containers.
 It is open source, developed by Google and one of the most popular orchestration tools in the market.
-It has an active community and is used by several well known companies\autocite{Kubernetes:Case-Studies} like ebay\footnote{\url{http://www.ebay.com}} and Wikimedia\footnote{\url{https://www.wikimedia.org}}.
+It has an active community and is used by several well known companies\autocite{Kubernetes:Case-Studies} like eBay\footnote{\url{http://www.ebay.com}} and Wikimedia\footnote{\url{https://www.wikimedia.org}}.
 Due to the fact, that is exclusively made for Docker, it means that the system is not made to easily switch the underlying container engine if needed.
 
 As mentioned in section \ref{subsection:state-of-the-art:kubernetes} Kubernetes supports labels.
@@ -221,7 +221,7 @@ By default labels can not be predefined in a \ac{JSON} file and applied to the n
 The placement have to be done manually via the Docker client or the \ac{REST} \ac{API}.
 
 Just as Kubernetes, Docker Swarm is not \ac{ETSI} \ac{MANO} compliant and provides no build-in \ac{GUI}.
-There are several third party \acp{GUI} that fix that issue, but this implies an additional setup and maintance effort.
+There are several third party \acp{GUI} that fix that issue, but this implies an additional setup and maintenance effort.
 Due to the fact that it is a build-in function of Docker, the setup is quite easy and much more lightweight than Kubernetes.
 This means it will also work on \ac{IoT} devices by default.
 
@@ -243,7 +243,7 @@ Without an underlying orchestration tool it is limited.
 By default it is also not possible to orchestrate functionalities based on constraints.
 To enable this behavior the used plugin has to support such a functionality like Docker Swarm or Kubernetes.
 Cloudify provides an easy to use \ac{GUI} where the user can use the whole system, as well as a clean command line tool.
-By using the \ac{YAML} formate to build service blueprints, the creation of them is similar to well known Ansible or Vagrant deployment schemes.
+By using the \ac{YAML} format to build service blueprints, the creation of them is similar to well known Ansible or Vagrant deployment schemes.
 With the help of the Cloudify Composer the creation of a blueprint is getting much easier and also usable for users without any coding experience.
 
 % https://www.sdxcentral.com/products/gigaspace-cloudify/

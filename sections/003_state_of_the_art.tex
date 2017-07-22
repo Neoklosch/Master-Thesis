@@ -591,7 +591,7 @@ Multiple controllers can be subscribed to a server and multiple nodes can be sub
 As mentioned before, there are much more combinations possible.
 A good overview of many of them can be found in the official guide\footnote{\url{http://zguide.zeromq.org/page:all}} of ZeroMQ.\newline
 
-By default ZeroMQ has no encryption or authentication machanismn build in.
+By default ZeroMQ has no encryption or authentication mechanism build in.
 There is a dedicated project called CurveZMQ\footnote{\url{http://curvezmq.org}} which enables these functionalities and it is also created by the ZeroMQ maintainers.
 Since ZeroMQ version 4.x CurveZMQ comes built-in.
 Finally ZeroMQ has libraries for most of the common programming languages.\newline
@@ -609,7 +609,7 @@ Finally ZeroMQ has libraries for most of the common programming languages.\newli
 An overview of how to apply the concept of microservices for the \ac{IoT} is shown in \autocite{Butzin:2016}.
 The one of the presented patterns is to use container virtualization to split up the tools and use them on low power devices.
 Also in this work, Docker was used as the tool of choice.
-It describes that the usage of container virtualization enables a better testibility, ease the service deployment and make the tools scale better.\autocite[cf.][p. 5]{Butzin:2016}
+It describes that the usage of container virtualization enables a better testability, ease the service deployment and make the tools scale better.\autocite[cf.][p. 5]{Butzin:2016}
 They also mentioned that using tools like Docker at the edge of a network, e.g. on sensors and actuators, is nearly not possible due to the overhead and dependencies of such tools.\autocite[cf.][p. 5]{Butzin:2016}
 Therefore the concept of fog and edge computing is presented as a viable solution, where low power devices like smartphones or small \acp{PC} that are able to them.\autocite[cf.][p. 5]{Butzin:2016}
 
@@ -619,7 +619,7 @@ Beside that the edge network might be disconnected from the cloud environment an
 That implies, that edge computing must be able to compute and store data "to address data collection, (pre-)processing, and distribution"\autocite[p. 380]{Pahl:2015}.
 If these requirements are fulfilled such a network is called "edge cloud" that is technically a micro-cloud.\autocite[cf.][p. 121]{Pahl:2016}
 Multiple edge clouds can be located side by side in a network.
-In general edge devices like an Raspberry Pi or any other small \ac{PC}, that enables the coputation and storage of data, have several sensors and actors connected to them.
+In general edge devices like an Raspberry Pi or any other small \ac{PC}, that enables the computation and storage of data, have several sensors and actors connected to them.
 An Raspberry Pi is powerful enough to do the job, but is cheap, consume less energy than a normal \ac{PC} and is easy to integrate in an existing environment.\autocite[cf.][p. 118]{Pahl:2016}
 
 \begin{figure}[H]
@@ -629,22 +629,22 @@ An Raspberry Pi is powerful enough to do the job, but is cheap, consume less ene
     \label{fig:container_based_cluster_architecture}
 \end{figure}
 
-Futhermore this paper describes a so called container-based cluster architecture\autocite[p. 384]{Pahl:2015}.
+Furthermore this paper describes a so called container-based cluster architecture\autocite[p. 384]{Pahl:2015}.
 Figure \ref{fig:container_based_cluster_architecture} outline these.
 There, each node can be the hosts of one or multiple virtualization containers.
 Multiple containers can be grouped together to a services, even if the containers are deployed on different nodes.\autocite[cf.][p. 384]{Pahl:2015}
-Volumes stores data for appplications that can persist data on a node.\autocite[cf.][p. 384]{Pahl:2015}
-Finally containers can have dependecies, again also across multiple nodes, to communicate with each other.\autocite[cf.][p. 384]{Pahl:2015}
+Volumes stores data for applications that can persist data on a node.\autocite[cf.][p. 384]{Pahl:2015}
+Finally containers can have dependencies, again also across multiple nodes, to communicate with each other.\autocite[cf.][p. 384]{Pahl:2015}
 This behavior is similar to the basic concept of services and pods in Kubernetes.
 
-For the orchestration and services desciption, the authors point out \ac{TOSCA} that is supported by Cloudify.
+For the orchestration and services description, the authors point out \ac{TOSCA} that is supported by Cloudify.
 A \ac{TOSCA} orchestration plan is defined in \ac{YAML} and is used to deploy the containers on the nodes.
 Beside that \ac{TOSCA} can also describe the infrastructure of the system.
 
 In a future publication, the same authors are using this technological basis to create an \ac{PaaS} service based on a Raspberry Pi cluster\autocite{Pahl:2016}.
 % Based on the study of \autocite{Pahl:2015} the whole architecture was deployed in a Raspberry Pi cluster in \autocite{Pahl:2016}.
 The presented architecture is used to be a bridge "between IoT, local compute devices and data centre clouds"\autocite[p. 117]{Pahl:2016}.
-As mentioned before a Raspberry Pi is powerful engough to do this job for example to gather data at the edge of a network and to enable a communication channel with the cloud infrastructure.\autocite[cf.][p. 117]{Pahl:2016}
+As mentioned before a Raspberry Pi is powerful enough to do this job for example to gather data at the edge of a network and to enable a communication channel with the cloud infrastructure.\autocite[cf.][p. 117]{Pahl:2016}
 Container virtualization is used to make the software to be deployed portable and interoperable.\autocite[cf.][p. 117]{Pahl:2016}
 Therefore, Docker is used as the tool of choice.
 To deploy the containers to the edge cloud cluster, a custom tool was developed instead of using an existing solutions like Kubernetes.\autocite[cf.][p. 122]{Pahl:2016}
@@ -652,23 +652,23 @@ This allows more flexibility in monitoring and maintaining the nodes.\autocite[c
 As the storage solution they used OpenStack Swift.
 The outcome of the work was working environment that was able to deploy and monitor an edge cloud infrastructure.
 As mentioned in the paper, there is significant space for improvements, like a working orchestration engine, some data and network management aspects and better semantic descriptions.
-Overall this works shows the need of a solid infrastructure at the network edge to enable edge computing capabilites.
+Overall this works shows the need of a solid infrastructure at the network edge to enable edge computing capabilities.
 
 The project of \autocite{Stubbs:2015} focuses on service discovery by implementing them via the Serfnode\footnote{\url{https://github.com/waltermoreira/serfnode}} for distributed systems of microservices.
-Service discovery is a mechanism to detect services and service providers in a network without a centralized managment level.
+Service discovery is a mechanism to detect services and service providers in a network without a centralized management level.
 Each consumer has knowledge of any other provider and the related capabilities of that provider.
 Serfnode is a decentralized open source service discovery solution based on the Serf project\footnote{\url{https://www.serf.io}}.
-It can be used to enable edge nodes to discover other service provider in a network in real time to faciliate communication.\autocite[cf.][p. 34]{Stubbs:2015}
-Sernode itself can be deployed as a Docker container on a node.
+It can be used to enable edge nodes to discover other service provider in a network in real time to facilitate communication.\autocite[cf.][p. 34]{Stubbs:2015}
+Serfnode itself can be deployed as a Docker container on a node.
 Unfortunately there is no Raspberry Pi Docker image available at the times this thesis was created.
-After the container is deployed, Serfnode can be configured to enable a service discovery mechanism that provide and can gather informations about one or multiple Docker container across a cluster without modifiying the original containers.\autocite[cf.][p. 34]{Stubbs:2015}
+After the container is deployed, Serfnode can be configured to enable a service discovery mechanism that provide and can gather informations about one or multiple Docker container across a cluster without modifying the original containers.\autocite[cf.][p. 34]{Stubbs:2015}
 There are several service discovery tools out in the market, but Serfnode distinguishes itself as lightweight, platform-agnostic and easy to incorporate with Docker.\autocite[cf.][p. 34]{Stubbs:2015}
 
 It also contains a monitoring and self-healing mechanisms.\autocite[cf.][p. 34]{Stubbs:2015}
 In addition Serfnode uses an event handling mechanism that reacts to join, leave and fail events of a node.\autocite[cf.][p. 38]{Stubbs:2015}
 For example it informs each node in the cluster about a newly appeared node at start-up.\autocite[cf.][p. 37]{Stubbs:2015}
 Also in this project \ac{YAML} is used as the description language for the service description.
-Beside Serfnode some other service discovery tools like Consul\footnote{\url{https://www.consul.io}}, Synapse\footnote{\url{http://airbnb.io/projects/synapse}} and CoreOS\footnote{\url{https://coreos.com/fleet/docs/latest/examples/service-discovery.html}} are describted with the outcome that they are fits better in a cloud environment and are to heavy for an edge node cluster.\autocite[cf.][p. 36]{Stubbs:2015}
+Beside Serfnode some other service discovery tools like Consul\footnote{\url{https://www.consul.io}}, Synapse\footnote{\url{http://airbnb.io/projects/synapse}} and CoreOS\footnote{\url{https://coreos.com/fleet/docs/latest/examples/service-discovery.html}} are described with the outcome that they are fits better in a cloud environment and are to heavy for an edge node cluster.\autocite[cf.][p. 36]{Stubbs:2015}
 Also the whole orchestration part is not covered by Serfnode itself.
 
 Another Docker based solution is presented in \autocite{Rufino:2017}.
@@ -688,7 +688,7 @@ Three different layers are provided to enable that behavior:
   Finally the \ac{MLU} provides local intelligence, for example to detect and deploy real-time requirements.\autocite[cf.][p. 1534]{Rufino:2017}
   \item The cloud computing layer is presented as the enterprise layer.
   This is used for computational tasks like data-mining and evaluation.\autocite[cf.][p. 1534]{Rufino:2017}
-  Also the results from the \ac{MLU} can be analysed and necessary actions can be performed.\autocite[cf.][p. 1534]{Rufino:2017}
+  Also the results from the \ac{MLU} can be analyzed and necessary actions can be performed.\autocite[cf.][p. 1534]{Rufino:2017}
   Finally this layer is also responsible for the orchestration of the services.
   Further a centralized control point available to monitor the system and to perform task on the network.
   Fault management can be enabled by providing redundancy at different layers and also through the application of orchestration rules.\autocite[cf.][p. 1535]{Rufino:2017}
@@ -700,10 +700,10 @@ As the communication protocol a \ac{REST} base interface was created.
 The scripts are creating data on the sensing layer, send them over to the gateway where the data is stored and finally will be fetched from the enterprise layer.\autocite[cf.][p. 1535]{Rufino:2017}
 The measured performance for writing the data, starting a container and terminate them again is presented in the work.
 Overall the proposed architecture demonstrates that a distributed architecture composed of several well known components can be deployed on different devices and can still perform well.
-Unfortunately the \ac{MLU} component was not descibed and measured results were not adequate analyzed.
+Unfortunately the \ac{MLU} component was not described and measured results were not adequate analyzed.
 Nevertheless, the presented architecture worked and the feasibility of such a system was shown.
 
-\autocite{Bellavista:2017} demonstrate the feasability of fog computing architecture with an extended Kura\footnote{\url{https://eclipse.org/kura}} version as the gateway software and Docker as the virtualization tool.
+\autocite{Bellavista:2017} demonstrate the feasibility of fog computing architecture with an extended Kura\footnote{\url{https://eclipse.org/kura}} version as the gateway software and Docker as the virtualization tool.
 The device layer is realized again with some Raspberry Pi nodes.
 The main focus of the work is on the gateway layer.
 Kura itself is an open source \ac{IoT} gateway software aggregate the data of multiple connected devices and can also control them.\autocite[cf.][p. 2]{Bellavista:2017}
@@ -724,7 +724,7 @@ Finally this structure is called a "Gateway-cloud" but in fact it is pretty simi
 
 With the help of the new Kura version new network topologies for the gateways are possible.
 Two of them the "Cluster Organization" and the "Mesh Organization" are mentioned in the work and the latter is shown in figure \ref{fig:kura_gateway_topologies}.\autocite[cf.][p. 4]{Bellavista:2017}
-Former is based on a tree hierarchie.
+Former is based on a tree hierarchies.
 There, multiple fog devices are connected to one gateway.
 Further, multiple gateways can exists side by side.
 They are all again connected to another local gateway that aggregates the data from all the other gateways.
@@ -764,6 +764,6 @@ It is also possible to start multiple containers with the same application to pr
 For example in the performance tests of the work the authors started multiple containers with a Wildfly\footnote{\url{http://wildfly.org}} web server and an Elasticsearch\footnote{\url{https://www.elastic.co/products/elasticsearch}} instance.\autocite[cf.][p. 2]{Morabito:2016}
 
 The performance results are similar to the test results of the other references.
-Docker is comparable with a native environment beside the network troughput, which is lower.\autocite[cf.][p. 4]{Morabito:2016}
+Docker is comparable with a native environment beside the network throughput, which is lower.\autocite[cf.][p. 4]{Morabito:2016}
 This also affects also the power consumption during network communication, which is a bit higher than in a native environment.\autocite[cf.][p. 4]{Morabito:2016}
-Overall also in this test case, Docker performs good enougth to be used for this use case.\autocite[cf.][p. 4]{Morabito:2016}
+Overall also in this test case, Docker performs good enough to be used for this use case.\autocite[cf.][p. 4]{Morabito:2016}

@@ -52,7 +52,7 @@ A detailed explanation of all files will be omitted, as this would exceed the sc
     \item{\textbf{File: requirements.txt}} a list with the Python requirements which are necessary to run the Motey engine and which should be installed during the build phase via pip.
   \end{itemize}
   \item{\textbf{motey-rpi-docker-image:}} is pretty similar to the motey-docker-image directory but is specifically made for the Raspberry Pi image.
-  \item{\textbf{performance\_test:}} contains scripts that are used to perform performance tests for the evalutation chapter.
+  \item{\textbf{performance\_test:}} contains scripts that are used to perform performance tests for the evaluation chapter.
   \item{\textbf{resources:}} is a resource folder for the Github documentation. Will only be used by the \textit{README.rst} file in the root folder and the \textit{index.rst} file in the docs\/source folder.
   \item{\textbf{samples:}} contains some samples to test the functionality of the Motey engine. Is primarily a playground to test new functions.
   \item{\textbf{scripts:}} some scripts which will be executed frequently during the development phase.
@@ -94,7 +94,7 @@ The daemon process can be controlled via a command line interface.
 \end{listing}
 After the Motey engine is installed via the setup script, this command line tool will be available in the terminal.
 
-\paragraph{dependency-injector} is a microframework for \acf{DI} in Python.
+\paragraph{dependency-injector} is a micro framework for \acf{DI} in Python.
 The \ac{DI} pattern allows to move the responsibility for creating a dependency from the concrete objects to a factory or a framework which creates the dependency graph.
 This grants the single responsibility concept for classes and makes the whole code base much easier to unit test, because a dummy object can be passed to the constructor of the class.
 It is also possible to mocked the object with the help of a mocking library.
@@ -127,7 +127,7 @@ Flask does not provide any templating or database engine, nor does it enforce a 
 Instead it will support extensions to add functionalities like that so that the developer can choose the tools of choice.\autocite[cf.]{Flask:Documentation:Foreword}
 Nevertheless Flask is production ready and is used in several big projects like Pinterest\autocite{Quora:Pinterest:Flask} or Twilio\autocite{Twilio:Flask}.
 
-Flask can use so called \textit{Blueprint} to configure new routes in the webserver.
+Flask can use so called \textit{Blueprint} to configure new routes in the web server.
 A Blueprint is basically a Python class that can define methods like \textit{get} or \textit{post} to handle the specific \ac{HTTP} verbs.
 This is useful to create valid \ac{HATEOAS} \ac{REST} \acp{API}.
 Each Blueprint will be represented by an \ac{URL} endpoint.
@@ -145,7 +145,7 @@ Listing \ref{code:flask-blueprint} illustrates the implementation of all \ac{API
   \label{code:flask-blueprint}
 \end{listing}
 
-In line 2 a new endpoint will be add via the \textit{add\_url\_rule} to the Flask webserver.
+In line 2 a new endpoint will be add via the \textit{add\_url\_rule} to the Flask web server.
 The first parameter indicates the endpoint \ac{URL} and the second parameter \textit{view\_func} represents the Blueprint class, in this case \textit{Capabilities}.
 To pass them over, the Blueprint has to be converted to a Flask view by using the \textit{as\_view} method.
 The other endpoints are implemented equivalent.
@@ -372,10 +372,10 @@ The lifecycle will be changed to the \textit{instantiating} state.\newline
 Afterwards the capabilities of each contained image has to be checked.
 This is necessary to identify the node that is handling the image.\newline
 
-In the blueprint, the capabilities assigned to an image can have thre different conditions:
+In the blueprint, the capabilities assigned to an image can have three different conditions:
 \begin{enumerate}
   \item there are no capabilities assigned to an image, therefore the current node start the image and manage the resulting container.
-  \item all the assigned capabilites can be fulfilled by the current node. This node then start the image and is responsible responsible for the resulting container.
+  \item all the assigned capabilities can be fulfilled by the current node. This node then start the image and is responsible responsible for the resulting container.
   \item one or more capabilities can not be fulfill by the current node. Another node that meet the requirements must be found to handle the deployment of the image.
 
    to start the image and manage the resulting container.
@@ -434,7 +434,7 @@ Figure \ref{fig:lifecycle_mapping} show the mapping logic of the lifecycle state
 Important while mapping the lifecycle states is, that each status will be requested via a ZeroMQ endpoint.
 Also in this case a request-reply call between the nodes will be executed.
 This is performed by the \textit{CommunicationManager} again.
-After all states are received and stored in a lsit, the mapping starts.
+After all states are received and stored in a list, the mapping starts.
 Then, the list will be searched for each state.
 If one of the shown state is found, the related state in the service is set.
 If for example one of the images is in the \textit{STOPPING} state, also the service is marked as \textit{STOPPING}.
@@ -452,7 +452,7 @@ All the necessary communication components are located in the \textit{motey/comm
 
 \paragraph{APIServer} This server is responsible for the \ac{REST} \ac{API}.
 Therefore the Flask server will be instantiated and configured in the constructor of the wrapper class.
-The server will be executed in a separate thread due to the nature of a webserver to block the main thread because the it will run endless to receive all incoming requests.
+The server will be executed in a separate thread due to the nature of a web server to block the main thread because the it will run endless to receive all incoming requests.
 If it would not be implemented with a thread only the Flask server would be started and the following code would be blocked.
 Furthermore Flask has to be configured to accept cross-site requests, by disabling the \textit{same origin policy} with a \textit{\ac{CORS}} library.
 This behavior is a development only feature and it is strictly recommend to deactivate it in production mode.
@@ -523,7 +523,7 @@ All the nodes react to this by removing the meta data about this node from the d
 Section \ref{section:ZeroMQ} and \ref{subsection:CommunicationLayer} gave a detailed overview about ZeroMQ and how does it work.
 Now the concrete implementation will be discussed.
 The wrapper class \textit{ZeroMQServer} binds multiple sockets to the related ports.
-There are four sockets binded for the direct node-to-node communication via \ac{TCP} and one port to connect third party applications to the Motey engine.
+There are four sockets bound for the direct node-to-node communication via \ac{TCP} and one port to connect third party applications to the Motey engine.
 The latter is used to add or remove capabilities on a node.
 ZeroMQ provides an \ac{IPC} protocol for such a use case.
 The ZeroMQServer will bind a socket with the Publish-Subscribe pattern that allows multiple publisher to connect to the endpoint.
@@ -619,14 +619,14 @@ The header is fixed and only contains the name of the engine and a short descrip
 Below them the navigation bar located.
 As in the mockup four different pages are available.
 The first called \textit{Motey} has a very short introduction into the web client.
-The second and also the selected one in the screenshot shows a list with all deployed services.
+The second and also the selected one in the screen shot shows a list with all deployed services.
 \textit{Registered nodes} will show a list with all discovered nodes, again in a table.
 Finally the \textit{Send blueprint} contains a textarea to put in the \ac{YAML} service description and a button to send the data.\newline
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{resources/images/motey_gui_screenshot.png}
-    \caption[Screenshot of the Motey \ac{GUI}]{Screenshot of the Motey \ac{GUI}}
+    \caption[Screen shot of the Motey \ac{GUI}]{Screen shot of the Motey \ac{GUI}}
     \label{fig:motey_gui_screenshot}
 \end{figure}
 
@@ -700,7 +700,7 @@ The image will only be executed if it is a master branch build (see line 17).
 This is reasonable because a development branch build can be unstable and should not be used to create an official Docker image.
 Line 18 will build the image and line 19 uploads it.
 Two environment variables are used here, because to upload an image, the username and the password of the Docker Hub account has to be passed.
-Due to the fact that this file is under public version control, this sensible information should not be commited.
+Due to the fact that this file is under public version control, this sensible information should not be committed.
 Therefore preconfigured login credentials are used.
 Finally the Docker image will be pushed in line 20.\newline
 
@@ -711,7 +711,7 @@ The second folder can be used to build and upload a specific Raspberry Pi Docker
 Both scripts are slightly different, because a Raspberry Pi is using a \ac{CPU} with an ARM architecture.
 Therefore Docker images that should support ARM \acp{CPU} must have specific dependencies and has to be build differently.
 To build an image, a so called \textit{Dockerfile} has to be created.
-The Dockerfile for the Raspberry Pi image is different to the one for the nomal image, because it load a Raspbian base image instead of an Ubuntu image like the normal file will do.
+The Dockerfile for the Raspberry Pi image is different to the one for the normal image, because it load a Raspbian base image instead of an Ubuntu image like the normal file will do.
 Also the setup script is slightly different, because Raspbian sometimes need other dependencies or has different preinstalled tools.
 Listing \ref{code:motey_dockerfile} shows the Dockerfile for the normal Motey build.\newline
 

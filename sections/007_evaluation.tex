@@ -57,7 +57,7 @@ Concluding also the container size is much smaller in Docker than in \ac{KVM}.\a
 \autocite{Ramalho:2016} consolidates this statement of IBM.
 Docker is nearly no performance loss compared to the Hypervisor-based virtualization, in this case \ac{KVM}.\autocite[cf.][p. 3 ff.]{Ramalho:2016}
 The only are where Docker can not keep up with a native environment, is while performing network request and response.
-In direct comparison, Docker only can perform around half of the transactions as a native environemnt is able to do.\autocite[cf.][p. 6]{Ramalho:2016}
+In direct comparison, Docker only can perform around half of the transactions as a native environment is able to do.\autocite[cf.][p. 6]{Ramalho:2016}
 Compared to \ac{KVM} Docker has a significant performance advantage.
 In all of the tested areas "the hypervisor-based solution showed a significant overhead that cannot be easily mitigated"\autocite[p. 6]{Ramalho:2016}.
 Overall Docker is much more lightweight and due to the fact that it supports the ARM architecture, it is well suitable for the usage on low power devices.
@@ -92,7 +92,7 @@ Additionally, all the requests are done sequently, so that the server must handl
 For a web server, that is be made to handle several hundred request at the same time, a single request should be handled really fast and with only a few resources.
 This means the server has a lot of idle time and does not need much resources to handle the request.
 In this particular case, where the server has only to handle a single request at the same time, there are no advantages for using the more powerful device for the web server.
-More work is made on client side, so that the packages are faster transfered, if the client is more powerful.
+More work is made on client side, so that the packages are faster transferred, if the client is more powerful.
 This will change if there is more than a single client connected to the server and more than one request has to be performed at the same time.
 Overall using \ac{HTTP} as the protocol of choice, the messaging is pretty slow.
 To send the 10.000 request even the faster setup toke 03:31 minutes.

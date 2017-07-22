@@ -26,7 +26,6 @@ spellcheck:
 	aspell -c -t sections/001_abstract.tex -d en
 	aspell -c -t sections/001_acknowledgments.tex -d en
 	aspell -c -t sections/001_deposition.tex -d en
-	aspell -c -t sections/001_zusammenfassung.tex -d de
 	aspell -c -t sections/002_introduction.tex -d en
 	aspell -c -t sections/003_state_of_the_art.tex -d en
 	aspell -c -t sections/004_requirements_analysis.tex -d en
