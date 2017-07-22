@@ -1,28 +1,28 @@
 \begin{otherlanguage}{ngerman}
 \pdfbookmark{Zusammenfassung}{Zusammenfassung}
 \chapter*{Zusammenfassung}\label{chapter:zusammenfassung}
-Das Internet der Dinge (\acs{IoT}) ist eins der bedeutenstend Themen der letzten Jahre.
+Das Internet der Dinge (\acs{IoT}) ist eins der bedeutendsten Themen der letzten Jahre.
 Um die enorme Bandbreite im Bereich \acs{IoT} zu begrenzen wurden mehrere Standards und Unterkategorien eingeführt, z.b. die Industrie 4.0, welche Smart Factories beinhaltet.
-Sie hat zum Ziel, die Produktionskette in Fabriken zu optimieren, Prozessautomation zu schaffen und intelligente Verbindungen zwischen verschiedenen Abteilungen und Firmen zu schaffen.
-Um diese Ziele zu erreichen ist eine hochgradig verteilte Architektur notwendig, welche tausende von Nodes mit mehreren Sensoren, Maschinen oder smarten Objekten verbunden sein kann.
+Sie hat zum Ziel, die Produktionskette in Fabriken zu optimieren, Prozessautomatisierung zu schaffen und intelligente Verbindungen zwischen verschiedenen Abteilungen und Firmen zu schaffen.
+Um diese Ziele zu erreichen ist eine hochgradig verteilte Architektur notwendig, welche tausende von Nodes, die mit Sensoren, Maschinen oder smarten Objekten verbunden sein kann, umfasst.
 
-Das Konzept des Fog Computing bringt dabei die Cloud und der dazugehörigen Funktionalitäten näher an die darunter liegende Netzwerkschicht, um kleinere unabhängige fog clouds zu schaffen.
-Virtual Machines sind ein verbreitete Methode in Cloud System, sind jedoch nur bedingt im \ac{IoT} Kontext anwendbar, da hier meist leistungsschwache Geräte verwendet werden, die diese nur bedingt ausführen können.
-Zudem sind die Geräte in manchen Fällen in einem hoch heterogenen und hybriden Umfeld im Einsatz.
-Verlustbehaftete Signale und kurzstrecken Technologien sind häufig im Einsatz und Nodes können hochfrequent erscheinen und verschwinden.
-Die Latenz muss klein gehalten werden, um Echtzeitanwendungen zu erstellen, der Datenverkehr und die Resourcennutzen müssen so klein wie möglich gehalten werde und aus Sicherheits- und Datenschutzgründen sollten sensitive Daten vor Ort gehalten werden.
+Das Konzept des Fog Computing bringt dabei die Cloud und die dazugehörigen Funktionalitäten näher an die darunterliegende Netzwerkschicht, um kleinere unabhängige Fog Clouds zu schaffen.
+Virtuelle Maschinen sind ein gängige Methode in Cloud System, jedoch nur bedingt im \ac{IoT} Kontext anwendbar, da hier meist leistungsschwache Geräte verwendet werden, die diese nur bedingt ausführen können.
+Zudem sind die Geräte oftmals in einem heterogenen und hybriden Umfeld im Einsatz.
+Verlustbehaftete Signale und Kurzstreckentechnologien sind häufig im Einsatz und Nodes können hochfrequent erscheinen und verschwinden.
+Die Latenz muss klein gehalten werden, um Echtzeitanwendungen zu erstellen, der Datenverkehr und die Ressourcennutzung müssen so klein wie möglich gehalten werde und aus Sicherheits- und Datenschutzgründen sollten sensitive Daten vor Ort gehalten werden.
 
 Diese Abschlussarbeit zeigt den Entwurf und die Umsetzung einer Fog Service orchestration Engine für Smart Factories auf.
-Das Ziel dieser Arbeit ist die prototypische Umsetzung einer orchestration Engine, genannt Motey, die auf einer Fog Node ausgeführt wird, um Docker Container, auf die selbe oder eine andere im Cluster befindliche Node, aufzuspielen.
-Weiterhing soll der Prototype funktionale und nicht funktionale Abhängigkeiten beim aufspielen der Container beachten.
-Das können Hardwareanforderungen, eine vorausgesetzte Software oder Abhängigkeiten zu anderen Containern sein.
-Eine der größten Herausforderungen in diesem Projekt war es eine schnelle und leichtgewichtige Verbindungen zwischen den Nodes, welche mittels des ZeroMQ Protokols umgesetzt wurde.
-Die Node Discovery, welche es ermöglicht das jede Node Kenntnis über all die anderen hat, wurde mittels \acs{MQTT} protocol umgesetzt und wird benutzt um die Inter-Node Kommunikation zu ermöglichen.
-Die Abstraktion des zugrundeliegenden Virtualisierungsoftware bliebt teilweise ungelöst, da nur wenige Virtualisierungstools die ARM \acs{CPU} Architektur unterstützen.
+Das Ziel dieser Arbeit ist die prototypische Umsetzung einer orchestration Engine, genannt Motey, zu erstellen, die auf einer Fog Node ausgeführt wird, um Docker Container in einem Node Cluster zu orchestrieren.
+Weiterhin soll der Prototyp funktionale und nicht funktionale Abhängigkeiten beim aufspielen der Container beachten.
+Das können Hardwareanforderungen, eine benötigte Software oder Abhängigkeiten zu anderen Containern sein.
+Eine der größten Herausforderungen in diesem Projekt war es eine schnelle und leichtgewichtige Verbindungen zwischen den Nodes, welche mittels des ZeroMQ Protokolls umgesetzt wurde, zu erstellen.
+Die Node Discovery, welche es ermöglicht das jede Node Kenntnis über all die anderen hat, wurde mittels \acs{MQTT} Protokoll umgesetzt und dient als Voraussetzung für die Inter-Node Kommunikation.
+Die Abstraktion der zugrundeliegenden Virtualisierungsoftware blieb teilweise ungelöst, da nur wenige Virtualisierungstools die ARM \acs{CPU} Architektur der verwendeten Testgeräte unterstützen.
 
 Motey kann jedoch als ein guter Ausgangspunkt für eine komplexe Fog Computing Umgebung gesehen werden.
-Es hat zudem Platz für einige Erweiterungen, z.B. für kann ein erweitertes autonomes Verhalten implementiert werden.
-Ein Beispiel hierfür kann die Fähigkeit zum reagieren auf Echtzeitanforderungen sein, selbst bei einer fehlenden Cloudebene sein.
+Es bietet Raum für Erweiterungen, z.B. kann ein erweitertes autonomes Verhalten implementiert werden.
+Dieses könnte bspw. die Fähigkeit zum reagieren auf Echtzeitanforderungen, selbst bei fehlenden Cloudebene, beinhalten.
 Zusammenfassend zeigt das erstellte Projekt erfolgreich, dass das erarbeitete Konzept in einer prototypischen Qualität funktioniert.
-Motey is gut umgesetzt, getested und dokumentiert und kann als solid Grundlage für eine weiterentwicklung betrachtet werden.
+Motey ist gut umgesetzt, getestet und dokumentiert und kann als solid Grundlage für eine Weiterentwicklung betrachtet werden.
 \end{otherlanguage}
