@@ -36,20 +36,20 @@ An "intermediate layer between the IoT environment and the Cloud"\autocite[p.236
 This reduces traffic and the resource overhead in the cloud, it keeps sensitive data on-premise\autocite[cf.][p.236]{Brito:2016} and enables real-time applications to take decisions based on analytics running near the device.
 It also can achieve lower the network latency.
 On the other hand there are also a lot of challenges in these highly heterogeneous and hybrid environment.
-As an example in some scenarios multiple low power devices have to interact with each other, lossy signals and short range radio technologies are widely used and nodes can appear and disappear frequently.\autocite[cf.][p. 325]{Yannuzzi:2014}
+As an example, in some scenarios multiple low power devices have to interact with each other, lossy signals and short range radio technologies are widely used and nodes can appear and disappear frequently.\autocite[cf.][p. 325]{Yannuzzi:2014}
 Especially the last case is elaborated because the underlying system has to handle that.
-Furthermore the required applications running on these nodes can be changed often and have to be deployed and removed in a dynamical way.
+Furthermore ,the required applications running on these nodes can be changed often and have to be deployed and removed in a dynamical way.
 
 \acp{VM} are a common approach in Cloud systems to provide elasticity of large-scale shared resources.\autocite[cf.][p. 117]{Pahl:2016}
 A more lightweight, less resource and time consuming solution is container virtualization.
 "Furthermore, they are flexible tools for packaging, delivering and orchestration software infrastructure services as well as application"\autocite[p. 117]{Pahl:2016}.
 Orchestration tools like Kubernetes\footnote{\url{https://kubernetes.io}} and Docker Swarm\footnote{\url{https://docs.docker.com/engine/swarm}}, that can deploy, scale and manage containers to clusters of hosts, have become established in the last years.
-If this technologies can be applied to the \ac{IoT} area, some of the main issues in that context can be solved.
-For example lossy signals can be compensated and traffic can be reduces by having services dynamically deployed to a cluster of nodes or an intermediate layer.
+If this technologies can be applied to the subject of \ac{IoT}, some of the main issues in that context can be solved.
+For example, lossy signals can be compensated and traffic can be reduces by having services dynamically deployed to a cluster of nodes or an intermediate layer.
 The challenge is to deploy these services, connect them and let them interact with each other, even without the presence of a cloud layer.
 An autonomous behavior could be enabled if the nodes are able to communicate directly.
 This thesis demonstrate the possibilities of container orchestration for the \ac{IoT} and smart factories by creating a prototypical implementation of an orchestration engine that can be executed on fog nodes.
-Therefore an engine will be created that can orchestrate containers based on functional and non-functional constraints onto a single fog node or between a cluster of fog nodes.
+Therefore, an engine will be created that can orchestrate containers based on functional and non-functional constraints onto a single fog node or between a cluster of fog nodes.
 
 
 \section{Objective}
@@ -66,10 +66,10 @@ Therefore an engine will be created that can orchestrate containers based on fun
 % write about the synopsis (Zusammenfassung) of the issues
 This thesis describes an approach to design and implement a fog service orchestration engine for smart factories.
 The aim of this work is to create a prototypical implementation of an orchestration engine for a fog node, hereinafter called prototype, that can deploy containers on the same node or on other network nodes.
-A fog Node can be a low power device at the edge of a network, especially in the area of Industry 4.0 and smart factories.
-Furthermore the prototype should consider specific functional and non-functional constraints while deploying the containers.
+A fog Node can be a low power device at the edge of a network, especially in the context of Industry 4.0 and smart factories.
+Furthermore, the prototype should consider specific functional and non-functional constraints while deploying the containers.
 A condition can be a hardware requirement, a required software or a dependency to another node.
-The technical prerequisite and detailed requirements for the prototype as well as the usability of a \ac{GUI}, which could be for example Open Baton, an \ac{ETSI} \ac{NFV} compliant \ac{MANO} framework, have to be worked out.
+The technical prerequisite and detailed requirements for the prototype, as well as the usability of a \ac{GUI}, which could be for example Open Baton, an \ac{ETSI} \ac{NFV} compliant \ac{MANO} framework, have to be worked out.
 The cooperation with the \ac{FOKUS} plays a prominent role for this thesis, because of their knowledge and experience in the area of \ac{IoT} and \ac{NFV}.
 As the development method of choice a Kanban like process will be used.
 Kanban is flexible but also straight forward.
@@ -95,7 +95,7 @@ Open Baton serves as the template for that project and especially the modular ar
 Beside that, the whole prototype will be created completely from scratch.
 The container virtualization will be realized with Docker\footnote{\url{https://www.docker.com}}, an open source container platform.
 Docker has on \ac{API} where third party apps can communicate with and can control the engine itself.
-The functional and non-functional constraints can be stored and transferred for example as \ac{YAML} schemes which are part of the \ac{TOSCA} standard.
+The functional and non-functional constraints can be stored and transferred for example as \ac{YAML} schemes, that are part of the \ac{TOSCA} standard.
 These schemes should be extendable and should fit the needs of the constraint functionality.
 
 \begin{figure}[H]
@@ -114,14 +114,15 @@ A single fog node should have the fog node engine, which is the prototype to be 
 The constraint handling is part of the fog node engine and the concrete implementation has to be elaborated.
 The fog node engine can orchestrate the local Docker containers, or if it necessary, it can move containers over to one or multiple other fog nodes.
 This allows the system to be more flexible and it can achieve an autonomous orchestration level.
-The autonomous orchestration of containers between fog nodes without an existing connection to the cloud server is desirable, but not part of this thesis.
+The autonomous orchestration of containers between fog nodes, without an existing connection to the cloud server, is desirable, but not part of this thesis.
 Due to the fact that the prototype will be used in an \ac{IoT} context, the system will be tested on low power devices, for example on a Raspberry Pi\footnote{\url{https://www.raspberrypi.org}} cluster.
-It is out of scope to create a system that guarantees to be executable on arbitrary devices, but theoretically this could be achieved by using platform an independent programming language and corresponding frameworks.
+It is out of scope to create a system that guarantees to be executable on arbitrary devices, but theoretically this could be achieved by using a platform independent programming language and corresponding frameworks.
 
 
 \section{Outline}
 In chapter \ref{chapter:state-of-the-art} an introduction is given to relevant topics like the \ac{IoT} in the context of Industry 4.0, \acp{CPS} and Fog Computing as subtopics, virtualization, especially container virtualization and orchestration and \ac{NFV}.
-Followed by a comparison of several established tools available on the market and finally some messaging concepts like \ac{MQTT} and ZeroMQ.
+Followed by a comparison of several established tools available on the market and some messaging concepts like \ac{MQTT} and ZeroMQ.
+The section will be finalized by an overview of realted work.
 The definition of the requirements as well as features and capabilities of the prototype will be shown in chapter \ref{chapter:requirements-analysis}.
 Based on that, the architecture of the system is illustrated in chapter \ref{chapter:concept}.
 The proof-of-concept implementation will be worked out in chapter \ref{chapter:implementation} and the functionality of the plugin will be demonstrated.
