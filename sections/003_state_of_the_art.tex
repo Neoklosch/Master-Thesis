@@ -106,11 +106,11 @@ Finally end-to-end engineering, planning, and process control for each step in t
 
 Figure \ref{fig:vertical_horizontal_integration} illustrates this concept.
 The left side shows the whole production process over company boundaries on the horizontal scale, as well as the industry value chain on the vertical scale which is specific for each company.
-On the right side there is an exemplary industry value chain, which starts with the raw materials and ends with the sale of the product, to illustrates an more specific example of the vertical integration.
+On the right side there is an exemplary industry value chain, which starts with the raw materials and ends with the sale of the product, to illustrates a more specific example of the vertical integration.
 From a technical perspective this means each machine in a factory has exactly to know what to do.
 The underlying system has to be modular and has to move away from a monolithic centralized system to a decentralized system, that is located locally near the machines itself.
 The communication path between them has to grow shorter.
-The machines have to be self organized and should communicate between each other, even if the core system is not reachable, because of lossy signals or other connection issues.
+The machines have to be self organized and should communicate between each other, even if the core system is not available, because of lossy signals or other connection issues.
 This can enable flexibility, a better fault tolerance and individualized mass production.\autocite[cf.]{Lyd:2016}
 
 
@@ -128,7 +128,7 @@ In summary \acp{CPS} can help to enable the vision of smart factories in both th
 
 \subsection{Fog Computing}
 In the beginning of Cloud Computing most of the systems are based on a monolithic architecture.
-Over time the system was broken down to a more distributes multicloud architecture, similar to microservices.
+Over time the system was broken down to a more distributed multicloud architecture, similar to microservices.
 With the appearance of Fog Computing the Cloud also moves from centralized data centers to the edge of the underlying network.
 Main goal is to reduce the traffic and the amount of data that is transferred to the cloud and also process, analyze and store data locally, as well as keeping sensitive data inside the network for security reasons.\autocite[cf.][p. 236]{Brito:2016}\autocite[cf.][p. 325]{Yannuzzi:2014}\autocite[cf.][p. 4]{Lom:2016}
 In contrast to the goals, the definition and understanding of Fog Computing differs.
@@ -163,7 +163,7 @@ Security, based on the isolation of the \acp{VM}, is another benefit.
 Different processes can not interfere with each other and the data of a single user can not be accessed by other users of the same hardware.
 A challenge despite all the mentioned benefits is the performance.
 Running \acp{VM} increases the overhead and reduces the overall performance of a system.
-Therefore the specific use case have to consider these behavior.
+Therefore the specific use case have to consider that behavior.
 
 
 \subsection{Virtual Machines}
@@ -183,7 +183,7 @@ If only a single application, which only needs a few binaries and libraries, is 
 
 \subsection{Container Virtualization}
 Container virtualization which is also known as Operating System-level virtualization, is the second virtualization mechanism.
-It based on fast and lightweight process virtualization to encapsulate an entire application with its dependencies on a ready-to-deploy virtual container.\autocite[cf.][p. 72]{Tosatto:2015}
+It is based on fast and lightweight process virtualization to encapsulate an entire application with its dependencies on a ready-to-deploy virtual container.\autocite[cf.][p. 72]{Tosatto:2015}
 Such a container can be executed on the host \ac{OS}, that allows an application to run as a sand-boxed user-space instance.\autocite[cf.][p. 1]{Anderson:2016}
 All containers share a single \ac{OS} kernel, so the isolation supposed to be weaker compared to hypervisor based virtualization.\autocite[cf.][p. 2]{Celesti:2016}
 Compared to \acp{VM}, the number of containers on the same physical host can be much higher, because the overhead of a full \ac{OS} virtualization is eliminated.\autocite[cf.][p. 2]{Celesti:2016}
@@ -262,22 +262,22 @@ To define schemes, relationships and the configuration of such an infrastructure
 
 \section{Existing tools}
 
-Using frameworks and third party tools can reduces the time spend on developing software by solving well known or sometimes very specific problems.
-Based on the framework and tool they can be more secure, because several development iterations are done during creating them and they provides a standardized system through which users can develop applications.
+Using frameworks and third party tools can reduce the time spend on developing software by solving well known or sometimes very specific problems.
+Based on the framework and tool they can be more secure, because several development iterations are done during creating them and they provide a standardized system through which users can develop applications.
 They can also allow to create a prototype of an application in a short amount of time.
 Drawback is, to achieve the benefits the user has to spend some time to learn the concepts, functions and how to use a framework.
-Also a downside could be, that specific problems are not solved by the library and sometimes complicate workarounds have to be made to add missing features.
-Moreover, it can be take some time to find an appropriate framework that fit the needs, is well tested and has a good documentation.
+Another downside could be, that specific problems are not solved by the library and sometimes complicate workarounds have to be made to add missing features.
+Moreover, it can take some time to find an appropriate framework that fit the needs, is well tested and has a good documentation.
 Therefore, finding and learning good frameworks and third party tools can be a time consuming task.
 Some of them are elaborated in the following.
 
 \subsection{Linux Containers}
 When we talk about container virtualization nowadays, Docker is one of the most famous tools in the market.
-It based on \ac{LXC}\footnote{\url{https://linuxcontainers.org/}}, a technology which uses kernel mechanisms like \textit{namespaces} or \textit{cgroups} to isolate processes on a shared \ac{OS}.\autocite[cf.][p. 381]{Pahl:2015}
+It is based on \ac{LXC}\footnote{\url{https://linuxcontainers.org/}}, a technology which uses kernel mechanisms like \textit{namespaces} or \textit{cgroups} to isolate processes on a shared \ac{OS}.\autocite[cf.][p. 381]{Pahl:2015}
 Namespaces for example are used to isolate groups of processes, whereas cgroups are used to manage and limit resources access just like restricting the memory, disc space or \ac{CPU} usage.\autocite[cf.][p. 381]{Pahl:2015}
 "The goal of \ac{LXC} is to create an environment as close as possible to a standard Linux installation but without the need for a separate kernel."\autocite[p. 72]{Tosatto:2015}
 There are several other container virtualization tools in the market like OpenVZ\footnote{\url{https://openvz.org/Main_Page}} or Linux-VServer\footnote{\url{http://www.linux-vserver.org}}.
-In contrast to them, an advantage of \ac{LXC} is that it runs on an unmodified Linux kernel.
+In contrast to them, an advantage of \ac{LXC} is, that it runs on an unmodified Linux kernel.
 This means that \ac{LXC} can be executed in most of the popular Linux distributions these days.
 
 \subsection{Docker}
@@ -292,7 +292,7 @@ In that case, the Django image, which is the resulting image, based on the Pytho
 All of them are read-only, but Docker adds a writable layer, also known as \textit{container layer}, on top of the images as soon as the container is created.
 File system operations such as creating new files, modifying or deleting existing files are written directly to this layer.\autocite[cf.]{dockerImages}
 The other images don't get involved.
-These chaining mechanism of images allows Docker to ease the use of dependencies and administrative overhead.
+This chaining mechanism of images allows Docker to ease the use of dependencies and administrative overhead.
 
 Beside that, Docker is split up in several components, such as the Docker Engine, the Docker Registries and Docker Compose to mention only a few.
 The Docker Engine is a client-server application, that can be distinguished by the Docker client, a \ac{REST} \ac{API} and the Docker server.
@@ -330,11 +330,11 @@ There is no need to do things differently when switching from a development envi
 Kubernetes is an open source container cluster manager, that was released 2014 by Google.
 It is "a platform for automating deployment, scaling, and operations"\autocite[p. 1]{Grant:2015} of containers.
 Therefore, a cluster of containers can be created and managed.
-The system can for example schedule on which node a container should be executed, handle node failures, can scale the cluster by adding or removing nodes or enable rolling updates.\autocite[p. 5 f.]{Grant:2015}
+The system can for example schedule, on which node a container should be executed, handle node failures, can scale the cluster by adding or removing nodes or enable rolling updates.\autocite[p. 5 f.]{Grant:2015}
 
 Figure \ref{fig:kubernetes_architecture} illustrates the basic architecture of Kubernetes.
 The user can interact with the Kubernetes system via a \ac{CLI}, an \ac{UI} or a third party application, over a \ac{REST} \ac{API} to the Kubernetes Master or more specifically the \ac{API} Server in the master.
-The master itself controls the one or multiple nodes, monitors the system, schedule resources or pulls new images from the repository, to name only a few tasks.
+The master itself controls the one or multiple nodes, monitors the system, schedules resources or pulls new images from the repository, to name only a few tasks.
 
 \begin{figure}[H]
     \centering
@@ -364,8 +364,8 @@ The kube-proxy is a network proxy and load balancer, which is accessible from th
 The Replication Controller is one of the mayor controllers in a Kubernetes System.
 It ensures that a specified number of pod replicas are running and available at any time.\autocite[cf.]{Kubernetes:replication-controller:2016}
 For example, if one node disappears, because of connection issues, the Replication Controller will start a new one.
-If the disappeared node is available back again it will kill a node.
-These functionality increases the stability, the availability and the scalability of the system in an autonomous manner.
+If the disappeared node is available back again, it will kill a node.
+This functionality increases the stability, the availability and the scalability of the system in an autonomous manner.
 The last important component in Kubernetes is the rolling update machanism.
 With rolling updates the system can update one pod at a time, rather than taking down the entire service and update the whole system.\autocite[cf.]{Kubernetes:rolling-updates:2016}
 This also increases the stability and availability of the system and eases the managing of container clusters.
@@ -373,11 +373,11 @@ This also increases the stability and availability of the system and eases the m
 \subsection{Docker Swarm}
 The basic functionality of Docker Swarm is pretty similar to Kubernetes: It is possible to create, manage and monitor a cluster of multiple machines running Docker on it.
 Before Docker version 1.12.0, Docker Swarm was an independent tool, which is now integrated in the Docker Engine.\autocite[cf.]{dockerSwarm}
-No additional software is necessary to have a bunch of machines work together as a so called swarm.
+No additional software is necessary to have a bunch of machines working together as a so called swarm.
 Similar to Kubernetes, Docker Swarm needs a master node, called manager, and several worker nodes.
 The manager for example keep track of the nodes and their lifecycle and it can start new instances of an image, if one or multiple nodes disappear.
 Furthermore, Docker Swarm has a build in proxy and load balancer, which can redirect requests to the node with the necessary container running on it or redirect requests based on the workload of the machines.
-Compared to Kubernetes, Docker Swarm is more lightweight, but misses some features like the label functionality or the schema definition of a pod.
+Compared to Kubernetes, Docker Swarm is more lightweight, but misses some features like the label functionality or the scheme definition of a pod.
 But as mentioned before, both tools are pretty similar and aim for the same goal.
 
 
@@ -425,7 +425,7 @@ It communicates with the \ac{VIM} to orchestrate resources and services and it i
 A more detailed view of the Open Baton architecture is shown in figure \ref{fig:open_baton_detailed_architecture}.
 As mentioned before, each component communicate over the message queue and can be extended or replaced if necessary.
 Additional components, such as the \ac{AE} or the \ac{FM} system, are provided to manage a network service at runtime.\autocite[cf.]{openBatonDoc}
-The necessary information are delivered from the monitoring system available at the \ac{NFVI} level, which can also be extended or replaced with any monitoring system by implementing a custom monitoring driver.\autocite[cf.]{openBatonDoc}
+The necessary informations are delivered from the monitoring system available at the \ac{NFVI} level, which can also be extended or replaced with any monitoring system by implementing a custom monitoring driver.\autocite[cf.]{openBatonDoc}
 The \ac{VIM} Driver mechanism allows to replace OpenStack with external heterogeneous \acp{PoP}, but without the need of modifying the orchestration logic.\autocite[cf.]{openBatonDoc}
 Beside the generic \ac{VNFM}, also the Juju\footnote{\url{https://www.ubuntu.com/cloud/juju}} \ac{VNFM} can be used to deploy Juju Charms or Open Baton \ac{VNF} packages.
 Open Baton also provides a marketplace\footnote{\url{http://marketplace.openbaton.org}} for free and open source \acp{VNF}, which can directly be loaded into the system.
@@ -453,14 +453,15 @@ On the one side bandwidth in an \ac{IoT} network can be limited due to a bad inf
 Hundreds or thousands of devices can probably send data at the same time.
 On top of that, several devices, like sensors and actuators, can send a huge amount of data, because a sensor reads data pretty fast, but mostly it is only raw data, like the temperature or the humidity or something similar.
 All of these circumstances can end up in a huge network traffic.
-Therefore, it is quite important that the applications in an \ac{IoT} context use a lightweight protocol, that has less data overhead and can delivers data packages fast.
-Mostly, it is not important to receive each package, because for example in several use cases the temperature that is measured via a sensor does not change drastically in a few millisecond.
-It would be enough to get the data every second and even in this case it would be probably fine to loose a single package.
-But, if there are hundreds of sensors sending the data, it could me more useful to reduce the bandwidth and also the latency.
-For some devices it could be crucial to react to events or issues as fast as possible.
-Hence, the latency should be as low as possible.
+Therefore, it is quite important that the applications in an \ac{IoT} context use a lightweight protocol, that has less data overhead and can deliver data packages fast.
+Based on the use case, it is acceptable to not receive every single package.
+For example, in some use cases, where the temperature is measured via a sensor, they will not change drastically in a few millisecond.
+It would be enough to get the data every second and, especially in this case, it would be probably fine to loose some packages over time.
+In other cases, like in a healthcare environment, it can be crucial to receive every single package.
+But, if there are hundreds of sensors sending data, it could be more useful to reduce the bandwidth and keep the latency as low as possible, than getting all the data.
+If it is important to react to events or issues as fast as possible, the latency should be as low as possible.
 This also suggests to use a lightweight and fast protocol.
-In the following two protocols that fits the needs will be discussed.
+Two protocols, that could fit the needs, will be discussed in the following paragraphs.
 
 \subsection{Message Queue Telemetry Transport}
 \label{section:MQTT}
@@ -468,13 +469,13 @@ The \ac{MQTT} protocol, formerly known as MQTT-S or MQTT-SN, is a lightweight co
 Meanwhile, \ac{MQTT} is an \ac{OASIS} standard\footnote{\url{https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=mqtt}}, which is often used in an \ac{IoT} and \ac{M2M} context.\autocite[cf.][p. 5]{lampkin:2012:mqtt}
 It has a publish/subscribe architecture, that makes it easy to implement and allows thousands of remote clients to be connected to a single server at the same time.\autocite[cf.][p. 5]{lampkin:2012:mqtt}
 The recipient of a message, which is called consumer in the \ac{MQTT} context, is completely decoupled from the sender, mostly called producer, via a broker.
-For example, a basic workflow could be, that a consumer subscribe to a specific topic at the broker and the producer can send messages with a specific topic to the broker.
-The producer does not know if there is any consumer subscribed to the topic of a message.
+For example, a basic workflow could be, that a consumer subscribes to a specific topic at the broker and the producer can send messages with a specific topic to the broker.
+The producer does not know, if there is any consumer subscribed to the topic of a message.
 The broker is responsible for delivering messages to consumers, by receiving them from the producer and send out copies to the consumers.
 Figure \ref{fig:mqtt_architecture} illustrates this concept.
 
 In contrast to Client/Server protocols, such as the \acs{HTTP}, \ac{MQTT} is event-oriented, which means, that the client does not have to constantly ask the server if there is new data, the broker informs the consumer when there is new data on a topic.\autocite[cf.]{Bayer:MQTT}
-In direct comparison, this concept decrease the traffic, the amount of connections at the server and the delay of the message to be send to the clients.
+In direct comparison, this concept decreases the traffic, the amount of connections at the server and the delay of the message to be send to the clients.
 
 \begin{figure}[H]
     \centering
@@ -487,35 +488,35 @@ Beside the publish/subscribe architecture and the lightweight protocol, \ac{MQTT
 \textbf{\ac{QoS}} define the level of reliability with which messages are delivered.\autocite[cf.]{Bayer:MQTT}
 There are three different levels, where each level differs in reliability and resources usage.\autocite[cf.]{Bayer:MQTT}
 In an \ac{IoT} context, for instance gathering temperature sensor data from a low power device, most of the time keeping the resources usage low, is more important than the reliability of getting every single message.\newline
-At \textit{\ac{QoS} level 0 - at most once}, it is guaranteed that a message can only arrives once, but they can also be lost during transfer.
-A single message will be send once and the publisher does not check the success of receiving them.
-This pattern is also called \textit{Fire and Forget}, it is fast and resources friendly.\autocite[cf.]{Bayer:MQTT}\newline
-At \textit{\ac{QoS} level 1 - at lest once}, it is guaranteed that a message will be received at the consumer.
-After the publisher send the message with a specific packet identifier, the consumer will confirm the receipt of the message with a so called pubback packet.
-The pubback packet also have the same packet identifier included, so that the publisher will know that the message was successfully delivered.
-If a message get lost during transmission, they will be resend.
+At \textit{\ac{QoS} level 0 - at most once}, it is guaranteed that a message can only arrive once, but it can also be lost during transfer.
+A single message will be send once and the publisher does not check the success of receiving it.
+This pattern is also called \textit{Fire and Forget}, it is fast and resource friendly.\autocite[cf.]{Bayer:MQTT}\newline
+At \textit{\ac{QoS} level 1 - at least once}, it is guaranteed that a message will be received at the consumer.
+After the publisher sends the message with a specific packet identifier, the consumer will confirm the receipt of the message with a so called pubback packet.
+The pubback packet also has the same packet identifier included, so that the publisher will know that the message was successfully delivered.
+If a message gets lost during transmission, it will be resend.
 It is also possible, that the same message appears multiple times at the consumer, depending on the delay in the network.\newline
-The most secure, but also most resources consuming level is \textit{\ac{QoS} level 2 - exactly once}.
+The most secure, but also most resource consuming level is \textit{\ac{QoS} level 2 - exactly once}.
 At this level it is guaranteed, that a message is exactly received once.
-It is not possible, that a message appears multiple times or never.
-This level has a two-level confirmation process, where at first the consumer confirms the receive of the message and afterwards the producers confirms the receive of the confirmation.
-Therefore, both sides can be sure to not send or receive duplicates and it is guaranteed that a message will be received.
+It is not possible, that a message appears multiple times or not at all.
+This level has a two-level confirmation process, where at first the consumer confirms the receipt of the message and afterwards the producer confirms the receipt of the confirmation.
+Therefore, both sides can be sure to not to send or receive duplicates and it is guaranteed that a message will be received.
 
 Furthermore, the broker has two features to handle connection loses: the \textit{last will testament} and the \textit{message persistence}.
-The former feature will send a last message from the broker to a consumer, if the connection to the publisher will get lost.
-This could be for instances the information that the connection get lost or something similar.
-The message persistence will be used, if one consumer lose the connection to the broker.
+The first feature will send a last message from the broker to a consumer, if the connection to the publisher will get lost.
+This could be for instance the information that the connection got lost or something similar.
+The message persistence will be used, if one consumer loses the connection to the broker.
 In this case the message will be stored and delivered as soon as the consumer reconnects.
 With the \textit{retrained messages} feature, a consumer, which is connected for the first time to the broker, will get the last message send for a specific topic.
 This can be useful, if the temperature from a sensor should be displayed, but the value will only be fetched every 30 seconds.
 This would lead to the behaviour, that the initial value on consumer side will in worst case be unknown for 30 seconds.
-\textit{Persistent sessions} allows a connection be established, even if the consumer disappears.
-In this case, all the messages incurred will be stored and delivered, if the consumer resume the session.
+\textit{Persistent sessions} allows a connection to be established, even if the consumer disappears.
+In this case, all the messages incurred, will be stored and delivered, if the consumer resumes the session.
 The session can be identified with a unique client identifier.\autocite[cf.]{Bayer:MQTT}
 
 Due to the fact that \ac{MQTT} is a simple protocol with a small footprint and the \ac{QoS} handshake enables the protocol to be independent from \acs{TCP}, it can also be used on devices without a TCP/IP stack, like embedded devices, such as an Arduino.\autocite[cf.]{Bayer:MQTT}
 There, the protocol can be used via a bus or a serial port.\autocite[cf.]{Bayer:MQTT}
-\ac{MQTT} itself support the protection of the messages via username and password and the communication can be encrypted with \acs{SSL} or \acs{TLS} on the transport layer.\autocite[cf.]{Bayer:MQTT}
+\ac{MQTT} itself supports the protection of the messages via username and password and the communication can be encrypted with \acs{SSL} or \acs{TLS} on the transport layer.\autocite[cf.]{Bayer:MQTT}
 The broker can additionally use client certificates to authenticate them or restrict the access via access control lists, such as \acs{IP} filtering.\autocite[cf.]{Bayer:MQTT}
 \ac{MQTT} is available for most of the common programming languages and platforms.
 

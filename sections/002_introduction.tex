@@ -25,7 +25,7 @@ Currently a factory has a high degree of automation, but due to a lack of intell
 % -- CS & CPS
 One solution to achieve that are \acp{CPS}.
 These are virtual systems which are connected with embedded systems to monitor and control physical processes.\autocite[cf.][p. 363]{Lee:2008}
-A normal \ac{CS} is passive, means it could not interact with the physical world, with the appearance of \acp{CPS} things can communicate so the system has significantly more intelligence in sensors and actuators.\autocite[cf.][p. 1363 f.]{Poovendran:2010}
+A normal \ac{CS} is passive, means it can not interact with the physical world, with the appearance of \acp{CPS} things can communicate so the system has significantly more intelligence in sensors and actuators.\autocite[cf.][p. 1363 f.]{Poovendran:2010}
 % Research Focus - Forschungsschwerpunkt aka Praxisproblem
 % -- Virtualization, Orchestration, Deployment of functions
 \newpage
@@ -34,7 +34,7 @@ With Fog Computing the cloud moves away from centralized data centers to the edg
 Such a network can have thousands of nodes with multiple sensors, machines or smart components connected to them.
 An "intermediate layer between the IoT environment and the Cloud"\autocite[p.236]{Brito:2016} enables a lot of new possibilities like pre-computation and storage of gathered data.
 This reduces traffic and the resource overhead in the cloud, it keeps sensitive data on-premise\autocite[cf.][p.236]{Brito:2016} and enables real-time applications to take decisions based on analytics running near the device.
-It also can achieve lower the network latency.
+It also can achieve to lower the network latency.
 On the other hand there are also a lot of challenges in these highly heterogeneous and hybrid environment.
 As an example, in some scenarios multiple low power devices have to interact with each other, lossy signals and short range radio technologies are widely used and nodes can appear and disappear frequently.\autocite[cf.][p. 325]{Yannuzzi:2014}
 Especially the last case is elaborated because the underlying system has to handle that.
@@ -44,7 +44,7 @@ Furthermore ,the required applications running on these nodes can be changed oft
 A more lightweight, less resource and time consuming solution is container virtualization.
 "Furthermore, they are flexible tools for packaging, delivering and orchestration software infrastructure services as well as application"\autocite[p. 117]{Pahl:2016}.
 Orchestration tools like Kubernetes\footnote{\url{https://kubernetes.io}} and Docker Swarm\footnote{\url{https://docs.docker.com/engine/swarm}}, that can deploy, scale and manage containers to clusters of hosts, have become established in the last years.
-If this technologies can be applied to the subject of \ac{IoT}, some of the main issues in that context can be solved.
+If these technologies can be applied to the subject of \ac{IoT}, some of the main issues in that context can be solved.
 For example, lossy signals can be compensated and traffic can be reduces by having services dynamically deployed to a cluster of nodes or an intermediate layer.
 The challenge is to deploy these services, connect them and let them interact with each other, even without the presence of a cloud layer.
 An autonomous behavior could be enabled if the nodes are able to communicate directly.
@@ -70,7 +70,7 @@ A fog Node can be a low power device at the edge of a network, especially in the
 Furthermore, the prototype should consider specific functional and non-functional constraints while deploying the containers.
 A condition can be a hardware requirement, a required software or a dependency to another node.
 The technical prerequisite and detailed requirements for the prototype, as well as the usability of a \ac{GUI}, which could be for example Open Baton, an \ac{ETSI} \ac{NFV} compliant \ac{MANO} framework, have to be worked out.
-The cooperation with the \ac{FOKUS} plays a prominent role for this thesis, because of their knowledge and experience in the area of \ac{IoT} and \ac{NFV}.
+The cooperation with the \acf{FOKUS} plays a prominent role for this thesis, because of their knowledge and experience in the area of \ac{IoT} and \ac{NFV}.
 As the development method of choice a Kanban like process will be used.
 Kanban is flexible but also straight forward.
 There is less meeting overhead than in Scrum, but it also helps to have an eye on the planed and spend resources.
@@ -105,7 +105,7 @@ These schemes should be extendable and should fit the needs of the constraint fu
     \label{fig:conceptual_architecture}
 \end{figure}
 
-Figure \ref{fig:conceptual_architecture} shows a conceptual architecture design that based on a draft of the \ac{FOKUS}.
+Figure \ref{fig:conceptual_architecture} shows a conceptual architecture design that is based on a draft of the \ac{FOKUS}.
 On the right side is the abstract cloud infrastructure.
 This could be for example Open Baton or any other \ac{MANO} compliant Framework.
 The cloud infrastructure will be considered while developing the prototype, but the development or integration of such a component is out of scope for this thesis.
