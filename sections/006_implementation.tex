@@ -141,7 +141,7 @@ Listing \ref{code:flask-blueprint} illustrates the implementation of all \ac{API
       self.webserver.add_url_rule('/v1/service', view_func=Service.as_view('service'))
       self.webserver.add_url_rule('/v1/nodes', view_func=Nodes.as_view('nodes'))
   \end{minted}
-  \caption{Implementation of all Flask \ac{API} endpoints in Motey}
+  \caption[Implementation of all Flask API endpoints in Motey]{Implementation of all Flask \ac{API} endpoints in Motey}
   \label{code:flask-blueprint}
 \end{listing}
 
@@ -294,7 +294,7 @@ An example for a schema is shown in listing \ref{code:capability-schema}.
       }
   }
   \end{minted}
-  \caption{Capability JSON validation schema}
+  \caption[Capability JSON validation schema]{Capability \ac{JSON} validation schema}
   \label{code:capability-schema}
 \end{listing}
 The \textit{jsonschema} library allows to validate the type of an entry (line 2, 7 and 10) and also if the fields are required or optional (line 13).
@@ -626,7 +626,7 @@ Finally the \textit{Send blueprint} contains a textarea to put in the \ac{YAML} 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{resources/images/motey_gui_screenshot.png}
-    \caption[Screen shot of the Motey \ac{GUI}]{Screen shot of the Motey \ac{GUI}}
+    \caption[Screen shot of the Motey GUI]{Screen shot of the Motey \ac{GUI}}
     \label{fig:motey_gui_screenshot}
 \end{figure}
 
