@@ -103,7 +103,7 @@ One of the most important components is the \textit{Local Orchestrator}.
 It is responsible for the deployment of the containers as well as the inter-node communication.
 The latter is necessary to let the nodes act in an autonomously way, so that they can react to changing requirements, even when the centralized fog level disappears.
 Therefore each node must have knowledge and should be able to interact with each other.
-Beside that the local orchestrator is tightly coupled to the \textit{\ac{VAL} Manager}.
+Besides that, the local orchestrator is tightly coupled to the \textit{\ac{VAL} Manager}.
 This is an abstraction layer for each virtualization component in the system, for example Docker or a bare-metal virtualization like XEN.
 These components should be implemented as plugins, so that it is easy to add or remove virtualization components.
 Therefore Yapsy\footnote{\url{http://yapsy.sourceforge.net/}} is used as the plugin system of choice.
@@ -167,7 +167,7 @@ In addition to the intra-node communication, also an inter-node communication wi
 It will be used to add new capabilities to a node.
 Therefore one or multiple third party applications should be connectable to a single ZeroMQ endpoint via the publish/subscribe pattern over \ac{IPC}.
 Different to a normal publish/subscribe pattern, the endpoint will acts as the subscriber so that multiple publishers can push messages to them.
-Beside that each exposed socket should be configurable via the configuration file.
+Besides that, each exposed socket should be configurable via the configuration file.
 
 The last subcomponent is the \textbf{\ac{REST} \ac{API}}.
 It will be mainly used for the communication with the centralized fog level, because most of the orchestration tools in the market are using \ac{REST} for transferring data.
@@ -207,7 +207,7 @@ Primary it is used to handle the business logic of the deployment of new service
 If a new service will be send to the communication layer it will be forwarded to the orchestration layer and will be parsed there.
 Afterwards the service will be validated and finally deployed by the orchestrator.
 Additionally it will also check the necessary capabilities for each service image and will search for suitable nodes in the cluster if one or multiple capabilities are not fulfilled.
-Beside that, the orchestrator will also handle the lifecycle of a service and the related images during the deployment phase.
+Besides that, the orchestrator will also handle the lifecycle of a service and the related images during the deployment phase.
 Figure \ref{fig:lifecycle_mgm_squence_diagram_start_service} show up the lifecycle management of a service from the starting phase to the execution phase.
 
 \begin{figure}[H]

@@ -255,7 +255,7 @@ The orchestrator interacts with the \ac{VNFM} to perform actions, but not with t
 \paragraph{\ac{TOSCA}} is developed by the \ac{OASIS} and can be used to deliver a declarative description of a \ac{NFV} application topology for network or cloud environments.\autocite[cf.]{Tosca:NFV}
 It is not part of the \ac{NFV-MANO} standard, but it works pretty well together with it, to automate the deployment and management of \acp{NF} and services.
 In figure \ref{fig:nfv_architecture} it is represented by the \textit{Service, VNF and Infrastructure Description} block.
-Beside that, it can also be used to define a workflow which should be automated in a virtualized environment.\autocite[cf.]{Tosca:NFV}
+Besides that, it can also be used to define a workflow which should be automated in a virtualized environment.\autocite[cf.]{Tosca:NFV}
 The \ac{TOSCA} modeling language can specify nodes, whereby a node can be a network, a subnet or only a server software component, and it also handles relationships between the nodes and also services.\autocite[cf.]{Tosca:NFV}
 To define schemes, relationships and the configuration of such an infrastructure, it uses \ac{YAML} files for ease the usage.\autocite[cf.]{Tosca:NFV}
 
@@ -294,7 +294,7 @@ File system operations such as creating new files, modifying or deleting existin
 The other images don't get involved.
 This chaining mechanism of images allows Docker to ease the use of dependencies and administrative overhead.
 
-Beside that, Docker is split up in several components, such as the Docker Engine, the Docker Registries and Docker Compose to mention only a few.
+Besides that, Docker is split up in several components, such as the Docker Engine, the Docker Registries and Docker Compose to mention only a few.
 The Docker Engine is a client-server application, that can be distinguished by the Docker client, a \ac{REST} \ac{API} and the Docker server.
 Latter is a daemon process which "creates and manages Docker objects, such as images, containers, networks, and data volumes"\autocite{dockerEngine}.
 The Docker client is a \ac{CLI} tool, that interact via a \ac{REST} \ac{API} with the daemon.\autocite[cf.]{dockerEngine}
@@ -525,17 +525,17 @@ The broker can additionally use client certificates to authenticate them or rest
 
 \subsection{ZeroMQ}
 \label{section:ZeroMQ}
-ZeroMQ is an messaging and communication framework to send atomic messages between applications and processes across various transports like \ac{TCP}, in-process, inter-process or multicast.\autocite[cf.]{ZeroMQ:Guide}
-Every message will be send over sockets via several patterns, like publish-subscribe, fan-out or a simple request-reply.\autocite[cf.]{ZeroMQ:Guide}
+ZeroMQ is a messaging and communication framework to send atomic messages between applications and processes across various transports like \ac{TCP}, in-process, inter-process or multicast.\autocite[cf.]{ZeroMQ:Guide}
+Every message will be sent over sockets via several patterns, like publish-subscribe, fan-out or a simple request-reply.\autocite[cf.]{ZeroMQ:Guide}
 ZeroMQ has an asynchronous I/O model, which allows to create high-performance and scalable multicore applications.\autocite[cf.]{ZeroMQ:Guide}
 To distinguish it from messaging frameworks like \ac{AMQP}\footnote{\url{https://www.amqp.org}}, ZeroMQ has no dedicated broker in between.
-The benefit is, that there is no single point of failure, not bottleneck and no need to maintain another component, but ZeroMQ still has the advantages of such a messaging system.
+The benefit is, that there is no single point of failure, no bottleneck and no need to maintain another component, but ZeroMQ still has the advantages of such a messaging system.
 ZeroMQ supports five different transport types.\newline\newline
 \textbf{In-Process} is used for local (in-process or inter-thread) communication transport.
-This transport passes the messages directly via memory between threads.\autocite[cf.]{ZeroMQ:inproc}
-These transport type is optimal for creating multithreaded applications, without providing access to the outside.
+This transport exchanges the messages directly via memory between threads.\autocite[cf.]{ZeroMQ:inproc}
+This transport type is optimal for creating multithreaded applications, without providing access to the outside.
 This is the fastest transport type available in ZeroMQ.\newline\newline
-\textbf{\ac{IPC}} provides also a local communication transport, but passes messages via the \ac{OS} dependent \ac{IPC} mechanism, for example UNIX domain sockets.
+\textbf{\ac{IPC}} provides also a local communication transport, but exchanges messages via the \ac{OS} dependent \ac{IPC} mechanism, for example UNIX domain sockets.
 An application can provide a local \ac{API} for another local application via \ac{IPC}.
 Also \ac{IPC} is much faster than the \ac{TCP} communication.\newline\newline
 \textbf{\ac{TCP}} is an ubiquitous, reliable, unicast transport to provide an \ac{API} over a network.\autocite[cf.]{ZeroMQ:tcp}\newline\newline
@@ -544,15 +544,15 @@ It is helpful to send a sequence of packets to multiple consumers at the same ti
 Therefore, \ac{PGM} and also \acs{EPGM} can only be used with the publish/subscribe pattern.\newline
 \textbf{\ac{EPGM}} is similar to \ac{PGM}, but with the difference, that the PGM datagrams are encapsulated inside UDP datagrams.\autocite[cf.]{ZeroMQ:pgm}
 
-ZeroMQ has several basic patterns and most of them are combinable.
+ZeroMQ has several basic patterns and most of them can be combined.
 Since a detailed discussion of all of them is beyond the scope of this study, only the most relevant ones are considered.\newline
 \textbf{Request-Reply} is comparable with a \ac{HTTP} request-response.
-The client send a message to the server, which does some work and send back a message afterwards.
+The client sends a message to the server, which does some work and sends back a message afterwards.
 It is represented by the REQ-REP socket pairs in ZeroMQ.\newline
 
 The \textbf{Publish-Subscribe} pattern in ZeroMQ is basically comparable with the MQTT publish-subscribe pattern, but without the broker in between.
-This ends up in the fact, that every consumer has to now the publisher and has to connect to them.
-A direct connection between them will established.
+This ends up in the fact, that every consumer has to know the publisher and has to connect with it.
+A direct connection between the publisher and the consumer will be established.
 Similar to MQTT, the publisher will send out the message to every subscribed consumer.
 It is also possible to subscribe to more than one topic.
 In ZeroMQ this pattern is represented by PUB-SUB socket pairs.
@@ -566,15 +566,17 @@ Figure \ref{fig:zeromq_pub_sub} shows this pattern.
 \end{figure}
 
 The \textbf{Pipeline} pattern is also known as the \textit{Divide and Conquer} pattern.
-There, the \textit{Ventilator}, which produces multiple tasks, that can be done in parallel, make use of a set of worker, that can process these tasks and a sink, that collects the results from the workers.\autocite{ZeroMQ:Guide}
-Benefit of this pattern is, that the workers divide the tasks, this means, it will increase the calculation time based on the connected workers.
-Furthermore, the works can pull a new task as soon as they are done.
+In figure \ref{fig:zeromq_pipeline} a \textit{Ventilator} can produce multiple tasks, that can be done in parallel.\autocite{ZeroMQ:Guide}
+A set of workers can process these tasks and distribute the work between them.\autocite{ZeroMQ:Guide}
+Finally, a sink can collects the results from the workers.\autocite{ZeroMQ:Guide}
+Benefit of this pattern is, that the workers divide the tasks among itselfs, this means, it will increase the calculation time based on the connected workers.
+Furthermore, the workers can pull a new task as soon as they have finished one.
 This means, a worker has a minimal idle time.
 Queuing is natively provided by ZeroMQ.
 It is also possible to add and remove workers dynamically.
 This makes an application much more scalable.
-Finally, the sink pull the data from the worker, in a so called \textit{fair-queuing}.
-This means, the sink will pull one package from each worker one after another, then he starts from the beginning and will pull again only one package, even if one or multiple worker should have multiple packages retrievable.
+Finally, the sink pulls the data from the worker, in a so called \textit{fair-queuing}.
+This means, the sink will pull one package from each worker successively, then it starts from the beginning and will pull again only one package, even if one or multiple workers should offer multiple packages.
 The whole pattern is shown in figure \ref{fig:zeromq_pipeline}\newline
 
 \begin{figure}[H]
@@ -586,19 +588,19 @@ The whole pattern is shown in figure \ref{fig:zeromq_pipeline}\newline
 
 \textbf{Exclusive pair} connects two sockets exclusively, for example two threads in a process.\autocite{ZeroMQ:Guide}
 \newline
-\textbf{Combinations of them} at least these some of the patterns in ZeroMQ.
+\textbf{Combinations of them} are also possible in ZeroMQ.
 All of these patterns can be combined to create much more advanced combinations.
 Figure \ref{fig:zeromq_comination} illustrates such a combination.\newline
 
 There is a combination between two publish-subscribe patterns and a proxy in between.
-This could be helpful to create a nested topology, for instances for a controller in a smart home environment.
+This can be helpful to create a nested topology, for instance for a controller in a smart home environment.
 Multiple controllers can be subscribed to a server and multiple nodes can be subscribed to one controller.
 As mentioned before, there are much more combinations possible.
 A good overview of many of them can be found in the official guide\footnote{\url{http://zguide.zeromq.org/page:all}} of ZeroMQ.\newline
 
 By default ZeroMQ has no encryption or authentication mechanism build in.
 There is a dedicated project called CurveZMQ\footnote{\url{http://curvezmq.org}}, which enables these functionalities and it is also created by the ZeroMQ maintainers.
-Since ZeroMQ version 4.x CurveZMQ comes built-in.
+Since ZeroMQ version 4.x, CurveZMQ comes as a built-in feature.
 Finally, ZeroMQ has libraries for most of the common programming languages.\newline
 
 \begin{figure}[H]
@@ -612,20 +614,20 @@ Finally, ZeroMQ has libraries for most of the common programming languages.\newl
 \section{Related work}
 \label{section:related_work}
 An overview of how to apply the concept of microservices for the \ac{IoT} is shown in \autocite{Butzin:2016}.
-One of the presented patterns is to use container virtualization, to split up the services and use them on low power devices.
+One of the presented patterns uses container virtualization, to split up the services and use them on low power devices.
 Also in this work, Docker was used as the tool of choice.
-It describes, that the usage of container virtualization enables a better testability, ease the service deployment and make the tools scale better.\autocite[cf.][p. 5]{Butzin:2016}
-They also mentioned, that using tools like Docker at the edge of a network, e.g. on sensors and actuators, is nearly not possible due to the overhead and dependencies of such tools.\autocite[cf.][p. 5]{Butzin:2016}
-Therefore, the concept of fog and edge computing is presented as a viable solution, where low power devices, like smartphones or small \acp{PC}, are able to execute them.\autocite[cf.][p. 5]{Butzin:2016}
+It describes, that the usage of container virtualization enables a better testability, ease the service deployment and improve the scalability of the tools.\autocite[cf.][p. 5]{Butzin:2016}
+The authors also mentioned, that using tools like Docker at the edge of a network, e.g. on sensors and actuators, is nearly impossible due to the overhead and dependencies of such tools.\autocite[cf.][p. 5]{Butzin:2016}
+Therefore, the concept of fog and edge computing is presented as a viable solution, for executing services on low power devices, like smartphones or small \acp{PC}.\autocite[cf.][p. 5]{Butzin:2016}
 
 Another study \autocite{Pahl:2015} gives some insights about containers and clusters for the edge cloud.
-It defines edge computing as moving applications from a centralized cloud to the edge of the underlying network, in a way that, analytics and knowledge generation services are placed at the source of the data e.g. sensors and actuators.\autocite[cf.][p. 380]{Pahl:2015}
-Beside that, the edge network might be disconnected from the cloud environment and still have to perform without any issues.
+It defines edge computing as moving application from a centralized cloud to the edge of the underlying network, in a way that, analytics and knowledge generation services are placed at the source of the data e.g. sensors and actuators.\autocite[cf.][p. 380]{Pahl:2015}
+Besides that, the edge network might be disconnected from the cloud environment and still have to perform without any issues.
 That implies, that edge computing must be able to compute and store data "to address data collection, (pre-)processing, and distribution"\autocite[p. 380]{Pahl:2015}.
-If these requirements are fulfilled, such a network is called "edge cloud", that is technically a micro-cloud.\autocite[cf.][p. 121]{Pahl:2016}
+If these requirements are fulfilled, such a network is called "edge cloud", which is technically a micro-cloud.\autocite[cf.][p. 121]{Pahl:2016}
 Multiple edge clouds can be located side by side in a network.
-In general, edge devices like an Raspberry Pi or any other small \ac{PC}, that enables the computation and storage of data, have several sensors and actors connected to them.
-An Raspberry Pi is powerful enough to do the job, but is cheap, consume less energy than a normal \ac{PC} and is easy to integrate in an existing environment.\autocite[cf.][p. 118]{Pahl:2016}
+In general, edge devices like a Raspberry Pi or any other small \ac{PC}, that enables the computation and storage of data, have several sensors and actors connected to them.
+A Raspberry Pi is powerful enough to do the job, but is cheap, consumes less energy than a normal \ac{PC} and is easy to integrate into an existing environment.\autocite[cf.][p. 118]{Pahl:2016}
 
 \begin{figure}[H]
     \centering
@@ -635,49 +637,49 @@ An Raspberry Pi is powerful enough to do the job, but is cheap, consume less ene
 \end{figure}
 
 Furthermore, this paper describes a so called container-based cluster architecture\autocite[p. 384]{Pahl:2015}.
-Figure \ref{fig:container_based_cluster_architecture} outline these.
-There, each node can be the hosts of one or multiple virtualization containers.
+Figure \ref{fig:container_based_cluster_architecture} outline this.
+There, each node can be the host of one or multiple virtualization containers.
 Multiple containers can be grouped together to a services, even if the containers are deployed on different nodes.\autocite[cf.][p. 384]{Pahl:2015}
-Volumes stores data for applications that can persist data on a node.\autocite[cf.][p. 384]{Pahl:2015}
+Volumes store data for applications that can persist data on a node.\autocite[cf.][p. 384]{Pahl:2015}
 Finally, containers can have dependencies, again also across multiple nodes, to communicate with each other.\autocite[cf.][p. 384]{Pahl:2015}
 This behavior is similar to the basic concept of services and pods in Kubernetes.
 
 For the orchestration and services description, the authors point out \ac{TOSCA} that is supported by Cloudify.
 A \ac{TOSCA} orchestration plan is defined in \ac{YAML} and is used to deploy the containers on the nodes.
-Beside that \ac{TOSCA} can also describe the infrastructure of the system.
+Besides that, \ac{TOSCA} can also describe the infrastructure of the system.
 
-In a future publication, the same authors are using this technological basis to create an \ac{PaaS} service based on a Raspberry Pi cluster\autocite{Pahl:2016}.
+In a future publication, the same authors are using this technological basis to create a \ac{PaaS}, based on a Raspberry Pi cluster\autocite{Pahl:2016}.
 The presented architecture is used to be a bridge "between IoT, local compute devices and data centre clouds"\autocite[p. 117]{Pahl:2016}.
-As mentioned before, a Raspberry Pi is powerful enough to do this job, for example to gather data at the edge of a network and to enable a communication channel with the cloud infrastructure.\autocite[cf.][p. 117]{Pahl:2016}
+As mentioned before, a Raspberry Pi is powerful enough to do this job.
+For example, to gather data at the edge of a network and to enable a communication channel with the cloud infrastructure.\autocite[cf.][p. 117]{Pahl:2016}
 Container virtualization is used to make the software to be deployed portable and interoperable.\autocite[cf.][p. 117]{Pahl:2016}
 Therefore, Docker is used as the tool of choice.
-To deploy the containers to the edge cloud cluster, a custom tool was developed, instead of using an existing solutions, like Kubernetes.\autocite[cf.][p. 122]{Pahl:2016}
+To deploy the containers to the edge cloud cluster, a custom tool was developed, instead of using an existing solution, like Kubernetes.\autocite[cf.][p. 122]{Pahl:2016}
 This allows more flexibility in monitoring and maintaining the nodes.\autocite[cf.][p. 122]{Pahl:2016}
 As the storage solution they used OpenStack Swift.
-The outcome of the work was a working environment, that was able to deploy and monitor an edge cloud infrastructure.
+The outcome of the paper was a working environment, that was able to deploy and monitor an edge cloud infrastructure.
 As mentioned in the paper, there is significant space for improvements, like a working orchestration engine, some data and network management aspects and better semantic descriptions.
-Overall, this works shows the need of a solid infrastructure at the network edge to enable edge computing capabilities.
+Overall, this work shows the need of a solid infrastructure at the network edge, to enable edge computing capabilities.
 
 The project of \autocite{Stubbs:2015} focuses on service discovery, by implementing them via the Serfnode\footnote{\url{https://github.com/waltermoreira/serfnode}} for distributed systems of microservices.
 Service discovery is a mechanism to detect services and service providers in a network without a centralized management level.
 Each consumer has knowledge of any other provider and the related capabilities of that provider.
 Serfnode is a decentralized open source service discovery solution based on the Serf project\footnote{\url{https://www.serf.io}}.
-It can be used to enable edge nodes to discover other service provider in a network in real time to facilitate communication.\autocite[cf.][p. 34]{Stubbs:2015}
+It can be used to enable edge nodes to discover other service providers in a network in real time, to facilitate communication.\autocite[cf.][p. 34]{Stubbs:2015}
 Serfnode itself can be deployed as a Docker container on a node.
-Unfortunately, there is no Raspberry Pi Docker image available at the times this thesis was created.
-After the container is deployed, Serfnode can be configured to enable a service discovery mechanism that provide and can gather informations about one or multiple Docker container across a cluster without modifying the original containers.\autocite[cf.][p. 34]{Stubbs:2015}
-There are several service discovery tools out in the market, but Serfnode distinguishes itself as lightweight, platform-agnostic and easy to incorporate with Docker.\autocite[cf.][p. 34]{Stubbs:2015}
+Unfortunately, there is no Raspberry Pi Docker image available, at the times this thesis was created.
+After the container is deployed, Serfnode can be configured to enable a service discovery mechanism, that can provide and gather information about one or multiple Docker containers across a cluster, without modifying the original containers.\autocite[cf.][p. 34]{Stubbs:2015}
+There are several service discovery tools in the market, but Serfnode distinguishes itself as lightweight, platform-agnostic and easy to incorporate with Docker.\autocite[cf.][p. 34]{Stubbs:2015}
 
 It also contains a monitoring and self-healing mechanisms.\autocite[cf.][p. 34]{Stubbs:2015}
 In addition, Serfnode uses an event handling mechanism that reacts to join, leave and fail events of a node.\autocite[cf.][p. 38]{Stubbs:2015}
 For example it informs each node in the cluster about a newly appeared node at start-up.\autocite[cf.][p. 37]{Stubbs:2015}
 Also in this project, \ac{YAML} is used as the description language for the service description.
-Beside Serfnode, some other service discovery tools like Consul\footnote{\url{https://www.consul.io}}, Synapse\footnote{\url{http://airbnb.io/projects/synapse}} and CoreOS\footnote{\url{https://coreos.com/fleet/docs/latest/examples/service-discovery.html}} are described, with the outcome, that they are fits better in a cloud environment and are to heavy for an edge node cluster.\autocite[cf.][p. 36]{Stubbs:2015}
+Beside Serfnode, some other service discovery tools like Consul\footnote{\url{https://www.consul.io}}, Synapse\footnote{\url{http://airbnb.io/projects/synapse}} and CoreOS\footnote{\url{https://coreos.com/fleet/docs/latest/examples/service-discovery.html}} are described, with the outcome, that they fit better in a cloud environment and are to heavy for an edge node cluster.\autocite[cf.][p. 36]{Stubbs:2015}
 Also the whole orchestration part is not covered by Serfnode itself.
 
-Another Docker based solution is presented in \autocite{Rufino:2017}.
-There, the main focus is on the distributed architecture.
-Basically, also with this system services, that are based on Docker images, should be deployed to the edge of the network and the responsibilities of the different components should be separated.
+Another Docker based solution is presented in \autocite{Rufino:2017}, where the main focus is on the distributed architecture.
+Basically, also these system services, that are based on Docker images, should be deployed to the edge of the network and the responsibilities of the different components should be separated.
 Three different layers are provided to enable that behavior:
 
 \begin{enumerate}
@@ -685,57 +687,58 @@ Three different layers are provided to enable that behavior:
   That is used to gather the data from sensors or to display informations.
   It should represent a \ac{CPS}.
   \item The Mediation layer.
-  That is acts as a gateway between the sensing layer and the cloud infrastructure.
-  It contain three software components: a \ac{SDN} controller, a database and a \ac{MLU}.\autocite[cf.][p. 1534]{Rufino:2017}
-  The \ac{SDN} controller is used to manage the different software based network components, like a router or a firewall.
+  That acts as a gateway between the sensing layer and the cloud infrastructure.
+  It contains three software components: a \ac{SDN} controller, a database and a \ac{MLU}.\autocite[cf.][p. 1534]{Rufino:2017}
+  The \ac{SDN} controller is used to manage the different software-based network components, like a router or a firewall.
   The database is used to store the data from the sensing layer.
   Finally, the \ac{MLU} provides local intelligence, for example to detect and deploy real-time requirements.\autocite[cf.][p. 1534]{Rufino:2017}
   \item The cloud computing layer is presented as the enterprise layer.
   This is used for computational tasks, like data-mining and evaluation.\autocite[cf.][p. 1534]{Rufino:2017}
   Also the results from the \ac{MLU} can be analyzed and necessary actions can be performed.\autocite[cf.][p. 1534]{Rufino:2017}
   Finally, this layer is also responsible for the orchestration of the services.
-  Further, a centralized control point available to monitor the system and to perform task on the network.
+  Further, it works as a centralized control point, available to monitor the system and to perform task on the network.
   Fault management can be enabled by providing redundancy at different layers and also through the application of orchestration rules.\autocite[cf.][p. 1535]{Rufino:2017}
 \end{enumerate}
 
-The test setup was also made with Raspberry Pis, that represents the edge network devices as well as the gateway.
+The test setup was also made with Raspberry Pis, that represent the edge network devices as well as the gateway.
 The Docker images are orchestrated with Docker Swarm and custom performance test scripts are created to measure some performance values.
 As the communication protocol a \ac{REST} base interface was created.
-The scripts are creating data on the sensing layer, send them over to the gateway where the data is stored and finally will be fetched from the enterprise layer.\autocite[cf.][p. 1535]{Rufino:2017}
-The measured performance for writing the data, starting a container and terminate them again is presented in the work.
+The scripts are creating data on the sensing layer, send them over to the gateway, where the data is stored and finally will be fetched from the enterprise layer.\autocite[cf.][p. 1535]{Rufino:2017}
+The measured performance for writing the data, starting a container and terminate them again, is presented in the work.
 Overall the proposed architecture demonstrates that a distributed architecture, composed of several well known components, can be deployed on different devices and can still perform well.
-Unfortunately, the \ac{MLU} component was not described and measured results were not adequate analyzed.
+Unfortunately, the \ac{MLU} component was not described and measured results were not adequately analyzed.
 Nevertheless, the presented architecture worked and the feasibility of such a system was shown.
 
 \autocite{Bellavista:2017} demonstrate the feasibility of fog computing architecture with an extended Kura\footnote{\url{https://eclipse.org/kura}} version as the gateway software and Docker as the virtualization tool.
 The device layer is realized again with some Raspberry Pi nodes.
 The main focus of the work is on the gateway layer.
-Kura itself is an open source \ac{IoT} gateway software, that aggregate the data of multiple connected devices and can also control them.\autocite[cf.][p. 2]{Bellavista:2017}
-It uses \ac{MQTT} with a publish/subscribe architecture to get the informations and also to send them to the cloud.\autocite[cf.][p. 2]{Bellavista:2017}
-In a sensor-to-cloud architecture, the latency is a drawback and a stable connection can not guaranteed.\autocite[cf.][p. 1]{Bellavista:2017}
-The advantage of having a gateway in a fog computing environment is, that the latency can be reduced by shorten the connection distance as well as having an local endpoint to bypass connection losses.\autocite[cf.][p. 1]{Bellavista:2017}
+Kura itself is an open source \ac{IoT} gateway software, that can aggregate the data of multiple connected devices and can also control them.\autocite[cf.][p. 2]{Bellavista:2017}
+It uses \ac{MQTT} with a publish/subscribe architecture to get the information and also to send it to the cloud.\autocite[cf.][p. 2]{Bellavista:2017}
+In a sensor-to-cloud architecture, the latency is a drawback and a stable connection can not be guaranteed.\autocite[cf.][p. 1]{Bellavista:2017}
+The advantage of having a gateway in a fog computing environment is, that the latency can be reduced by shorten the connection distance as well as having a local endpoint, to bypass connection losses.\autocite[cf.][p. 1]{Bellavista:2017}
 
 As presented in the paper, Kura has some limitations.
 For example be one \ac{MQTT} broker can be executed and the one has to be placed in the cloud.\autocite[cf.][p. 3]{Bellavista:2017}
-This can lead to be a bottleneck regarding network traffic, the data from the gateways can only be forwarded to the cloud directly and there is always a persistent socket connection to the cloud, that also end up in a unnecessary traffic overhead.\autocite[cf.][p. 3]{Bellavista:2017}
-Therefore, the authors extended Kura and made them able to be used with a gateway-side \ac{MQTT} broker.
+This can lead to be a bottleneck regarding network traffic.
+The data from the gateways can only be forwarded to the cloud directly and there is always a persistent socket connection to the cloud, that also ends up in a unnecessary traffic overhead.\autocite[cf.][p. 3]{Bellavista:2017}
+Therefore, the authors extended Kura and made it able to be used with a gateway-side \ac{MQTT} broker.
 This allows to aggregate the data locally in the cluster.\autocite[cf.][p. 3]{Bellavista:2017}
-There is no longer a need for having a stable connection to the cloud.
-Which in turn enable real-time behavior by analyzing the gathered data and also to react to them.\autocite[cf.][p. 3]{Bellavista:2017}
-It is also possible to prioritize the messages to be send and to decide when to send the data to the cloud.\autocite[cf.][p. 3]{Bellavista:2017}
+There no longer is a need for having a stable connection to the cloud.
+Which in return enables real-time behavior by analyzing the gathered data and also to respond to it.\autocite[cf.][p. 3]{Bellavista:2017}
+It is also possible to prioritize the messages to be send and to decide, when to send the data to the cloud.\autocite[cf.][p. 3]{Bellavista:2017}
 Especially the latter can help to reduce the traffic to the cloud.
 Finally, this structure is called a "Gateway-cloud" but in fact it is pretty similar to the edge cloud mentioned in \autocite{Pahl:2016}.
 
-With the help of the new Kura version new network topologies for the gateways are possible.
-Two of them the "Cluster Organization" and the "Mesh Organization" are mentioned in the work and the latter is shown in figure \ref{fig:kura_gateway_topologies}.\autocite[cf.][p. 4]{Bellavista:2017}
-Former is based on a tree hierarchies.
-There, multiple fog devices are connected to one gateway.
-Further, multiple gateways can exists side by side.
+With the help of the new Kura version, new network topologies for the gateways are possible.
+Two of them, the "Cluster Organization" and the "Mesh Organization", are mentioned in the work and the latter is shown in figure \ref{fig:kura_gateway_topologies}.\autocite[cf.][p. 4]{Bellavista:2017}
+The Cluster Organization is based on a tree hierarchy.
+Therein, multiple fog devices are connected to one gateway.
+Further, multiple gateways can exist side by side.
 They are all again connected to another local gateway, that aggregates the data from all the other gateways.
 This one is finally connected to the cloud infrastructure.
-In the mesh organization every gateway and every node can be interconnected to each other as shown in figure \ref{fig:kura_gateway_topologies}.
-There are also one or more gateways that are connected to the cloud.
-If there would only be one track in figure \ref{fig:kura_gateway_topologies}, the architecture would change from a mash organization to a cluster organization.
+In the mesh organization every gateway and every node can be interconnected to each other, as shown in figure \ref{fig:kura_gateway_topologies}.
+There are also one or more gateways, that are connected to the cloud.
+If there would only be one track in figure \ref{fig:kura_gateway_topologies}, the architecture would change from a mesh organization to a cluster organization.
 Depending of the use case of an application, the topology can be changed.
 
 \begin{figure}[H]
@@ -745,21 +748,21 @@ Depending of the use case of an application, the topology can be changed.
     \label{fig:kura_gateway_topologies}
 \end{figure}
 
-For the virtualization part \autocite{Bellavista:2017} uses Docker as the tool of choice.
-A fog node skeleton is provide where each component is separated in the gateway and virtualized by Docker.\autocite[cf.][p. 6]{Bellavista:2017}
+For the virtualization part \autocite{Bellavista:2017} Docker is used as the tool of choice.
+A fog node skeleton is provided, where each component is separated in the gateway and virtualized by Docker.\autocite[cf.][p. 6]{Bellavista:2017}
 The orchestration of the containers is again realized by the cloud level.
 To do so, Docker Swarm, Kubernetes and Apache Mesos are analyzed.\autocite[cf.][p. 6 f.]{Bellavista:2017}
-As the result Docker Swarm is used, due to the fact, that it is already integrated in Docker, it has a sufficient performance.\autocite[cf.][p. 7]{Bellavista:2017}
-Conclusively. the project demonstrated that a gateway layer is feasible to implement and make a system robust and independent from the cloud layer.
+As the result Docker Swarm is used, due to the fact, that it is already integrated in Docker and has a sufficient performance.\autocite[cf.][p. 7]{Bellavista:2017}
+Conclusively, the project demonstrated that a gateway layer is feasible to implement and makes a system robust and independent from the cloud layer.
 
-The authors of \autocite{Morabito:2016} created also a gateway layer for the \ac{IoT}, but additionally made them available as a \ac{GaaS}.
-This means, the gateway is still a layer between the end user or the cloud layer and the application or device layer.
+The authors of \autocite{Morabito:2016} also created a gateway layer for the \ac{IoT}, but additionally made it available as a \ac{GaaS}.
+This means, the gateway is still a layer between the end user and the application or the cloud layer and the device layer.
 Moreover, it can start and stop necessary containers on demand.
 This is called "On-demand activation" of applications.\autocite[cf.][p. 3]{Morabito:2016}
 To do so, a socket-activation framework is used.\autocite[cf.][p. 3]{Morabito:2016}
 Unfortunately, this framework is not named in the paper.
 The applications, that should be activated on-demand, are virtualized with Docker, as in the other papers, and they are also executed on Raspberry Pis.
-As also discussed in the other works, a container orchestration tool is used, sadly also this tool remains unspecified.
+As also discussed in the other papers, a container orchestration tool is used, sadly also this tool remains unspecified.
 
 Another approach in \autocite{Morabito:2016} is the multi-tenant platform.
 Due to the isolation of the Docker containers, the gateway can be shared between different tenants, that are used by different end users.\autocite[cf.][p. 2]{Morabito:2016}
