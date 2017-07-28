@@ -30,9 +30,9 @@ It should be easy to use and fast to implement, but it should also consider the 
 
 \subsection{Programming Language}
 Python is one of the most used programming languages with an active community.\autocite[cf.]{ProgramminLanguage:2017}
-It is a dynamic typed programming language with an automatic memory management which uses both, reference counting and garbage collection at the same time.\autocite[cf.]{Python:GarbageCollection}
+It is a dynamic typed programming language including an automatic memory management, which uses reference counting and garbage collection at the same time.\autocite[cf.]{Python:GarbageCollection}
 Python can use several programming paradigms like the object oriented programming or functional programming.
-Core philosophy is make it simple, make it beautiful, make it explicit and make it readable.
+Core philosophy is making it simple, beautiful, explicit and readable.
 Currently two versions are maintained in parallel, 2.7 and the newer 3.6.
 Due to the fact that a huge code base is still working with Python 2.x, this version is still under development.\autocite[cf.]{Peterson:PythonReleaseSchedule}
 Python has a tremendous amount of libraries which can be installed via the Python package manager called pip\footnote{\url{https://pypi.python.org/pypi/pip}}.
@@ -46,19 +46,19 @@ Finally, there are several Python compilers which compiles Python code to other 
 % Go is used in production by several tools like Docker, Kubernetes and OpenShift.
 % Downside is that there are not so much libraries out right now and there are no long time experience in the critical mass.
 
-Open Baton, as one of the actively maintained project at the \ac{FOKUS}, is written in Java and is also has ports to Python and go.
+Open Baton, as one of the actively maintained project at the \ac{FOKUS}, is written in Java and also has ports to Python and go.
 Python in general is used for several projects at the \ac{FOKUS}.
 Taking also the criteria from section \ref{section:functional-requirements} into account Python will be used as the  programming environments of choice.
 The \ac{GUI} will be a basic web client, which uses Vue.js\footnote{\url{https://vuejs.org}} as its main framework and some smaller tools like the pretty famous bootstrap framework.
 
 \subsection{Continuous Integration}
-Continuous integration is nowadays a frequently used technique to automate repeating deployment steps into a self executing pipeline.
+Nowadays, Continuous integration is a frequently used technique to automate repeating deployment steps into a self executing pipeline.
 It starts by running unit tests, code style checks and ends up with deploying the compiled program to a server or a marketplace.
 Due to the fact that Github\footnote{\url{https://github.com}} will be used to host and maintain the git repository for the Motey project, the pretty famous and seamless integrated Travis CI\footnote{\url{https://travis-ci.org}} will be used to implement the continuous integration pipeline.
 To start with Travis CI only the Github account has to be synced with the platform and a \ac{YAML} configuration file has to be placed in the root folder of the git repository.
 Travis CI supports several programming languages and also various third party services, like Docker Hub or Amazon AWS.
 Every time a new commit will be pushed to the git remote repository, a new build will be started at Travis CI.
-At first a virtual machine will be started by Travis CI.
+Beginning with starting a \ac{VM}.
 Afterwards, all necessary components like libraries and tools will be installed in the virtual machine.
 Finally, all predefined tasks from the \ac{YAML} file will be executed.
 In terms of the Motey project, unit tests will be executed, as well as code style checks and if a version from the master branch will be build, a Docker container will be created and pushed to the related Docker Hub repository.
@@ -70,10 +70,10 @@ Further, the manual build of the Docker container including the upload to the Do
 The overall architecture of the system can be separated into two levels.
 Figure \ref{fig:abstract_architecture_design} will point up the architecture.
 The first level is the \textit{centralized fog level}.
-This could be for example a cloud server or management node in a fog cluster.
+For example, this could be a cloud server or management node in a fog cluster.
 Ideally this level should be implemented with an \ac{MANO} compliant framework.
 Hereinafter Open Baton will referred as the tool of choice for that level.
-Main function will be the creation of the \ac{NFVI} as well as the deployment of deployment plans for the \acp{NF}.
+Main function will be the creation of the \ac{NFVI} as well as the handling of deployment plans for the \acp{NF}.
 Open Baton will also have an overview of all existing nodes and can manage and maintain them.
 
 \begin{figure}[H]
@@ -90,8 +90,8 @@ It includes all existing fog nodes, as well as the Motey engine that is referenc
 Each node must have a running instance of the OpenIoTFog Agent to be part of the system.
 Beside Motey a node can have several hardware devices, sensors and actuators connected to them.
 A virtualization infrastructure such as Docker or XEN, must be installed to be used by Motey.
-These infrastructure can create the containers and \acp{VNF}.
-Further, it is also possible to have additional third party tools installed which can interact with the them as well.
+This infrastructure can create the containers and \acp{VNF}.
+Further, it is also possible to have additional third party tools installed which can interact with them as well.
 
 The OpenIoTFog Agent has several external connection points.
 It has a \ac{REST} \ac{API} implemented to get some information about the status of the fog node, as well as endpoints to receive the deployment plans from centralized fog level.
@@ -99,10 +99,10 @@ A \ac{MQTT} connection to a broker, which can be running in the centralized fog 
 Finally, there are some ZeroMQ endpoints for capability discovery, image deployment and node-to-node communication.
 A detailed description will be shown in the following sections.
 
-One of the most important components is the \textit{Local Orchestrator}.
+The \textit{Local Orchestrator} is one of the most important components.
 It is responsible for the deployment of the containers as well as the inter-node communication.
 The latter is necessary to let the nodes act in an autonomously way, so that they can react to changing requirements, even when the centralized fog level disappears.
-Therefore, each node must have knowledge and should be able to interact with each other.
+Therefore, each node must have knowledge and should be able to interact with others.
 Besides that, the local orchestrator is tightly coupled to the \textit{\ac{VAL} Manager}.
 This is an abstraction layer for each virtualization component in the system, for example Docker or a bare-metal virtualization like XEN.
 These components should be implemented as plugins, so that it is easy to add or remove virtualization components.
@@ -115,37 +115,37 @@ Finally, the \textit{Monitoring Agent} is used to log all ongoing events and giv
 
 As mentioned in the requirements section \ref{section:functional-requirements}, the whole system should be modular and easy to extend.
 Therefore, each layer will be as decoupled as possible.
-A clean architecture with decorated dependencies and only a single responsibility for each component.
+A clean architecture with decorated dependencies and only a single responsibility for each component will be provided.
 The whole code should be independent of any framework, independent of the other components and testable.
 To realize such an architecture, multiple design patterns will be used.
-\ac{DI} decouple the components and increase the testability.
+\ac{DI} decouples the components and increase the testability.
 The decorator pattern will abstract concrete implementations by a centralized independent layer.
 The observer pattern can be used to handle streams of data for example from an \ac{API} endpoint.
 And finally the singleton pattern can prevent the construction of multiple instances of a single module.
-All of them made the code base well structured and improve the readability as well as the comprehensibility
+All the facts metnioned before made the code base well structured and improve the readability as well as the comprehensibility
 
 
 \subsection{Virtualization layer}
 The virtualization layer is basically an abstraction layer to generalize the different virtualization engines.
-Therefore, a so called \ac{VAL} manager which will be implemented with the facade design pattern is used to load the plugins and abstract the methods of the plugins.
+Therefore, a so called \ac{VAL} manager, which will be implemented with the facade design pattern, is used to load the plugins and abstract the methods of the plugins.
 As mentioned before, to realize the plugin functionality the Yapsy library will be used.
 The library offers a way to easily add new plugins to the system and is also designed to be easy to use.
 It only depends on Python standard libraries and lightweight by design.
-Each supported virtualization engine needs his own concrete plugin implementation which should be use an interface to have a common ground.
+Each supported virtualization engine needs its own concrete plugin implementation, which should be use an interface to have a common ground.
 The supported default engine is Docker, but could be extended in a future version of Motey.
 
 
 \subsection{Communication layer}
 \label{subsection:CommunicationLayer}
-The communication layer is a pretty important component in the Motey engine.
-Here three different communication points are necessary to provide the basic functionalities which are needed for the fog node agent.
+The communication layer is a pretty important component of the Motey engine.
+Therefore, three different communication points are necessary to provide the basic functionalities needed for the fog node agent.
 
 The first subcomponent is the \textbf{node discovery}.
 The idea behind the node discovery is that each node automatically can register and unregister itself to the cluster.
-This means in the moment of the startup of a node, they will send out a message, with an information request about all subscribed nodes.
+This means in the moment of the startup of a node, it will send out a message, with an information request about all subscribed nodes.
 To realize that, \ac{MQTT} will be the tool of choice.
 The \ac{MQTT} broker will receive and forward the message to all subscribed nodes and each node will response with an information message back to the broker.
-The broker then send this information message to all nodes again.
+The broker then sends this information message to all nodes again.
 Therefore, each node will be up-to-date at each time.
 As long as there is no appearance or disappearance of any node, the network will not be stressed.
 To provide a better flexibility the \ac{MQTT} broker can be executed in the centralized fog level or even on a node in the autonomous fog level.
@@ -166,23 +166,23 @@ This allows us to connect to any other node in the cluster.
 In addition to the intra-node communication, also an inter-node communication will be implemented.
 It will be used to add new capabilities to a node.
 Therefore, one or multiple third party applications should be connectable to a single ZeroMQ endpoint via the publish/subscribe pattern over \ac{IPC}.
-Different to a normal publish/subscribe pattern, the endpoint will acts as the subscriber so that multiple publishers can push messages to them.
+Different to a normal publish/subscribe pattern, the endpoint will act as the subscriber so that multiple publishers can push messages to them.
 Besides that, each exposed socket should be configurable via the configuration file.
 
 The last subcomponent is the \textbf{\ac{REST} \ac{API}}.
-It will be mainly used for the communication with the centralized fog level, because most of the orchestration tools in the market are using \ac{REST} for transferring data.
+It will be mainly used for the communication with the centralized fog level, because most of the orchestration tools on the market are using \ac{REST} for transferring data.
 In comparison to an implementation with ZeroMQ, this is much bigger overhead in terms of traffic and latency, but to have a better compatibility with other systems, this \ac{API} will be implemented.
 As the tool of choice Flask\footnote{\url{http://flask.pocoo.org}} will be used.
 It is a lightweight and robust Python web server, which is open source, well documented and under constant development.
 The \ac{REST} \ac{API} itself will follow the \ac{HATEOAS} constraint with the addition that each endpoint will have a version number in the \ac{URL} to ensure backwards compatibility if something changes in the implementation.
 
 All the mentioned subcomponents should be controlled by a so called \textit{communication manager} which will be implemented with the facade design pattern.
-That decouples the communication layer from the other components, the whole system can be maintained much easier and each subcomponent can be easy replaced by any other technology if necessary.
+That decouples the communication layer from the other components, the whole system can be maintained much easier and each subcomponent can be replaced easily by any other technology if necessary.
 This also makes the code more readable and leads up to a cleaner code structure.
 
 
 \subsection{Data layer}
-As mostly the data layer is used to persist necessary data.
+Usually the data layer is used to persist necessary data.
 This includes the deployed services, adjacent nodes and the capabilities of the node.
 As database engine, the lightweight document oriented database TinyDB\footnote{\url{http://tinydb.readthedocs.io}} will be used.
 It is easy to use and has no execution overhead and is also good to use for small datasets.
@@ -197,18 +197,18 @@ The \textit{Capability Management} is used to create, persist, modify and remove
 As mentioned before all the capabilities will be stored in the data layer via TinyDB.
 Furthermore, the \textit{Hardware Event Handler} is part of this layer.
 It enables the system to get new capabilities from third party apps via a ZeroMQ endpoint.
-As mentioned in the \ref{subsection:CommunicationLayer} the endpoint will be implemented as a form of the publish/subscribe pattern and should allow one or multiple publishers to push messages to the handler.
+As mentioned in section \ref{subsection:CommunicationLayer} the endpoint will be implemented as a form of the publish/subscribe pattern and should allow one or multiple publishers to push messages to the handler.
 Also internal components like the \ac{VAL} plugins can add new capabilities to the system.
 
 
 \subsection{Orchestration layer}
 As one of the most important layers, the \textit{Orchestration Layer} will be a connector between all the nodes in a cluster and also between multiple components in the Motey engine itself.
-Primary it is used to handle the business logic of the deployment of new services.
+Primarily it is used to handle the business logic of the deployment of new services.
 If a new service will be send to the communication layer it will be forwarded to the orchestration layer and will be parsed there.
 Afterwards the service will be validated and finally deployed by the orchestrator.
 Additionally, it will also check the necessary capabilities for each service image and will search for suitable nodes in the cluster if one or multiple capabilities are not fulfilled.
 Besides that, the orchestrator will also handle the lifecycle of a service and the related images during the deployment phase.
-Figure \ref{fig:lifecycle_mgm_squence_diagram_start_service} show up the lifecycle management of a service from the starting phase to the execution phase.
+Figure \ref{fig:lifecycle_mgm_squence_diagram_start_service} shows up the lifecycle management of a service from the starting phase to the execution phase.
 
 \begin{figure}[H]
     \centering
@@ -221,18 +221,18 @@ At first the client requests the orchestrator via the \ac{REST} \ac{API}, to sta
 Therefore, the related service blueprint will be uploaded to the node.
 The orchestrator will directly start with the lifecycle management by creating an service with an \textit{initial} state.
 Afterwards the blueprint gets checked by the orchestrator.
-If it is not valid, the state of the service would be set to \textit{error}.
-In this case everything went fine and the state changes to \textit{instantiating}.
+If it is not valid, the state of the service will be set to \textit{error}.
+In this case everything is fine and the state changes to \textit{instantiating}.
 Next the orchestrator will start the images of the service.
 The state of an image can be requested at every moment during the lifecycle of a service.
 After the request for the container state was send, the state will be send back, for example \textit{running}.
 When all images are done loading, the state of the service changes to \textit{running}.
 
-Later on the client probably wants to shut down the service.
-This time it send the terminate request to the node.
-Again the orchestrator will get it and set the state of the service to \textit{stopping}.
+Later on, the client probably wants to shut down the service.
+So the terminate request is sent to the node.
+Again the orchestrator will get it and will set the state of the service to \textit{stopping}.
 Then it will start to shutdown all the related images.
-Also in this phase, the state of the images can be requested every time.
+Even in this phase, the state of the images can be requested every time.
 When all images are terminated, the state of the service changes to \textit{terminated} and the service will no longer be executed on the node.
 Figure \ref{fig:lifecycle_mgm_squence_diagram_stop_service} illustrates this behavior.
 
@@ -245,7 +245,7 @@ Figure \ref{fig:lifecycle_mgm_squence_diagram_stop_service} illustrates this beh
 
 The lifecycle states of the containers are not handled by the orchestrator itself, they are detected via the lifecycle management of the virtualization engine like Docker or XEN.
 Due to the fact that the service is tightly coupled to the images, the state of the images will directly affect the state of the service.
-If only one container change its state to \textit{error}, the whole service will be marked as \textit{error}.
+If only one container changes its state to \textit{error}, the whole service will be marked as \textit{error}.
 To handle the different states of the different engines, a transformation logic between the state will be implemented.
 
 
@@ -268,25 +268,25 @@ The created \ac{REST} \ac{API} will be used to get all the necessary information
 
 A web layout based on Bootstrap\footnote{\url{http://getbootstrap.com}} as the \ac{CSS} framework will be created.
 Further, Vue.js\footnote{\url{https://vuejs.org}} is used as the JavaScript frontend framework.
-According to Wappalyzer\footnote{\url{https://wappalyzer.com/categories/web-frameworks}} Bootstrap is the most used \ac{CSS} framework out in the market, with a share of 65.2\% (as of 26. June 2017).
+According to Wappalyzer\footnote{\url{https://wappalyzer.com/categories/web-frameworks}}, Bootstrap is the most used \ac{CSS} framework on the market, with a share of 65.2\% (as of 26. June 2017).
 It is elaborated and there are many templates available.
-Vue.js on the other side is relatively new in the JavaScript frontend framework market.
-It is much slimmer then tools like Angular.js\footnote{\url{https://angular.io}} or react\footnote{\url{https://facebook.github.io/react}} but has also less functionalities.
+Vue.js on the other side is relatively new on the JavaScript frontend framework market.
+It is much slimmer then tools like Angular.js\footnote{\url{https://angular.io}} or React\footnote{\url{https://facebook.github.io/react}}, but has also less functionalities.
 It has a steep learning curve and optimal for small applications and rapid prototypes.
-Vue.js works natively together with Bootstrap so this will a rock solid solution.
+Vue.js works natively together with Bootstrap, so this will be a rock solid solution.
 All the request will be done by Ajax requests to the \ac{API}.
-There will be no authentication or authorization due to the fat that it is only a prototypical implementation for demonstration purposes only.
+There will be no authentication or authorization due to the fact that it is only a prototypical implementation for demonstration purposes only.
 
 
 \section{Security}
 Security is a pretty important topic, especially in the \ac{IoT} context, but also in general in any infrastructure at all.
-Insecure \ac{IoT} devices and several botnets like the Mirai botnet\footnote{\url{https://www.corero.com/resources/ddos-attack-types/mirai-botnet-ddos-attack.html}} or the BrickerBot\footnote{\url{https://security.radware.com/ddos-threats-attacks/brickerbot-pdos-back-with-vengeance}} infected thousands of devices during the last year.
+Insecure \ac{IoT} devices and several botnets like the Mirai botnet\footnote{\url{https://www.corero.com/resources/ddos-attack-types/mirai-botnet-ddos-attack.html}} or the BrickerBot\footnote{\url{https://security.radware.com/ddos-threats-attacks/brickerbot-pdos-back-with-vengeance}} infected thousands of devices in the last year.
 Nearly everyday there are new hacks and security vulnerabilities in the news, which show off that there is a lot of space for improvements in this topic.
 Therefore, also this project should have security in mind.
 
 Due to the fact that only a prototype should be developed, not every aspect will be covered.
 But even if there are no implementation for securing a special component, possible attack vectors should be mentioned in this thesis.
-The \textit{OWASP Internet of Things Project} list the most common vulnerabilities in \ac{IoT} projects\footnote{\url{https://www.owasp.org/index.php/OWASP_Internet_of_Things_Project}}.
+The \textit{OWASP Internet of Things Project} lists the most common vulnerabilities in \ac{IoT} projects\footnote{\url{https://www.owasp.org/index.php/OWASP_Internet_of_Things_Project}}.
 Some of them are obvious like \textit{insecure passwords} or \textit{unencrypted services}, but in general the list is a good starting point to improve the security in a project.
 In case of the prototype the following steps should be implemented:
 \begin{itemize}

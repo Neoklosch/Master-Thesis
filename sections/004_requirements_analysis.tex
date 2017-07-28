@@ -5,7 +5,7 @@ Based on the fundamentals, the requirements for the prototype to be developed wi
 Thereby, relevant aspects for the specific implementation will be considered.
 The analysis, the creation of requirements and the commitment from all sides to these requirements are important steps to realize a project successfully, not only in the software development area.
 Each step has to be discussed and approved by a representative of the \ac{FOKUS}.
-Due to the fact that the prototype will be created from scratch most of the concepts have to be created in brainstorming meetings.
+Due to the fact that the prototype will be created from scratch, most of the concepts have to be created in brainstorming meetings.
 An agile development process will be used to react to rapidly changing requirements.
 As mentioned before a Kanban like method will be used in this project.
 
@@ -14,8 +14,8 @@ As mentioned before a Kanban like method will be used in this project.
 \label{section:functional-requirements}
 % virtualization
 As the fundamental requirement, the prototype to be developed has to create, manage and maintain virtualized containers on a fog node.
-Tools like Open Baton inherently supports OpenStack as the \ac{ETSI} \ac{MANO} \ac{VIM} layer.
-Most \ac{MANO} tools like Open Baton uses OpenStack which deploys virtual machines to virtualize the \acp{NF}.
+Tools like Open Baton inherently support OpenStack as the \ac{ETSI} \ac{MANO} \ac{VIM} layer.
+Most \ac{MANO} tools like Open Baton use OpenStack, which deploys virtual machines to virtualize the \acp{NF}.
 This is a rock solid solution for a cloud environment.
 Unfortunately, a bare-metal virtualization is most of the time not feasible on small power devices like they are used in the \ac{IoT} area.
 Therefore, a much more efficient and lightweight solution, like container virtualization, should be used and handled by an orchestration engine.
@@ -28,7 +28,7 @@ Afterwards, the lifecycle of the services should be monitored.
 The second functional requirement is the implementation of a constraint logic, which will be used to filter relevant nodes during the orchestration.
 A constraint can be a functional and non-functional capability.
 For example, a specific hardware component, like a sensor or a ZigBee dongle, which is necessary to execute the \ac{NF} or a hardware requirement, like \ac{CPU} power, \ac{RAM} or disk space.
-It could also be a non-functional constraint, for example a specific software which has to be installed or a protocol which can be used.
+It could also be a non-functional constraint, for example a specific software, which has to be installed or a protocol, that can be used.
 The engine should be able to manage these constraints by itself and if necessary for all adjacent nodes and should consider them while choosing a suitable node for the desired \ac{NF}.
 The whole functionality should work similar to the labels in Docker Swarm.
 Therefore, a Docker Swarm node can have multiple labels, which can be considered when deploying an image.
@@ -48,21 +48,21 @@ Figure \ref{fig:open_fog_node_mgm_lifecycle} describes the five steps of a typic
 
 \begin{itemize}
   \item The \textbf{Commission} is the earliest phase in a lifecycle mostly used to perform action like identification, certificates or calibration of time.\autocite[p. 52 f.]{OpenFog:2017}
-  \item In the \textbf{Provision} phase the node will be enrolled to the system so that the node can be discovered and identified and also advertise features and capabilities.\autocite[p. 52 f.]{OpenFog:2017}
+  \item In the \textbf{Provision} phase the node will be enrolled to the system so that the node can be discovered and identified and also advertises features and capabilities.\autocite[p. 52 f.]{OpenFog:2017}
   \item The \textbf{Operate} phase is the state of the node when everything operates normal. This includes the reliability, availability and serviceability of the node.\autocite[p. 53]{OpenFog:2017}
   \item In contrast to that the \textbf{Recover} phase performs action if something operates out of norm.\autocite[p. 53]{OpenFog:2017} The node should be able to recover to the normal state.\autocite[p. 53]{OpenFog:2017}
   \item Finally the \textbf{Decomission} phase is used for cleaning up sensitive data on the node and to unregister from other components.\autocite[p. 53]{OpenFog:2017}
 \end{itemize}
 
 In addition to the node lifecycle, an exemplary lifecycle for services and images is shown in the \ac{ETSI} \ac{MANO} specification\autocite[p. 67 ff.]{ETSI:MANO:2014}
-This lifecycle handles several state from the instantiation of a service, over querying some data, up to the termination of service.
+This lifecycle handles several state from the instantiation of a service, further querying some data, up to the termination of service.
 Some of the specifications are tightly coupled to \acp{NFV}.
 However, this lifecycle specification is a good starting point to elaborate a custom solution.
 
 % GUI
 The last functional component to be developed will be the \ac{GUI}.
-Those should only be used for demonstrate the basic functionalities of the prototype.
-It is not designed to use them in production.
+This should only be used for demonstrate the basic functionalities of the prototype.
+It is not designed to use it in production.
 Therefore, the \ac{GUI} will not have any security mechanisms like authorization, authentication or user management.
 This includes that existing nodes will be displayed with all the related services.
 Additionally, it can be used to deploy new services and while using the existing endpoints.
@@ -72,7 +72,7 @@ Some secondary conditions should also be fulfilled.
 The whole system should be modular and easy to extend.
 Modules should be as decoupled as possible and the whole system should be controlled via an \ac{API}.
 The centralized cloud environment should be easily replaceable and should not be exclusively bound to Open Baton or any other tool.
-The same applies to the prototype, it should not be bound to Docker only and should be able to use other virtualization tools.
+It also applies to the prototype, it should not be bound to Docker only and should be able to use other virtualization tools.
 Finally, the whole system should be well tested and documented.
 
 
@@ -104,14 +104,14 @@ This need will be considered during the whole development phase.
 
 \section{Use-Case-Analysis}
 \label{section:use-case-analysis}
-This analysis will show up four exemplary use cases for the prototype to be developed.
+This analysis will show up four exemplary use cases of the prototype to be developed.
 These use cases describe the system in a simplified and abstract manner.
 They will not refer to any technology, but will show up the usage of the prototype from a user perspective.
 
 \paragraph{Service deployment from a cloud orchestrator}
-That will be the most common use case in this consideration.
+It will be the most common use case in this consideration.
 A service, for example a \ac{NF}, should be deployed to a single node.
-Figure \ref{fig:use_case_deploy_service} illustrate this use case.
+Figure \ref{fig:use_case_deploy_service} illustrates this use case.
 Therefore, the prototype will be installed on the node itself.
 A cloud service, such as Open Baton, will orchestrate the deployment.
 In doing so, a so called blueprint, which is basically a description of the service, the images and the capabilities that are necessary to execute the image, will be passed over to the prototype via an \ac{API}.
@@ -128,17 +128,17 @@ The state of the services can be observed at any step of the process.
 
 \paragraph{Service deployment based on capabilities}
 Also in this case a cloud service like Open Baton will deploy a service to a node cluster.
-Figure \ref{fig:use_case_deploy_service_multiple_nodes} illustrate this use case.
-Again, one node will get the blueprint and parse them.
-Each image has capabilities attached to them.
-During the parsing of the blueprint, the application check if the node can fulfill all of these capabilities.
+Figure \ref{fig:use_case_deploy_service_multiple_nodes} illustrates this use case.
+Again, one node will get the blueprint and parse it.
+Each image has capabilities attached to it.
+During the parsing of the blueprint, the application is checking, if the node can fulfill all of these capabilities.
 If an image can not used by this node, the application will search for a node, that is able to deploy the image.
 For example, if one image needs a ZigBee dongle to measure data, than the capability \textit{ZigBee} is added to the image in the blueprint.
 The first node, Node A, has no ZigBee dongle connect and therefore, it is not able to fulfill that requirement.
 Node A will then ask all the other nodes in the cluster, if they can satisfy the need.
 Node B will respond that it is also not able to do so.
 Node C is able and will respond with a related message.
-Node A send over the image to be deployed and Node C will execute them.
+Node A sends over the image to be deployed and Node C will execute it.
 From that point on, Node A is still responsible for the whole service, but Node C is executing the container that was started from the image and will frequently be asked for the state of the container.
 This process can be repeated for one or multiple images.
 If each image was deployed, the service is up and running and can be observed again by the user.
@@ -155,7 +155,7 @@ If a new node will be added to the cluster, all the other nodes should be inform
 Therefore, the appearing node will be send out a message with some meta information, with for example the \ac{IP} address of the node, to the broker, that send them to all the other nodes.
 Each node in the cluster will get the message and can store the information.
 Additionally, the nodes will also send back a message with their meta information.
-Again, each node will receive these message, including the newly added node.
+Again, each node will receive this message, including the newly added node.
 The new node can also store the information of the other nodes.
 From now on, all the nodes know each other and can directly communicate with each other.
 A centralized entity is no longer necessary.
@@ -166,12 +166,12 @@ This disappeared node will no longer be part of the cluster.
 
 \paragraph{Lifecycle management}
 The lifecycle management is important for the maintainer of the nodes.
-Each process and each task in the system should be transparent and comprehensible.
+Each process and each task in the system should be transparently and comprehensibly.
 Therefore, the different components should expose their lifecycle state if requested.
 The first one is the node lifecycle.
 This represents the current state of the node.
 Depending from the state, a node can be able to deploy a service or not.
-Lets assume the node is currently setting up all the necessary configurations and tools, they will then be in the state of the \textit{configuration phase}.
+When it is assumed, that the node is currently setting up all the necessary configurations and tools, it will then be in the state of the \textit{configuration phase}.
 In this state a deployment will not be possible.
 Similar to that, also the services and images will be have a lifecycle.
 When a service is deployed, but does not have started all the related images, it will be in the state of \textit{instantiating} the service.
@@ -195,9 +195,9 @@ As mentioned before, the prototype to be developed should orchestrate virtualize
 Therefore, the focus of this consideration is the orchestration as well as the constraints.
 
 \paragraph{Kubernetes} is especially made for Docker and can orchestrate, scale and manage containers.
-It is open source, developed by Google and one of the most popular orchestration tools in the market.
+It is open source, developed by Google and one of the most popular orchestration tools on the market.
 It has an active community and is used by several well known companies\autocite{Kubernetes:Case-Studies} like eBay\footnote{\url{http://www.ebay.com}} and Wikimedia\footnote{\url{https://www.wikimedia.org}}.
-Due to the fact, that is exclusively made for Docker, it means that the system is not made to easily switch the underlying container engine if needed.
+Due to the fact, that it is exclusively made for Docker, it means that the system is not made to switch easily the underlying container engine if needed.
 
 As mentioned in section \ref{subsection:state-of-the-art:kubernetes} Kubernetes supports labels.
 These are simple key-value pairs provided as \ac{JSON} objects which can be added by the system administrator to a Kubernetes Object like a pod or a service.
@@ -210,14 +210,14 @@ Furthermore, Kubernetes is not \ac{ETSI} \ac{MANO} compliant, but provides an ea
 
 \paragraph{Docker Swarm} is pretty similar to Kubernetes from a functional point of view.
 It is open source, has an active community and it is also made exclusively for Docker.
-Biggest benefit compared to Kubernetes is, that it is natively included in the Docker Engine.
+The biggest benefit compared to Kubernetes is, that it is natively included in the Docker Engine.
 No separate installation is necessary and it can be used out of the box.
 
 Also in terms of labels, both platforms are similar.
 Docker Swarm uses labels in the same way Kubernetes is using them.
 The user can add them during the initialization phase or edit them during runtime.
 They are also key-value pairs or alternatively keys only.
-By default labels can not be predefined in a \ac{JSON} file and applied to the node afterwards.
+By default, labels can not be predefined in a \ac{JSON} file and applied to the node afterwards.
 The placement have to be done manually via the Docker client or the \ac{REST} \ac{API}.
 
 Just as Kubernetes, Docker Swarm is not \ac{ETSI} \ac{MANO} compliant and provides no build-in \ac{GUI}.
@@ -227,7 +227,7 @@ This means it will also work on \ac{IoT} devices by default.
 
 \paragraph{OpenStack} is natively supported by Open Baton and will be used by default as the underlying virtualization tool.
 It only supports \acp{VM} and is mainly designed to be used in a cloud environment as well.
-The installation processes is much more complex then for Docker Swarm or Kubernetes.
+The installation processes is much more complex compared to Docker Swarm or Kubernetes.
 There are much more dependencies and configurations to be made.
 
 Beside the setup effort, it is an well known and established tool for \acp{NFV}, it has an active community and it is elaborated.
@@ -236,13 +236,13 @@ There are some efforts to move OpenStack over to the \ac{IoT} infrastructure\aut
 
 \paragraph{Cloudify} is completely compatible to the \ac{ETSI} \ac{MANO} standard and can be used as the \ac{NFVO}, as well as the generic \ac{VNFM} of this architecture.\autocite[cf.]{Cloudify:MANO}
 It is also able to interact with multiple \acp{VIM}, containers, infrastructures and devices and due to the fact that it can be extended with plugins, it can be used together with several well known tools like OpenStack, Docker or even Kubernetes.\autocite[cf.]{Cloudify:MANO}
-Through these flexibility, Cloudify can also be used in an \ac{IoT} environment if an appropriate \acp{VIM} plugin is used.
-Downside is that Cloudify itself need an orchestration tool like OpenStack to be used as \ac{NFVO}.
+Because of this flexibility, Cloudify can also be used in an \ac{IoT} environment if an appropriate \acp{VIM} plugin is used.
+Downside is, that Cloudify itself needs an orchestration tool like OpenStack to be used as \ac{NFVO}.
 Without an underlying orchestration tool it is limited.
 
 By default it is also not possible to orchestrate functionalities based on constraints.
 To enable this behavior the used plugin has to support such a functionality like Docker Swarm or Kubernetes.
-Cloudify provides an easy to use \ac{GUI}, through which the user can use the whole system, as well as a clean command line tool.
+Cloudify provides an easy to use \ac{GUI}, so that the user can manage the whole system, as well as a clean command line tool.
 By using the \ac{YAML} format to build service blueprints, the creation of them is similar to well known Ansible or Vagrant deployment schemes.
 With the help of the Cloudify Composer the creation of a blueprint is getting much easier and also usable for users without any coding experience.
 
