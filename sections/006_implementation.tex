@@ -799,8 +799,7 @@ The code in general becomes more readable, more understandable and the amount of
 Due to the fact that overall code is read more often than it is written, other people will be satisfied by having a common understanding of the "grammar" of the code to be used.
 As the tool of choice, the library \textit{pycodestyle} will be used.
 The style check is part of the \ac{CI} pipeline and the concrete implementation was shown in listing \ref{code:travis_config}.
-If there is any style check violation, the \ac{CI} build process will fail and the new Docker image will not be uploaded.\newline
-
+If there is any style check violation, the \ac{CI} build process will fail and the new Docker image will not be uploaded.
 Listing \ref{code:style_check_validation} shows an example output of the Travis \ac{CI} build process.
 The first style check call fails due to multiple validations, but the second one exited successfully.\newline
 

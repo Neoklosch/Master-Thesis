@@ -538,7 +538,8 @@ This is the fastest transport type available in ZeroMQ.\newline\newline
 \textbf{\ac{IPC}} provides also a local communication transport, but exchanges messages via the \ac{OS} dependent \ac{IPC} mechanism, for example UNIX domain sockets.
 An application can provide a local \ac{API} for another local application via \ac{IPC}.
 Also \ac{IPC} is much faster than the \ac{TCP} communication.\newline\newline
-\textbf{\ac{TCP}} is an ubiquitous, reliable, unicast transport to provide an \ac{API} over a network.\autocite[cf.]{ZeroMQ:tcp}\newline\newline
+\textbf{\ac{TCP}} is an ubiquitous, reliable, unicast transport to provide an \ac{API} over a network.\autocite[cf.]{ZeroMQ:tcp}
+\newpage % TODO: attention new page
 \textbf{\ac{PGM}} is a multicast communication transport using the \ac{PGM} standard protocol\footnote{\url{https://tools.ietf.org/html/rfc3208}} and the datagrams are layered directly on top of IP datagrams.\autocite[cf.]{ZeroMQ:pgm}
 It is helpful to send a sequence of packets to multiple consumers at the same time.
 Therefore, \ac{PGM} and also \acs{EPGM} can only be used with the publish/subscribe pattern.\newline
