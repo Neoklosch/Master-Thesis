@@ -7,11 +7,11 @@ Afterwards the final system is demonstrated.
 
 \section{Test Environment}
 \label{section:test-environment}
-Motey and the performance scripts in section \ref{section:performance-evaluation} was tested on three different devices:
+Motey and the performance scripts in section \ref{section:performance-evaluation} were tested on three different devices:
 
 \begin{enumerate}
   \item \textbf{Raspberry Pi 2 Model B Version 1.1} hereinafter called \textbf{NeoPi}, that has a ARM Cortex-A7 \ac{CPU} with four cores each with 900 MHz and a 32-bit architecture. It has 1024 MB \ac{RAM} and a 10/100-MBit-Ethernet port. The device is running a Raspbian 8 (jessie) with Linux Kernel version 4.9.
-  \item \textbf{Raspberry Pi 3 Model B Version 1.2} hereinafter called \textbf{BuffPi}, is the currently the newest Raspberry Pi on the market. It has a ARM Cortex-A53 \ac{CPU} also with four cores, but each has 1200 MHz and 64-bit architecture. It also has 1024 MB \ac{RAM} and a 10/100-MBit-Ethernet port.  This devices is also running Raspbian 8 (jessie) with Linux Kernel version 4.9.
+  \item \textbf{Raspberry Pi 3 Model B Version 1.2} hereinafter called \textbf{BuffPi}, is currently the newest Raspberry Pi on the market. It has a ARM Cortex-A53 \ac{CPU} also with four cores, but each has 1200 MHz and 64-bit architecture. It also has 1024 MB \ac{RAM} and a 10/100-MBit-Ethernet port.  This device is also running Raspbian 8 (jessie) with Linux Kernel version 4.9.
   \item \textbf{Acer Aspire V5-573G} hereinafter called \textbf{Laptop}, with an Intel Core i7-4500U \ac{CPU} with two cores each 1.80 GHz and a 64-bit architecture as well. It has 8 GB \ac{RAM} and a 802.11n WiFi connection. It is running a Linux Mint 18.1  64-bit \ac{OS} with a Linux Kernel version 4.4.
 \end{enumerate}
 \bigskip
@@ -23,16 +23,16 @@ The \textit{Laptop} is connect via 802.11n WiFi to the router.
 \section{Performance Evaluation}
 \label{section:performance-evaluation}
 In the following section some performance relevant tests are shown and analyzed.
-Especially the performance of the used virtualization method is crucial for the system as well as the connection performance of the used protocols are important.
+Especially the performance of the used virtualization method is crucial for the system, as well as the connection performance of the used protocols is important.
 All evaluations are made with low power devices in mind.
 This means a small overhead and a fast and lightweight solution is preferred.
 
 \subsection{Docker vs. Hypervisor-Based Virtualization}
 Due to the fact that Docker is the core component in the created prototype, it is important to verify the performance on low power devices.
-Unfortunately a performance comparison with established \ac{VM} tools like VMWare or Xen on a Raspberry Pi is not possible, because nearly all of them does not support the ARM \ac{CPU} architecture.
+Unfortunately a performance comparison with established \ac{VM} tools like VMWare or Xen on a Raspberry Pi is not possible, because nearly all of them don't support the ARM \ac{CPU} architecture.
 There are several performance tests on x86 architecture.
-IBM for example compared \acp{VM} or more specific \acp{KVM} with Docker in a research report\autocite{IBM:Performance:2014} from 2014.
-They conclusion was that \ac{KVM} has a significant overhead to every I/O operation.
+IBM for example compared \acp{VM}, or more specific \acp{KVM}, with Docker in a research report\autocite{IBM:Performance:2014} from 2014.
+The conclusion was that \ac{KVM} has a significant overhead to every I/O operation.
 Therefore it is less suitable for latency-sensitive workloads or high I/O rates.
 Figure \ref{fig:ibm_kvm_docker_io} show the throughput for random I/O operations for a native, a Docker virtualized and a \ac{KVM} virtualized system.
 
@@ -45,33 +45,33 @@ Figure \ref{fig:ibm_kvm_docker_io} show the throughput for random I/O operations
 
 Compared to the native system, Docker has "nearly no overhead"\autocite[p. 6]{IBM:Performance:2014}.
 But also Docker has some drawbacks.
-For example it has an overhead for workloads with high packet rates.\autocite[cf.][p. 6]{IBM:Performance:2014}
-The overall conclusion by IBM was that Docker is more performant than a \ac{KVM} virtualized system.\newline
+For example it has an overhead for workloads with high package rates.\autocite[cf.][p. 6]{IBM:Performance:2014}
+The overall conclusion by IBM was, that Docker is more performant than a \ac{KVM} virtualized system.\newline
 
-Another benchmarking comparison\autocite{Russell:Performance:2014} between Docker and \ac{KVM} that was also made by IBM show a much clearer result.
+Another benchmarking comparison\autocite{Russell:Performance:2014} between Docker and \ac{KVM} that was also made by IBM, shows a much clearer result.
 In this test Docker is much more performant in nearly every point of view.
 It has less overhead in terms of \ac{CPU} usage\autocite[cf.][p. 25]{Russell:Performance:2014}, memory performance\autocite[cf.][p. 50]{Russell:Performance:2014} and boot time\autocite[cf.][p. 24]{Russell:Performance:2014}.
 Only the network throughput is nearly the same.\autocite[cf.][p. 52]{Russell:Performance:2014}
 Concluding also the container size is much smaller in Docker than in \ac{KVM}.\autocite[cf.][p. 66]{Russell:Performance:2014}\newline
 
 \autocite{Ramalho:2016} consolidates this statement of IBM.
-Docker is nearly no performance loss compared to the Hypervisor-based virtualization, in this case \ac{KVM}.\autocite[cf.][p. 3 ff.]{Ramalho:2016}
-The only are where Docker can not keep up with a native environment, is while performing network request and response.
+Docker has nearly no performance loss compared to the Hypervisor-based virtualization, in this case \ac{KVM}.\autocite[cf.][p. 3 ff.]{Ramalho:2016}
+The only thing where Docker can not keep up with a native environment, is while performing network request and response.
 In direct comparison, Docker only can perform around half of the transactions as a native environment is able to do.\autocite[cf.][p. 6]{Ramalho:2016}
-Compared to \ac{KVM} Docker has a significant performance advantage.
+Compared to \ac{KVM}, Docker has a significant performance advantage.
 In all of the tested areas "the hypervisor-based solution showed a significant overhead that cannot be easily mitigated"\autocite[p. 6]{Ramalho:2016}.
 Overall Docker is much more lightweight and due to the fact that it supports the ARM architecture, it is well suitable for the usage on low power devices.
 
 \subsection{Performance HTTP}
-To test the \ac{HTTP} performance of the application two simplified test scripts are created.
+To test the \ac{HTTP} performance of the application, two simplified test scripts are created.
 Both are located in the \textit{performance\_tests/http} folder in the Motey project.
 The \textit{server.py} script starts a Flask server and waits for a POST request.
-If it gets one it will send back a static container id.
+If it gets one, it will send back a static container id.
 The \textit{client.py} script is used to send the \ac{JSON} data to the server.
-It is an extract of an Docker image command as it would be used in the Motey application.
-Afterwards 10.000 request will be send to the server.
+It is an extract of a Docker image command, as it would be used in the Motey application.
+Afterwards 10.000 requests will be send to the server.
 This execution is one iteration of the test.
-In total 10 iterations are performed to get an result.
+In total 10 iterations are performed to get a result.
 An overview of all test results are shown in section \ref{appendix:http_test_results}.
 Figure \ref{fig:performance_http_server_comparison} shows the result of the tests.
 
@@ -82,30 +82,30 @@ Figure \ref{fig:performance_http_server_comparison} shows the result of the test
     \label{fig:performance_http_server_comparison}
 \end{figure}
 
-The two bars indicating the time needed to send 10.000 requests: the left one, that represents a setup where the more powerful BuffPi was the server and the NeoPi was the client, tokes in total more time, then the setup where the NeoPi is the server.
-This is a surprising outcome because the assumption was that the server tokes more computation time then the client.
+The two bars indicating the time needed to send 10.000 requests: the left one, that represents a setup, where the more powerful BuffPi was the server and the NeoPi was the client, took in total more time, then the setup where the NeoPi is the server.
+This is a surprising outcome, because the assumption was that the server takes more computation time then the client.
 But the results prove the opposite.
 If the less powerful device is the server the packages are much faster sent and vice versa.
 An explanation for this could be, that the client has to establish a connection to the server for each of the 10.000 requests and then has to wait for the response.
-This took computation and also idle time until the servers response once.
+This took computation and also idle time, until the servers respond once.
 Additionally, all the requests are done sequently, so that the server must handle only a single request at a time.
-For a web server, that is be made to handle several hundred request at the same time, a single request should be handled really fast and with only a few resources.
+For a web server, that is made to handle several hundred request at the same time, a single request should be handled really fast and with only a few resources.
 This means the server has a lot of idle time and does not need much resources to handle the request.
 In this particular case, where the server has only to handle a single request at the same time, there are no advantages for using the more powerful device for the web server.
-More work is made on client side, so that the packages are faster transferred, if the client is more powerful.
+Due to the fact, that more work is made on client side, the packages can be transferred faster, if the client is more powerful.
 This will change if there is more than a single client connected to the server and more than one request has to be performed at the same time.
 Overall using \ac{HTTP} as the protocol of choice, the messaging is pretty slow.
-To send the 10.000 request even the faster setup toke 03:31 minutes.
-This result depends on the package overhead in \ac{HTTP} and also the need for waiting for the request.
-Such a setup is fits well for simple status or rarely sent deployment requests, but not for high frequently used inter-node connections or in a low latency environment.
+To send the 10.000 request, even the faster setup took 03:31 minutes.
+This result depends on the packet overhead in \ac{HTTP} and also the need for waiting for the request.
+Such a setup fits well for simple status or rarely sent deployment requests, but not for high frequently used inter-node connections or in a low latency environment.
 
 \subsection{Performance ZeroMQ}
 Also for the ZeroMQ performance test both Raspberry Pis are used to communicate with each other.
-Similar to the \ac{HTTP} test the BuffPi and the NeoPi are switch between server and client.
+Similar to the \ac{HTTP} test, the BuffPi and the NeoPi were switched between server and client.
 To test the ZeroMQ performance, the test has to be splitted up into two different variants.
 The first one is called \textit{\ac{CC}}.
 This means, once a ZeroMQ connection is established, all of the 10.000 request are send via this one session.
-\textit{\ac{NC}} is used to simulate the case where each connection has to be closed before a new request will be send.
+\textit{\ac{NC}} is used to simulate the case where each connection has to be closed, before a new request will be send.
 This is more realistic to the implementation in Motey, because the connection to one node will established in the moment they are needed and closed as soon as the request is done.
 
 \begin{figure}[H]
@@ -116,8 +116,8 @@ This is more realistic to the implementation in Motey, because the connection to
 \end{figure}
 
 Besides that, the test setup is the same like in the \ac{HTTP} performance test.
-The scripts are located in \textit{performance\_tests/zeromq} folder, the \textit{server.py} script is the same for both variant, only the client scripts differ.
-Each client send out 10.000 requests and each iteration is performed ten times.
+The scripts are located in \textit{performance\_tests/zeromq} folder, the \textit{server.py} script is the same for both variants, only the client scripts differ.
+Each client sends out 10.000 requests and each iteration is performed ten times.
 The total test results are in section \ref{appendix:zeromq_test_results}.\newline
 
 The difference between the \ac{CC} and \ac{NC} is significant.
@@ -125,7 +125,7 @@ The \ac{CC} is around four times faster then the \ac{NC}.
 Certainly this relates to the connection and disconnection phase of the socket.
 On the other side the difference between the two devices is minimal and can be neglected in this evaluation.
 The comparison between ZeroMQ and \ac{HTTP} is much more crucial.
-Compared to the \ac{CC} \ac{HTTP} is around 20 times slower.
+Compared to the \ac{CC}, \ac{HTTP} is around 20 times slower.
 Even compared to the \ac{NC} it is around 5 times slower.
 Figure \ref{fig:performance_zeromq_vs_http} shows the test results.
 
@@ -136,25 +136,25 @@ Figure \ref{fig:performance_zeromq_vs_http} shows the test results.
     \label{fig:performance_zeromq_vs_http}
 \end{figure}
 
-In addition to that \ac{HTTP} have a packet overhead that will consume more network bandwidth.
+In addition to that, \ac{HTTP} has a packet overhead that will consume more network bandwidth.
 ZeroMQ is well suitable for low latency connections and on the same side more lightweight.
 In the test ZeroMQ is always used in \ac{TCP} mode.
-The creator of ZeroMQ promise that the \ac{IPC} and especially the inter-thread protocol are much faster than \ac{TCP}.\autocite[cf.]{ZeroMQ:UicastTransports}
+The creator of ZeroMQ promises that the \ac{IPC} and especially the inter-thread protocol are much faster than \ac{TCP}.\autocite[cf.]{ZeroMQ:UicastTransports}
 But still for the \ac{TCP} mode, the results are self-evidently.
 
 
 \subsection{Performance MQTT}
 The last test setup was used to test the MQTT performance.
-Due to the fact that MQTT need a broker to be executed a third device the \textit{Laptop} was added.
+Due to the fact that MQTT needs a broker to be executed, a third device the \textit{Laptop} was added.
 Each test was setup in three different ways.
-The Laptop, the BuffPi and the NeoPi, each of them was once the broker.
+The Laptop, the BuffPi and the NeoPi, each of them was the broker once.
 The BuffPi or the NeoPi were always the publisher and the receiver.
 Furthermore MQTT has three different types to be executed, which is called the \ac{QoS} level.
 The \ac{QoS} was explained in section \ref{section:MQTT}.
 The initial assumption was that each level has a different performance.
 Also in this setup each request was sent 10.000 times and in ten iterations.
 All results are shown in section \ref{appendix:mqtt_test_results}.
-Figure \ref{fig:performance_mqtt_average_time_all_qos} shows the average time for each \ac{QoS} level where BuffPi was the broker as well as the publisher and the NeoPi was the consumer.
+Figure \ref{fig:performance_mqtt_average_time_all_qos} shows the average time for each \ac{QoS} level, where BuffPi was the broker as well as the publisher and the NeoPi was the consumer.
 
 \begin{figure}[H]
     \centering
@@ -164,17 +164,17 @@ Figure \ref{fig:performance_mqtt_average_time_all_qos} shows the average time fo
 \end{figure}
 
 As expected the \ac{QoS} level performance differ significantly.
-The difference between \ac{QoS} 0 and \ac{QoS} 2 is more than two and a half of the time used for sending out the 10.000 requests.
+The difference between \ac{QoS} 0 and \ac{QoS} 2 is more than two and a half of the time, used for sending out the 10.000 requests.
 Therefore the \ac{QoS} level should be consciously used in the required use case.
-Due to the fact that the MQTT system is used for the node discovery a lower \ac{QoS} level is suitable.
+Due to the fact that the MQTT system is used for the node discovery, a lower \ac{QoS} level is suitable.
 \ac{QoS} level 1 is recommended for that application.
 And even compared to the \ac{HTTP} connection, MQTT is much faster and more reliable for the node discovery.\newline
 
-On the other side, the device that is executing the broker is much more crucial.
+On the other side, the device that is executing the broker, is more crucial.
 Figure \ref{fig:performance_mqtt_average_time_qos_1} shows the difference between the three devices.\newline
 
-The Laptop that has the most powerful hardware is also much faster by sending out the messages.
-NeoPi the weakest device in the test setup tokes nearly as twice as the Laptop.
+The Laptop that has the most powerful hardware, is also faster by sending out the messages.
+NeoPi the weakest device in the test setup took nearly twice as much as the Laptop.
 Compared to \ac{HTTP} even the NeoPi is much faster, but for a huge cluster the broker should be as powerful as possible.
 Therefore, if the broker should be located inside the cluster, then the most powerful device should be used for that job.
 It would be optimal to use a dedicated node for that job, to not divide the available resources with another application.
@@ -186,11 +186,11 @@ It would be optimal to use a dedicated node for that job, to not divide the avai
     \label{fig:performance_mqtt_average_time_qos_1}
 \end{figure}
 
-One important learning about MQTT, in \ac{QoS} level 1 and 2 messages has to be persisted in a local cache.
-This took some time and it is possible that if the receive message on the broker exceed the message queue.
-If this happens all following messages from that node will be dropped.
+One important learning about MQTT is, in \ac{QoS} level 1 and 2 messages have to be persisted in a local cache.
+This took some time and it is possible that if the receive message on the broker exceeds the message queue.
+If this happens, all following messages from that node will be dropped.
 To fix that issue the total amount of messages in the queue must be extended.
-Therefore the Mosquitto config has to be configured by adding the following lines:
+Therefore, the Mosquitto config has to be configured by adding the following lines:
 
 \begin{listing}[H]
   \begin{minted}{bash}
@@ -201,8 +201,8 @@ Therefore the Mosquitto config has to be configured by adding the following line
   \label{code:performance_mosquitto_config}
 \end{listing}
 
-The first parameter adjust the maximum number of "messages that can be in the process of being transmitted simultaneously"\autocite{Mosquitto:Conf:Documentation}.
-The \textit{max\_queued\_messages} modify the maximum number of messages that can be hold in the queue.\autocite[cf.]{Mosquitto:Conf:Documentation}
-Especially this number has to be increased in the tests, because the scripts sends out a huge amount of publish calls in a very short time.
-In general these numbers has to be adjusted specifically for each use case.
-Furthermore these configs are only important if a \ac{QoS} level 1 or 2 is used, because level 0 does not persist any messages.
+The first parameter is adjusting the maximum number of "messages that can be in the process of being transmitted simultaneously"\autocite{Mosquitto:Conf:Documentation}.
+The \textit{max\_queued\_messages} modifies the maximum number of messages, that can be hold in the queue.\autocite[cf.]{Mosquitto:Conf:Documentation}
+This number had to be increased in the tests, because the scripts send out a huge amount of publish calls in a very short time.
+In general these numbers had to be adjusted specifically for each use case.
+Furthermore, these configs are only important if a \ac{QoS} level 1 or 2 is used, because level 0 does not persist any messages.

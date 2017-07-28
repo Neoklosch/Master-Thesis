@@ -4,7 +4,7 @@
 This chapter introduces the architectural design of the prototype respecting the previously defined requirements.
 Therefore, the used development environment will be analyzed.
 Followed by the definition of an abstract architecture of the prototype to be developed.
-Based on that the different layer of the system will be elaborated as well as some security concerns and the continuous integration environment.
+Based on that, the different layer of the system will be elaborated as well as some security concerns and the continuous integration environment.
 The working title of the project will be \textbf{Motey}.
 In the following the prototype will also be referenced as Motey.
 
@@ -37,7 +37,7 @@ Currently two versions are maintained in parallel, 2.7 and the newer 3.6.
 Due to the fact that a huge code base is still working with Python 2.x, this version is still under development.\autocite[cf.]{Peterson:PythonReleaseSchedule}
 Python has a tremendous amount of libraries which can be installed via the Python package manager called pip\footnote{\url{https://pypi.python.org/pypi/pip}}.
 Similar to Node.js Python allows to write C extension.
-Finally there are several Python compilers which compiles Python code to other high-level languages like Java, C or JavaScript.
+Finally, there are several Python compilers which compiles Python code to other high-level languages like Java, C or JavaScript.
 
 % \paragraph{Go} is the new emerging language created by Google and was announced end of 2009.
 % It follows the traditions of C, but also takes added concepts to create a more modern programming language.
@@ -59,11 +59,11 @@ To start with Travis CI only the Github account has to be synced with the platfo
 Travis CI supports several programming languages and also various third party services, like Docker Hub or Amazon AWS.
 Every time a new commit will be pushed to the git remote repository, a new build will be started at Travis CI.
 At first a virtual machine will be started by Travis CI.
-Afterwards all necessary components like libraries and tools will be installed in the virtual machine.
-Finally all predefined tasks from the \ac{YAML} file will be executed.
+Afterwards, all necessary components like libraries and tools will be installed in the virtual machine.
+Finally, all predefined tasks from the \ac{YAML} file will be executed.
 In terms of the Motey project, unit tests will be executed, as well as code style checks and if a version from the master branch will be build, a Docker container will be created and pushed to the related Docker Hub repository.
 This pipeline guarantees that the project is tested and a coding standard is enforced.
-Further the manual build of the Docker container including the upload to the Docker Hub will be obsolete.
+Further, the manual build of the Docker container including the upload to the Docker Hub will be obsolete.
 
 
 \section{Architecture of the system}
@@ -91,30 +91,30 @@ Each node must have a running instance of the OpenIoTFog Agent to be part of the
 Beside Motey a node can have several hardware devices, sensors and actuators connected to them.
 A virtualization infrastructure such as Docker or XEN, must be installed to be used by Motey.
 These infrastructure can create the containers and \acp{VNF}.
-Further it is also possible to have additional third party tools installed which can interact with the them as well.
+Further, it is also possible to have additional third party tools installed which can interact with the them as well.
 
 The OpenIoTFog Agent has several external connection points.
 It has a \ac{REST} \ac{API} implemented to get some information about the status of the fog node, as well as endpoints to receive the deployment plans from centralized fog level.
 A \ac{MQTT} connection to a broker, which can be running in the centralized fog level as well as on any other fog node, is used for node discovery.
-Finally there are some ZeroMQ endpoints for capability discovery, image deployment and node-to-node communication.
+Finally, there are some ZeroMQ endpoints for capability discovery, image deployment and node-to-node communication.
 A detailed description will be shown in the following sections.
 
 One of the most important components is the \textit{Local Orchestrator}.
 It is responsible for the deployment of the containers as well as the inter-node communication.
 The latter is necessary to let the nodes act in an autonomously way, so that they can react to changing requirements, even when the centralized fog level disappears.
-Therefore each node must have knowledge and should be able to interact with each other.
+Therefore, each node must have knowledge and should be able to interact with each other.
 Besides that, the local orchestrator is tightly coupled to the \textit{\ac{VAL} Manager}.
 This is an abstraction layer for each virtualization component in the system, for example Docker or a bare-metal virtualization like XEN.
 These components should be implemented as plugins, so that it is easy to add or remove virtualization components.
-Therefore Yapsy\footnote{\url{http://yapsy.sourceforge.net/}} is used as the plugin system of choice.
+Therefore, Yapsy\footnote{\url{http://yapsy.sourceforge.net/}} is used as the plugin system of choice.
 
 The \textit{Hardware Event Handler} is a communication endpoint for other third party components.
-For example an external hardware listener could send a message to the event handler to register a new connected device like a ZigBee dongle or a Bluetooth stick.
+For example, an external hardware listener could send a message to the event handler to register a new connected device like a ZigBee dongle or a Bluetooth stick.
 This component should allow multiple third party components to send events to them.
-Finally the \textit{Monitoring Agent} is used to log all ongoing events and gives the maintainer of the system an overview of the system processes.
+Finally, the \textit{Monitoring Agent} is used to log all ongoing events and gives the maintainer of the system an overview of the system processes.
 
-As mentioned in the requirements section \ref{section:functional-requirements} the whole system should be modular and easy to extend.
-Therefore each layer will be as decoupled as possible.
+As mentioned in the requirements section \ref{section:functional-requirements}, the whole system should be modular and easy to extend.
+Therefore, each layer will be as decoupled as possible.
 A clean architecture with decorated dependencies and only a single responsibility for each component.
 The whole code should be independent of any framework, independent of the other components and testable.
 To realize such an architecture, multiple design patterns will be used.
@@ -127,8 +127,8 @@ All of them made the code base well structured and improve the readability as we
 
 \subsection{Virtualization layer}
 The virtualization layer is basically an abstraction layer to generalize the different virtualization engines.
-Therefore a so called \ac{VAL} manager which will be implemented with the facade design pattern is used to load the plugins and abstract the methods of the plugins.
-As mentioned before to realize the plugin functionality the Yapsy library will be used.
+Therefore, a so called \ac{VAL} manager which will be implemented with the facade design pattern is used to load the plugins and abstract the methods of the plugins.
+As mentioned before, to realize the plugin functionality the Yapsy library will be used.
 The library offers a way to easily add new plugins to the system and is also designed to be easy to use.
 It only depends on Python standard libraries and lightweight by design.
 Each supported virtualization engine needs his own concrete plugin implementation which should be use an interface to have a common ground.
@@ -143,17 +143,17 @@ Here three different communication points are necessary to provide the basic fun
 The first subcomponent is the \textbf{node discovery}.
 The idea behind the node discovery is that each node automatically can register and unregister itself to the cluster.
 This means in the moment of the startup of a node, they will send out a message, with an information request about all subscribed nodes.
-To realize that \ac{MQTT} will be the tool of choice.
+To realize that, \ac{MQTT} will be the tool of choice.
 The \ac{MQTT} broker will receive and forward the message to all subscribed nodes and each node will response with an information message back to the broker.
 The broker then send this information message to all nodes again.
-Therefore each node will be up-to-date at each time.
+Therefore, each node will be up-to-date at each time.
 As long as there is no appearance or disappearance of any node, the network will not be stressed.
 To provide a better flexibility the \ac{MQTT} broker can be executed in the centralized fog level or even on a node in the autonomous fog level.
 This allows the system to operate even if the centralized fog level disappears due to network issues or any other communication problems.
 It is also possible to let all nodes communicate which each other once they shared their information.
 Smaller connection issues can be covered with this mechanism.
 The \ac{MQTT} broker Mosquitto\footnote{\url{https://mosquitto.org}} will be the tool of choice.
-It is an eclipse\footnote{\url{http://www.eclipse.org}} project which means it is open source and under continuous development.
+It is an eclipse\footnote{\url{http://www.eclipse.org}} project, which means it is open source and under continuous development.
 The project website describes itself as "a lightweight server implementation of the MQTT protocol that is suitable for all situations from full power machines to embedded and low power machines"\autocite{Eclipse:Mosquitto}.
 
 The next subcomponent is the \textbf{inter- and intra-node communication}.
@@ -165,7 +165,7 @@ ZeroMQ always requires an \ac{IP} to establish a connection to another node, the
 This allows us to connect to any other node in the cluster.
 In addition to the intra-node communication, also an inter-node communication will be implemented.
 It will be used to add new capabilities to a node.
-Therefore one or multiple third party applications should be connectable to a single ZeroMQ endpoint via the publish/subscribe pattern over \ac{IPC}.
+Therefore, one or multiple third party applications should be connectable to a single ZeroMQ endpoint via the publish/subscribe pattern over \ac{IPC}.
 Different to a normal publish/subscribe pattern, the endpoint will acts as the subscriber so that multiple publishers can push messages to them.
 Besides that, each exposed socket should be configurable via the configuration file.
 
@@ -184,10 +184,10 @@ This also makes the code more readable and leads up to a cleaner code structure.
 \subsection{Data layer}
 As mostly the data layer is used to persist necessary data.
 This includes the deployed services, adjacent nodes and the capabilities of the node.
-As database engine the lightweight document oriented database TinyDB\footnote{\url{http://tinydb.readthedocs.io}} will be used.
+As database engine, the lightweight document oriented database TinyDB\footnote{\url{http://tinydb.readthedocs.io}} will be used.
 It is easy to use and has no execution overhead and is also good to use for small datasets.
 The whole data layer should be as abstracted as all the other components before.
-Therefore repositories for each content type will facade the TinyDB methods and allows the underlying library, in this case TinyDB, to be replaced easily and
+Therefore, repositories for each content type will facade the TinyDB methods and allows the underlying library, in this case TinyDB, to be replaced easily and
 without modifying several classes.
 The configuration of the databases should be stored in the global config file as well.
 
@@ -195,7 +195,7 @@ The configuration of the databases should be stored in the global config file as
 \subsection{Capability Management}
 The \textit{Capability Management} is used to create, persist, modify and remove the capabilities of the current node.
 As mentioned before all the capabilities will be stored in the data layer via TinyDB.
-Furthermore the \textit{Hardware Event Handler} is part of this layer.
+Furthermore, the \textit{Hardware Event Handler} is part of this layer.
 It enables the system to get new capabilities from third party apps via a ZeroMQ endpoint.
 As mentioned in the \ref{subsection:CommunicationLayer} the endpoint will be implemented as a form of the publish/subscribe pattern and should allow one or multiple publishers to push messages to the handler.
 Also internal components like the \ac{VAL} plugins can add new capabilities to the system.
@@ -206,7 +206,7 @@ As one of the most important layers, the \textit{Orchestration Layer} will be a 
 Primary it is used to handle the business logic of the deployment of new services.
 If a new service will be send to the communication layer it will be forwarded to the orchestration layer and will be parsed there.
 Afterwards the service will be validated and finally deployed by the orchestrator.
-Additionally it will also check the necessary capabilities for each service image and will search for suitable nodes in the cluster if one or multiple capabilities are not fulfilled.
+Additionally, it will also check the necessary capabilities for each service image and will search for suitable nodes in the cluster if one or multiple capabilities are not fulfilled.
 Besides that, the orchestrator will also handle the lifecycle of a service and the related images during the deployment phase.
 Figure \ref{fig:lifecycle_mgm_squence_diagram_start_service} show up the lifecycle management of a service from the starting phase to the execution phase.
 
@@ -218,7 +218,7 @@ Figure \ref{fig:lifecycle_mgm_squence_diagram_start_service} show up the lifecyc
 \end{figure}
 
 At first the client requests the orchestrator via the \ac{REST} \ac{API}, to start a service.
-Therefore the related service blueprint will be uploaded to the node.
+Therefore, the related service blueprint will be uploaded to the node.
 The orchestrator will directly start with the lifecycle management by creating an service with an \textit{initial} state.
 Afterwards the blueprint gets checked by the orchestrator.
 If it is not valid, the state of the service would be set to \textit{error}.
@@ -245,7 +245,7 @@ Figure \ref{fig:lifecycle_mgm_squence_diagram_stop_service} illustrates this beh
 
 The lifecycle states of the containers are not handled by the orchestrator itself, they are detected via the lifecycle management of the virtualization engine like Docker or XEN.
 Due to the fact that the service is tightly coupled to the images, the state of the images will directly affect the state of the service.
-If only one container change its state to \textit{error} the whole service will be marked as \textit{error}.
+If only one container change its state to \textit{error}, the whole service will be marked as \textit{error}.
 To handle the different states of the different engines, a transformation logic between the state will be implemented.
 
 
@@ -282,7 +282,7 @@ There will be no authentication or authorization due to the fat that it is only 
 Security is a pretty important topic, especially in the \ac{IoT} context, but also in general in any infrastructure at all.
 Insecure \ac{IoT} devices and several botnets like the Mirai botnet\footnote{\url{https://www.corero.com/resources/ddos-attack-types/mirai-botnet-ddos-attack.html}} or the BrickerBot\footnote{\url{https://security.radware.com/ddos-threats-attacks/brickerbot-pdos-back-with-vengeance}} infected thousands of devices during the last year.
 Nearly everyday there are new hacks and security vulnerabilities in the news, which show off that there is a lot of space for improvements in this topic.
-Therefore also this project should have security in mind.
+Therefore, also this project should have security in mind.
 
 Due to the fact that only a prototype should be developed, not every aspect will be covered.
 But even if there are no implementation for securing a special component, possible attack vectors should be mentioned in this thesis.
