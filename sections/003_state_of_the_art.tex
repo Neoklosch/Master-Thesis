@@ -10,24 +10,24 @@
 \label{chapter:state-of-the-art}
 \minitoc\vspace{.5cm}
 
-This chapter will give an overview into the background and concepts of this thesis.
-In the first section the \ac{IoT} and related subtopics like smart factories and Smart Cities are considered.
+This chapter will give an overview into the technical concepts utilized in this thesis.
+In the first section the \ac{IoT} and related subtopics like smart fctories and smart cities are considered.
 \acp{CPS} are important for the development of smart factories and are also covered in this section.
 Virtualization in general is the main topic of the section \ref{section:state_virtualization}.
 First \acp{VM} are highlighted, followed by Container Virtualization.
 Both are related to each other and share some basic ideas.
 Container Orchestration shows exemplary possibilities of Container Virtualization.
 The last subsection \ac{NFV} concludes with an introduction of the virtualization of network node functions to create communication services.
-Afterwards a brief overview of some major existing tools will be given.
-The chapter will be finished with an excursion to two important messaging systems.
+Afterwards a brief overview of some major existing tools, as well as an excursion to two important messaging systems, will be given.
+The chapter will be finished with showing up the current state of research in the research area.
 
 
 \section{Internet of Things}
 \ac{IoT} has grown strongly in the media and economy in the recent years.
-In the year 2008 the number of devices, that are connected to the Internet was higher than the human population.\autocite[cf.][p. 3]{Eva:2011}
-Cisco Internet Business Solutions Group predicted that the number will grow up to 50 billion in 2020, this equates to around 6 devices per person.\autocite[cf.][p. 4]{Eva:2011}
+In the year 2008 the number of devices, that were connected to the Internet was higher than the human population.\autocite[cf.][p. 3]{Eva:2011}
+Cisco Internet Business Solutions Group predicted that the number will grow up to 50 billion in 2020, which equates to around 6 devices per person.\autocite[cf.][p. 4]{Eva:2011}
 Most of today's interactions are \ac{H2H} or \ac{H2M} communication.
-The \ac{IoT} on the other hand aim for the \ac{M2M} communication.
+The \ac{IoT} on the other hand aims for the \ac{M2M} communication.
 This allows every physical device to be interconnected and to communicate with each other.
 These devices are also called "Smart Devices".
 Creating a network, where all physical objects and people are connected via software, is one primary goal of the \ac{IoT}.\autocite[cf.][p.206]{Rui:2015}\autocite[cf.][p.2]{Kra:2013}
@@ -36,10 +36,11 @@ Therefore, a new dimension of information and communication technology will be c
 This omnipresent information processing in everyday life is also known as "Ubiquitous Computing", which was first mentioned in "The Computer for the 21st Century"\autocite{Wei:1991} by Mark Weiser.
 In addition to smart devices, subcategories are also emerging from the \ac{IoT}, which, in addition to the physical devices, also describe technologies such as protocols and infrastructures.
 The "Smart Home" has been a prominent topic in media and business for many years.
-Smart City or Industry 4.0 are also becoming established and are increasingly popular.
-But the \ac{IoT} started with the appearance of bar codes and \ac{RFID} chips.\autocite[cf.][p. 13]{Kra:2013}
-The second step, that is more or less the state of the art, sensors, physical devices, technical devices, data and software are connected to each other.\autocite[cf.][p. 13]{Kra:2013}
-This was achieved, in particular, by cloud computing, which provides the highly efficient memory and computing power that is indispensable for such networks.\autocite[cf.][p. 206]{Rui:2015}
+Smart city or Industry 4.0 are also becoming established and are increasingly popular.
+
+At the beginning, the \ac{IoT} started with the appearance of bar codes and \ac{RFID} chips.\autocite[cf.][p. 13]{Kra:2013}
+In the second step, that is more or less the state of the art, sensors, physical devices, technical devices, data and software are connected to each other.\autocite[cf.][p. 13]{Kra:2013}
+This was in particular achieved cloud computing, which provides the highly efficient memory and computing power that is indispensable for such networks.\autocite[cf.][p. 206]{Rui:2015}
 The next step could be a "Cognitive Internet of Things", which enables easier object and data reuse across application areas, for example through interoperable solutions, high-speed Internet connections and a semantic information distribution.\autocite[cf.][p. V]{Kra:2013}
 Just as the Ubiquitous Computing, it will take some time until it is omnipresent.
 
@@ -47,14 +48,14 @@ Just as the Ubiquitous Computing, it will take some time until it is omnipresent
 \subsection{Industry 4.0 and smart factories}
 The industry we know is changing and is currently in the state of the so called "fourth industrial revolution".
 The first industrial revolution was driven by steam powered machines.
-Mass production and division of labor was the primary improvement of the second industrial revolution, whereas the third revolution was characterized by using electronics and the integration of \ac{IT} into manufacturing processes.\autocite[cf.][p. 1]{Lom:2016}
+Mass production and division of labor were the primary improvement of the second industrial revolution, whereas the third revolution was characterized by using electronics and the integration of \ac{IT} into manufacturing processes.\autocite[cf.][p. 1]{Lom:2016}
 In the recent years the size, cost and power consumption of chipsets were reduced, which made it possible to embed sensors into devices and machines much easier and cheaper.\autocite[cf.][p. 1]{Brito:2016}
 The Industry 4.0 is the fourth step in this evolution and was first mentioned with the German term "Industrie 4.0" at the Hannover Fair in 2011.\autocite[cf.][p. 1]{Lom:2016}
 "Industrie 4.0 is a collective term for technologies and concepts of value chain organization."\autocite[cf.][p. 11]{Her:2015}
 
 Significantly higher productivity, efficiency, and self-managing production processes, where everything from machines up to goods can communicate and cooperate with each other directly, are the visions of the Industry 4.0.\autocite[cf.]{Lyd:2016}
 It also aims for an intelligent connection between different companies and units.
-Autonomous production and logistics processes creates a real-time lean manufacturing ecosystem that is more efficient and flexible.\autocite[cf.]{Lyd:2016}
+Autonomous production and logistics processes create a real-time lean manufacturing ecosystem that is more efficient and flexible.\autocite[cf.]{Lyd:2016}
 "This will facilitate smart value-creation chains that include all of the life-cycle phases of the product from the initial product idea, development, production, use, and maintenance to recycling."\autocite{Lyd:2016}
 At the end, the system can use customer requirements in every step in the process to be flexible and responsive.\autocite[cf.]{Lyd:2016}
 
@@ -80,7 +81,7 @@ At the end, the system can use customer requirements in every step in the proces
   \label{tab:industryComponents}
 \end{table}
 
-Table \ref{tab:industryComponents} shows the six design principles from the Industry 4.0 components.
+Table \ref{tab:industryComponents} shows the six design principles of the Industry 4.0 components.
 They can help companies to identify and implement Industry 4.0 scenarios.\autocite[cf.][p. 11]{Her:2015}
 
 \begin{enumerate}
@@ -108,20 +109,20 @@ Figure \ref{fig:vertical_horizontal_integration} illustrates this concept.
 The left side shows the whole production process over company boundaries on the horizontal scale, as well as the industry value chain on the vertical scale which is specific for each company.
 On the right side there is an exemplary industry value chain, which starts with the raw materials and ends with the sale of the product, to illustrates a more specific example of the vertical integration.
 From a technical perspective this means each machine in a factory has exactly to know what to do.
-The underlying system has to be modular and has to move away from a monolithic centralized system to a decentralized system, that is located locally near the machines itself.
+The underlying system has to be modular and has to move away from a monolithic centralized system to a decentralized system, that is located locally near the machines itself.\autocite[cf.][p. 380]{Pahl:2015}
 The communication path between them has to grow shorter.
 The machines have to be self organized and should communicate between each other, even if the core system is not available, because of lossy signals or other connection issues.
 This can enable flexibility, a better fault tolerance and individualized mass production.\autocite[cf.]{Lyd:2016}
 
 
 \subsection{Cyber Physical Systems}
-As we already now, in smart factories every physical device is connected to each other.
+As we already now, in smart factories every physical device is connected with each other.
 Everything can be captured and monitored in each step of a production process.
 With \acp{CPS} every physical entity has a digital representation in the virtual system.\autocite[cf.][p. 1363]{Poovendran:2010}
 Previously, a \ac{CS} was passive, which means there was no communication between the physical and the virtual world.\autocite[cf.][p. 1364]{Poovendran:2010}
-While new technologies in the physical world, like new materials, hardware and energy, are developed, the technologies in the virtual worlds are also being improved, for example through the use of new protocols, networking, storage and computing technologies.\autocite[cf.][p. 1364]{Poovendran:2010}
+While new technologies in the physical world, like new materials, hardware and energy supply, are developed, the technologies in the virtual world are also being improved, for example through the use of new protocols, networking, storage and computing technologies.\autocite[cf.][p. 1364]{Poovendran:2010}
 This adds more intelligence in such systems, as well as a more flexible and modular structure.
-A \ac{CPS} can organize production automatically and autonomously, which eliminate the need of having a central process control.\autocite[cf.]{Lom:2016}
+A \ac{CPS} can organize production automatically and autonomously, which eliminates the need of having a central process control.\autocite[cf.]{Lom:2016}
 Thereby the system can handle lossy signals and short range radio technologies, which are widely used in such a context.\autocite[cf.]{Yannuzzi:2014}
 In summary \acp{CPS} can help to enable the vision of smart factories in both the horizontal as well as the vertical integration.
 
@@ -130,13 +131,13 @@ In summary \acp{CPS} can help to enable the vision of smart factories in both th
 In the beginning of Cloud Computing most of the systems are based on a monolithic architecture.
 Over time the system was broken down to a more distributed multicloud architecture, similar to microservices.
 With the appearance of Fog Computing the Cloud also moves from centralized data centers to the edge of the underlying network.
-Main goal is to reduce the traffic and the amount of data that is transferred to the cloud and also process, analyze and store data locally, as well as keeping sensitive data inside the network for security reasons.\autocite[cf.][p. 236]{Brito:2016}\autocite[cf.][p. 325]{Yannuzzi:2014}\autocite[cf.][p. 4]{Lom:2016}
-In contrast to the goals, the definition and understanding of Fog Computing differs.
+The main goals are to reduce the traffic and the amount of data that is transferred to the cloud and also process, analyze and store data locally, as well as keeping sensitive data inside the network for security reasons.\autocite[cf.][p. 236]{Brito:2016}\autocite[cf.][p. 325]{Yannuzzi:2014}\autocite[cf.][p. 4]{Lom:2016}
+In contrast to these goals, the definition and understanding of Fog Computing differs.
 One perspective is, that the processing of the data take place on smart devices, e.g. embedded systems, etc., at the end of the network or in smart router or other gateway devices.\autocite[cf.][p. 4]{Lom:2016}
-Another interpretation is that fog computing appears as an intermediate layer between smart devices and the cloud.\autocite[cf.][p. 236]{Brito:2016}
+Another interpretation is that Fog Computing appears as an intermediate layer between smart devices and the cloud.\autocite[cf.][p. 236]{Brito:2016}
 Processing the data near devices enables lower latency and real-time applications can take decisions based on analytics running there.
 That is important because a continuous connection to the cloud can not always be ensured.
-However, fog computing should not be seen as a competitor of cloud computing, it is a perfect ally for use cases where cloud computing alone is not feasible.\autocite[cf.][p. 325]{Yannuzzi:2014}
+However, Fog Computing should not be seen as a competitor of cloud computing, it is a perfect ally for use cases where cloud computing alone is not feasible.\autocite[cf.][p. 325]{Yannuzzi:2014}
 
 
 \section{Virtualization}
@@ -144,8 +145,9 @@ However, fog computing should not be seen as a competitor of cloud computing, it
 According to the \ac{NIST} the definition of virtualization is: "Virtualization is the simulation of the software and/or hardware upon which other software runs. This simulated environment is called a virtual machine (VM)."\autocite[p. ES-1]{Sca:2011}.
 This means a \ac{VM}, also referred as guest system, can be executed on a real system, that is referred as host system.
 A \ac{VM} has its own \ac{OS} which is completely isolated from the other \acp{VM} and the host system.\autocite[cf.][p. 2]{Celesti:2016}
-Basically there are two types of virtualization: Process virtualization, where the virtualization software, also known as \ac{VMM}, is executed by the host \ac{OS} and only an application will be executed inside the guest \ac{OS} and, on the other side, there is the the system virtualization, where the whole \ac{OS} as well as the application are running inside the virtualization software.
-Figure \ref{fig:vms_vs_docker} illustrate both concepts.
+Basically there are two types of virtualization: Process virtualization, where the virtualization software, also known as \ac{VMM}, is executed by the host \ac{OS} and only an application will be executed inside the guest \ac{OS}.
+On the other side, there is the the system virtualization, where the whole \ac{OS} as well as the application are running inside the virtualization software.
+Figure \ref{fig:vms_vs_docker} illustrates both concepts.
 Examples for process virtualization could be the \ac{JVM}\footnote{\url{https://www.java.com}}, the .Net framework\footnote{\url{https://www.microsoft.com/net}} or Docker\footnote{\url{https://www.docker.com}}, where VMWare\footnote{\url{http://www.vmware.com}}, Oracle Virtual Box\footnote{\url{https://www.virtualbox.org}}, XEN\footnote{\url{https://www.xenproject.org}} or Microsoft Hyper-V\footnote{\url{https://www.microsoft.com/de-de/cloud-platform/server-virtualization}} are only some examples for system virtualization.
 
 \begin{figure}[H]
@@ -154,7 +156,9 @@ Examples for process virtualization could be the \ac{JVM}\footnote{\url{https://
     \caption[Structure bare-metal virtualization vs. container virtualization]{Structure bare-metal virtualization vs. container virtualization. Adapted from: \autocite[p. 2]{Gallagher:2015}}
     \label{fig:vms_vs_docker}
 \end{figure}
+% TODO: explain figure a bit more
 
+% TODO: source for the following sentence
 The benefits of all virtualization techniques are the rapid provisioning of resources which could be \ac{RAM}, disk storage, computation power or network bandwidth.
 Besides that, no human interaction is necessary during the provisioning process.
 Elasticity, which scales a system in a cost-efficient manner in both directions, up and down, is also enabled.
@@ -182,7 +186,7 @@ If only a single application, which only needs a few binaries and libraries, is 
 
 
 \subsection{Container Virtualization}
-Container virtualization which is also known as Operating System-level virtualization, is the second virtualization mechanism.
+Container virtualization, which is also known as Operating System-level virtualization, is the second virtualization mechanism.
 It is based on fast and lightweight process virtualization to encapsulate an entire application with its dependencies on a ready-to-deploy virtual container.\autocite[cf.][p. 72]{Tosatto:2015}
 Such a container can be executed on the host \ac{OS}, that allows an application to run as a sand-boxed user-space instance.\autocite[cf.][p. 1]{Anderson:2016}
 All containers share a single \ac{OS} kernel, so the isolation supposed to be weaker compared to hypervisor based virtualization.\autocite[cf.][p. 2]{Celesti:2016}
@@ -191,13 +195,14 @@ Compared to \acp{VM}, the number of containers on the same physical host can be 
 
 \subsection{Container Orchestration}
 Containers by itself help to develop and deploy applications, but containers release their full potential only when they are used together with an orchestration engine.
-Before orchestration engines, the deployment of an application or service was realized via \ac{CI} and deployment tools like Vagrant or Ansible.
+Before orchestration engines, the deployment of an application or service was realized via \ac{CI} and deployment tools like Vagrant\footnote{\url{https://www.vagrantup.com}} or Ansible\footnote{\url{https://www.ansible.com}}.
 Deployment scripts or plans were created and executed every time an application changed or should be scaled up on a new machine.
 This was less flexible and error-prone.
 Orchestration engines cover these needs by automatically choosing new machines, deploying containers, handle the lifecycle of them and monitor the system.
-These flexibility enables a new level of abstraction and automatization of deployment.
+This flexibility enables a new level of abstraction and automatization of deployment.
 There are a bunch of orchestration engines in the market.
 For example Docker, Kubernetes and Docker Swarm are the most popular at the moment.
+% TODO: add sources here
 
 
 \subsection{Network Function Virtualization}
@@ -210,7 +215,7 @@ Some benefits are speed, agility and cost reduction in deployment as well as exe
 Using homogeneous hardware simplifies the process of planning and reduces power, cooling and space needs.\autocite[cf.]{Noble:2015}
 Through virtualization providers can utilize resources more effectively, by allocating only the necessary resources for a specific functionality.\autocite[cf.]{Noble:2015}
 Overall \ac{NFV} can reduce \ac{OpEx} as well as \ac{CapEx} and can decrease the time necessary to deploy new services to the network.\autocite[cf.]{Noble:2015}
-To achieve \ac{NFV} the \ac{ETSI} has defined a framework, the \ac{NFV-MANO}\footnote{\url{http://www.etsi.org/deliver/etsi_gs/NFV-MAN/001_099/001/01.01.01_60/gs_NFV-MAN001v010101p.pdf}}, to coordinate and orchestrate the \ac{NF} into the cloud.
+To achieve \ac{NFV} the \ac{ETSI} has defined a framework, the \ac{NFV-MANO}\footnote{\url{http://www.etsi.org/deliver/etsi_gs/NFV-MAN/001_099/001/01.01.01_60/gs_NFV-MAN001v010101p.pdf}}, coordinating and orchestrating the \ac{NF} into the cloud.
 The \ac{OASIS} created \ac{TOSCA}, a data model and templates description that can be used for \ac{NFV}.
 
 \begin{figure}[H]
@@ -228,7 +233,7 @@ The \ac{OSS} is responsible for the underlying soft- and hardware system, for ex
 The \ac{BSS} on the other hand is responsible for the business handling, for example customer and product management.
 Both can be integrated with the \ac{NFV-MANO}.\autocite[cf.]{Kahn:2015}
 
-\paragraph{\acp{VNF}} are the virtualized network elements, for example a virtualized router or virtualized firewall.
+\paragraph{\acp{VNF}} are the virtualized network elements, for example a virtualized router or a virtualized firewall.
 Even if only a subfunction or a subcomponent of a hardware element is virtualized, it is called \ac{VNF}.\autocite[cf.]{Kahn:2015}
 Multiple subfunctions can act together as one \ac{VNF}.
 
@@ -263,9 +268,9 @@ To define schemes, relationships and the configuration of such an infrastructure
 \section{Existing tools}
 
 Using frameworks and third party tools can reduce the time spend on developing software by solving well known or sometimes very specific problems.
-Based on the framework and tool they can be more secure, because several development iterations are done during creating them and they provide a standardized system through which users can develop applications.
+Based on the framework and tools they can be more secure, because several development iterations were done during creating them and they provides a standardized system through which users can develop applications.
 They can also allow to create a prototype of an application in a short amount of time.
-Drawback is, to achieve the benefits the user has to spend some time to learn the concepts, functions and how to use a framework.
+A drawback is, that the user has to spend some time to learn the concepts, functions and how to use a framework, to achieve the benefits.
 Another downside could be, that specific problems are not solved by the library and sometimes complicate workarounds have to be made to add missing features.
 Moreover, it can take some time to find an appropriate framework that fit the needs, is well tested and has a good documentation.
 Therefore, finding and learning good frameworks and third party tools can be a time consuming task.
@@ -285,13 +290,13 @@ As mentioned before, Docker is based on \ac{LXC}.
 It extends \ac{LXC} with a kernel- and application-level API that is used to isolate the CPU, memory, I/O and network layers.\autocite[cf.][p. 82]{Bernstein:2014}
 Docker also uses the \textit{namespace} or \textit{cgroup} mechanisms to isolate the underlying operating environment.\autocite[cf.][p. 82]{Bernstein:2014}
 Similar to \acp{VM}, containers are executed from images.
-A mayor benefit of Docker is the fact, that Docker images can be combined like building blocks.
+A major benefit of Docker is, that Docker images can be combined like building blocks.
 Each image can be used to be the basis for a new one.
 Figure \ref{fig:docker_container_structure} illustrates the concept for the image of the pretty famous Django\footnote{\url{https://www.djangoproject.com/}} web framework.
 In that case, the Django image, which is the resulting image, based on the Python 3.4 image, that again based on the Debian Jessy image.
 All of them are read-only, but Docker adds a writable layer, also known as \textit{container layer}, on top of the images as soon as the container is created.
 File system operations such as creating new files, modifying or deleting existing files are written directly to this layer.\autocite[cf.]{dockerImages}
-The other images don't get involved.
+The other images do not get involved.
 This chaining mechanism of images allows Docker to ease the use of dependencies and administrative overhead.
 
 Besides that, Docker is split up in several components, such as the Docker Engine, the Docker Registries and Docker Compose to mention only a few.
@@ -316,9 +321,9 @@ With the Docker \ac{CLI} client, it is pretty easy to \textit{search} for new co
 
 % Docker Compose
 With Docker Compose multiple Docker Containers can be executed as a single application.
-Therefore, YAML compose file will be used to configure and combine the services.
+Therefore, a YAML file will be used to configure and combine the services.
 For example, the already mentioned Django image can be executed and linked together with a MongoDB\footnote{\url{https://www.mongodb.com}} image.
-The main benefit is the ease of configure dependencies between several containers and configuration steps.
+The main benefit is the ease to configure dependencies between several containers and configuration steps.
 This concept is similar to deployment tools like Vagrant\footnote{\url{https://www.vagrantup.com}}, Ansible\footnote{\url{https://www.ansible.com}} or Puppet\footnote{\url{https://puppet.com}}.
 
 % Benefits
@@ -330,7 +335,7 @@ There is no need to do things differently when switching from a development envi
 Kubernetes is an open source container cluster manager, that was released 2014 by Google.
 It is "a platform for automating deployment, scaling, and operations"\autocite[p. 1]{Grant:2015} of containers.
 Therefore, a cluster of containers can be created and managed.
-The system can for example schedule, on which node a container should be executed, handle node failures, can scale the cluster by adding or removing nodes or enable rolling updates.\autocite[p. 5 f.]{Grant:2015}
+The system can for example schedule, on which node a container should be executed, handle node failures, can scale the cluster by adding or removing nodes or enable rolling updates.\autocite[cf.][p. 5 f.]{Grant:2015}
 
 Figure \ref{fig:kubernetes_architecture} illustrates the basic architecture of Kubernetes.
 The user can interact with the Kubernetes system via a \ac{CLI}, an \ac{UI} or a third party application, over a \ac{REST} \ac{API} to the Kubernetes Master or more specifically the \ac{API} Server in the master.
@@ -353,7 +358,7 @@ After a Pod is destroyed it can never be resurrected.
 Pods can also share functionality to other Pods inside a Kubernetes cluster.
 A logical set of Pods and the access policy of them is called a Kubernetes service.
 Such a service can abstract multiple Pod replicas and manage them.
-A frontend that has access to the service do not care about changes in the service.
+A frontend that has access to the service does not care about changes in the service.
 Any change, either a down scale or an up scale of the system, remains unseen for the frontend.
 They are exposed through internal or external endpoints to the users or the cluster.\autocite[cf.][p. 11]{MSV:2016}
 Labels can be used to organize and to select subsets of Kubernetes Objects, such as Pods or Services.\autocite[cf.]{Kubernetes:labels:2016}
@@ -361,7 +366,7 @@ They are simply key-value pairs, which should be meaningful and relevant to user
 
 The kube-proxy is a network proxy and load balancer, which is accessible from the outside of the system via a Kubernetes service.\autocite[cf.][p. 7]{Mulyana:2016}
 "This reflects services as defined in the Kubernetes API on each node and can do simple TCP,UDP stream forwarding or round robin TCP,UDP forwarding across a set of backends."\autocite{Kubernetes:kube-proxy:2016}
-The Replication Controller is one of the mayor controllers in a Kubernetes System.
+The Replication Controller is one of the major controllers in a Kubernetes System.
 It ensures that a specified number of pod replicas are running and available at any time.\autocite[cf.]{Kubernetes:replication-controller:2016}
 For example, if one node disappears, because of connection issues, the Replication Controller will start a new one.
 If the disappeared node is available back again, it will kill a node.
@@ -375,7 +380,7 @@ The basic functionality of Docker Swarm is pretty similar to Kubernetes: It is p
 Before Docker version 1.12.0, Docker Swarm was an independent tool, which is now integrated in the Docker Engine.\autocite[cf.]{dockerSwarm}
 No additional software is necessary to have a bunch of machines working together as a so called swarm.
 Similar to Kubernetes, Docker Swarm needs a master node, called manager, and several worker nodes.
-The manager for example keep track of the nodes and their lifecycle and it can start new instances of an image, if one or multiple nodes disappear.
+The manager for example keeps track of the nodes and their lifecycle and it can start new instances of an image, if one or multiple nodes disappear.
 Furthermore, Docker Swarm has a build in proxy and load balancer, which can redirect requests to the node with the necessary container running on it or redirect requests based on the workload of the machines.
 Compared to Kubernetes, Docker Swarm is more lightweight, but misses some features like the label functionality or the scheme definition of a pod.
 But as mentioned before, both tools are pretty similar and aim for the same goal.
@@ -406,7 +411,7 @@ But as mentioned before, both tools are pretty similar and aim for the same goal
 Open Baton\footnote{\url{https://openbaton.github.io}} is an open source \ac{ETSI} \ac{NFV} compliant \ac{MANO} Framework\autocite[cf.]{openBatonDoc}.
 "It enables virtual Network Services deployments on top of heterogeneous \ac{NFV} Infrastructures."\autocite{openBatonDoc}
 It works together with OpenStack and provides a plugin mechanism, that allows to add additional \acp{VIM}.\autocite[cf.]{openBatonDoc}
-OpenStack is implemented as the \ac{VIM} and it is the first \ac{PoP}.\autocite{openBatonDoc}
+OpenStack is implemented as the \ac{VIM} and it is the first \ac{PoP}.\autocite[cf.]{openBatonDoc}
 All the resources in the \ac{NFVI} are controlled by the \ac{VIM}, in this case OpenStack.
 
 \begin{figure}[H]
@@ -448,12 +453,13 @@ The services are started and the system is up and running.
 
 
 \section{Messaging}
+% TODO: more sources here
 Messaging protocols are crucial for the \ac{IoT} area.
 On the one side bandwidth in an \ac{IoT} network can be limited due to a bad infrastructure or connection issues and on the other side a huge amount of data can be generated by all the connected devices.
 Hundreds or thousands of devices can probably send data at the same time.
 On top of that, several devices, like sensors and actuators, can send a huge amount of data, because a sensor reads data pretty fast, but mostly it is only raw data, like the temperature or the humidity or something similar.
 All of these circumstances can end up in a huge network traffic.
-Therefore, it is quite important that the applications in an \ac{IoT} context use a lightweight protocol, that has less data overhead and can deliver data packages fast.
+Therefore, it is important that the applications in an \ac{IoT} context use a lightweight protocol, that has less data overhead and can deliver data packages efficently.
 Based on the use case, it is acceptable to not receive every single package.
 For example, in some use cases, where the temperature is measured via a sensor, they will not change drastically in a few millisecond.
 It would be enough to get the data every second and, especially in this case, it would be probably fine to loose some packages over time.
@@ -485,12 +491,12 @@ In direct comparison, this concept decreases the traffic, the amount of connecti
 \end{figure}
 
 Beside the publish/subscribe architecture and the lightweight protocol, \ac{MQTT} has only few, but useful features.
-\textbf{\ac{QoS}} define the level of reliability with which messages are delivered.\autocite[cf.]{Bayer:MQTT}
-There are three different levels, where each level differs in reliability and resources usage.\autocite[cf.]{Bayer:MQTT}
-In an \ac{IoT} context, for instance gathering temperature sensor data from a low power device, most of the time keeping the resources usage low, is more important than the reliability of getting every single message.\newline
+\textbf{\ac{QoS}} defines the level of reliability with which messages are delivered.\autocite[cf.]{Bayer:MQTT}
+There are three different levels, whereas each level differs in reliability and resources usage.\autocite[cf.]{Bayer:MQTT}
+In an \ac{IoT} context, most of the time keeping the resources usage low, is more important than the reliability of getting every single message.\newline
 At \textit{\ac{QoS} level 0 - at most once}, it is guaranteed that a message can only arrive once, but it can also be lost during transfer.
 A single message will be send once and the publisher does not check the success of receiving it.
-This pattern is also called \textit{Fire and Forget}, it is fast and resource friendly.\autocite[cf.]{Bayer:MQTT}\newline
+This pattern is also called \textit{Fire and Forget} and it is fast and resource friendly.\autocite[cf.]{Bayer:MQTT}\newline
 At \textit{\ac{QoS} level 1 - at least once}, it is guaranteed that a message will be received at the consumer.
 After the publisher sends the message with a specific packet identifier, the consumer will confirm the receipt of the message with a so called pubback packet.
 The pubback packet also has the same packet identifier included, so that the publisher will know that the message was successfully delivered.
@@ -538,12 +544,11 @@ This is the fastest transport type available in ZeroMQ.\newline\newline
 \textbf{\ac{IPC}} provides also a local communication transport, but exchanges messages via the \ac{OS} dependent \ac{IPC} mechanism, for example UNIX domain sockets.
 An application can provide a local \ac{API} for another local application via \ac{IPC}.
 Also \ac{IPC} is much faster than the \ac{TCP} communication.\newline\newline
-\textbf{\ac{TCP}} is an ubiquitous, reliable, unicast transport to provide an \ac{API} over a network.\autocite[cf.]{ZeroMQ:tcp}
-\newpage % TODO: attention new page
+\textbf{\ac{TCP}} is an ubiquitous, reliable, unicast transport to provide an \ac{API} over a network.\autocite[cf.]{ZeroMQ:tcp}\newline\newline
 \textbf{\ac{PGM}} is a multicast communication transport using the \ac{PGM} standard protocol\footnote{\url{https://tools.ietf.org/html/rfc3208}} and the datagrams are layered directly on top of IP datagrams.\autocite[cf.]{ZeroMQ:pgm}
 It is helpful to send a sequence of packets to multiple consumers at the same time.
-Therefore, \ac{PGM} and also \acs{EPGM} can only be used with the publish/subscribe pattern.\newline
-\textbf{\ac{EPGM}} is similar to \ac{PGM}, but with the difference, that the PGM datagrams are encapsulated inside UDP datagrams.\autocite[cf.]{ZeroMQ:pgm}
+Therefore, \ac{PGM} and also \acs{EPGM} can only be used with the publish/subscribe pattern.\newline\newline
+\textbf{\ac{EPGM}} is similar to \ac{PGM}, but with the difference, that the PGM datagrams are encapsulated inside \ac{UDP} datagrams.\autocite[cf.]{ZeroMQ:pgm}
 
 ZeroMQ has several basic patterns and most of them can be combined.
 Since a detailed discussion of all of them is beyond the scope of this study, only the most relevant ones are considered.\newline
@@ -561,7 +566,7 @@ Figure \ref{fig:zeromq_pub_sub} shows this pattern.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\textwidth]{resources/images/zeromq-pub-sub.png}
+    \includegraphics[width=0.6\textwidth]{resources/images/zeromq-pub-sub.png}
     \caption[ZeroMQ Publish-Subscribe architecture]{ZeroMQ Publish-Subscribe architecture. Adapted from: \autocite{ZeroMQ:Guide}}
     \label{fig:zeromq_pub_sub}
 \end{figure}
@@ -570,7 +575,8 @@ The \textbf{Pipeline} pattern is also known as the \textit{Divide and Conquer} p
 In figure \ref{fig:zeromq_pipeline} a \textit{Ventilator} can produce multiple tasks, that can be done in parallel.\autocite{ZeroMQ:Guide}
 A set of workers can process these tasks and distribute the work between them.\autocite{ZeroMQ:Guide}
 Finally, a sink can collects the results from the workers.\autocite{ZeroMQ:Guide}
-Benefit of this pattern is, that the workers divide the tasks among itselfs, this means, it will increase the calculation time based on the connected workers.
+Benefit of this pattern is, that the workers divide the tasks among itselfs.
+This means, it will increase the calculation time based on the connected workers.
 Furthermore, the workers can pull a new task as soon as they have finished one.
 This means, a worker has a minimal idle time.
 Queuing is natively provided by ZeroMQ.
@@ -582,7 +588,7 @@ The whole pattern is shown in figure \ref{fig:zeromq_pipeline}\newline
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{resources/images/zeromq-vernitlator.png}
+    \includegraphics[width=0.5\textwidth]{resources/images/zeromq-vernitlator.png}
     \caption[ZeroMQ Pipeline architecture]{ZeroMQ Pipeline architecture. Adapted from: \autocite{ZeroMQ:Guide}}
     \label{fig:zeromq_pipeline}
 \end{figure}
@@ -617,18 +623,19 @@ Finally, ZeroMQ has libraries for most of the common programming languages.\newl
 An overview of how to apply the concept of microservices for the \ac{IoT} is shown in \autocite{Butzin:2016}.
 One of the presented patterns uses container virtualization, to split up the services and use them on low power devices.
 Also in this work, Docker was used as the tool of choice.
-It describes, that the usage of container virtualization enables a better testability, ease the service deployment and improve the scalability of the tools.\autocite[cf.][p. 5]{Butzin:2016}
+It describes, that the usage of container virtualization enables a better testability, eases the service deployment and improve the scalability of the tools.\autocite[cf.][p. 5]{Butzin:2016}
 The authors also mentioned, that using tools like Docker at the edge of a network, e.g. on sensors and actuators, is nearly impossible due to the overhead and dependencies of such tools.\autocite[cf.][p. 5]{Butzin:2016}
 Therefore, the concept of fog and edge computing is presented as a viable solution, for executing services on low power devices, like smartphones or small \acp{PC}.\autocite[cf.][p. 5]{Butzin:2016}
 
 Another study \autocite{Pahl:2015} gives some insights about containers and clusters for the edge cloud.
 It defines edge computing as moving application from a centralized cloud to the edge of the underlying network, in a way that, analytics and knowledge generation services are placed at the source of the data e.g. sensors and actuators.\autocite[cf.][p. 380]{Pahl:2015}
-Besides that, the edge network might be disconnected from the cloud environment and still have to perform without any issues.
+Besides that, the edge network might be disconnected from the cloud environment and still has to perform without any issues.
 That implies, that edge computing must be able to compute and store data "to address data collection, (pre-)processing, and distribution"\autocite[p. 380]{Pahl:2015}.
 If these requirements are fulfilled, such a network is called "edge cloud", which is technically a micro-cloud.\autocite[cf.][p. 121]{Pahl:2016}
 Multiple edge clouds can be located side by side in a network.
 In general, edge devices like a Raspberry Pi or any other small \ac{PC}, that enables the computation and storage of data, have several sensors and actors connected to them.
-A Raspberry Pi is powerful enough to do the job, but is cheap, consumes less energy than a normal \ac{PC} and is easy to integrate into an existing environment.\autocite[cf.][p. 118]{Pahl:2016}
+A Raspberry Pi is powerful enough to do the job.
+At the same time, it is cheaper and consumes less energy than a normal \ac{PC} and is easy to integrate into an existing environment.\autocite[cf.][p. 118]{Pahl:2016}
 
 \begin{figure}[H]
     \centering
@@ -637,19 +644,19 @@ A Raspberry Pi is powerful enough to do the job, but is cheap, consumes less ene
     \label{fig:container_based_cluster_architecture}
 \end{figure}
 
-Furthermore, this paper describes a so called container-based cluster architecture\autocite[p. 384]{Pahl:2015}.
+Furthermore, this paper describes a so called container-based cluster architecture\autocite[cf.][p. 384]{Pahl:2015}.
 Figure \ref{fig:container_based_cluster_architecture} outline this.
 There, each node can be the host of one or multiple virtualization containers.
-Multiple containers can be grouped together to a services, even if the containers are deployed on different nodes.\autocite[cf.][p. 384]{Pahl:2015}
+Multiple containers can be grouped together to services, even if the containers are deployed on different nodes.\autocite[cf.][p. 384]{Pahl:2015}
 Volumes store data for applications that can persist data on a node.\autocite[cf.][p. 384]{Pahl:2015}
 Finally, containers can have dependencies, again also across multiple nodes, to communicate with each other.\autocite[cf.][p. 384]{Pahl:2015}
 This behavior is similar to the basic concept of services and pods in Kubernetes.
 
-For the orchestration and services description, the authors point out \ac{TOSCA} that is supported by Cloudify.
+For the orchestration and services description, the authors point out \ac{TOSCA}, which is supported by Cloudify.
 A \ac{TOSCA} orchestration plan is defined in \ac{YAML} and is used to deploy the containers on the nodes.
 Besides that, \ac{TOSCA} can also describe the infrastructure of the system.
 
-In a future publication, the same authors are using this technological basis to create a \ac{PaaS}, based on a Raspberry Pi cluster\autocite{Pahl:2016}.
+In a another publication, the same authors are use this technological basis to create a \ac{PaaS}, based on a Raspberry Pi cluster\autocite{Pahl:2016}.
 The presented architecture is used to be a bridge "between IoT, local compute devices and data centre clouds"\autocite[p. 117]{Pahl:2016}.
 As mentioned before, a Raspberry Pi is powerful enough to do this job.
 For example, to gather data at the edge of a network and to enable a communication channel with the cloud infrastructure.\autocite[cf.][p. 117]{Pahl:2016}
@@ -657,9 +664,9 @@ Container virtualization is used to make the software to be deployed portable an
 Therefore, Docker is used as the tool of choice.
 To deploy the containers to the edge cloud cluster, a custom tool was developed, instead of using an existing solution, like Kubernetes.\autocite[cf.][p. 122]{Pahl:2016}
 This allows more flexibility in monitoring and maintaining the nodes.\autocite[cf.][p. 122]{Pahl:2016}
-As the storage solution they used OpenStack Swift.
+Furthermore, as the storage solution they used OpenStack Swift.
 The outcome of the paper was a working environment, that was able to deploy and monitor an edge cloud infrastructure.
-As mentioned in the paper, there is significant space for improvements, like a working orchestration engine, some data and network management aspects and better semantic descriptions.
+As mentioned in the paper, there is significant space for improvements, like a working orchestration engine, some data and network management aspects and better semantic descriptions. % TODO: Hier wäre eine Schlussfolgerung für deine Arbeit prima oder eine Reflektion dieser Aussage
 Overall, this work shows the need of a solid infrastructure at the network edge, to enable edge computing capabilities.
 
 The project of \autocite{Stubbs:2015} focuses on service discovery, by implementing them via the Serfnode\footnote{\url{https://github.com/waltermoreira/serfnode}} for distributed systems of microservices.
@@ -676,7 +683,7 @@ It also contains a monitoring and self-healing mechanisms.\autocite[cf.][p. 34]{
 In addition, Serfnode uses an event handling mechanism that reacts to join, leave and fail events of a node.\autocite[cf.][p. 38]{Stubbs:2015}
 For example it informs each node in the cluster about a newly appeared node at start-up.\autocite[cf.][p. 37]{Stubbs:2015}
 Also in this project, \ac{YAML} is used as the description language for the service description.
-Beside Serfnode, some other service discovery tools like Consul\footnote{\url{https://www.consul.io}}, Synapse\footnote{\url{http://airbnb.io/projects/synapse}} and CoreOS\footnote{\url{https://coreos.com/fleet/docs/latest/examples/service-discovery.html}} are described, with the outcome, that they fit better in a cloud environment and are to heavy for an edge node cluster.\autocite[cf.][p. 36]{Stubbs:2015}
+Beside Serfnode, some other service discovery tools like Consul\footnote{\url{https://www.consul.io}}, Synapse\footnote{\url{http://airbnb.io/projects/synapse}} and CoreOS\footnote{\url{https://coreos.com/fleet/docs/latest/examples/service-discovery.html}} are described, with the outcome, that they better fit in a cloud environment and are to heavy for an edge node cluster.\autocite[cf.][p. 36]{Stubbs:2015}
 Also the whole orchestration part is not covered by Serfnode itself.
 
 Another Docker based solution is presented in \autocite{Rufino:2017}, where the main focus is on the distributed architecture.
@@ -687,8 +694,8 @@ Three different layers are provided to enable that behavior:
   \item The sensing layer.
   That is used to gather the data from sensors or to display informations.
   It should represent a \ac{CPS}.
-  \item The Mediation layer.
-  That acts as a gateway between the sensing layer and the cloud infrastructure.
+  \item The mediation layer.
+  It acts as a gateway between the sensing layer and the cloud infrastructure.
   It contains three software components: a \ac{SDN} controller, a database and a \ac{MLU}.\autocite[cf.][p. 1534]{Rufino:2017}
   The \ac{SDN} controller is used to manage the different software-based network components, like a router or a firewall.
   The database is used to store the data from the sensing layer.
@@ -703,20 +710,20 @@ Three different layers are provided to enable that behavior:
 
 The test setup was also made with Raspberry Pis, that represent the edge network devices as well as the gateway.
 The Docker images are orchestrated with Docker Swarm and custom performance test scripts are created to measure some performance values.
-As the communication protocol a \ac{REST} base interface was created.
+As communication protocol a \ac{REST} based interface was created.
 The scripts are creating data on the sensing layer, send them over to the gateway, where the data is stored and finally will be fetched from the enterprise layer.\autocite[cf.][p. 1535]{Rufino:2017}
 The measured performance for writing the data, starting a container and terminate them again, is presented in the work.
 Overall the proposed architecture demonstrates that a distributed architecture, composed of several well known components, can be deployed on different devices and can still perform well.
 Unfortunately, the \ac{MLU} component was not described and measured results were not adequately analyzed.
 Nevertheless, the presented architecture worked and the feasibility of such a system was shown.
 
-\autocite{Bellavista:2017} demonstrate the feasibility of fog computing architecture with an extended Kura\footnote{\url{https://eclipse.org/kura}} version as the gateway software and Docker as the virtualization tool.
+\autocite{Bellavista:2017} demonstrate the feasibility of Fog Computing architecture with an extended Kura\footnote{\url{https://eclipse.org/kura}} version as the gateway software and Docker as the virtualization tool.
 The device layer is realized again with some Raspberry Pi nodes.
 The main focus of the work is on the gateway layer.
 Kura itself is an open source \ac{IoT} gateway software, that can aggregate the data of multiple connected devices and can also control them.\autocite[cf.][p. 2]{Bellavista:2017}
 It uses \ac{MQTT} with a publish/subscribe architecture to get the information and also to send it to the cloud.\autocite[cf.][p. 2]{Bellavista:2017}
 In a sensor-to-cloud architecture, the latency is a drawback and a stable connection can not be guaranteed.\autocite[cf.][p. 1]{Bellavista:2017}
-The advantage of having a gateway in a fog computing environment is, that the latency can be reduced by shorten the connection distance as well as having a local endpoint, to bypass connection losses.\autocite[cf.][p. 1]{Bellavista:2017}
+The advantage of having a gateway in a Fog Computing environment is, that the latency can be reduced by shorten the connection distance as well as having a local endpoint, to bypass connection losses.\autocite[cf.][p. 1]{Bellavista:2017}
 
 As presented in the paper, Kura has some limitations.
 For example be one \ac{MQTT} broker can be executed and the one has to be placed in the cloud.\autocite[cf.][p. 3]{Bellavista:2017}
@@ -730,6 +737,13 @@ It is also possible to prioritize the messages to be send and to decide, when to
 Especially the latter can help to reduce the traffic to the cloud.
 Finally, this structure is called a "Gateway-cloud" but in fact it is pretty similar to the edge cloud mentioned in \autocite{Pahl:2016}.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{resources/images/kura_topologies.png}
+    \caption[Mesh topologies for Kura gateways]{Mesh topologies for Kura gateways. Adapted from: \autocite[p. 4]{Bellavista:2017}}
+    \label{fig:kura_gateway_topologies}
+\end{figure}
+
 With the help of the new Kura version, new network topologies for the gateways are possible.
 Two of them, the "Cluster Organization" and the "Mesh Organization", are mentioned in the work and the latter is shown in figure \ref{fig:kura_gateway_topologies}.\autocite[cf.][p. 4]{Bellavista:2017}
 The Cluster Organization is based on a tree hierarchy.
@@ -741,13 +755,6 @@ In the mesh organization every gateway and every node can be interconnected to e
 There are also one or more gateways, that are connected to the cloud.
 If there would only be one track in figure \ref{fig:kura_gateway_topologies}, the architecture would change from a mesh organization to a cluster organization.
 Depending of the use case of an application, the topology can be changed.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{resources/images/kura_topologies.png}
-    \caption[Mesh topologies for Kura gateways]{Mesh topologies for Kura gateways. Adapted from: \autocite[p. 4]{Bellavista:2017}}
-    \label{fig:kura_gateway_topologies}
-\end{figure}
 
 For the virtualization part \autocite{Bellavista:2017} Docker is used as the tool of choice.
 A fog node skeleton is provided, where each component is separated in the gateway and virtualized by Docker.\autocite[cf.][p. 6]{Bellavista:2017}
@@ -775,3 +782,5 @@ The performance results are similar to the test results of the other references.
 Docker is comparable with a native environment, beside the network throughput, which is lower.\autocite[cf.][p. 4]{Morabito:2016}
 This also affects the power consumption during network communication, which is a bit higher than in a native environment.\autocite[cf.][p. 4]{Morabito:2016}
 Overall, Docker performs good enough to be used for this use case.\autocite[cf.][p. 4]{Morabito:2016}
+
+% TODO: fazit

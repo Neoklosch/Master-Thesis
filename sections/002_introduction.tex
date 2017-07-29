@@ -1,3 +1,4 @@
+\acresetall
 \chapter{Introduction}
 \minitoc\vspace{.5cm}
 
@@ -20,7 +21,7 @@ Such information networks are one of the main goals of \ac{IoT}.
 % -- Smart Factories
 In the Industry 4.0 for example, multiple smart factories should be interconnected to a distributed and autonomous value chain.
 Also, the automation level in a single factory will be increased which helps to have a more flexible and efficient production process.
-Currently a factory has a high degree of automation, but due to a lack of intelligence and communication between the machines and the underlying system, they can not react to changing requirements or unexpected situations.
+Currently a modern factory has a high degree of automation, but due to a lack of intelligence and communication between the machines and the underlying system, they can not react to changing requirements or unexpected situations.
 % Application Area - Anwendungsbereich
 % -- CS & CPS
 One solution to achieve that are \acp{CPS}.
@@ -30,7 +31,7 @@ A normal \ac{CS} is passive, means it can not interact with the physical world, 
 % -- Virtualization, Orchestration, Deployment of functions
 \newpage
 Another solution is to change the fundamental architecture of such a system from a monolithic to more distributed architecture.
-With Fog Computing the cloud moves away from centralized data centers to the edge of the underlying network.\autocite[cf.][p. 380]{Pahl:2015}
+With Fog Computing the cloud moves away from centralized data centers to the edge issues in that context c of the underlying network.\autocite[cf.][p. 380]{Pahl:2015}
 Such a network can have thousands of nodes with multiple sensors, machines or smart components connected to them.
 An "intermediate layer between the IoT environment and the Cloud"\autocite[p.236]{Brito:2016} enables a lot of new possibilities like pre-computation and storage of gathered data.
 This reduces traffic and the resource overhead in the cloud, it keeps sensitive data on-premise\autocite[cf.][p.236]{Brito:2016} and enables real-time applications to take decisions based on analytics running near the device.
@@ -44,10 +45,11 @@ Furthermore ,the required applications running on these nodes can be changed oft
 A more lightweight, less resource and time consuming solution is container virtualization.
 "Furthermore, they are flexible tools for packaging, delivering and orchestration software infrastructure services as well as application"\autocite[p. 117]{Pahl:2016}.
 Orchestration tools like Kubernetes\footnote{\url{https://kubernetes.io}} and Docker Swarm\footnote{\url{https://docs.docker.com/engine/swarm}}, that can deploy, scale and manage containers to clusters of hosts, have become established in the last years.
-If these technologies can be applied to the subject of \ac{IoT}, some of the main issues in that context can be solved.
+If these technologies can be applied to the subject of \ac{IoT}, some of the main issues in that context can be potentially solved.
 For example, lossy signals can be compensated and traffic can be reduces by having services dynamically deployed to a cluster of nodes or an intermediate layer.
 The challenge is to deploy these services, connect them and let them interact with each other, even without the presence of a cloud layer.
 An autonomous behavior could be enabled if the nodes are able to communicate directly.
+
 This thesis demonstrate the possibilities of container orchestration for the \ac{IoT} and smart factories by creating a prototypical implementation of an orchestration engine that can be executed on fog nodes.
 Therefore, an engine will be created that can orchestrate containers based on functional and non-functional constraints onto a single fog node or between a cluster of fog nodes.
 
@@ -66,7 +68,7 @@ Therefore, an engine will be created that can orchestrate containers based on fu
 % write about the synopsis (Zusammenfassung) of the issues
 This thesis describes an approach to design and implement a fog service orchestration engine for smart factories.
 The aim of this work is to create a prototypical implementation of an orchestration engine for a fog node, hereinafter called prototype, that can deploy containers on the same node or on other network nodes.
-A fog Node can be a low power device at the edge of a network, especially in the context of Industry 4.0 and smart factories.
+A fog node can be a low power device at the edge of a network, especially in the context of Industry 4.0 and smart factories.
 Furthermore, the prototype should consider specific functional and non-functional constraints while deploying the containers.
 A condition can be a hardware requirement, a required software or a dependency to another node.
 The technical prerequisite and detailed requirements for the prototype, as well as the usability of a \ac{GUI}, which could be for example Open Baton, an \ac{ETSI} \ac{NFV} compliant \ac{MANO} framework, have to be worked out.
@@ -90,11 +92,11 @@ There is less meeting overhead than in Scrum, but it also helps to have an eye o
 
 % write about the research scope (Forschungsbereich) — Figures 1.1, 1.2 and 1.4
 % -- was ist drin, was nicht
-As mentioned before, the engine to be developed will be a prototype for a fog node.
+As mentioned before, the engine to be developed will be a orchestration engine prototype for a fog node.
 Open Baton serves as the template for that project and especially the modular architecture and the resulting extensibility will be targeted.
 Besides that, the whole prototype will be created completely from scratch.
 The container virtualization will be realized with Docker\footnote{\url{https://www.docker.com}}, an open source container platform.
-Docker has on \ac{API} where third party apps can communicate with and can control the engine itself.
+Docker has an \ac{API}, where third party apps can communicate with and can control the engine itself.
 The functional and non-functional constraints can be stored and transferred for example as \ac{YAML} schemes, that are part of the \ac{TOSCA} standard.
 These schemes should be extendable and should fit the needs of the constraint functionality.
 
@@ -120,8 +122,10 @@ It is out of scope to create a system that guarantees to be executable on arbitr
 
 
 \section{Outline}
-In chapter \ref{chapter:state-of-the-art} an introduction is given to relevant topics like the \ac{IoT} in the context of Industry 4.0, \acp{CPS} and Fog Computing as subtopics, virtualization, especially container virtualization and orchestration and \ac{NFV}.
-Followed by a comparison of several established tools available on the market and some messaging concepts like \ac{MQTT} and ZeroMQ.
+Chapter \ref{chapter:state-of-the-art} is the technical foundation for the prototype to be developer.
+An introduction is given to relevant topics, like the \ac{IoT} in the context of Industry 4.0, \acp{CPS} and Fog Computing as subtopics, virtualization, especially container virtualization and orchestration and \ac{NFV}.
+This is followed by a comparison of several established tools available on the market, that can be used to speed up the development process.
+Some lightweight messaging concepts, like \ac{MQTT} and ZeroMQ, that probably better fit into an \ac{IoT} application, than the common \ac{HTTP}, are shown.
 The section will be finalized by an overview of realted work.
 The definition of the requirements as well as features and capabilities of the prototype will be shown in chapter \ref{chapter:requirements-analysis}.
 Based on that, the architecture of the system is illustrated in chapter \ref{chapter:concept}.

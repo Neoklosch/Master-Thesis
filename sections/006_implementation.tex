@@ -74,6 +74,9 @@ It is made exclusively for Unix-like systems.
 The library will create a pid file after starting the service.
 In the Motey engine, the file path can be configured via a configuration file.
 The daemon process can be controlled via a command line interface.
+Listing \ref{code:cli-tool} shows the \ac{CLI} documentation for the daemon process.
+After the Motey engine is installed via the setup script, this command line tool will be available in the terminal.
+
 \begin{listing}[H]
   \begin{minted}{shell}
   Motey command line tool.
@@ -92,7 +95,7 @@ The daemon process can be controlled via a command line interface.
   \caption{Command line interface documentation for the daemon process}
   \label{code:cli-tool}
 \end{listing}
-After the Motey engine is installed via the setup script, this command line tool will be available in the terminal.
+
 
 \paragraph{dependency-injector} is a micro framework for \acf{DI} in Python.
 The \ac{DI} pattern allows to move the responsibility for creating a dependency from the concrete objects to a factory or a framework, which creates the dependency graph.

@@ -68,7 +68,7 @@ Further, the manual build of the Docker container including the upload to the Do
 
 \section{Architecture of the system}
 The overall architecture of the system can be separated into two levels.
-Figure \ref{fig:abstract_architecture_design} will point up the architecture.
+Figure \ref{fig:abstract_architecture_design} will point out the architecture.
 The first level is the \textit{centralized fog level}.
 For example, this could be a cloud server or management node in a fog cluster.
 Ideally this level should be implemented with an \ac{MANO} compliant framework.
@@ -88,7 +88,7 @@ The second level is the \textit{autonomous fog level}.
 The Motey engine will be located in this level.
 It includes all existing fog nodes, as well as the Motey engine that is referenced as the \textit{OpenIoTFog Agent} in figure \ref{fig:abstract_architecture_design}.
 Each node must have a running instance of the OpenIoTFog Agent to be part of the system.
-Beside Motey a node can have several hardware devices, sensors and actuators connected to them.
+Besides Motey, a node can have several hardware devices, sensors and actuators connected to them.
 A virtualization infrastructure such as Docker or XEN, must be installed to be used by Motey.
 This infrastructure can create the containers and \acp{VNF}.
 Further, it is also possible to have additional third party tools installed which can interact with them as well.
@@ -118,7 +118,7 @@ Therefore, each layer will be as decoupled as possible.
 A clean architecture with decorated dependencies and only a single responsibility for each component will be provided.
 The whole code should be independent of any framework, independent of the other components and testable.
 To realize such an architecture, multiple design patterns will be used.
-\ac{DI} decouples the components and increase the testability.
+\ac{DI} decouples the components and increases the testability.
 The decorator pattern will abstract concrete implementations by a centralized independent layer.
 The observer pattern can be used to handle streams of data for example from an \ac{API} endpoint.
 And finally the singleton pattern can prevent the construction of multiple instances of a single module.
@@ -128,9 +128,9 @@ All the facts metnioned before made the code base well structured and improve th
 \subsection{Virtualization layer}
 The virtualization layer is basically an abstraction layer to generalize the different virtualization engines.
 Therefore, a so called \ac{VAL} manager, which will be implemented with the facade design pattern, is used to load the plugins and abstract the methods of the plugins.
-As mentioned before, to realize the plugin functionality the Yapsy library will be used.
+As mentioned before, the Yapsy library will be used to realize the plugin functionality.
 The library offers a way to easily add new plugins to the system and is also designed to be easy to use.
-It only depends on Python standard libraries and lightweight by design.
+It only depends on Python standard libraries and it is lightweight by design.
 Each supported virtualization engine needs its own concrete plugin implementation, which should be use an interface to have a common ground.
 The supported default engine is Docker, but could be extended in a future version of Motey.
 
@@ -163,7 +163,7 @@ For the node-to-node communication the \textit{Request-Reply} pattern via \ac{TC
 Typical function calls would be the capability discovery where a node will request another node for their capabilities, the deployment or termination of an image on an external node and the request for an image status.
 ZeroMQ always requires an \ac{IP} to establish a connection to another node, therefore we had the node discovery which was described before.
 This allows us to connect to any other node in the cluster.
-In addition to the intra-node communication, also an inter-node communication will be implemented.
+In addition to the inter-node communication, also an intra-node communication will be implemented.
 It will be used to add new capabilities to a node.
 Therefore, one or multiple third party applications should be connectable to a single ZeroMQ endpoint via the publish/subscribe pattern over \ac{IPC}.
 Different to a normal publish/subscribe pattern, the endpoint will act as the subscriber so that multiple publishers can push messages to them.
@@ -236,6 +236,11 @@ Even in this phase, the state of the images can be requested every time.
 When all images are terminated, the state of the service changes to \textit{terminated} and the service will no longer be executed on the node.
 Figure \ref{fig:lifecycle_mgm_squence_diagram_stop_service} illustrates this behavior.
 
+The lifecycle states of the containers are not handled by the orchestrator itself, they are detected via the lifecycle management of the virtualization engine like Docker or XEN.
+Due to the fact that the service is tightly coupled to the images, the state of the images will directly affect the state of the service.
+If only one container changes its state to \textit{error}, the whole service will be marked as \textit{error}.
+To handle the different states of the different engines, a transformation logic between the state will be implemented.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{resources/images/lifecycle_sequence_diagram_stop_service.png}
@@ -243,22 +248,10 @@ Figure \ref{fig:lifecycle_mgm_squence_diagram_stop_service} illustrates this beh
     \label{fig:lifecycle_mgm_squence_diagram_stop_service}
 \end{figure}
 
-The lifecycle states of the containers are not handled by the orchestrator itself, they are detected via the lifecycle management of the virtualization engine like Docker or XEN.
-Due to the fact that the service is tightly coupled to the images, the state of the images will directly affect the state of the service.
-If only one container changes its state to \textit{error}, the whole service will be marked as \textit{error}.
-To handle the different states of the different engines, a transformation logic between the state will be implemented.
-
 
 \subsection{User interface}
 As mentioned in section \ref{section:functional-requirements} the \ac{GUI} will only be used for demonstration purposes and is not designed for use them in production environments.
 Figure \ref{fig:gui_mockup} show the mockup of the web \ac{GUI}.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{resources/images/gui_prototype.png}
-    \caption[Mockup of the web GUI]{Mockup of the web GUI}
-    \label{fig:gui_mockup}
-\end{figure}
 
 The page has components like the header area, a navigation bar and the content area.
 In the mockup the service tab is shown.
@@ -270,12 +263,20 @@ A web layout based on Bootstrap\footnote{\url{http://getbootstrap.com}} as the \
 Further, Vue.js\footnote{\url{https://vuejs.org}} is used as the JavaScript frontend framework.
 According to Wappalyzer\footnote{\url{https://wappalyzer.com/categories/web-frameworks}}, Bootstrap is the most used \ac{CSS} framework on the market, with a share of 65.2\% (as of 26. June 2017).
 It is elaborated and there are many templates available.
+
 Vue.js on the other side is relatively new on the JavaScript frontend framework market.
 It is much slimmer then tools like Angular.js\footnote{\url{https://angular.io}} or React\footnote{\url{https://facebook.github.io/react}}, but has also less functionalities.
 It has a steep learning curve and optimal for small applications and rapid prototypes.
 Vue.js works natively together with Bootstrap, so this will be a rock solid solution.
 All the request will be done by Ajax requests to the \ac{API}.
 There will be no authentication or authorization due to the fact that it is only a prototypical implementation for demonstration purposes only.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{resources/images/gui_prototype.png}
+    \caption[Mockup of the web GUI]{Mockup of the web GUI}
+    \label{fig:gui_mockup}
+\end{figure}
 
 
 \section{Security}
@@ -296,6 +297,8 @@ In case of the prototype the following steps should be implemented:
   \item access control for the communication endpoints
   \item encryption of the communication protocols
 \end{itemize}
+
+\newpage % TODO: Attention - new page
 
 That should be the minimal setup for securing the nodes.
 To make them production ready even much more improvements should be implemented.
