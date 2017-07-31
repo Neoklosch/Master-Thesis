@@ -148,7 +148,19 @@ A \ac{VM} has its own \ac{OS} which is completely isolated from the other \acp{V
 Basically there are two types of virtualization: Process virtualization, where the virtualization software, also known as \ac{VMM}, is executed by the host \ac{OS} and only an application will be executed inside the guest \ac{OS}.
 On the other side, there is the the system virtualization, where the whole \ac{OS} as well as the application are running inside the virtualization software.
 Figure \ref{fig:vms_vs_docker} illustrates both concepts.
-Examples for process virtualization could be the \ac{JVM}\footnote{\url{https://www.java.com}}, the .Net framework\footnote{\url{https://www.microsoft.com/net}} or Docker\footnote{\url{https://www.docker.com}}, where VMWare\footnote{\url{http://www.vmware.com}}, Oracle Virtual Box\footnote{\url{https://www.virtualbox.org}}, XEN\footnote{\url{https://www.xenproject.org}} or Microsoft Hyper-V\footnote{\url{https://www.microsoft.com/de-de/cloud-platform/server-virtualization}} are only some examples for system virtualization.
+The \textit{Bare-Metal Virtualization} on the left side, that is numbered among the system virtualization, use a \textit{Hypervisor} that is executed between the soft- and hardware layer.
+A \ac{VM} will be directley executed from the \textit{Hypervisor}.
+Each \ac{VM}, in turn, has an \ac{OS}, necessary libraries and the application inside them.
+All of the \acp{VM} are completely isolated form each other.
+Some examples for system virtualization are VMWare\footnote{\url{http://www.vmware.com}}, Oracle Virtual Box\footnote{\url{https://www.virtualbox.org}}, XEN\footnote{\url{https://www.xenproject.org}} or Microsoft Hyper-V\footnote{\url{https://www.microsoft.com/de-de/cloud-platform/server-virtualization}}.
+
+\textit{Container Virtualization}, that is one method of the process virtualization, is shown on the right side of figure \ref{fig:vms_vs_docker}.
+It use a \textit{Container Engine}, that is executed on top of a \textit{Host \ac{OS}}.
+The \textit{Container Engine} itself manages the containers and isolates them.
+Depending on the engine, a container can have the libraries and application inside them or only the application.
+Libraries can be containerized and shared by the engine.
+With \textit{Container Virtualization}, there is no need to start a \textit{Guest \ac{OS}}, which maeks it more lightweight and less resource consuming compared to system virtualization.
+Examples for process virtualization could be the \ac{JVM}\footnote{\url{https://www.java.com}}, the .Net framework\footnote{\url{https://www.microsoft.com/net}} or Docker\footnote{\url{https://www.docker.com}}.
 
 \begin{figure}[H]
     \centering
@@ -156,7 +168,6 @@ Examples for process virtualization could be the \ac{JVM}\footnote{\url{https://
     \caption[Structure bare-metal virtualization vs. container virtualization]{Structure bare-metal virtualization vs. container virtualization. Adapted from: \autocite[p. 2]{Gallagher:2015}}
     \label{fig:vms_vs_docker}
 \end{figure}
-% TODO: explain figure a bit more
 
 % TODO: source for the following sentence
 The benefits of all virtualization techniques are the rapid provisioning of resources which could be \ac{RAM}, disk storage, computation power or network bandwidth.
@@ -183,6 +194,7 @@ No special drivers are needed for these type of virtualization, but by compariso
 For both types, the performance limitation remains.
 Each \ac{VM} need a full guest \ac{OS} image in addition to binaries and libraries, that are necessary for the application to be executed.\autocite[cf.][p. 381]{Pahl:2015}
 If only a single application, which only needs a few binaries and libraries, is needed to be virtualized, \acp{VM} are too bloated.
+% TODO: nearly no sources here
 
 
 \subsection{Container Virtualization}
