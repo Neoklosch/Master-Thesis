@@ -182,39 +182,36 @@ When a service is deployed, but does not have started all the related images, it
 If there occurs an error while starting a container, the image and also the related service will be marked as \textit{Error} and the deployment will fail.
 All of these states should also be viewable by a centralized instance like the maintainer.
 
-% 1. Autonomes verhalten bei Cloud abwesenheit
-% -> cloud hat service auf cluster deployed
-% -> alles funktioniert wunderbar
-% -> verbindung zur cloud bricht ab
-% -> eine node wird deaktiviert, wo ein container drauf lief
-% -> container muss auf andere node erneut gestart werden
-% -> node sucht passende node und deployed container dort erneut
-% -> cloud kommt wieder
-% -> bekommt veränderung mitgeteilt
 
 \section{Delineation from existing solutions}
 \label{section:delineation-from-existing-solutions}
 This section is intended to show the features of existing tools and framework to highlight the main differences to the application to be developed.
 As mentioned before, the intended prototype should orchestrate virtualized containers on nodes based on functional and non-functional constraints.
 Therefore, the focus of this consideration is the orchestration as well as the constraints.
-% TODO: compare to the prototype
 
 \paragraph{Kubernetes} is especially made for Docker and can orchestrate, scale and manage containers.
 It is open source, developed by Google and one of the most popular orchestration tools on the market.
 It has an active community and is used by several well known companies\autocite{Kubernetes:Case-Studies} like eBay\footnote{\url{http://www.ebay.com}} and Wikimedia\footnote{\url{https://www.wikimedia.org}}.
 Due to the fact, that it is exclusively made for Docker, it means that the system is not made to switch easily the underlying container engine if needed.
+The prototype will fill this gap.
+It will be developed to be able to execute multiple virtualization methods.
+An abstract virtualization layer is planed to be added for that need.
+This makes the system more fleible and extandable for further virtualization methods.
 
 As mentioned in section \ref{subsection:state-of-the-art:kubernetes} Kubernetes supports labels.
 These are simple key-value pairs provided as \ac{JSON} objects which can be added by the system administrator to a Kubernetes Object like a pod or a service.
 The labels are stored on the Kubernetes Master and can be used to filter specific pods or services during the deployment phase.
-This behavior is pretty close to the one which should be achieved.
+This behavior is pretty close to the one which should be achieved in the prototype.
 
 Kubernetes is made for the cloud, which means it is not intended to be used on low power devices.
 There are some attempts\autocite{kubernetes-installer-rpi}\autocite{kubernetes-on-arm}\autocite{hypriot:kubernetes-on-rpi} to do so, but until now there is no official solution for that.
+The prototype will be developed with the needs of an \ac{IoT} environment in mind.
+It will be executable on low power devices and pay attention for lightweight communication prototcols.
 Furthermore, Kubernetes is not \ac{ETSI} \ac{MANO} compliant, but provides an easy to use web \ac{UI}.
 
 \paragraph{Docker Swarm} is pretty similar to Kubernetes from a functional point of view.
 It is open source, has an active community and it is also made exclusively for Docker.
+As mentioned before, this disadvantage will be eliminated by the prototype.
 The biggest benefit compared to Kubernetes is, that it is natively included in the Docker Engine.
 No separate installation is necessary and it can be used out of the box.
 
@@ -224,6 +221,8 @@ The user can add them during the initialization phase or edit them during runtim
 They are also key-value pairs or alternatively keys only.
 By default, labels can not be predefined in a \ac{JSON} file and applied to the node afterwards.
 The placement have to be done manually via the Docker client or the \ac{REST} \ac{API}.
+Labels, or so called capabilities, can be more sophisticated in the prototype and can be added into the deployment schema of a service.
+This makes the system more flexible and allows deployments to handle concrete needs.
 
 Just as Kubernetes, Docker Swarm is not \ac{ETSI} \ac{MANO} compliant and provides no build-in \ac{GUI}.
 There are several third party \acp{GUI} that fix that issue, but this implies an additional setup and maintenance effort.
@@ -238,6 +237,8 @@ There are much more dependencies and configurations to be made.
 Beside the setup effort, it is an well known and established tool for \acp{NFV}, it has an active community and it is elaborated.
 Compared to other tools, it is not flexible and lightweight enough for the usage in an \ac{IoT} context or more specific for the use directly on the nodes itself.
 There are some efforts to move OpenStack over to the \ac{IoT} infrastructure\autocite{OpenStack:IoT}\autocite{OpenStack:Kubernetes:IoT}, but also in these attempts it will only be used in the cloud level.
+Also compared to OpenStack, the prototype will have advantages to be used in an \ac{IoT} environment.
+It has made to be executed on low power devices and has the same flexibility as OpenStack by switching the underlying virtualization engine.
 
 \paragraph{Cloudify} is completely compatible to the \ac{ETSI} \ac{MANO} standard and can be used as the \ac{NFVO}, as well as the generic \ac{VNFM} of this architecture.\autocite[cf.]{Cloudify:MANO}
 It is also able to interact with multiple \acp{VIM}, containers, infrastructures and devices and due to the fact that it can be extended with plugins, it can be used together with several well known tools like OpenStack, Docker or even Kubernetes.\autocite[cf.]{Cloudify:MANO}
@@ -250,5 +251,8 @@ To enable this behavior the used plugin has to support such a functionality like
 Cloudify provides an easy to use \ac{GUI}, so that the user can manage the whole system, as well as a clean command line tool.
 By using the \ac{YAML} format to build service blueprints, the creation of them is similar to well known Ansible or Vagrant deployment schemes.
 With the help of the Cloudify Composer the creation of a blueprint is getting much easier and also usable for users without any coding experience.
+
+Due to the fact that the prototype will have a \ac{REST} \ac{API}, it could be possibly be integrated into Cloudfiy with a minimal development effort.
+Beside that, it can enrich some of the Cloudify functionalities, for example by adding the capability behavior or an inter-node communication.
 
 % https://www.sdxcentral.com/products/gigaspace-cloudify/
