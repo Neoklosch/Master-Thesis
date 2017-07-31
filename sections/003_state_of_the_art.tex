@@ -11,7 +11,7 @@
 \minitoc\vspace{.5cm}
 
 This chapter will give an overview into the technical concepts utilized in this thesis.
-In the first section the \ac{IoT} and related subtopics like smart fctories and smart cities are considered.
+In the first section the \ac{IoT} and related subtopics like smart factories and smart cities are considered.
 \acp{CPS} are important for the development of smart factories and are also covered in this section.
 Virtualization in general is the main topic of the section \ref{section:state_virtualization}.
 First \acp{VM} are highlighted, followed by Container Virtualization.
@@ -149,7 +149,7 @@ Basically there are two types of virtualization: Process virtualization, where t
 On the other side, there is the the system virtualization, where the whole \ac{OS} as well as the application are running inside the virtualization software.
 Figure \ref{fig:vms_vs_docker} illustrates both concepts.
 The \textit{Bare-Metal Virtualization} on the left side, that is numbered among the system virtualization, use a \textit{Hypervisor} that is executed between the soft- and hardware layer.\autocite[cf.][p. 1771]{Manik:2016}
-A \ac{VM} will be directley executed from the \textit{Hypervisor}.
+A \ac{VM} will be directly executed from the \textit{Hypervisor}.
 Each \ac{VM}, in turn, has an \ac{OS}, necessary libraries and the application inside them.
 All of the \acp{VM} are completely isolated form each other.\autocite[cf.][p.275]{Soltesz:2007}
 Some examples for system virtualization are VMWare\footnote{\url{http://www.vmware.com}}, Oracle Virtual Box\footnote{\url{https://www.virtualbox.org}}, XEN\footnote{\url{https://www.xenproject.org}} or Microsoft Hyper-V\footnote{\url{https://www.microsoft.com/de-de/cloud-platform/server-virtualization}}.
@@ -206,10 +206,10 @@ Compared to \acp{VM}, the number of containers on the same physical host can be 
 \subsection{Container Orchestration}
 Containers by itself help to develop and deploy applications, but containers release their full potential when they are used together with an orchestration engine.
 Before orchestration engines, the deployment of an application or service was realized via \ac{CI} and deployment tools like Vagrant\footnote{\url{https://www.vagrantup.com}} or Ansible\footnote{\url{https://www.ansible.com}}.
-Deployment scripts or plans were created and executed every time an application changed or should be scaled up on a new machine.\autocite[vf.][p. 70]{Tosatto:2015}
+Deployment scripts or plans were created and executed every time an application changed or should be scaled up on a new machine.\autocite[cf.][p. 70]{Tosatto:2015}
 This was less flexible and error-prone.
-Orchestration engines cover these needs by automatically choosing new machines, deploying containers, handle the lifecycle of them and monitor the system.\autocite[vf.][p. 70]{Tosatto:2015}
-This flexibility enables a new level of abstraction and automatization of deployment.\autocite[vf.][p. 70]{Tosatto:2015}
+Orchestration engines cover these needs by automatically choosing new machines, deploying containers, handle the lifecycle of them and monitor the system.\autocite[cf.][p. 70]{Tosatto:2015}
+This flexibility enables a new level of abstraction and automatization of deployment.\autocite[cf.][p. 70]{Tosatto:2015}
 There are a bunch of orchestration engines in the market.
 For example Cloudify, Kubernetes and Docker Swarm are the most popular at the moment.
 
@@ -380,7 +380,7 @@ It ensures that a specified number of pod replicas are running and available at 
 For example, if one node disappears, because of connection issues, the Replication Controller will start a new one.
 If the disappeared node is available back again, it will kill a node.
 This functionality increases the stability, the availability and the scalability of the system in an autonomous manner.
-The last important component in Kubernetes is the rolling update machanism.
+The last important component in Kubernetes is the rolling update mechanism.
 With rolling updates the system can update one pod at a time, rather than taking down the entire service and update the whole system.\autocite[cf.]{Kubernetes:rolling-updates:2016}
 This also increases the stability and availability of the system and eases the managing of container clusters.
 
@@ -467,11 +467,11 @@ On the one side bandwidth in an \ac{IoT} network can be limited due to a bad inf
 Hundreds or thousands of devices can probably send data at the same time.\autocite[cf.][p. 71]{Luzuriaga:2017}
 On top of that, several devices, like sensors and actuators, can send a huge amount of data, because a sensor reads data pretty fast, but mostly it is only raw data, like the temperature or the humidity or something similar.
 All of these circumstances can end up in a huge network traffic.
-Therefore, it is important that the applications in an \ac{IoT} context use a lightweight protocol, that has less data overhead and can deliver data packages efficently.data.\autocite[cf.][p. 2 f.]{Kraijak:2015}
+Therefore, it is important that the applications in an \ac{IoT} context use a lightweight protocol, that has less data overhead and can deliver data packages efficiently.\autocite[cf.][p. 2 f.]{Kraijak:2015}
 Based on the use case, it is acceptable to not receive every single package.
 For example, in some use cases, where the temperature is measured via a sensor, they will not change drastically in a few millisecond.
 It would be enough to get the data every second and, especially in this case, it would be probably fine to loose some packages over time.
-In other cases, like in a healthcare environment, it can be crucial to receive every single package.\autocite[cf.][p. 502]{Hedi:2017}
+In other cases, like in a health-care environment, it can be crucial to receive every single package.\autocite[cf.][p. 502]{Hedi:2017}
 But, if there are hundreds of sensors sending data, it could be more useful to reduce the bandwidth and keep the latency as low as possible, than getting all the data.\autocite[cf.][p. 2 f.]{Kraijak:2015}
 If it is important to react to events or issues as fast as possible, the latency should be as low as possible.\autocite[cf.][p. 502]{Hedi:2017}
 This also suggests to use a lightweight and fast protocol.
@@ -795,10 +795,10 @@ This also affects the power consumption during network communication, which is a
 Overall, Docker performs good enough to be used for this use case.\autocite[cf.][p. 4]{Morabito:2016}
 
 All of the discussed papers made a good progress on pushing some aspects of edge computing forward, as well as improving some \ac{IoT} functionalities.
-But they also highlight that there is some room for improvments in this subject.
+But they also highlight that there is some room for improvements in this subject.
 Most of them show the need of having computational power on the network edge, whether by implementing a gateway layer or by running applications on the edge devices himself.
 Furthermore, the need of having virtualization tools like Docker running on the edge nodes is a common ground.
-On the other side, a lightweight inter-node communication and an autonomuous behavior of the nodes is missing by most of the projects.
-The focus is more on deploying the services to speccific nodes and gathering the data.
-That is a good starting point but let room for improvments.
+On the other side, a lightweight inter-node communication and an autonomous behavior of the nodes is missing by most of the projects.
+The focus is more on deploying the services to specific nodes and gathering the data.
+That is a good starting point but let room for improvements.
 At this point the prototype to be developed can fit some needs by creating a solid foundation for this.

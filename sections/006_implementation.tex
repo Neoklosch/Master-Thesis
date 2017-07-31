@@ -480,7 +480,7 @@ There are four different routes:
   The only functionality is, to respond with all stored nodes as \ac{JSON}.
   This is used for testing purposes and could also be helpful for maintaining the cluster.
   \item To get some information about the node health status the \textbf{NodeStatus} Blueprint was created.
-  It respons with some hardware information, like the current \ac{CPU} or memory usage.
+  It respond with some hardware information, like the current \ac{CPU} or memory usage.
   This is also useful for maintaining the nodes.
   \item The last Blueprint implementation is the \textbf{Service} endpoint.
   It is used to get a \ac{JSON} list with all stored services via the \ac{HTTP} \textit{GET} verb and also to deploy and remove services.
@@ -610,7 +610,7 @@ The CapabilityEngine on the other side has two subscriptions to the observer loc
 These subscriptions react to add and remove requests of any external application.
 Due to the fact that the endpoints are implemented via the ZeroMQ \ac{IPC} protocol, only applications that are located on the node can interact with the CapabilityEngine.
 After a new add-service-request was received, the \ac{JSON} data will be parsed, validated and transformed to the capability model and afterwards stored via the \textit{CapabilityRepository} to the database.
-The eemoval of an entry is pretty similar.
+The removal of an entry is pretty similar.
 The received \ac{JSON} data will be again validated with the \textit{capability\_json\_schema} from the schemes model.
 
 
