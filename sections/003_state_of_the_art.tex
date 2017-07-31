@@ -148,18 +148,18 @@ A \ac{VM} has its own \ac{OS} which is completely isolated from the other \acp{V
 Basically there are two types of virtualization: Process virtualization, where the virtualization software, also known as \ac{VMM}, is executed by the host \ac{OS} and only an application will be executed inside the guest \ac{OS}.
 On the other side, there is the the system virtualization, where the whole \ac{OS} as well as the application are running inside the virtualization software.
 Figure \ref{fig:vms_vs_docker} illustrates both concepts.
-The \textit{Bare-Metal Virtualization} on the left side, that is numbered among the system virtualization, use a \textit{Hypervisor} that is executed between the soft- and hardware layer.
+The \textit{Bare-Metal Virtualization} on the left side, that is numbered among the system virtualization, use a \textit{Hypervisor} that is executed between the soft- and hardware layer.\autocite[cf.][p. 1771]{Manik:2016}
 A \ac{VM} will be directley executed from the \textit{Hypervisor}.
 Each \ac{VM}, in turn, has an \ac{OS}, necessary libraries and the application inside them.
-All of the \acp{VM} are completely isolated form each other.
+All of the \acp{VM} are completely isolated form each other.\autocite[cf.][p.275]{Soltesz:2007}
 Some examples for system virtualization are VMWare\footnote{\url{http://www.vmware.com}}, Oracle Virtual Box\footnote{\url{https://www.virtualbox.org}}, XEN\footnote{\url{https://www.xenproject.org}} or Microsoft Hyper-V\footnote{\url{https://www.microsoft.com/de-de/cloud-platform/server-virtualization}}.
 
 \textit{Container Virtualization}, that is one method of the process virtualization, is shown on the right side of figure \ref{fig:vms_vs_docker}.
 It use a \textit{Container Engine}, that is executed on top of a \textit{Host \ac{OS}}.
-The \textit{Container Engine} itself manages the containers and isolates them.
+The \textit{Container Engine} itself manages the containers and isolates them.\autocite[cf.][p. 1]{Celesti:2016}
 Depending on the engine, a container can have the libraries and application inside them or only the application.
 Libraries can be containerized and shared by the engine.
-With \textit{Container Virtualization}, there is no need to start a \textit{Guest \ac{OS}}, which maeks it more lightweight and less resource consuming compared to system virtualization.
+With \textit{Container Virtualization}, there is no need to start a \textit{Guest \ac{OS}}, which makes it more lightweight and less resource consuming compared to system virtualization.\autocite[cf.][p. 2 ff.]{Celesti:2016}\autocite[cf.][p. 1]{Raho:2015}
 Examples for process virtualization could be the \ac{JVM}\footnote{\url{https://www.java.com}}, the .Net framework\footnote{\url{https://www.microsoft.com/net}} or Docker\footnote{\url{https://www.docker.com}}.
 
 \begin{figure}[H]
@@ -169,15 +169,14 @@ Examples for process virtualization could be the \ac{JVM}\footnote{\url{https://
     \label{fig:vms_vs_docker}
 \end{figure}
 
-% TODO: source for the following sentence
-The benefits of all virtualization techniques are the rapid provisioning of resources which could be \ac{RAM}, disk storage, computation power or network bandwidth.
-Besides that, no human interaction is necessary during the provisioning process.
+The benefits of all virtualization techniques are the rapid provisioning of resources which could be \ac{RAM}, disk storage, computation power or network bandwidth.\autocite[cf.][p. 1771]{Manik:2016}\autocite[cf.][p. 81]{Bernstein:2014}
+Besides that, no human interaction is necessary during the provisioning process.\autocite[cf.][p. 1771]{Manik:2016}
 Elasticity, which scales a system in a cost-efficient manner in both directions, up and down, is also enabled.
 Customers, as well as the provider, profit from such a system.
 Security, based on the isolation of the \acp{VM}, is another benefit.
 Different processes can not interfere with each other and the data of a single user can not be accessed by other users of the same hardware.
-A challenge despite all the mentioned benefits is the performance.
-Running \acp{VM} increases the overhead and reduces the overall performance of a system.
+A challenge despite all the mentioned benefits is the performance.\autocite[cf.][p. 1]{Raho:2015}
+Running \acp{VM} increases the overhead and reduces the overall performance of a system.\autocite[cf.][p. 1]{Raho:2015}
 Therefore the specific use case have to consider that behavior.
 
 
@@ -186,15 +185,14 @@ Therefore the specific use case have to consider that behavior.
 There are also two different designs for hardware virtualization.
 The first and more popular type for cloud computing is the \textit{bare-metal virtualization}.
 It needs only a basic OS to schedule \acp{VM}.
-The hypervisor runs directly on the hardware of the machine without any host \ac{OS} in between.
-This is more efficient, but requires special device drivers to be executed.
+The hypervisor runs directly on the hardware of the machine without any host \ac{OS} in between.\autocite[cf.][p. 14 f.]{Chirammal:2016}
+This is more efficient, but requires special device drivers to be executed.\autocite[cf.][p. 14 f.]{Chirammal:2016}
 The other type is the \textit{hosted virtualization}.
-Unlike the first type, the \ac{VMM} runs as a host \ac{OS} process and the \acp{VM} as a process supported by the \ac{VMM}.
-No special drivers are needed for these type of virtualization, but by comparison the overhead is much bigger.
+Unlike the first type, the \ac{VMM} runs as a host \ac{OS} process and the \acp{VM} as a process supported by the \ac{VMM}.\autocite[cf.][p. 14 f.]{Chirammal:2016}
+No special drivers are needed for these type of virtualization, but by comparison the overhead is much bigger.\autocite[cf.][p. 14 f.]{Chirammal:2016}
 For both types, the performance limitation remains.
 Each \ac{VM} need a full guest \ac{OS} image in addition to binaries and libraries, that are necessary for the application to be executed.\autocite[cf.][p. 381]{Pahl:2015}
 If only a single application, which only needs a few binaries and libraries, is needed to be virtualized, \acp{VM} are too bloated.
-% TODO: nearly no sources here
 
 
 \subsection{Container Virtualization}
@@ -206,15 +204,14 @@ Compared to \acp{VM}, the number of containers on the same physical host can be 
 
 
 \subsection{Container Orchestration}
-Containers by itself help to develop and deploy applications, but containers release their full potential only when they are used together with an orchestration engine.
+Containers by itself help to develop and deploy applications, but containers release their full potential when they are used together with an orchestration engine.
 Before orchestration engines, the deployment of an application or service was realized via \ac{CI} and deployment tools like Vagrant\footnote{\url{https://www.vagrantup.com}} or Ansible\footnote{\url{https://www.ansible.com}}.
-Deployment scripts or plans were created and executed every time an application changed or should be scaled up on a new machine.
+Deployment scripts or plans were created and executed every time an application changed or should be scaled up on a new machine.\autocite[vf.][p. 70]{Tosatto:2015}
 This was less flexible and error-prone.
-Orchestration engines cover these needs by automatically choosing new machines, deploying containers, handle the lifecycle of them and monitor the system.
-This flexibility enables a new level of abstraction and automatization of deployment.
+Orchestration engines cover these needs by automatically choosing new machines, deploying containers, handle the lifecycle of them and monitor the system.\autocite[vf.][p. 70]{Tosatto:2015}
+This flexibility enables a new level of abstraction and automatization of deployment.\autocite[vf.][p. 70]{Tosatto:2015}
 There are a bunch of orchestration engines in the market.
-For example Docker, Kubernetes and Docker Swarm are the most popular at the moment.
-% TODO: add sources here
+For example Cloudify, Kubernetes and Docker Swarm are the most popular at the moment.
 
 
 \subsection{Network Function Virtualization}
@@ -465,19 +462,18 @@ The services are started and the system is up and running.
 
 
 \section{Messaging}
-% TODO: more sources here
 Messaging protocols are crucial for the \ac{IoT} area.
-On the one side bandwidth in an \ac{IoT} network can be limited due to a bad infrastructure or connection issues and on the other side a huge amount of data can be generated by all the connected devices.
-Hundreds or thousands of devices can probably send data at the same time.
+On the one side bandwidth in an \ac{IoT} network can be limited due to a bad infrastructure or connection issues and on the other side a huge amount of data can be generated by all the connected devices.\autocite[cf.][p. 71]{Luzuriaga:2017}
+Hundreds or thousands of devices can probably send data at the same time.\autocite[cf.][p. 71]{Luzuriaga:2017}
 On top of that, several devices, like sensors and actuators, can send a huge amount of data, because a sensor reads data pretty fast, but mostly it is only raw data, like the temperature or the humidity or something similar.
 All of these circumstances can end up in a huge network traffic.
-Therefore, it is important that the applications in an \ac{IoT} context use a lightweight protocol, that has less data overhead and can deliver data packages efficently.
+Therefore, it is important that the applications in an \ac{IoT} context use a lightweight protocol, that has less data overhead and can deliver data packages efficently.data.\autocite[cf.][p. 2 f.]{Kraijak:2015}
 Based on the use case, it is acceptable to not receive every single package.
 For example, in some use cases, where the temperature is measured via a sensor, they will not change drastically in a few millisecond.
 It would be enough to get the data every second and, especially in this case, it would be probably fine to loose some packages over time.
-In other cases, like in a healthcare environment, it can be crucial to receive every single package.
-But, if there are hundreds of sensors sending data, it could be more useful to reduce the bandwidth and keep the latency as low as possible, than getting all the data.
-If it is important to react to events or issues as fast as possible, the latency should be as low as possible.
+In other cases, like in a healthcare environment, it can be crucial to receive every single package.\autocite[cf.][p. 502]{Hedi:2017}
+But, if there are hundreds of sensors sending data, it could be more useful to reduce the bandwidth and keep the latency as low as possible, than getting all the data.\autocite[cf.][p. 2 f.]{Kraijak:2015}
+If it is important to react to events or issues as fast as possible, the latency should be as low as possible.\autocite[cf.][p. 502]{Hedi:2017}
 This also suggests to use a lightweight and fast protocol.
 Two protocols, that could fit the needs, will be discussed in the following paragraphs.
 
@@ -675,11 +671,14 @@ For example, to gather data at the edge of a network and to enable a communicati
 Container virtualization is used to make the software to be deployed portable and interoperable.\autocite[cf.][p. 117]{Pahl:2016}
 Therefore, Docker is used as the tool of choice.
 To deploy the containers to the edge cloud cluster, a custom tool was developed, instead of using an existing solution, like Kubernetes.\autocite[cf.][p. 122]{Pahl:2016}
-This allows more flexibility in monitoring and maintaining the nodes.\autocite[cf.][p. 122]{Pahl:2016}
-Furthermore, as the storage solution they used OpenStack Swift.
+The authors justified this that it allows more flexibility in monitoring and maintaining the nodes.\autocite[cf.][p. 122]{Pahl:2016}
+Furthermore, as the storage solution they used OpenStack Swift\footnote{\url{https://www.swiftstack.com/product/openstack-swift}}.
 The outcome of the paper was a working environment, that was able to deploy and monitor an edge cloud infrastructure.
-As mentioned in the paper, there is significant space for improvements, like a working orchestration engine, some data and network management aspects and better semantic descriptions. % TODO: Hier wäre eine Schlussfolgerung für deine Arbeit prima oder eine Reflektion dieser Aussage
+As mentioned in the paper, there is significant space for improvements, like an standardized and transparent orchestration engine, some data and network management aspects and better semantic descriptions.
 Overall, this work shows the need of a solid infrastructure at the network edge, to enable edge computing capabilities.
+Some of the presented enhancements can be covered by this thesis.
+Furthermore, the paper shows the need for an improved infrastructure in the network edge level.
+This underlines the goal of this thesis.
 
 The project of \autocite{Stubbs:2015} focuses on service discovery, by implementing them via the Serfnode\footnote{\url{https://github.com/waltermoreira/serfnode}} for distributed systems of microservices.
 Service discovery is a mechanism to detect services and service providers in a network without a centralized management level.
@@ -795,4 +794,11 @@ Docker is comparable with a native environment, beside the network throughput, w
 This also affects the power consumption during network communication, which is a bit higher than in a native environment.\autocite[cf.][p. 4]{Morabito:2016}
 Overall, Docker performs good enough to be used for this use case.\autocite[cf.][p. 4]{Morabito:2016}
 
-% TODO: fazit
+All of the discussed papers made a good progress on pushing some aspects of edge computing forward, as well as improving some \ac{IoT} functionalities.
+But they also highlight that there is some room for improvments in this subject.
+Most of them show the need of having computational power on the network edge, whether by implementing a gateway layer or by running applications on the edge devices himself.
+Furthermore, the need of having virtualization tools like Docker running on the edge nodes is a common ground.
+On the other side, a lightweight inter-node communication and an autonomuous behavior of the nodes is missing by most of the projects.
+The focus is more on deploying the services to speccific nodes and gathering the data.
+That is a good starting point but let room for improvments.
+At this point the prototype to be developed can fit some needs by creating a solid foundation for this.
