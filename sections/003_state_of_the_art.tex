@@ -152,7 +152,7 @@ The \textit{Bare-Metal Virtualization} on the left side, that is numbered among 
 A \ac{VM} will be directly executed from the \textit{Hypervisor}.
 Each \ac{VM}, in turn, has an \ac{OS}, necessary libraries and the application inside them.
 All of the \acp{VM} are completely isolated form each other.\autocite[cf.][p.275]{Soltesz:2007}
-Some examples for system virtualization are VMWare\footnote{\url{http://www.vmware.com}}, Oracle Virtual Box\footnote{\url{https://www.virtualbox.org}}, XEN\footnote{\url{https://www.xenproject.org}} or Microsoft Hyper-V\footnote{\url{https://www.microsoft.com/de-de/cloud-platform/server-virtualization}}.
+Some examples for system virtualization are VMWare\footnote{\url{https://www.vmware.com}}, Oracle Virtual Box\footnote{\url{https://www.virtualbox.org}}, XEN\footnote{\url{https://www.xenproject.org}} or Microsoft Hyper-V\footnote{\url{https://www.microsoft.com/de-de/cloud-platform/server-virtualization}}.
 
 \textit{Container Virtualization}, that is one method of the process virtualization, is shown on the right side of figure \ref{fig:vms_vs_docker}.
 It use a \textit{Container Engine}, that is executed on top of a \textit{Host \ac{OS}}.
@@ -287,7 +287,7 @@ Some of them are elaborated in the following.
 
 \subsection{Linux Containers}
 When we talk about container virtualization nowadays, Docker is one of the most famous tools in the market.
-It is based on \ac{LXC}\footnote{\url{https://linuxcontainers.org/}}, a technology which uses kernel mechanisms like \textit{namespaces} or \textit{cgroups} to isolate processes on a shared \ac{OS}.\autocite[cf.][p. 381]{Pahl:2015}
+It is based on \ac{LXC}\footnote{\url{https://linuxcontainers.org}}, a technology which uses kernel mechanisms like \textit{namespaces} or \textit{cgroups} to isolate processes on a shared \ac{OS}.\autocite[cf.][p. 381]{Pahl:2015}
 Namespaces for example are used to isolate groups of processes, whereas cgroups are used to manage and limit resources access just like restricting the memory, disc space or \ac{CPU} usage.\autocite[cf.][p. 381]{Pahl:2015}
 "The goal of \ac{LXC} is to create an environment as close as possible to a standard Linux installation but without the need for a separate kernel."\autocite[p. 72]{Tosatto:2015}
 There are several other container virtualization tools in the market like OpenVZ\footnote{\url{https://openvz.org/Main_Page}} or Linux-VServer\footnote{\url{http://www.linux-vserver.org}}.
@@ -301,7 +301,7 @@ Docker also uses the \textit{namespace} or \textit{cgroup} mechanisms to isolate
 Similar to \acp{VM}, containers are executed from images.
 A major benefit of Docker is, that Docker images can be combined like building blocks.
 Each image can be used to be the basis for a new one.
-Figure \ref{fig:docker_container_structure} illustrates the concept for the image of the pretty famous Django\footnote{\url{https://www.djangoproject.com/}} web framework.
+Figure \ref{fig:docker_container_structure} illustrates the concept for the image of the pretty famous Django\footnote{\url{https://www.djangoproject.com}} web framework.
 In that case, the Django image, which is the resulting image, based on the Python 3.4 image, that again based on the Debian Jessy image.
 All of them are read-only, but Docker adds a writable layer, also known as \textit{container layer}, on top of the images as soon as the container is created.
 File system operations such as creating new files, modifying or deleting existing files are written directly to this layer.\autocite[cf.]{dockerImages}
@@ -551,7 +551,7 @@ This transport type is optimal for creating multithreaded applications, without 
 This is the fastest transport type available in ZeroMQ.\newline\newline
 \textbf{\ac{IPC}} provides also a local communication transport, but exchanges messages via the \ac{OS} dependent \ac{IPC} mechanism, for example UNIX domain sockets.
 An application can provide a local \ac{API} for another local application via \ac{IPC}.
-Also \ac{IPC} is much faster than the \ac{TCP} communication.\newline\newline
+Also \ac{IPC} is much faster than the \ac{TCP} communication.\autocite[cf.]{ZeroMQ:IPC}\newline\newline
 \textbf{\ac{TCP}} is an ubiquitous, reliable, unicast transport to provide an \ac{API} over a network.\autocite[cf.]{ZeroMQ:tcp}\newline\newline
 \textbf{\ac{PGM}} is a multicast communication transport using the \ac{PGM} standard protocol\footnote{\url{https://tools.ietf.org/html/rfc3208}} and the datagrams are layered directly on top of IP datagrams.\autocite[cf.]{ZeroMQ:pgm}
 It is helpful to send a sequence of packets to multiple consumers at the same time.
@@ -580,9 +580,9 @@ Figure \ref{fig:zeromq_pub_sub} shows this pattern.
 \end{figure}
 
 The \textbf{Pipeline} pattern is also known as the \textit{Divide and Conquer} pattern.
-In figure \ref{fig:zeromq_pipeline} a \textit{Ventilator} can produce multiple tasks, that can be done in parallel.\autocite{ZeroMQ:Guide}
-A set of workers can process these tasks and distribute the work between them.\autocite{ZeroMQ:Guide}
-Finally, a sink can collects the results from the workers.\autocite{ZeroMQ:Guide}
+In figure \ref{fig:zeromq_pipeline} a \textit{Ventilator} can produce multiple tasks, that can be done in parallel.\autocite[cf.]{ZeroMQ:Guide}
+A set of workers can process these tasks and distribute the work between them.\autocite[cf.]{ZeroMQ:Guide}
+Finally, a sink can collects the results from the workers.\autocite[cf.]{ZeroMQ:Guide}
 Benefit of this pattern is, that the workers divide the tasks among itselfs.
 This means, it will increase the calculation time based on the connected workers.
 Furthermore, the workers can pull a new task as soon as they have finished one.
@@ -601,7 +601,7 @@ The whole pattern is shown in figure \ref{fig:zeromq_pipeline}\newline
     \label{fig:zeromq_pipeline}
 \end{figure}
 
-\textbf{Exclusive pair} connects two sockets exclusively, for example two threads in a process.\autocite{ZeroMQ:Guide}
+\textbf{Exclusive pair} connects two sockets exclusively, for example two threads in a process.\autocite[cf.]{ZeroMQ:Guide}
 \newline
 \textbf{Combinations of them} are also possible in ZeroMQ.
 All of these patterns can be combined to create much more advanced combinations.
@@ -628,7 +628,7 @@ Finally, ZeroMQ has libraries for most of the common programming languages.\newl
 
 \section{Related work}
 \label{section:related_work}
-An overview of how to apply the concept of microservices for the \ac{IoT} is shown in \autocite{Butzin:2016}.
+An overview of how to apply the concept of microservices for the \ac{IoT} is shown in \autocite[cf.][p. 5]{Butzin:2016}.
 One of the presented patterns uses container virtualization, to split up the services and use them on low power devices.
 Also in this work, Docker was used as the tool of choice.
 It describes, that the usage of container virtualization enables a better testability, eases the service deployment and improve the scalability of the tools.\autocite[cf.][p. 5]{Butzin:2016}

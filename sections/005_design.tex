@@ -105,7 +105,7 @@ Therefore, each node must have knowledge and should be able to interact with oth
 Besides that, the local orchestrator is tightly coupled to the \textit{\ac{VAL} Manager}.
 This is an abstraction layer for each virtualization component in the system, for example Docker or a bare-metal virtualization like XEN.
 These components should be implemented as plugins, so that it is easy to add or remove virtualization components.
-Therefore, Yapsy\footnote{\url{http://yapsy.sourceforge.net/}} is used as the plugin system of choice.
+Therefore, Yapsy\footnote{\url{http://yapsy.sourceforge.net}} is used as the plugin system of choice.
 
 The \textit{Hardware Event Handler} is a communication endpoint for other third party components.
 For example, an external hardware listener could send a message to the event handler to register a new connected device like a ZigBee dongle or a Bluetooth stick.
@@ -121,7 +121,7 @@ To realize such an architecture, multiple design patterns will be used.
 The decorator pattern will abstract concrete implementations by a centralized independent layer.
 The observer pattern can be used to handle streams of data for example from an \ac{API} endpoint.
 And finally the singleton pattern can prevent the construction of multiple instances of a single module.
-All the facts mentioned before made the code base well structured and improve the readability as well as the comprehensibility
+All the facts mentioned before made the code base well structured and improve the readability as well as the comprehensibility.
 
 
 \subsection{Virtualization layer}
@@ -260,7 +260,7 @@ The created \ac{REST} \ac{API} will be used to get all the necessary information
 
 A web layout based on Bootstrap\footnote{\url{http://getbootstrap.com}} as the \ac{CSS} framework will be created.
 Further, Vue.js\footnote{\url{https://vuejs.org}} is used as the JavaScript frontend framework.
-According to Wappalyzer\footnote{\url{https://wappalyzer.com/categories/web-frameworks}}, Bootstrap is the most used \ac{CSS} framework on the market, with a share of 65.2\% (as of 26. June 2017).
+According to Wappalyzer\footnote{\url{https://wappalyzer.com}}, Bootstrap is the most used \ac{CSS} framework on the market, with a share of 65.2\% (as of 26. June 2017).\autocite[cf.]{wappalyzer:webFrameworks}
 It is elaborated and there are many templates available.
 
 Vue.js on the other side is relatively new on the JavaScript frontend framework market.

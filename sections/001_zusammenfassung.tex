@@ -7,13 +7,13 @@ Sie hat zum Ziel, die Produktionskette in Fabriken zu optimieren, Prozessautomat
 Um diese Ziele zu erreichen ist eine hochgradig verteilte Architektur notwendig, welche tausende von Nodes, die mit Sensoren, Maschinen oder smarten Objekten verbunden sein kann, umfasst.
 
 Das Konzept des Fog Computing bringt dabei die Cloud und die dazugehörigen Funktionalitäten näher an die darunterliegende Netzwerkschicht, um kleinere unabhängige Fog Clouds zu schaffen.
-Virtuelle Maschinen sind ein gängige Methode in Cloud System, jedoch nur bedingt im \ac{IoT} Kontext anwendbar, da hier meist leistungsschwache Geräte verwendet werden, die diese nur bedingt ausführen können.
+Virtuelle Maschinen sind eine gängige Methode in Cloud Systemen, jedoch nur bedingt im \ac{IoT} Kontext anwendbar, da hier meist leistungsschwache Geräte verwendet werden, die diese nur bedingt ausführen können.
 Zudem sind die Geräte oftmals in einem heterogenen und hybriden Umfeld im Einsatz.
 Verlustbehaftete Signale und Kurzstreckentechnologien sind häufig im Einsatz und Nodes können hochfrequent erscheinen und verschwinden.
 Die Latenz muss klein gehalten werden, um Echtzeitanwendungen zu erstellen, der Datenverkehr und die Ressourcennutzung müssen so klein wie möglich gehalten werde und aus Sicherheits- und Datenschutzgründen sollten sensitive Daten vor Ort gehalten werden.
 
 Diese Abschlussarbeit zeigt den Entwurf und die Umsetzung einer Fog Service orchestration Engine für Smart Factories auf.
-Das Ziel dieser Arbeit ist die prototypische Umsetzung einer orchestration Engine, genannt Motey, zu erstellen, die auf einer Fog Node ausgeführt wird, um Docker Container in einem Node Cluster zu orchestrieren.
+Das Ziel dieser Arbeit ist die prototypische Umsetzung einer orchestration Engine, genannt Motey, die auf einer Fog Node ausgeführt wird, um Docker Container in einem Node Cluster zu orchestrieren.
 Weiterhin soll der Prototyp funktionale und nicht funktionale Abhängigkeiten beim aufspielen der Container beachten.
 Das können Hardwareanforderungen, eine benötigte Software oder Abhängigkeiten zu anderen Containern sein.
 Eine der größten Herausforderungen in diesem Projekt war es eine schnelle und leichtgewichtige Verbindungen zwischen den Nodes, welche mittels des ZeroMQ Protokolls umgesetzt wurde, zu erstellen.
@@ -24,5 +24,5 @@ Motey kann jedoch als ein guter Ausgangspunkt für eine komplexe Fog Computing U
 Es bietet Raum für Erweiterungen, z.B. kann ein erweitertes autonomes Verhalten implementiert werden.
 Dieses könnte bspw. die Fähigkeit zum reagieren auf Echtzeitanforderungen, selbst bei fehlenden Cloudebene, beinhalten.
 Zusammenfassend zeigt das erstellte Projekt erfolgreich, dass das erarbeitete Konzept in einer prototypischen Qualität funktioniert.
-Motey ist gut umgesetzt, getestet und dokumentiert und kann als solid Grundlage für eine Weiterentwicklung betrachtet werden.
+Motey ist gut umgesetzt, getestet und dokumentiert und kann als solide Grundlage für eine Weiterentwicklung betrachtet werden.
 \end{otherlanguage}

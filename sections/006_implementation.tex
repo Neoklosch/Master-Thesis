@@ -361,7 +361,7 @@ The usage of the configreader is shown in listing \ref{code:configreader-example
   \caption{Example of the usage of the configreader}
   \label{code:configreader-example}
 \end{listing}
-The configuration object must be imported from the configreader module (see line 1) and can be used directly afterwards (line 4 and 5).
+The configuration object must be imported from the configreader module (line 1) and can be used directly afterwards (line 4 and 5).
 Due to the implementation of the import logic in Python, the containing script will be executed only once, regardless how many files are imported in that module.
 
 \subsection{Orchestration layer}
@@ -377,7 +377,7 @@ The lifecycle will be changed to the \textit{instantiating} state.\newline
 Afterwards, the capabilities of each contained image has to be checked.
 This is necessary to identify the node that is handling the image.\newline
 
-In the blueprint, the capabilities assigned to an image, can have three different conditions:
+In the blueprint, the capabilities assigned to an image, can have three different conditions:\newline
 \begin{enumerate}
   \item there are no capabilities assigned to an image, therefore the current node starts the image and manages the resulting container.
   \item all the assigned capabilities can be fulfilled by the current node. This node then starts the image and is responsible for the resulting container.
@@ -465,9 +465,9 @@ In addition, all the configured \ac{API} will be initialized.
 As mentioned before, these routes can be implemented as Flask Blueprints.
 All routes are located in the \textit{motey/communication/api\_routes} directory.\newline
 
-There are four different routes:
+There are four different routes:\newline
 \begin{itemize}
-  \item The \textbf{Capabilities} Blueprint, which is used to send the capabilities of the node, to add new capabilities or to remove them.
+  \item The \textbf{Capabilities} blueprint, which is used to send the capabilities of the node, to add new capabilities or to remove them.
   The \ac{HTTP} verb \textit{GET} is used to deliver all existing capabilities.
   If a request is received, the \textit{CapabilityRepository} will be used to fetch all capabilities and then they will be converted to a JSON string afterwards.
   The \ac{HTTP} verb \textit{PUT} will add new entries to the repository.
@@ -476,13 +476,13 @@ There are four different routes:
   Otherwise the capabilities will be added via the \textit{CapabilityRepository} to the database.
   This will end up in the \ac{HTTP} status code 201.
   The same logic will be used for the \textit{DELETE} request.
-  \item The second endpoint is implemented as the \textbf{Nodes} Blueprint.
+  \item The second endpoint is implemented as the \textbf{Nodes} blueprint.
   The only functionality is, to respond with all stored nodes as \ac{JSON}.
   This is used for testing purposes and could also be helpful for maintaining the cluster.
-  \item To get some information about the node health status the \textbf{NodeStatus} Blueprint was created.
+  \item To get some information about the node health status the \textbf{NodeStatus} blueprint was created.
   It respond with some hardware information, like the current \ac{CPU} or memory usage.
   This is also useful for maintaining the nodes.
-  \item The last Blueprint implementation is the \textbf{Service} endpoint.
+  \item The last blueprint implementation is the \textbf{Service} endpoint.
   It is used to get a \ac{JSON} list with all stored services via the \ac{HTTP} \textit{GET} verb and also to deploy and remove services.
   Therefore, the \textit{POST} or \textit{DELETE} verb is used.
   Both implementations are pretty similar.
@@ -567,7 +567,7 @@ Listing \ref{code:ZeroMQ-capability-event-msg} show such a message.
 \end{listing}
 Therefore, the topics and the delimiter have to be removed before the message can be parsed.\newline
 
-The other four sockets are implemented with the Request-Reply pattern and are used to:
+The other four sockets are implemented with the Request-Reply pattern and are used to:\newline
 \begin{itemize}
   \item reply to a capability request.
   This is used by the \textit{InterNodeOrchestrator} to get the capabilities of other nodes.
@@ -656,33 +656,31 @@ As defined before, there is no user authentication or other access control mecha
 Travis CI as the tool of choice for the \ac{CI}, using a \textit{.travis.yml} configuration file.
 The content of the file is shown in listing \ref{code:travis_config}.\newline
 
-\begin{listing}[H]
-  \begin{minted}{yaml}
-  sudo: true
-  services: docker
-  language: python
-  os: linux
-  cache: pip
-  python:
-    - "3.6"
+\begin{minted}{yaml}
+sudo: true
+services: docker
+language: python
+os: linux
+cache: pip
+python:
+  - "3.6"
 
-  install: "pip install -r motey-docker-image/requirements.txt"
+install: "pip install -r motey-docker-image/requirements.txt"
 
-  script:
-    - pycodestyle --ignore=E241,E501 motey/
-    - pycodestyle --ignore=E241,E501 samples/
-    - python3 -m unittest tests/capabilityengine/test_* tests/communication/test_* tests/models/test_* tests/orchestrator/test_* tests/repositories/test_* tests/utils/test_* tests/val/test_*
+script:
+  - pycodestyle --ignore=E241,E501 motey/
+  - pycodestyle --ignore=E241,E501 samples/
+  - python3 -m unittest tests/capabilityengine/test_* tests/communication/test_* tests/models/test_* tests/orchestrator/test_* tests/repositories/test_* tests/utils/test_* tests/val/test_*
 
-  after_success:
-    - if [[ "$TRAVIS_BRANCH" = "master" ]]; then
-      docker build -t neoklosch/motey motey-docker-image;
-      docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-      docker push neoklosch/motey;
-      fi
-  \end{minted}
-  \caption{Travis CI configuration file}
-  \label{code:travis_config}
-\end{listing}
+after_success:
+  - if [[ "$TRAVIS_BRANCH" = "master" ]]; then
+    docker build -t neoklosch/motey motey-docker-image;
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push neoklosch/motey;
+    fi
+\end{minted}
+\captionof{listing}{Travis CI configuration file\label{code:travis_config}}
+\vspace{0.5cm}
 
 There are some important parts in it.
 At first the script needs root privileges to build and upload Docker images.
@@ -704,7 +702,7 @@ The current state can be view in Travis CI at \url{https://travis-ci.org/Neoklos
 
 The \textit{after\_success} block is used to create and upload the Docker image.
 Besides that, the install routine and also the \ac{CI} commands are similar.
-The image will only be executed, if it is a master branch build (see line 17).
+The image will only be executed, if it is a master branch build (line 17).
 This is reasonable because a development branch build can be unstable and should not be used to create an official Docker image.
 Line 18 will build the image and line 19 uploads it.
 Two environment variables are used here, because to upload an image, the username and the password of the Docker Hub account has to be handed over.
@@ -839,41 +837,42 @@ In many projects, the most critical part of unit tests are, that they take time.
 For each written component, the related tests take a significant time to be developed.
 In a real life project, this could be unacceptable even if it is important to have them.\newline
 
-\begin{listing}[H]
-  \begin{minted}{python}
-  class TestServiceRepository(unittest.TestCase):
-    @classmethod
-    def setUp(self):
-        self.text_service_id = uuid.uuid4().hex
-        self.test_service = {'id': self.text_service_id, 'service_name': 'test service name', 'images': ['test image']}
-        service_repository.config = {'DATABASE': {'path': '/tmp/testpath'}}
-        service_repository.BaseRepository = mock.Mock(service_repository.BaseRepository)
-        service_repository.TinyDB = mock.Mock(TinyDB)
-        service_repository.Query = mock.Mock(Query)
-        self.test_service_repository = service_repository.ServiceRepository()
+\begin{minted}{python}
+class TestServiceRepository(unittest.TestCase):
 
-    def test_has_entry(self):
-        self.test_service_repository.db.search = mock.MagicMock(return_value=[1, 2])
+  @classmethod
+  def setUp(self):
+      self.text_service_id = uuid.uuid4().hex
+      self.test_service = {'id': self.text_service_id, 'service_name': 'test service name', 'images': ['test image']}
+      service_repository.config = {'DATABASE': {'path': '/tmp/testpath'}}
 
-        result = self.test_service_repository.has(service_id=self.test_service['id'])
+      service_repository.BaseRepository = mock.Mock(service_repository.BaseRepository)
+      service_repository.TinyDB = mock.Mock(TinyDB)
+      service_repository.Query = mock.Mock(Query)
 
-        self.assertTrue(self.test_service_repository.db.search.called)
-        self.assertTrue(result)
-  \end{minted}
-  \caption{Extract from the Motey unit test of the ServiceRepository}
-  \label{code:sample_unit_test}
-\end{listing}
+      self.test_service_repository = service_repository.ServiceRepository()
+
+  def test_has_entry(self):
+      self.test_service_repository.db.search = mock.MagicMock(return_value=[1, 2])
+
+      result = self.test_service_repository.has(service_id=self.test_service['id'])
+
+      self.assertTrue(self.test_service_repository.db.search.called)
+      self.assertTrue(result)
+\end{minted}
+\captionof{listing}{Extract from the Motey unit test of the ServiceRepository\label{code:sample_unit_test}}
+\vspace{0.5cm}
 
 Listing \ref{code:sample_unit_test} shows an extract from the \textit{ServiceRepository} unit test.
-The test starts with a \textit{setUp} method (line 3) that is executed before each test.
-In this case, some static variables will be created (line 4 - 6) and the internally used libraries are mocked (line 7 - 9).
+The test starts with a \textit{setUp} method (line 4) that is executed before each test.
+In this case, some static variables will be created (line 5 - 7) and the internally used libraries are mocked (line 9 - 11).
 Finally, the \textit{ServiceRepository} itself will be created.
 The \textit{test\_has\_entry} method is one of multiple tests.
 This method checks if a value exists in the database.
-Therefore, the result of the database search method is mocked (line 13) and the \textit{has} command is executed (line 15).
+Therefore, the result of the database search method is mocked (line 16) and the \textit{has} command is executed (line 18).
 Finally, the results of the method are checked.
-At first the script tests if a specific method is called, in this case the \textit{search} method of the database (line 17).
-Afterwards, the result of the \textit{ServiceRepository} \textit{has} method is checked (line 18).
+At first the script tests if a specific method is called, in this case the \textit{search} method of the database (line 20).
+Afterwards, the result of the \textit{ServiceRepository} \textit{has} method is checked (line 21).
 If everything went fine, the test will execute with a status 0 as shown in listing \ref{code:style_check_validation}.\newline
 
 Unit testing in general can be realized in two different ways.
